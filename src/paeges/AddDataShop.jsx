@@ -1,11 +1,12 @@
 import React from 'react'
+import "./AddDataShop.css"
 
 
 function AddDataShop() {
   return (
 
     <div>
-         <div className="text-center  h-screen bg-gray-100">
+         <div className="text-center  h-screen bg-gray-100=">
       <div className="Addstore ">
         <h2>เพิ่มข้อมูลร้าน</h2>
       </div>
