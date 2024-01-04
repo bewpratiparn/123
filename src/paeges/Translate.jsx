@@ -1,23 +1,47 @@
 import React from "react";
 import "flowbite";
+import "./translate.css";
 
 function Translate() {
   return (
+    
     <div>
-      <div className="flex justify-center items-center h-screen bg-gray-100 min-h-screen p-4">
-        <center>
-          <a
-            href="https://translate.google.co.th/?hl=th&tab=rT"
-            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-          >
-            Translate
-          </a>
-        </center>
-        <div className="box-translate">
-          this is my translate
-        </div>
+      <div className="Header">
+        Welcome to Translate
       </div>
-      <div />
+      <center>
+        <div className="color-Translate">
+
+          <div className="color-language">
+          <div className ="language">
+               <button>EN</button> 
+               <button>TH</button>
+            </div>
+            </div>                
+        <div className="box-InputTranslate">
+          <div className="Input-language">
+            <label for="textInput">Enter languange :</label>
+            <input
+              type="text"
+              id="textInput"
+              name="textInput"
+              placeholder="Type here..."
+            />
+          </div>
+        </div>
+        <div className="box-OutputTranslate">
+        <div className="Input-language">
+            <label for="textOutput">Output languange :</label>
+            <input
+              type="text"
+              id="textOutput"
+              name="textOutput"
+              placeholder=""
+            />
+          </div>
+        </div>
+        </div>
+      </center>
     </div>
   );
 }
