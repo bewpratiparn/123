@@ -1,36 +1,44 @@
 body{
     margin: 0;
     padding: 0;
+
 }
 .Header{
-    margin-top: 3rem;
+    margin-top: 1rem;
     text-align: center;
     font-size: 2rem;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
+    
 }
 
 .color-Translate{
-    margin:5rem;
+    margin:1.5rem;
     padding: 1rem;
-    border: 28px solid salmon;
+    border: 28px solid #ffc107;
     border-radius: 1.5rem;
     width: 500px;
 }
 
 .language{
     display: flex;
+    color: black;
 }
+
 .language > button{
-    background-color: #f1f1f1;
+    background-color:#e0e0e0;
     margin:10px;
     padding:20px;
     font-size:10px;
     cursor: pointer;
+    border-color: red;
+    
 }
 
-    
-
+button:hover {
+    background: #eee;
+    border: 2px solid;
+    margin-bottom: -1px;
+}
 
 .box-InputTranslate{
     width: 300px;

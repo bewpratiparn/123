@@ -14,8 +14,8 @@ function Translate() {
 
           <div className="color-language">
           <div className ="language">
-               <button>EN</button> 
-               <button>TH</button>
+               <button><h1>EN</h1></button> 
+               <button><h1>TH</h1></button>
             </div>
             </div>                
         <div className="box-InputTranslate">
