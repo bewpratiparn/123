@@ -37,21 +37,25 @@ function AddDataShop() {
             
             <form>
   <div className="grid gap-6 mb-6 md:grid-cols-2">
+
+  
+
+
     <div>
-      <label className="block mb-2 text-l font-medium text-gray-900 dark:text-back" htmlFor="first_name">ชื่อร้าน</label>
-      <textarea placeholder="ชื่อร้าน" className="textarea-white textarea-bordered textarea-xs w-full max-w-xs dark:text-back"></textarea>
+      <label className="block mb-2 text-l font-medium text-gray-900 dark:text-black" htmlFor="first_name">ชื่อร้าน</label>
+      <textarea placeholder="ชื่อร้าน" className="textarea-white  text-black textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
 
-      <label className="block mb-2 text-l font-medium text-gray-900 dark:text-back" htmlFor="first_name">สถานที่</label>
-      <textarea placeholder="สถานที่" className="textarea-white textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
+      <label className="block mb-2 text-l font-medium text-gray-900 dark:text-black" htmlFor="first_name">สถานที่</label>
+      <textarea placeholder="สถานที่" className="textarea-white  text-black textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
 
-      <label className="block mb-2 text-l font-medium text-gray-900 dark:text-back" htmlFor="first_name">เบอร์โทรศัพท์</label>
-      <textarea placeholder="เบอร์โทรศัพท์" className="textarea-white textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
+      <label className="block mb-2 text-l font-medium text-gray-900 dark:text-black" htmlFor="first_name">เบอร์โทรศัพท์</label>
+      <textarea placeholder="เบอร์โทรศัพท์" className="textarea-white text-black textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
 
-      <label className="block mb-2 text-l font-medium text-gray-900 dark:text-back" htmlFor="first_name">map link</label>
-      <textarea placeholder="map link" className="textarea-white textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
+      <label className="block mb-2 text-l font-medium text-gray-900 dark:text-black" htmlFor="first_name">map link</label>
+      <textarea placeholder="map link" className="textarea-white text-black textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
 
-      <label className="block mb-2 text-l font-medium text-gray-900 dark:text-back" htmlFor="first_name">เวลาเปิด-ปิด</label>
-      <textarea placeholder="เวลาเปิด-ปิด" className="textarea-white textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
+      <label className="block mb-2 text-l font-medium text-gray-900 dark:text-black" htmlFor="first_name">เวลาเปิด-ปิด</label>
+      <textarea placeholder="เวลาเปิด-ปิด" className="textarea-white text-black textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
       
     </div>
   </div>

@@ -39,16 +39,16 @@ function AddFood() {
   <div className="grid gap-6 mb-6 md:grid-cols-2">
     <div>
       <label className="block mb-2 text-l font-medium text-gray-900 dark:text-back" htmlFor="first_name">ชื่อเมนู</label>
-      <textarea placeholder="ชื่อเมนู" className="textarea-white textarea-bordered textarea-xs w-full max-w-xs dark:text-back"></textarea>
+      <textarea placeholder="ชื่อเมนู" className="textarea-white text-black textarea-bordered textarea-xs w-full max-w-xs dark:text-back"></textarea>
 
       <label className="block mb-2 text-l font-medium text-gray-900 dark:text-back" htmlFor="first_name">รายละเอียดอาหาร</label>
-      <textarea placeholder="รายละเอียดอาหาร" className="textarea-white textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
+      <textarea placeholder="รายละเอียดอาหาร" className="textarea-white text-black textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
 
       <label className="block mb-2 text-l font-medium text-gray-900 dark:text-back" htmlFor="first_name">วิธีการทำ</label>
-      <textarea placeholder="วิธีการทำ" className="textarea-white textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
+      <textarea placeholder="วิธีการทำ" className="textarea-white text-black textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
 
       <label className="block mb-2 text-l font-medium text-gray-900 dark:text-back" htmlFor="first_name">ราคา</label>
-      <textarea placeholder="ราคา" className="textarea-white textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
+      <textarea placeholder="ราคา" className="textarea-white text-black textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
 
       
       

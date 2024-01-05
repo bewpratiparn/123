@@ -12,6 +12,7 @@ import Translate from './paeges/Translate'
 import AddFood from './paeges/AddFood'
 import AddDataShop from './paeges/AddDataShop'
 
+
 function App() {
   const [count, setCount] = useState(0)
 
