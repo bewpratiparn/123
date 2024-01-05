@@ -12,7 +12,7 @@ function Navbar() {
           class="flex items-center"
         >
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
+            src="https://sv1.picz.in.th/images/2024/01/05/d70MquS.png"
             class="h-8 mr-3"
             alt="Flowbite Logo"
           />
