@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 import React from 'react'
 import "./AddDataShop.css"
 
-=======
-import React from 'react';
->>>>>>> bew_Home
+
 
 function AddDataShop() {
   return (
@@ -48,15 +45,8 @@ function AddDataShop() {
 
 
     <div>
-<<<<<<< HEAD
-         <div className="text-center  h-screen bg-gray-100=">
-      <div className="Addstore ">
-        <h2>เพิ่มข้อมูลร้าน</h2>
-      </div>
-=======
       <label className="block mb-2 text-l font-medium text-gray-900 dark:text-black" htmlFor="first_name">ชื่อร้าน</label>
       <textarea placeholder="ชื่อร้าน" className="textarea-white  text-black textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
->>>>>>> bew_Home
 
       <label className="block mb-2 text-l font-medium text-gray-900 dark:text-black" htmlFor="first_name">สถานที่</label>
       <textarea placeholder="สถานที่" className="textarea-white  text-black textarea-bordered textarea-xs w-full max-w-xs dark:text-white"></textarea>
@@ -115,13 +105,7 @@ function AddDataShop() {
     
   </div>
 </form>
-
-            
-            
-          
-
-          
-         
+     
           <from>
             <div>
           <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ยืนยัน</button>
