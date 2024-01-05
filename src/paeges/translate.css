@@ -1,6 +1,13 @@
 body{
     margin: 0;
     padding: 0;
+    color: #e0e0e0;
+    
+
+}
+.background{
+  /* background-image: url("https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/38/2f/f7/382ff76f-8be5-314c-dc4f-d5ed5ee47a0e/logo_translate_color-0-1x_U007emarketing-0-0-0-6-0-0-0-85-220-0.png/1200x630wa.png");*/
+  background-color: #b2ebf2;
 
 }
 .Header{
@@ -8,24 +15,25 @@ body{
     text-align: center;
     font-size: 2rem;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: black;
     
 }
 
 .color-Translate{
     margin:1.5rem;
     padding: 1rem;
-    border: 28px solid #ffc107;
+    border: 28px solid DodgerBlue;
     border-radius: 1.5rem;
     width: 500px;
 }
 
 .language{
     display: flex;
-    color: black;
+    color: white;
 }
 
 .language > button{
-    background-color:#e0e0e0;
+    background-color:DodgerBlue;
     margin:10px;
     padding:20px;
     font-size:10px;
@@ -35,9 +43,22 @@ body{
 }
 
 button:hover {
-    background: #eee;
+    background:royalblue;
     border: 2px solid;
     margin-bottom: -1px;
+}
+
+.box-InputTranslate .Input-language input{
+        color: black;
+
+}
+.box-OutputTranslate .Input-language input{
+
+    color: black;
+}
+
+.Input-language label {
+    color: black;
 }
 
 .box-InputTranslate{
@@ -49,6 +70,13 @@ button:hover {
  
 
 }
+
+.button-translate .translate i> .Bidownvote{
+    size: 300px;
+}
+
+
+
 .box-OutputTranslate{
        width: 300px;
   border: 2px solid gray ;

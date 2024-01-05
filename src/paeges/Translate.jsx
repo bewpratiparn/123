@@ -1,17 +1,18 @@
 import React from "react";
+import { BiDownvote } from "react-icons/bi";
 import "flowbite";
 import "./translate.css";
 
 function Translate() {
   return (
     
-    <div>
+    <div className="background">
       <div className="Header">
         Welcome to Translate
       </div>
       <center>
         <div className="color-Translate">
-
+          
           <div className="color-language">
           <div className ="language">
                <button><h1>EN</h1></button> 
@@ -29,6 +30,10 @@ function Translate() {
             />
           </div>
         </div>
+          
+        <button id="translateButton" onclick="translateText()">Translate</button>
+
+
         <div className="box-OutputTranslate">
         <div className="Input-language">
             <label for="textOutput">Output languange :</label>
