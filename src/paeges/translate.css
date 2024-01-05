@@ -6,8 +6,7 @@ body{
 
 }
 .background{
-  /* background-image: url("https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/38/2f/f7/382ff76f-8be5-314c-dc4f-d5ed5ee47a0e/logo_translate_color-0-1x_U007emarketing-0-0-0-6-0-0-0-85-220-0.png/1200x630wa.png");*/
-  background-color: #b2ebf2;
+   background-image: url("https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/38/2f/f7/382ff76f-8be5-314c-dc4f-d5ed5ee47a0e/logo_translate_color-0-1x_U007emarketing-0-0-0-6-0-0-0-85-220-0.png/1200x630wa.png");
 
 }
 .Header{
@@ -22,10 +21,12 @@ body{
 .color-Translate{
     margin:1.5rem;
     padding: 1rem;
-    border: 28px solid DodgerBlue;
+    border: 20px solid DodgerBlue;
     border-radius: 1.5rem;
     width: 500px;
 }
+
+
 
 .language{
     display: flex;
@@ -44,6 +45,7 @@ body{
 
 button:hover {
     background:royalblue;
+    box-shadow: 5px 10px 18px #888888;
     border: 2px solid;
     margin-bottom: -1px;
 }
@@ -71,9 +73,30 @@ button:hover {
 
 }
 
-.button-translate .translate i> .Bidownvote{
+.button-translate{
+    margin: 1px;
+    position: relative;
+  /*  border: 1px solid blue; */
     size: 300px;
 }
+
+.outline-button-translate{
+        position: absolute;
+        left: 920px;
+        top: 510px;
+        width: 4.9rem;
+}
+.button-trn h1{
+    color: black;
+
+}
+button.button-trn:hover{
+    background:#33FF00;
+    box-shadow: 5px 10px 18px #888888;
+    border: 2px solid;
+    margin-bottom: -1px;
+}
+
 
 
 

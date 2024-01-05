@@ -30,10 +30,11 @@ function Translate() {
             />
           </div>
         </div>
-          
-        <button id="translateButton" onclick="translateText()">Translate</button>
 
-
+          <div className="outline-button-translate">
+          <button className="button-trn" id="translateButton" onclick="translateText()"><h1>Translate</h1></button>
+          </div>
+       
         <div className="box-OutputTranslate">
         <div className="Input-language">
             <label for="textOutput">Output languange :</label>

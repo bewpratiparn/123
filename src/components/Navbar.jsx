@@ -133,20 +133,7 @@ function Navbar() {
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem"
-                >
-                  <div class="inline-flex items-center">
-                    <img
-                      src="https://logowik.com/content/uploads/images/195_china_flag.jpg"
-                      class="h-3.5 w-3.5 rounded-full mr-2"
-                      alt="Thailand Logo"
-                    />
-                    China(中国)
-                  </div>
-                </a>
+                
               </li>
             </ul>
           </div>
