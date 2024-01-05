@@ -3,7 +3,7 @@ import React from 'react';
 function AddDataShop() {
   return (
     <>
-      <div className="flex justify-center items-center-top bk-screen bg-gray-100">
+      <div className="flex justify-center items-center-top bk-screen " style={{ backgroundImage: "url('https://ภาพวิว.com/wp-content/uploads/2017/12/THAI-124.jpg')" }}>
         <center>
 <from>
   <div>
@@ -11,7 +11,7 @@ function AddDataShop() {
   </div>
 </from>
 <div className='text-lg font-medium text-gray-900'>
-เพิ่มข้อมูลร้านค้า
+เพิ่มข้อมูลร้านค้า 
 </div>
 
 
