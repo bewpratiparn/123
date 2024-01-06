@@ -14,7 +14,7 @@ function AddDataShop() {
   </div>
 </from>
 <div className='text-lg font-medium text-gray-900'>
-เพิ่มข้อมูลร้านค้า github
+เพิ่มข้อมูลร้านค้า githubbbbb
 </div>
 
 
