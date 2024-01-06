@@ -18,7 +18,7 @@ function AddFood() {
           <from>
           <div>
             <select className="select select-info w-full max-w-xs">
-              <option disabled selected>เพิ่มหมวดหมู่เจ้าหมาหน้าดำ</option>
+              <option disabled selected></option>
               <option>น้ำ</option>
               <option>อาหาร</option>
               <option>ของว่าง</option>
