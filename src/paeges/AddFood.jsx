@@ -11,23 +11,11 @@ function AddFood() {
   </div>
 </from>
 <div className='text-lg font-medium text-gray-900'>
-เพิ่มข้อมูลร้านค้า
+เพิ่มข้อมูลอาหาร
 </div>
 
 
-          <from>
-          <div>
-            <select className="select select-info w-full max-w-xs">
-              <option disabled selected></option>
-              <option>น้ำ</option>
-              <option>อาหาร</option>
-              <option>ของว่าง</option>
-              <option>ของหวาน</option>
-            </select>
-          </div>
-          </from>
-
-         
+        
             
             <form>
   <div className="grid gap-6 mb-6 md:grid-cols-2">
