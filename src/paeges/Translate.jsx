@@ -7,6 +7,7 @@ import "./translate.css";
 function Translate() {
 
   function MyComponent() {
+    const [counter, setCounter] = useState(0);
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
@@ -24,6 +25,7 @@ function Translate() {
         }
       )
   }, [])}
+
 
   
   return (
