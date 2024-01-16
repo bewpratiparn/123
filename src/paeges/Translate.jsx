@@ -7,7 +7,7 @@ import "./translate.css";
 function Translate() {
 
   function MyComponent() {
-    const [counter, setCounter] = useState(0);
+    
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
@@ -25,9 +25,6 @@ function Translate() {
         }
       )
   }, [])}
-
-
-  
   return (
     
     <div className="background">
@@ -54,7 +51,7 @@ function Translate() {
             />
           </div>
         </div>
-
+         
           <div className="outline-button-translate">
           <button className="button-trn" id="translateButton" onclick="translateText()"><h1>Translate</h1></button>
           </div>
