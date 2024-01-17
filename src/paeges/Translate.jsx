@@ -39,7 +39,6 @@ function Translate() {
             </div>
           </div>
           <div>
-            {" "}
             counter = {counter}
             <div className="outline-button-translate">
               <button className="button-trn" onClick={updateCounter}>
