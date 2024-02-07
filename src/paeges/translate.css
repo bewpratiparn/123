@@ -1,129 +1,22 @@
-body{
-    margin: 0;
-    padding: 0;
-    color: #e0e0e0;
-    
+@import url("https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap");
+
+.app-header {
+  text-align: center;
+  padding: 20px;
 }
 
-.background
-{
- background-color: white;
+.header {
+  font-family: "Azeret Mono", monospace;
+  font-size: 30px;
 }
 
-
-.Header{
-    margin-top: 1rem;
-    text-align: center;
-    font-size: 2rem;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: black;
-    
+.app-body {
+  padding: 20px;
+  text-align: center;
 }
 
-.color-Translate
-{
-    margin:1.5rem;
-    padding: 1rem;
-    border: 20px solid DodgerBlue;
-    border-radius: 1.5rem;
-    width: 500px;
-}
-
-
-
-.language
-{
-    display: flex;
-    color: white;
-}
-
-.language > button
-{
-    background-color:DodgerBlue;
-    margin:10px;
-    padding:20px;
-    font-size:10px;
-    cursor: pointer;
-    border-color: red;
-    
-}
-
-button:hover 
-{
-    background:royalblue;
-    box-shadow: 5px 10px 18px #888888;
-    border: 2px solid;
-    margin-bottom: -1px;
-}
-
-.box-InputTranslate .Input-language input
-{
-        color: black;
-
-}
-.box-OutputTranslate .Input-language input
-{
-
-    color: black;
-}
-
-.Input-language label 
-{
-    color: black;
-}
-
-.box-InputTranslate
-{
-    width: 300px;
-  border: 2px solid grey ;
-  padding: 30px;
-  margin: 40px;
-  border-radius: 10px;
- 
-
-}
-
-.button-translate
-{
-    margin: 1px;
-   /* position: relative;
-  /*  border: 1px solid blue; */
-    size: 300px;
-}
-
-.outline-button-translate
-{
-      /*  position: absolute;*/
-        left: 40rem;
-        top: 31rem;
-        width: 4.9rem;
-}
-
-.button-trn h1
-{
-    color: black;
-
-}
-
-
-
-button.button-trn:hover
-{
-    background:#33FF00;
-    box-shadow: 5px 10px 18px #888888;
-    border: 2px solid;
-    margin-bottom: -1px;
-}
-
-
-
-.box-OutputTranslate
-{
-       width: 300px;
-  border: 2px solid gray ;
-  padding: 30px;
-  margin: 50px;
-  border-radius: 10px;
-  
- 
+.language-select {
+  height: 40px !important;
+  margin-bottom: 15px;
+  outline: none !important;
 }
