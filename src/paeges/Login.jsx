@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "flowbite";
 
 function Login() {
+
+  const [id, setId] = useState();
+  const [password, setPassword] = useState();
+
+
+  const loginSucces = () =>{
+
+  [] };
+
+
   return (
     <div className="flex justify-center  items-center-top h-screen  bg-gray-100 ">
       <div className="bg-white-screen p-8 rounded-lg shadow-lg">
