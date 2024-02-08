@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { Navigate, useNavigate } from 'react-router-dom';
+
 
 function Login() {
-
+  const Navigate = useNavigate()
+  const MySwal = withReactContent(Swal)
+  
   const [input, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -37,7 +43,20 @@ function Login() {
       })
       .then(result => {
         console.log(result);
-        // Handle successful login, redirect, etc.
+        if (result.status === 'ok') {
+          MySwal.fire({
+            html: <i>{result.message}</i>,
+            icon: 'success'
+          }).then((value)=>{
+            localStorage.setItem('token', result.accessToken)
+            Navigate('/Home')
+          })
+        } else {
+          MySwal.fire({
+            html: <i>{result.message}</i>,
+            icon:'error'
+          })
+        }
       })
       .catch(error => {
         console.error('Error:', error);

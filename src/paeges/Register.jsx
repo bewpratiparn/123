@@ -1,34 +1,55 @@
-import React from 'react';
+import { useState } from 'react';
 import "flowbite";
+import ReactDOM from 'react-dom/client';
+
+
 
 function Register() {
+ const [inputs, setInputs] = useState({});
+
+
+ const handleChange = (event) => {
+  const name = event.target.name;
+  const value = event.target.value;
+  setInputs(values => ({...values, [name]: value}))
+}
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+  console.log(inputs);
+}
+
   return (
     <div className="flex justify-center items-center-top h-screen bg-gray-100">
       <div className="bg-white-screen p-8 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-4">Register</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-              id {count}
+            <label className="block text-gray-700 text-sm font-bold mb-2" >
+              id
             </label>
             <input
               className="w-full p-2 border rounded-md"
-              type="email"
-              id="email"
+              type="text"
+              name="id"
               placeholder="id"
+              value={inputs.id || ""}
+              onChange={handleChange}
             />
           </div>
           
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-              Password
+            <label className="block text-gray-700 text-sm font-bold mb-2" >
+              Enter Password
             </label>
             <input
               className="w-full p-2 border rounded-md"
+              name="password"
               type="password"
-              id="password"
               placeholder="********"
+              value={inputs.password || ""}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-4">
@@ -37,9 +58,11 @@ function Register() {
             </label>
             <input
               className="w-full p-2 border rounded-md"
-              type="text"
-              id="name"
+              type="number"
+              name="phone"
               placeholder="Phone"
+              value={inputs.phone || ""}
+              onChange={handleChange}
             />
           </div>
           <button

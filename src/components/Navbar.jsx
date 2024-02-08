@@ -187,6 +187,7 @@ function Navbar() {
                 แปลภาษา
               </Link>
             </li>
+            
 
             <li>
               <button
@@ -222,22 +223,7 @@ function Navbar() {
                   aria-labelledby="dropdownLargeButton"
                 >
               
-                  <li>
-                    <Link
-                      to="/Login"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      เข้าสู่ระบบ
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/Register"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      สมัครสมาชิก
-                    </Link>
-                  </li>
+                  
                   
                   <div>
                     <li aria-labelledby="dropdownNavbarLink">
@@ -255,12 +241,13 @@ function Navbar() {
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 10 6"
-                          stroke-width="2"
+                          
                         >
                           <path
                             stroke="currentColor"
                             stroke-linecap="round"
                             stroke-linejoin="round"
+                            stroke-width="2"
                             
                             d="m1 1 4 4 4-4"
                           />
