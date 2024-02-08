@@ -84,7 +84,7 @@ function Translate() {
               {languageOptions.map((language) => {
                 return( 
                 <option value={language.code}>
-                  {language.name}
+                  {language.Text}
                   </option>
                 )
               })}
