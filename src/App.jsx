@@ -7,10 +7,11 @@ import Navbar from './components/Navbar'
 import Login from './paeges/Login'
 import Register from './paeges/Register'
 import Home from './paeges/Home'
-import Search from './components/Search'
 import Translate from './paeges/Translate'
 import AddFood from './paeges/AddFood'
 import AddDataShop from './paeges/AddDataShop'
+
+
 
 
 function App() {
@@ -20,9 +21,9 @@ function App() {
     
       <Router>
       <Navbar />
-      <Search />
-     
+    
       <Routes> 
+      
         <Route path="/Home" element={<Home />} /> 
         <Route path="/Login" element ={<Login/>} />
         <Route path="/Login" element ={<Home/>} />
@@ -30,6 +31,8 @@ function App() {
         <Route path="/Translate" element={<Translate />} /> 
         <Route path="/AddFood" element={<AddFood />} /> 
         <Route path="/AddDataShop" element={<AddDataShop />} />
+        
+        
       </Routes>
     </Router>
  
