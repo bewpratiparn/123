@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import "flowbite";
 
+import { propTypes } from 'prop-types';
+
 function Login() {
 
   const [id, setId] = useState();

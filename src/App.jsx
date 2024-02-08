@@ -14,7 +14,12 @@ import AddDataShop from './paeges/AddDataShop'
 
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [token, setToken] = useState();
+
+  if(!token) {
+    return <Login setToken ={setToken}/>
+  }
 
   return (
     
