@@ -1,33 +1,34 @@
 import React from "react";
 import "flowbite";
 
+
 import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {
   return (
-    <nav class="bg-white border-gray-200 dark:bg-gray-900">
-      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a
           href="https://www.facebook.com/profile.php?id=100090355620193"
-          class="flex items-center"
+          className="flex items-center"
         >
           <img
             src="https://sv1.picz.in.th/images/2024/01/05/d70MquS.png"
-            class="h-8 mr-3"
+            className="h-8 mr-3"
             alt="Flowbite Logo"
           />
-          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             หน้าเมนูอาหาร
           </span>
         </a>
-        <div class="flex items-center md:order-2">
+        <div className="flex items-center md:order-2">
           <button
             type="button"
             data-dropdown-toggle="language-dropdown-menu"
-            class="inline-flex items-center font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="inline-flex items-center font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
           >
             <svg
-              class="w-5 h-5 mr-2 rounded-full"
+              className="w-5 h-5 mr-2 rounded-full"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -68,20 +69,20 @@ function Navbar() {
           </button>
 
           <div
-            class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700"
+            className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700"
             id="language-dropdown-menu"
           >
-            <ul class="py-2 font-medium" role="none">
+            <ul className="py-2 font-medium" role="none">
               <li>
                 <a
                   href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                 >
-                  <div class="inline-flex items-center">
+                  <div className="inline-flex items-center">
                     <svg
                       aria-hidden="true"
-                      class="h-3.5 w-3.5 rounded-full mr-2"
+                      className="h-3.5 w-3.5 rounded-full mr-2"
                       xmlns="http://www.w3.org/2000/svg"
                       id="flag-icon-css-us"
                       viewBox="0 0 512 512"
@@ -119,13 +120,13 @@ function Navbar() {
               <li>
                 <a
                   href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                 >
-                  <div class="inline-flex items-center">
+                  <div className="inline-flex items-center">
                     <img
                       src="https://www.liblogo.com/img-logo/th1967p043-thailand-logo-pin-by-zipzipdancer-on-diy-thailand-flag-flag-thailand.png"
-                      class="h-3.5 w-3.5 rounded-full mr-2"
+                      className="h-3.5 w-3.5 rounded-full mr-2"
                       alt="Thailand Logo"
                     />
                     Thailand(ไทย)
@@ -140,13 +141,13 @@ function Navbar() {
           <button
             data-collapse-toggle="navbar-language"
             type="button"
-            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-language"
             aria-expanded="false"
           >
-            <span class="sr-only">Open main menu</span>
+            <span className="sr-only">Open main menu</span>
             <svg
-              class="w-5 h-5"
+            className="w-5 h-5"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -164,14 +165,14 @@ function Navbar() {
         </div>
 
         <div
-          class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+          className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
           id="navbar-language"
         >
-          <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <Link
                 to="/Home"
-                class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                 aria-current="page"
               >
                 หน้าเมนูอาหาร
@@ -180,7 +181,7 @@ function Navbar() {
             <li>
               <Link
                 to="/Translate"
-                class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                 aria-current="page"
               >
                 แปลภาษา
@@ -191,21 +192,22 @@ function Navbar() {
               <button
                 id="dropdownNavbarLink"
                 data-dropdown-toggle="dropdownNavbar"
-                class="flex items-center justify-between w-full py-2 pl-3 pr-4  text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                className="flex items-center justify-between w-full py-2 pl-3 pr-4  text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
               >
                 ตั้งค่าบัญชี{" "}
                 <svg
-                  class="w-2.5 h-2.5 ml-2.5"
+                  className="w-2.5 h-2.5 ml-2.5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 10 6"
+                  stroke-width="2"
                 >
                   <path
                     stroke="currentColor"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
+                    
                     d="m1 1 4 4 4-4"
                   />
                 </svg>
@@ -213,17 +215,17 @@ function Navbar() {
 
               <div
                 id="dropdownNavbar"
-                class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
               >
                 <ul
-                  class="py-2 text-sm text-gray-700 dark:text-gray-400"
+                  className="py-2 text-sm text-gray-700 dark:text-gray-400"
                   aria-labelledby="dropdownLargeButton"
                 >
-                  {/* 
+              
                   <li>
                     <Link
                       to="/Login"
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       เข้าสู่ระบบ
                     </Link>
@@ -231,12 +233,12 @@ function Navbar() {
                   <li>
                     <Link
                       to="/Register"
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       สมัครสมาชิก
                     </Link>
                   </li>
-                  */}
+                  
                   <div>
                     <li aria-labelledby="dropdownNavbarLink">
                       <button
@@ -244,21 +246,22 @@ function Navbar() {
                         data-dropdown-toggle="doubleDropdown"
                         data-dropdown-placement="right-start"
                         type="button"
-                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        className="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         เพิ่มข้อมูลสำหรับร้าน
                         <svg
-                          class="w-2.5 h-2.5 ml-2.5"
+                          className="w-2.5 h-2.5 ml-2.5"
                           aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 10 6"
+                          stroke-width="2"
                         >
                           <path
                             stroke="currentColor"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            stroke-width="2"
+                            
                             d="m1 1 4 4 4-4"
                           />
                         </svg>
@@ -266,16 +269,16 @@ function Navbar() {
 
                       <div
                         id="doubleDropdown"
-                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                        className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
                       >
                         <ul
-                          class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                          className="py-2 text-sm text-gray-700 dark:text-gray-200"
                           aria-labelledby="doubleDropdownButton"
                         >
                           <li>
                             <Link
                               to="/AddDataShop"
-                              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                             >
                               เพิ่มข้อมูลร้านค้า
                             </Link>
@@ -283,7 +286,7 @@ function Navbar() {
                           <li>
                             <Link
                               to="/AddFood"
-                              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                             >
                               เพิ่มข้อมูลอาหาร
                             </Link>
@@ -300,11 +303,11 @@ function Navbar() {
                         data-dropdown-toggle="doubleDropdown2"
                         data-dropdown-placement="right-start"
                         type="button"
-                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        className="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         แก้ไข้โปรไฟล์
                         <svg
-                          class="w-2.5 h-2.5 ml-2.5"
+                          className="w-2.5 h-2.5 ml-2.5"
                           aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -322,16 +325,16 @@ function Navbar() {
 
                       <div
                         id="doubleDropdown2"
-                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                        className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
                       >
                         <ul
-                          class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                          className="py-2 text-sm text-gray-700 dark:text-gray-200"
                           aria-labelledby="doubleDropdownButton"
                         >
                           <li>
                             <Link
                               to="/"
-                              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                             >
                               เเก้ไขข้อมูลร้านค้า
                             </Link>
@@ -339,7 +342,7 @@ function Navbar() {
                           <li>
                             <Link
                               to="/"
-                              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                             >
                               ไม่แสดงรายการอาหาร
                             </Link>
@@ -356,11 +359,11 @@ function Navbar() {
                         data-dropdown-toggle="doubleDropdown3"
                         data-dropdown-placement="right-start"
                         type="button"
-                        class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        className="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         ลงชื่อเข้าใช้
                         <svg
-                          class="w-2.5 h-2.5 ml-2.5"
+                          className="w-2.5 h-2.5 ml-2.5"
                           aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -378,16 +381,16 @@ function Navbar() {
 
                       <div
                         id="doubleDropdown3"
-                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                        className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
                       >
                         <ul
-                          class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                          className="py-2 text-sm text-gray-700 dark:text-gray-200"
                           aria-labelledby="doubleDropdownButton"
                         >
                           <li>
                             <Link
                               to="/Login"
-                              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                             >
                               เข้าสู่ระบบ
                             </Link>
@@ -395,7 +398,7 @@ function Navbar() {
                           <li>
                             <Link
                               to="/Register"
-                              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                             >
                               สมัครสมาชิก
                             </Link>
@@ -403,7 +406,7 @@ function Navbar() {
                           <li>
                             <Link
                               to="/Home"
-                              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                             >
                               ออกจากระบบ
                             </Link>
@@ -411,7 +414,7 @@ function Navbar() {
                           <li>
                             <Link
                               to="/"
-                              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                             >
                               ลบบัญชี
                             </Link>
@@ -427,11 +430,11 @@ function Navbar() {
                 
 
                {/* 
-                <div class="py-1">
+                <div className="py-1">
                   {" "}
                   <a
                     href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                   >
                     {" "}
                     ออกจากระบบ{" "}

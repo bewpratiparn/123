@@ -14,12 +14,7 @@ import AddDataShop from './paeges/AddDataShop'
 
 
 function App() {
-
-  const [token, setToken] = useState();
-
-  if(!token) {
-    return <Login setToken ={setToken}/>
-  }
+  
 
   return (
     
@@ -29,7 +24,7 @@ function App() {
      
       <Routes> 
         <Route path="/Home" element={<Home />} /> 
-        <Route path="/login" element={<Login />} /> 
+        <Route path="Login" element ={<Login/>} />
         <Route path="/register" element={<Register />} /> 
         <Route path="/Translate" element={<Translate />} /> 
         <Route path="/AddFood" element={<AddFood />} /> 
