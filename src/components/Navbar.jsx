@@ -13,9 +13,9 @@ function Navbar() {
           className="flex items-center"
         >
           <img
-            src="https://sv1.picz.in.th/images/2024/01/05/d70MquS.png"
+            src="https://i.ibb.co/8NCWKFN/420970713-1319255045405174-2605956450177240696-n.png"
             className="h-8 mr-3"
-            alt="Flowbite Logo"
+            alt=""
           />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             หน้าเมนูอาหาร
