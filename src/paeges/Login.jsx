@@ -5,70 +5,61 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 
 function Login() {
-  const Navigate = useNavigate()
-  const MySwal = withReactContent(Swal)
-  
+  const navigate = useNavigate();
+  const MySwal = withReactContent(Swal);
   const [input, setInputs] = useState({});
 
   const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs(values => ({...values, [name]: value}));
-  }
+    const { name, value } = event.target;
+    setInputs({ ...input, [name]: value });
+  };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = JSON.stringify({
-      "username": input.username,
-      "password": input.password
-    });
-
-    var requestOptions = {
+    const requestOptions = {
       method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: input.username,
+        password: input.password
+      })
     };
 
-    fetch("http://127.0.0.1:8000/docs#/default/login_Login__post", requestOptions)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(result => {
-        console.log(result);
-        if (result.status === 'ok') {
-          MySwal.fire({
-            html: <i>{result.message}</i>,
-            icon: 'success'
-          }).then((value)=>{
-            localStorage.setItem('token', result.accessToken)
-            Navigate('/Home')
-          })
-        } else {
-          MySwal.fire({
-            html: <i>{result.message}</i>,
-            icon:'error'
-          })
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        // Handle error appropriately, show error message to user, etc.
-      });
+    try {
+      const response = await fetch("http://127.0.0.1:8000/Login/", requestOptions);
+      const result = await response.json();
+
+      if (result.access_token) {
+        localStorage.setItem('token', result.access_token);
+        MySwal.fire({
+          html: <i>{result.message}</i>,
+          icon: 'success'
+        }).then(() => {
+          navigate('/home');
+        });
+      } else {
+        MySwal.fire({
+          html: <i>{result.message}</i>,
+          icon: 'error'
+        });
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   }
+
+     /* async function fetchlogin(){
+        const response = await fetch('');
+        const jsondata = await response.json();
+      }*/
 
   return (
     <div className="flex justify-center  items-center-top h-screen  bg-gray-100 ">
       <div className="bg-white-screen p-8 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-4">Login</h1>
         <form onSubmit={handleSubmit}>
+          {}
           <div className="mb-4">
             <label className="block  text-gray-700 text-sm font-bold mb-2">
               Enter ID
