@@ -17,6 +17,14 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (username.trim() === '' || password.trim() === '') {
+      setErrorMessage('โปรดกรอกชื่อผู้ใช้และรหัสผ่าน');
+    } else {
+      // ทำตามขั้นตอนการล็อกอิน
+    }
+    
+
+
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -47,6 +55,8 @@ function Login() {
     } catch (error) {
       console.error('Error:', error);
     }
+
+
   }
 
 
