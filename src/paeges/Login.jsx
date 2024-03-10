@@ -65,7 +65,7 @@ function Login() {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
-              Enter ID
+              Username
             </label>
             <input
               className="w-full p-2 border rounded-md"
@@ -73,7 +73,7 @@ function Login() {
               type="text"
               value={input.username || ""}
               onChange={handleChange}
-              placeholder="ID"
+              placeholder="Username"
             />
           </div>
           <div className="mb-4">
