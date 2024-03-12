@@ -6,6 +6,11 @@ import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {
   return (
+
+
+     
+     
+
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a
@@ -163,6 +168,29 @@ function Navbar() {
             </svg>
           </button>
         </div>
+<div>
+        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+        <div class="px-4 py-3">
+          <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
+          <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+        </div>
+        <ul class="py-2" aria-labelledby="user-menu-button">
+          <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+          </li>
+        </ul>
+      </div>
+      </div>
+        
 
         <div
           className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
@@ -189,23 +217,15 @@ function Navbar() {
             </li>
 
 
-            <li className="flex items-right  justify-between-right">
-  <Link to="/" className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">
-    คน
-  </Link>
-  <img src="https://t3.ftcdn.net/jpg/05/53/79/60/360_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg" alt="คำอธิบายรูปภาพ" className="h-5 w-5" />
-</li>
            
-            
-            
-
-            <li>
+<li>
               <button
                 id="dropdownNavbarLink"
                 data-dropdown-toggle="dropdownNavbar"
+                img="https://scontent.fbkk5-4.fna.fbcdn.net/v/t39.30808-6/312868771_1592586417824731_4531003693233489735_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeG-SYvdhi-KJz5rXTf7bggT2L_2n1NKS2TYv_afU0pLZM8qGjFpGk6K4NZhEZjunaK9rPwKr4GdW1cU9ea1q73z&_nc_ohc=C-xMF-nLZQkAX9n-vxG&_nc_ht=scontent.fbkk5-4.fna&oh=00_AfAF8JLlFF1RQ_x5tPl0f4S9hrCDib0U-v8TWNw_Gd0OKA&oe=65F4AA8A"
                 className="flex items-center justify-between w-full py-2 pl-3 pr-4  text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
               >
-                ตั้งค่าบัญชี{" "}
+                ตั้งค่าบัญชี <img src="https://t3.ftcdn.net/jpg/05/53/79/60/360_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg" alt="คำอธิบายรูปภาพ" className="h-5 w-5" />{" "}
                 <svg
                   className="w-2.5 h-2.5 ml-2.5"
                   aria-hidden="true"
@@ -422,10 +442,10 @@ function Navbar() {
                   </div>
 
                   
+
+
+
                 </ul>
-
-                
-
                {/* 
                 <div className="py-1">
                   {" "}
@@ -440,10 +460,25 @@ function Navbar() {
                 */}
               </div>
             </li>
+   
+            
+
+
+
           </ul>
+
+
+
+
+
+          
         </div>
       </div>
     </nav>
+
+
+
+  
   );
 }
 
