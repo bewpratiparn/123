@@ -28,7 +28,7 @@ function Home() {
                   <p className="CardText">
                     Datail Store wait for 
                   </p>
-                  <Link to="/Translate">
+                  <Link to="/Store_information">
                     <button
                       className="btn btn-primary"
                       style={{ width: "10rem" }}
@@ -52,7 +52,7 @@ function Home() {
                     Datail Store wait for pu1
                   </p>
 
-                  <Link to="/Recipdetail">
+                  <Link to="/Store_information">
                     <button
                       className="btn btn-primary"
                       style={{ width: "10rem" }}

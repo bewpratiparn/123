@@ -9,8 +9,8 @@ import Home from './paeges/Home'
 import Translate from './paeges/Translate'
 import AddFood from './paeges/AddFood'
 import AddDataShop from './paeges/AddDataShop'
-import RecipeDetail from './paeges/RecipeDetail'
 import Register from './paeges/Register'
+import Store_information from './paeges/Store_information'
 
 
 
@@ -32,7 +32,9 @@ function App() {
         <Route path="/Translate" element={<Translate />} /> 
         <Route path="/AddFood" element={<AddFood />} /> 
         <Route path="/AddDataShop" element={<AddDataShop />} />
-        <Route path="/RecipeDetail " element={<RecipeDetail />} />
+        <Route path="/Store_information" element={<Store_information />} />
+        
+       
         
         
         
