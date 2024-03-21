@@ -5,7 +5,7 @@ function Fooddetails() {
   return (
     <>
 <div style={{ marginLeft: '40px', marginRight: '40px', backgroundColor: 'gray', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-  <div style={{ fontSize: '24px', fontWeight: 'bold', color: 'black' }}>รายละเอียดอาหาร</div>
+  <div style={{ fontSize: '24px', fontWeight: 'bold', color: 'black' }}>หน้าแสดงรายละเอียดอาหาร</div>
   <div>
     <label className="block mb-2 text-l font-medium text-gray-900 dark:text-back mb-2" htmlFor="first_name">
       หมวดหมู่
@@ -21,12 +21,7 @@ function Fooddetails() {
     </select>
   </div>
  
-  </div>
-
-
-
-
-
+ 
 
       <div style={{ display: 'flex', alignItems: 'center', marginTop: '20px' }}>
   <img src="https://i.ytimg.com/vi/XyYMbh2uay4/maxresdefault.jpg" alt="Food Image" style={{ width: '20%' }} />
@@ -78,7 +73,7 @@ function Fooddetails() {
   </div>
   <div style={{ marginLeft: '120px', fontSize: '19px' }}>รายละเอียดอาหาร</div>
 </div>
-
+</div>
 
     </>
   );
