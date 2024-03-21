@@ -12,7 +12,7 @@ import AddFood from './paeges/AddFood'
 import AddDataShop from './paeges/AddDataShop'
 import RecipeDetail from './paeges/RecipeDetail'
 import Register from './paeges/Register'
-
+import Fooddetails from './paeges/Fooddetails'
 
 
 
@@ -27,8 +27,9 @@ function App() {
     
       <Routes> 
       
-        <Route path="/Home" element={<Home />} /> 
+      
         <Route path="/Home2" element={<Home2 />} /> 
+        <Route path="/Fooddetails" element={<Fooddetails />} /> 
         <Route path="/Login" element ={<Login/>} />
         <Route path="/Login" element ={<Home/>} />
         <Route path="/register" element={<Register />} /> 
