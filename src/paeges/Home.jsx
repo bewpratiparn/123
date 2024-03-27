@@ -26,14 +26,14 @@ function Home() {
                 <div className="card-body">
                   <h5 className="card-title">Card title</h5>
                   <p className="CardText">
-                    Datail Store wait for 
+                    Datail Store 
                   </p>
                   <Link to="/Store_information">
                     <button
                       className="btn btn-primary"
                       style={{ width: "10rem" }}
                     >
-                      go to recip
+                      go to Store
                     </button>
                   </Link>
                 </div>
@@ -49,7 +49,7 @@ function Home() {
                 <div className="card-body">
                   <h5 className="card-title">Card title</h5>
                   <p className="CardText">
-                    Datail Store wait for pu1
+                    Datail Store 
                   </p>
 
                   <Link to="/Store_information">
@@ -57,7 +57,7 @@ function Home() {
                       className="btn btn-primary"
                       style={{ width: "10rem" }}
                     >
-                      go to recip
+                      go to store
                     </button>
                   </Link>
                 </div>

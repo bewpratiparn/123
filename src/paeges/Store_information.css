@@ -1,0 +1,54 @@
+/*รีเซ็ตบอดี้*/
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*ปรับขนาดโลโก้ร้านค้าที่จะเเสดง*/
+.picture {
+  position: relative;
+  left: 16rem;
+  top: 5rem;
+  width: 150px;
+}
+
+/*ตำเเหน่งของชื่อร้าน,วันเปิดปิด*/
+.putnamestore {
+  position: relative;
+  left: 30rem;
+  bottom: 1rem;
+}
+/*การจัดส่วนของ descrition*/
+.containner-description {
+  text-align: justify;
+  position: relative;
+  top: 3rem;
+  left: 15rem;
+}
+/*ทำสี ทำเส้นขอบบาง ด้านข้างในมีสีเทา*/
+.containner-box {
+  border: solid;
+  border-radius: 10px;
+  width: 600px;
+  padding: 15px;
+  border-width: 1px;
+  background-color: lightgray;
+}
+/*จัดไอเท็มตรงเมนูให้เป็นเเบบ grid ----container mum*/
+.grid-container {
+    display: inline-grid;
+    column-gap:15rem;
+    row-gap: 8rem;
+    grid-template-columns: auto auto;
+    
+  }
+  /*เป็นส่วนหนึ่งของgrid child*/
+  .grid-item {
+    
+    width: 150px;
+    position: relative;
+    left: 15rem;
+    top: 9rem;
+    
+  }
