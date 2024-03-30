@@ -1,8 +1,12 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 
 function AddFood() {
   return (
     <>
+      <header>
+        <Navbar />
+      </header>
       <div className="flex flex-col justify-center items-center m-10">
         <div className="m-5 text-center ">เพิ่มข้อมูลอาหาร</div>
         <form>

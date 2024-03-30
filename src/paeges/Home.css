@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  box-sizing: 0;
+  padding: 0;
+}
+.containner-store-1 {
+  margin: 5rem;
+  border: solid;
+  border-radius: 10px;
+  width: 85%;
+  padding: 15px;
+  border-width: 1px;
+  background-color: lightgray;
+  
+}
+
+div .picture-home{
+    border-radius: 5%;
+}

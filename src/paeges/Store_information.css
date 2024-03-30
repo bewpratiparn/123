@@ -10,20 +10,20 @@ body {
   position: relative;
   left: 16rem;
   top: 5rem;
-  width: 150px;
+  width: 250px;
 }
 
 /*ตำเเหน่งของชื่อร้าน,วันเปิดปิด*/
 .putnamestore {
   position: relative;
   left: 30rem;
-  bottom: 1rem;
+  bottom: 3rem;
 }
 /*การจัดส่วนของ descrition*/
 .containner-description {
   text-align: justify;
   position: relative;
-  top: 3rem;
+  top: 7rem;
   left: 15rem;
 }
 /*ทำสี ทำเส้นขอบบาง ด้านข้างในมีสีเทา*/

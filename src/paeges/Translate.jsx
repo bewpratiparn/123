@@ -3,6 +3,7 @@ import { Form, TextArea, Button, Icon } from "semantic-ui-react";
 import "./translate.css";
 import axios from "axios";
 import 'semantic-ui-css/semantic.min.css'
+import Navbar from "../components/Navbar";
 function Translate() {
   const [inputText, setInputText] = useState('');
   const [detectLanguageKey, setdetectedLanguageKey] = useState('');
@@ -63,6 +64,10 @@ function Translate() {
   }
 
   return (
+   <>
+   <header>
+    <Navbar/>
+   </header>
     <div>
       <div className="app-header">
         <h2 className="header"> Translator</h2>
@@ -109,6 +114,7 @@ function Translate() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 export default Translate;

@@ -1,12 +1,16 @@
 import React from "react";
 import "./AddDataShop.css";
+import Navbar from "../components/Navbar";
 
 function AddDataShop() {
   return (
     <>
+      <header>
+        <Navbar />
+      </header>
       <form>
         <div className="flex flex-col justify-center items-center m-10 ">
-        <div className="m-5 text-center ">เพิ่มข้อมูลอาหาร</div>
+          <div className="m-5 text-center ">เพิ่มข้อมูลอาหาร</div>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2 ">
               ชื่อร้าน

@@ -1,17 +1,13 @@
 import React from "react";
 import "flowbite";
 
-
 import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a
-          href="/Home"
-          className="flex items-center"
-        >
+        <a href="/Home" className="flex items-center">
           <img
             src="https://i.ibb.co/8NCWKFN/420970713-1319255045405174-2605956450177240696-n.png"
             className="h-8 mr-3"
@@ -133,9 +129,7 @@ function Navbar() {
                   </div>
                 </a>
               </li>
-              <li>
-                
-              </li>
+              <li></li>
             </ul>
           </div>
           <button
@@ -147,7 +141,7 @@ function Navbar() {
           >
             <span className="sr-only">Open main menu</span>
             <svg
-            className="w-5 h-5"
+              className="w-5 h-5"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -187,7 +181,6 @@ function Navbar() {
                 แปลภาษา
               </Link>
             </li>
-            
 
             <li>
               <button
@@ -208,7 +201,6 @@ function Navbar() {
                     stroke="currentColor"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    
                     d="m1 1 4 4 4-4"
                   />
                 </svg>
@@ -222,9 +214,6 @@ function Navbar() {
                   className="py-2 text-sm text-gray-700 dark:text-gray-400"
                   aria-labelledby="dropdownLargeButton"
                 >
-              
-                  
-                  
                   <div>
                     <li aria-labelledby="dropdownNavbarLink">
                       <button
@@ -241,14 +230,12 @@ function Navbar() {
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 10 6"
-                          
                         >
                           <path
                             stroke="currentColor"
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
-                            
                             d="m1 1 4 4 4-4"
                           />
                         </svg>
@@ -410,24 +397,7 @@ function Navbar() {
                       </div>
                     </li>
                   </div>
-
-                  
                 </ul>
-
-                
-
-               {/* 
-                <div className="py-1">
-                  {" "}
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-                  >
-                    {" "}
-                    ออกจากระบบ{" "}
-                  </a>{" "}
-                </div>
-                */}
               </div>
             </li>
           </ul>
