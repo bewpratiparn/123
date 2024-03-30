@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: 0;
 }
 
 /*ปรับขนาดโลโก้ร้านค้าที่จะเเสดง*/
@@ -37,18 +37,15 @@ body {
 }
 /*จัดไอเท็มตรงเมนูให้เป็นเเบบ grid ----container mum*/
 .grid-container {
-    display: inline-grid;
-    column-gap:15rem;
-    row-gap: 8rem;
-    grid-template-columns: auto auto;
-    
-  }
-  /*เป็นส่วนหนึ่งของgrid child*/
-  .grid-item {
-    
-    width: 150px;
-    position: relative;
-    left: 15rem;
-    top: 9rem;
-    
-  }
+  display: inline-grid;
+  column-gap: 15rem;
+  row-gap: 8rem;
+  grid-template-columns: auto auto;
+}
+/*เป็นส่วนหนึ่งของgrid child*/
+.grid-item {
+  width: 150px;
+  position: relative;
+  left: 15rem;
+  top: 9rem;
+}

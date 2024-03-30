@@ -22,6 +22,7 @@ function App() {
   return (
     
       <Router>
+        <Navbar/>
       <Routes> 
       
         <Route path="/Home" element={<Home />} /> 
