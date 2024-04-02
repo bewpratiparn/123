@@ -38,21 +38,23 @@ function Store_information() {
         src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
         className="picture"
       />
-      {store.map((item) => (
-        <div className="putnamestore">
-          <label className="name-store" htmlFor="ชื่อร้านค้า">
-            ชื่อร้านค้า : {store.name}
-          </label>{" "}
-          <br />
-          <label className="dayoff" htmlFor="ชื่อร้านค้า">
-            วัน เปิด-ปิด : {store.time}
-          </label>
-          <br />
-          <label className="dayoff" htmlFor="ชื่อร้านค้า">
-            เวลา เปิด-ปิด :
-          </label>
-        </div>
-      ))}
+      {store.length > 0
+        ? store.map((item) => (
+            <div className="putnamestore">
+              <label className="name-store" htmlFor="ชื่อร้านค้า">
+                ชื่อร้านค้า : {store.name}
+              </label>{" "}
+              <br />
+              <label className="dayoff" htmlFor="ชื่อร้านค้า">
+                วัน เปิด-ปิด : {store.time}
+              </label>
+              <br />
+              <label className="dayoff" htmlFor="ชื่อร้านค้า">
+                เวลา เปิด-ปิด :
+              </label>
+            </div>
+          ))
+        : ""}
       <div className="containner-description">
         <div className="containner-box">
           <div className="colorinside">
