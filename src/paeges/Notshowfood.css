@@ -48,13 +48,10 @@ input.form-check-input {
 }
 
 .container-button{
-  display: grid;
-  grid-template-columns: auto auto auto;
+  display: flex;
+  margin-left: 45%;
 }
-.button-group{
-  display: inline-block;
-  padding: 15px 32px;
-}
+
 
 
 

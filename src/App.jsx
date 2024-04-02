@@ -11,6 +11,7 @@ import AddFood from './paeges/AddFood'
 import AddDataShop from './paeges/AddDataShop'
 import Register from './paeges/Register'
 import Store_information from './paeges/Store_information'
+import Notshowfood from './paeges/Notshowfood'
 
 
 
@@ -33,6 +34,8 @@ function App() {
         <Route path="/AddFood" element={<AddFood />} /> 
         <Route path="/AddDataShop" element={<AddDataShop />} />
         <Route path="/Store_information" element={<Store_information />} />
+        <Route path="/Notshowfood" element={<Notshowfood />} />
+        
         
        
         
