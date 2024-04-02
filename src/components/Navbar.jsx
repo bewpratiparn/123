@@ -350,7 +350,7 @@ function Navbar() {
                         >
                           <li>
                             <Link
-                              to="/"
+                              to="/Editstore"
                               className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                             >
                               เเก้ไขข้อมูลร้านค้า
@@ -372,6 +372,9 @@ function Navbar() {
                               แสดงรายละเอียดข้อมูลร้านค้า
                             </Link>
                           </li>
+
+                          
+
                         </ul>
                       </div>
                     </li>

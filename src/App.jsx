@@ -13,36 +13,41 @@ import AddDataShop from './paeges/AddDataShop'
 import RecipeDetail from './paeges/RecipeDetail'
 import Register from './paeges/Register'
 import Fooddetails from './paeges/Fooddetails'
+import Editstore from './paeges/Editstore'
+
+
 
 
 
 function App() {
-  
+
 
   return (
-    
-      <Router>
+
+    <Router>
       <Navbar />
-      <Home2/>
-    
-      <Routes> 
-      
-      
-        <Route path="/Home2" element={<Home2 />} /> 
-        <Route path="/Fooddetails" element={<Fooddetails />} /> 
-        <Route path="/Login" element ={<Login/>} />
-        <Route path="/Login" element ={<Home/>} />
-        <Route path="/register" element={<Register />} /> 
-        <Route path="/Translate" element={<Translate />} /> 
-        <Route path="/AddFood" element={<AddFood />} /> 
+      <Home2 />
+
+      <Routes>
+
+
+        <Route path="/Home2" element={<Home2 />} />
+        <Route path="/Fooddetails" element={<Fooddetails />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Login" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/Translate" element={<Translate />} />
+        <Route path="/AddFood" element={<AddFood />} />
         <Route path="/AddDataShop" element={<AddDataShop />} />
         <Route path="/RecipeDetail " element={<RecipeDetail />} />
-        
-        
-        
+        <Route path="/Editstore" element={<Editstore />} />
+
+
+
+
       </Routes>
     </Router>
- 
+
   )
 }
 

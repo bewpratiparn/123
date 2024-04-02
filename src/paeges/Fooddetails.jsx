@@ -19,6 +19,8 @@ function Fooddetails() {
     <select disabled id="countries_disabled" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
       <option selected>ของคาว</option>
     </select>
+
+   
   </form>
 </div>
 
@@ -38,7 +40,7 @@ function Fooddetails() {
 
 
       <div style={{ display: 'flex', alignItems: 'center', marginTop: '20px' , justifyContent: 'center', }}>
-  <img src="https://i.ytimg.com/vi/XyYMbh2uay4/maxresdefault.jpg" alt="Food Image" style={{ width: '20%', marginTop: '20px' }} />
+  <img src="https://i.ytimg.com/vi/XyYMbh2uay4/maxresdefault.jpg" alt="Food Image" style={{ width: '20%', marginTop: '10px' }} />
   <div style={{ marginLeft: '20px'  ,fontSize: '19px'}}>
     <div>
       <p>วัตถุดิบ 
