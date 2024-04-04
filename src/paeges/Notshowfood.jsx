@@ -1,7 +1,6 @@
 import React from "react";
 import "./Notshowfood.css";
 
-
 function Notshowfood() {
   return (
     <>
@@ -33,14 +32,10 @@ function Notshowfood() {
           id="flexCheckDefault"
         />
       </div>
-      <div className="container-button">
-        <div className="button-group">
-          <button type="button" className="btn btn-success">
-            Success
-          </button>
-          <button type="button" className="btn btn-danger">Danger</button>
+      <div className="grid-button">
+        <button className="success-button">success</button>
 
-        </div>
+        <button className="cancel-button">cancel</button>
       </div>
     </>
   );
