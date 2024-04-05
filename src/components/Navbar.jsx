@@ -1,5 +1,6 @@
 import React from "react";
 import "flowbite";
+import "./Navbar.css";
 
 import { Link, useLocation } from "react-router-dom";
 
@@ -7,12 +8,12 @@ function Navbar() {
   return (
 
 
-     
     
-  
-
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <>
+   <div>
+   <div className="  max-w-h-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 " style={{backgroundColor: "orange" }} >
+     
+      
         <a
           href="https://www.facebook.com/profile.php?id=100090355620193"
           className="flex items-center"
@@ -22,7 +23,7 @@ function Navbar() {
             className="h-8 mr-3"
             alt=""
           />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+          <span className=" self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             หน้าเมนูอาหาร
           </span>
         </a>
@@ -485,9 +486,9 @@ function Navbar() {
          
         </div>
       </div>
-    </nav>
-    
-
+   
+      </div>
+      </>
 
   
   );

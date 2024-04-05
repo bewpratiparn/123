@@ -11,15 +11,17 @@ function Translate() {
   const [resultText, setResultText] = useState('');
   const [apiKey, setApiKey] = useState('');
 
+
+
   const languageOptions = [
       {key: 'en', Text: 'English', value:'male'},
-      {key: 'hi ', Text: 'Hindi', value:'female'},
-      {key: 'ar', Text: 'Arabic', value:'other'},
-      {key: 'fr', Text: 'French', value:'other'},
-      {key: 'es', Text: 'Spanish', value:'other'},
-      {key: 'bg', Text: 'Bangla', value:'other'},
-      {key: 'ur', Text: 'Arabic', value:'other'},
-      {key: 'gr', Text: 'Greek', value:'other'},
+      {key: 'th ', Text: 'Thai', value:'female'},
+     // {key: 'ar', Text: 'Arabic', value:'other'},
+     //{key: 'fr', Text: 'French', value:'other'},
+     // {key: 'es', Text: 'Spanish', value:'other'},
+     // {key: 'bg', Text: 'Bangla', value:'other'},
+     // {key: 'ur', Text: 'Arabic', value:'other'},
+     // {key: 'gr', Text: 'Greek', value:'other'},
 
   ]
 

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import 'flowbite'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-
+import Search from './components/Search'
 import Navbar from './components/Navbar'
 import Login from './paeges/Login'
 import Home from './paeges/Home'
@@ -27,10 +27,10 @@ function App() {
     <Router>
       <Navbar />
       <Home2 />
-
+      <Search />
       <Routes>
 
-
+        <Route path="/Search" element={<Search />} />
         <Route path="/Home2" element={<Home2 />} />
         <Route path="/Fooddetails" element={<Fooddetails />} />
         <Route path="/Login" element={<Login />} />
