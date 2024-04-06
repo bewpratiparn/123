@@ -1,8 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap");
 
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 .app-header {
   text-align: center;
   padding: 20px;
+  background-color: #a4a9f1; /* สีเขียว */
+  color: white;
+  text-align: center;
 }
 
 .header {
@@ -13,10 +22,18 @@
 .app-body {
   padding: 20px;
   text-align: center;
+  background-color: #afeef6; /* สีขาว */
+  padding: 20px;
+  flex-grow: 1;
 }
 
 .language-select {
   height: 40px !important;
   margin-bottom: 15px;
   outline: none !important;
+  margin-top: 10px;
+  padding: 5px;
+}
+.header {
+  margin: 0;
 }
