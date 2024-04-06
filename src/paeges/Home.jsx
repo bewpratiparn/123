@@ -1,8 +1,9 @@
 import React from "react";
 import "flowbite";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import Search from "../components/Search";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
-import "./Home.css";
 
 function Home() {
   return (
@@ -21,80 +22,45 @@ function Home() {
                   src="https://img.wongnai.com/p/192x192/2023/08/10/017075cfb4714776bd5b1551069c81d3.jpg"
                   alt=""
                   style={{ width: "15rem", margin: "1rem" }}
-                  className="picture-home"
                 />
                 <div className="card-body">
-                  <h5 className="card-title">ร้านค้าที่ 1</h5>
-                  <p className="CardText">Datail Store</p>
+                  <h5 className="card-title">Card title</h5>
+                  <p className="CardText">
+                    Datail Store wait for 
+                  </p>
+                  <Link to="/Translate">
+                    <button
+                      className="btn btn-primary"
+                      style={{ width: "10rem" }}
+                    >
+                      go to recip
+                    </button>
+                  </Link>
                 </div>
-                <div className="data-storehome">
-                  <div className="storename">ชื่อร้าน : </div>
-                  <div className="tel">เบอร์โทร : </div>
-                  <div className="location-store">สถานที่ : </div>
-                </div>
-                <Link to="/Store_information">
-                  <button
-                    className="btn btn-primary"
-                    style={{ width: "10rem" }}
-                  >
-                    ไปยังร้านค้า
-                  </button>
-                </Link>
               </div>
             </div>
-            <div className="containner-store-1" style={{}}>
+            <div className="containner-store-2" style={{}}>
               <div className="card" style={{ width: "50rem" }}>
                 <img
                   src="https://img.wongnai.com/p/192x192/2022/11/19/11f8710d64cf44b4b8c04b8ded1b0f73.jpg"
                   alt=""
                   style={{ width: "15rem", margin: "15px" }}
-                  className="picture-home"
                 />
+                <div className="card-body">
+                  <h5 className="card-title">Card title</h5>
+                  <p className="CardText">
+                    Datail Store wait for pu1
+                  </p>
 
-                <div className="card-body">
-                  <h5 className="card-title">ร้านค้าที่ 2</h5>
-                  <p className="CardText">Datail Store</p>
+                  <Link to="/Recipdetail">
+                    <button
+                      className="btn btn-primary"
+                      style={{ width: "10rem" }}
+                    >
+                      go to recip
+                    </button>
+                  </Link>
                 </div>
-                <div className="data-storehome">
-                  <div className="storename">ชื่อร้าน : </div>
-                  <div className="tel">เบอร์โทร : </div>
-                  <div className="location-store">สถานที่ : </div>
-                </div>
-                <Link to="/Store_information">
-                  <button
-                    className="btn btn-primary"
-                    style={{ width: "10rem" }}
-                  >
-                    ไปยังร้านค้า
-                  </button>
-                </Link>
-              </div>
-            </div>
-            <div className="containner-store-1" style={{}}>
-              <div className="card" style={{ width: "50rem" }}>
-                <img
-                  src="https://img.wongnai.com/p/192x192/2023/08/10/017075cfb4714776bd5b1551069c81d3.jpg"
-                  alt=""
-                  style={{ width: "15rem", margin: "1rem", borderRadius: "" }}
-                  className="picture-home"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">ร้านค้าที่ 3</h5>
-                  <p className="CardText">Datail Store</p>
-                </div>
-                <div className="data-storehome">
-                  <div className="storename">ชื่อร้าน : </div>
-                  <div className="tel">เบอร์โทร : </div>
-                  <div className="location-store">สถานที่ : </div>
-                </div>
-                <Link to="/Store_information">
-                  <button
-                    className="btn btn-primary"
-                    style={{ width: "10rem" }}
-                  >
-                    ไปยังร้านค้า
-                  </button>
-                </Link>
               </div>
             </div>
           </div>

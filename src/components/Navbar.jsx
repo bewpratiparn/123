@@ -1,19 +1,29 @@
 import React from "react";
 import "flowbite";
+import "./Navbar.css";
 
 import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/Home" className="flex items-center">
+
+
+    
+    <>
+   <div>
+   <div className="max-w-h-screen-xl flex flex-wrap items-center justify-between mx-auto p-4" style={{ backgroundColor: "#FFBB5C" }}>
+     
+      
+        <a
+          href="https://www.facebook.com/profile.php?id=100090355620193"
+          className="flex items-center"
+        >
           <img
             src="https://i.ibb.co/8NCWKFN/420970713-1319255045405174-2605956450177240696-n.png"
             className="h-8 mr-3"
             alt=""
           />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+          <span className=" self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             หน้าเมนูอาหาร
           </span>
         </a>
@@ -129,7 +139,9 @@ function Navbar() {
                   </div>
                 </a>
               </li>
-              <li></li>
+              <li>
+                
+              </li>
             </ul>
           </div>
           <button
@@ -141,7 +153,7 @@ function Navbar() {
           >
             <span className="sr-only">Open main menu</span>
             <svg
-              className="w-5 h-5"
+            className="w-5 h-5"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -157,6 +169,29 @@ function Navbar() {
             </svg>
           </button>
         </div>
+<div>
+        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+        <div class="px-4 py-3">
+          <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
+          <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+        </div>
+        <ul class="py-2" aria-labelledby="user-menu-button">
+          <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+          </li>
+        </ul>
+      </div>
+      </div>
+      
 
         <div
           className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
@@ -166,7 +201,7 @@ function Navbar() {
             <li>
               <Link
                 to="/Home"
-                className="flex items-center justify-between w-full py-2 pl-3 pr-4  text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                 aria-current="page"
               >
                 หน้าเมนูอาหาร
@@ -175,28 +210,25 @@ function Navbar() {
             <li>
               <Link
                 to="/Translate"
-                className="flex items-center justify-between w-full py-2 pl-3 pr-4  text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                 aria-current="page"
               >
                 แปลภาษา
               </Link>
             </li>
 
-<<<<<<< HEAD
             
 
 
            
 <li>
-=======
-            <li>
->>>>>>> 6f8918653a1bc54ef65174a9ed874e9a4b50bc63
               <button
                 id="dropdownNavbarLink"
                 data-dropdown-toggle="dropdownNavbar"
+                img="https://scontent.fbkk5-4.fna.fbcdn.net/v/t39.30808-6/312868771_1592586417824731_4531003693233489735_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeG-SYvdhi-KJz5rXTf7bggT2L_2n1NKS2TYv_afU0pLZM8qGjFpGk6K4NZhEZjunaK9rPwKr4GdW1cU9ea1q73z&_nc_ohc=C-xMF-nLZQkAX9n-vxG&_nc_ht=scontent.fbkk5-4.fna&oh=00_AfAF8JLlFF1RQ_x5tPl0f4S9hrCDib0U-v8TWNw_Gd0OKA&oe=65F4AA8A"
                 className="flex items-center justify-between w-full py-2 pl-3 pr-4  text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
               >
-                ตั้งค่าบัญชี{" "}
+                ตั้งค่าบัญชี <img src="https://t3.ftcdn.net/jpg/05/53/79/60/360_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg" alt="คำอธิบายรูปภาพ" className="h-5 w-5" />{" "}
                 <svg
                   className="w-2.5 h-2.5 ml-2.5"
                   aria-hidden="true"
@@ -209,6 +241,7 @@ function Navbar() {
                     stroke="currentColor"
                     stroke-linecap="round"
                     stroke-linejoin="round"
+                    
                     d="m1 1 4 4 4-4"
                   />
                 </svg>
@@ -222,6 +255,9 @@ function Navbar() {
                   className="py-2 text-sm text-gray-700 dark:text-gray-400"
                   aria-labelledby="dropdownLargeButton"
                 >
+              
+                  
+                  
                   <div>
                     <li aria-labelledby="dropdownNavbarLink">
                       <button
@@ -238,12 +274,14 @@ function Navbar() {
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 10 6"
+                          
                         >
                           <path
                             stroke="currentColor"
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
+                            
                             d="m1 1 4 4 4-4"
                           />
                         </svg>
@@ -315,7 +353,7 @@ function Navbar() {
                         >
                           <li>
                             <Link
-                              to="/"
+                              to="/Editstore"
                               className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                             >
                               เเก้ไขข้อมูลร้านค้า
@@ -323,12 +361,23 @@ function Navbar() {
                           </li>
                           <li>
                             <Link
-                              to="/Notshowfood"
+                              to="/"
                               className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
                             >
                               ไม่แสดงรายการอาหาร
                             </Link>
                           </li>
+                          <li>
+                            <Link
+                              to="/Fooddetails"
+                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+                            >
+                              แสดงรายละเอียดข้อมูลร้านค้า
+                            </Link>
+                          </li>
+
+                          
+
                         </ul>
                       </div>
                     </li>
@@ -401,35 +450,59 @@ function Navbar() {
                               ลบบัญชี
                             </Link>
                           </li>
-<<<<<<< HEAD
 
                           
 
                          
 
 
-=======
->>>>>>> 6f8918653a1bc54ef65174a9ed874e9a4b50bc63
                         </ul>
                       </div>
                     </li>
                   </div>
+
+                  
+                  
+
+
                 </ul>
+               {/* 
+                <div className="py-1">
+                  {" "}
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+                  >
+                    {" "}
+                    ออกจากระบบ{" "}
+                  </a>{" "}
+                </div>
+                */}
               </div>
             </li>
-<<<<<<< HEAD
    
           
 
 
 
 
-=======
->>>>>>> 6f8918653a1bc54ef65174a9ed874e9a4b50bc63
           </ul>
+
+
+
+
+
+         
         </div>
+
+
+
       </div>
-    </nav>
+   
+      </div>
+      </>
+
+  
   );
 }
 
