@@ -1,19 +1,16 @@
 import React from "react";
 import "flowbite";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import Search from "../components/Search";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import "./Home.css";
-import Navbar from "../components/Navbar";
 
 function Home() {
   return (
     <>
-    <header>
-      <Search/>
-    </header>
-      
+      <header>
+        <Search />
+      </header>
+
       <div className="bg-gray-100 min-h-screen p-4">
         <div className="text-2xl font-bold text-center mb-*">ร้านอาหาร</div>
         <div className="grid-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -27,17 +24,22 @@ function Home() {
                   className="picture-home"
                 />
                 <div className="card-body">
-                  <h5 className="card-title">Card title</h5>
+                  <h5 className="card-title">ร้านค้าที่ 1</h5>
                   <p className="CardText">Datail Store</p>
-                  <Link to="/Store_information">
-                    <button
-                      className="btn btn-primary"
-                      style={{ width: "10rem" }}
-                    >
-                      go to Store
-                    </button>
-                  </Link>
                 </div>
+                <div className="data-storehome">
+                  <div className="storename">ชื่อร้าน : </div>
+                  <div className="tel">เบอร์โทร : </div>
+                  <div className="location-store">สถานที่ : </div>
+                </div>
+                <Link to="/Store_information">
+                  <button
+                    className="btn btn-primary"
+                    style={{ width: "10rem" }}
+                  >
+                    ไปยังร้านค้า
+                  </button>
+                </Link>
               </div>
             </div>
             <div className="containner-store-1" style={{}}>
@@ -48,19 +50,24 @@ function Home() {
                   style={{ width: "15rem", margin: "15px" }}
                   className="picture-home"
                 />
-                <div className="card-body">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="CardText">Datail Store</p>
 
-                  <Link to="/Store_information">
-                    <button
-                      className="btn btn-primary"
-                      style={{ width: "10rem" }}
-                    >
-                      go to store
-                    </button>
-                  </Link>
+                <div className="card-body">
+                  <h5 className="card-title">ร้านค้าที่ 2</h5>
+                  <p className="CardText">Datail Store</p>
                 </div>
+                <div className="data-storehome">
+                  <div className="storename">ชื่อร้าน : </div>
+                  <div className="tel">เบอร์โทร : </div>
+                  <div className="location-store">สถานที่ : </div>
+                </div>
+                <Link to="/Store_information">
+                  <button
+                    className="btn btn-primary"
+                    style={{ width: "10rem" }}
+                  >
+                    ไปยังร้านค้า
+                  </button>
+                </Link>
               </div>
             </div>
             <div className="containner-store-1" style={{}}>
@@ -72,23 +79,28 @@ function Home() {
                   className="picture-home"
                 />
                 <div className="card-body">
-                  <h5 className="card-title">Card title</h5>
+                  <h5 className="card-title">ร้านค้าที่ 3</h5>
                   <p className="CardText">Datail Store</p>
-                  <Link to="/Store_information">
-                    <button
-                      className="btn btn-primary"
-                      style={{ width: "10rem" }}
-                    >
-                      go to Store
-                    </button>
-                  </Link>
                 </div>
+                <div className="data-storehome">
+                  <div className="storename">ชื่อร้าน : </div>
+                  <div className="tel">เบอร์โทร : </div>
+                  <div className="location-store">สถานที่ : </div>
+                </div>
+                <Link to="/Store_information">
+                  <button
+                    className="btn btn-primary"
+                    style={{ width: "10rem" }}
+                  >
+                    ไปยังร้านค้า
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-      </>
+    </>
   );
 }
 
