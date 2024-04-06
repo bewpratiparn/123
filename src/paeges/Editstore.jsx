@@ -51,7 +51,7 @@ function Editstore() {
                     />
                 </div>
 
-                <div style={{ marginLeft: '500px', marginTop: '10px', display: 'flex', justifyContent: 'flex-start', fontSize: '24px', fontWeight: 'bold' }}>
+                <div style={{ marginLeft: '220px', marginTop: '80px', display: 'flex', justifyContent: 'flex-start', fontSize: '24px', fontWeight: 'bold' }}>
 
                     <div style={{ maxWidth: '300px' }}>
                         <label className="block mb-2 text-sm" style={{ fontWeight: 'bold', color: 'black' }} htmlFor="file_input">Upload file</label>
@@ -67,8 +67,8 @@ function Editstore() {
 
 
 
-
-                <div className="putnamestore">
+<div>
+                <div style={{ marginLeft: '580px', marginTop: '-250px', justifyContent: 'flex-start', fontSize: '14px' }}>
                     <label className="name-store" htmlFor="ชื่อร้านค้า">
                         ชื่อร้านค้า : {store.name}
                     </label>{" "}
@@ -81,10 +81,10 @@ function Editstore() {
                         เวลา เปิด-ปิด :
                     </label>
                 </div>
+ </div>
 
 
-
-                <div className="containner-description">
+                    <div style={{ marginLeft: '200px', marginTop: '200px', display: 'flex', justifyContent: 'flex-start', fontSize: '14px' }}>
                     <div className="containner-box">
                         <div className="colorinside">
                             <label htmlFor="description">Description</label>
@@ -95,7 +95,7 @@ function Editstore() {
                         </div>
                     </div>
                 </div>
-
+                
                 <div className="grid-container">
                     <div className="grid-item">
                         <img

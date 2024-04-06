@@ -217,6 +217,8 @@ function Navbar() {
               </Link>
             </li>
 
+            
+
 
            
 <li>
@@ -449,14 +451,7 @@ function Navbar() {
                             </Link>
                           </li>
 
-                          <li>
-                            <Link
-                              to="/"
-                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-                            >
-                              ลบบัญชี
-                            </Link>
-                          </li>
+                          
 
                          
 
@@ -486,7 +481,8 @@ function Navbar() {
               </div>
             </li>
    
-            
+          
+
 
 
 
