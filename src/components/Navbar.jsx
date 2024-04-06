@@ -11,7 +11,7 @@ function Navbar() {
     
     <>
    <div>
-   <div className="  max-w-h-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 " style={{backgroundColor: "orange" }} >
+   <div className="max-w-h-screen-xl flex flex-wrap items-center justify-between mx-auto p-4" style={{ backgroundColor: "#FFBB5C" }}>
      
       
         <a
@@ -448,6 +448,19 @@ function Navbar() {
                               ลบบัญชี
                             </Link>
                           </li>
+
+                          <li>
+                            <Link
+                              to="/"
+                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
+                            >
+                              ลบบัญชี
+                            </Link>
+                          </li>
+
+                         
+
+
                         </ul>
                       </div>
                     </li>
@@ -485,6 +498,9 @@ function Navbar() {
 
          
         </div>
+
+
+
       </div>
    
       </div>
