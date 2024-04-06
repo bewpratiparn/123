@@ -3,7 +3,7 @@ import React from 'react';
 function AddFood() {
   return (
     <>
-      <div className="flex justify-center items-center-top bk-screen " style={{ backgroundImage: "url('https://ภาพวิว.com/wp-content/uploads/2017/12/THAI-124.jpg')" }}>
+      <div className="flex justify-center items-center-top bk-screen " style={{ backgroundImage: "url('')" }}>
         <center>
 <from>
   <div>

@@ -130,6 +130,16 @@ function Editstore() {
                         <div>ราคา</div>
                     </div>
                 </div>
+
+<div>
+<div className="grid-button">
+        <button className="success-button">success</button>
+
+        <button className="cancel-button">cancel</button>
+      </div>
+
+      </div>
+
             </div>
         </>
     );

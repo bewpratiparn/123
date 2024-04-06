@@ -1,65 +1,58 @@
-/*รีเซ็ตบอดี้*/
 body {
     margin: 0;
     padding: 0;
     box-sizing: 0;
-    
+  }
+  .notshowfood {
+    text-align: center;
+    margin-top: 5rem;
+    font-size: 20px;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   }
   
-  /*ปรับขนาดโลโก้ร้านค้าที่จะเเสดง*/
-  .picture {
+  /*กล่องเก็บข้อมูลร้านค้าที่เเสดง*/
+  .box-container {
     position: relative;
-    left: 16rem;
-    top: 5rem;
-    width: 250px;
-  }
-  
-  /*ตำเเหน่งของชื่อร้าน,วันเปิดปิด*/
-  .putnamestore {
-    position: relative;
-    left: 30rem;
-    bottom: 3rem;
-  }
-  /*การจัดส่วนของ descrition*/
-  .containner-description {
-    text-align: justify;
-    position: relative;
-    top: 7rem;
-    left: 15rem;
-  }
-  /*ทำสี ทำเส้นขอบบาง ด้านข้างในมีสีเทา*/
-  .containner-box {
+    left: 20rem;
+    margin: 2rem;
     border: solid;
     border-radius: 10px;
-    width: 600px;
+    width: 65%;
     padding: 15px;
     border-width: 1px;
     background-color: lightgray;
-    
   }
-  /*จัดไอเท็มตรงเมนูให้เป็นเเบบ grid ----container mum*/
-  .grid-container {
-    display: inline-grid;
-    column-gap: 15rem;
-    row-gap: 8rem;
-    grid-template-columns: auto auto;
+  /*ปรับขนาดรูปภาพร้านค้า*/
+  .picture-menu {
+    width: 25rem;
+    padding: 1rem;
+    border-radius: 20%;
   }
-  /*เป็นส่วนหนึ่งของgrid child*/
-  .grid-item {
-    width: 150px;
-    position: relative;
-    left: 15rem;
-    top: 9rem;
+  
+  .food-name {
+    font-size: 20px;
+    position: absolute;
+    right: 30%;
+    top: 8rem;
+    width: 400px;
+    padding: 10px;
   }
-
+  
+  input.form-check-input {
+    display: inline-block;
+    position: absolute;
+    left: 90%;
+    top: 40%;
+    transform: scale(3);
+    margin: 15px;
+  }
   .grid-button {
     display: grid;
     width: 350px;
     grid-template-columns: auto auto ;
     position: relative;
-    margin-left: 200px;
-    margin-top: 200px;
-    gap: 20px;
+    left: 40%;
+    gap: 10px;
   }
   .success-button {
     background-color: #04aa6d; /* Set background color */

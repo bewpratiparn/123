@@ -14,8 +14,8 @@ import RecipeDetail from './paeges/RecipeDetail'
 import Register from './paeges/Register'
 import Fooddetails from './paeges/Fooddetails'
 import Editstore from './paeges/Editstore'
-
-
+import Store_information from './paeges/Store_information'
+import Notshowfood from './paeges/Notshowfood'
 
 
 
@@ -27,9 +27,13 @@ function App() {
     <Router>
       <Navbar />
       <Home2 />
-      <Search />
+      
       <Routes>
 
+
+        <Route path="/Notshowfood" element={<Notshowfood />} />
+        <Route path="/Store_information" element={<Store_information />} />
+        <Route path="/Home" element={<Home />} />
         <Route path="/Search" element={<Search />} />
         <Route path="/Home2" element={<Home2 />} />
         <Route path="/Fooddetails" element={<Fooddetails />} />
