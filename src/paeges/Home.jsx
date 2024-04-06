@@ -23,10 +23,7 @@ function Home() {
                   style={{ width: "15rem", margin: "1rem" }}
                   className="picture-home"
                 />
-                <div className="card-body">
-                  <h5 className="card-title">ร้านค้าที่ 1</h5>
-                  <p className="CardText">Datail Store</p>
-                </div>
+             
                 <div className="data-storehome">
                   <div className="storename">ชื่อร้าน : </div>
                   <div className="tel">เบอร์โทร : </div>
@@ -51,10 +48,7 @@ function Home() {
                   className="picture-home"
                 />
 
-                <div className="card-body">
-                  <h5 className="card-title">ร้านค้าที่ 2</h5>
-                  <p className="CardText">Datail Store</p>
-                </div>
+              
                 <div className="data-storehome">
                   <div className="storename">ชื่อร้าน : </div>
                   <div className="tel">เบอร์โทร : </div>
@@ -78,10 +72,7 @@ function Home() {
                   style={{ width: "15rem", margin: "1rem", borderRadius: "" }}
                   className="picture-home"
                 />
-                <div className="card-body">
-                  <h5 className="card-title">ร้านค้าที่ 3</h5>
-                  <p className="CardText">Datail Store</p>
-                </div>
+            
                 <div className="data-storehome">
                   <div className="storename">ชื่อร้าน : </div>
                   <div className="tel">เบอร์โทร : </div>
