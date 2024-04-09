@@ -4,6 +4,10 @@ import './Fooddetails.css';
 function Fooddetails() {
   return (
     <>
+
+
+
+    
 <div style={{ marginLeft: '40px', marginRight: '40px', backgroundColor: 'gray', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 <div style={{  marginLeft: '0px', marginRight: '40px',fontSize: '24px', fontWeight: 'bold', color: 'black', textAlign: 'left' }}>หน้าแสดงรายละเอียดอาหาร</div>
 

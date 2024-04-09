@@ -16,6 +16,7 @@ import Fooddetails from './paeges/Fooddetails'
 import Editstore from './paeges/Editstore'
 import Store_information from './paeges/Store_information'
 import Notshowfood from './paeges/Notshowfood'
+import Navbarnew from './components/Navbarnew'
 
 
 
@@ -25,7 +26,7 @@ function App() {
   return (
 
     <Router>
-      <Navbar />
+      <Navbarnew />
       <Home2 />
       
       <Routes>
@@ -45,7 +46,7 @@ function App() {
         <Route path="/AddDataShop" element={<AddDataShop />} />
         <Route path="/RecipeDetail " element={<RecipeDetail />} />
         <Route path="/Editstore" element={<Editstore />} />
-
+        
 
 
 
