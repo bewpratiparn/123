@@ -4,6 +4,7 @@ import "./Notshowfood.css";
 function Notshowfood() {
   return (
     <>
+    <div className="background-notshow">
       <div className="notshowfood">ไม่เเสดงรายการอาหาร</div>
 
       <div className="box-container">
@@ -35,6 +36,7 @@ function Notshowfood() {
       <div className="grid-button">
         <button className="success-button">success</button>
         <button className="cancel-button">cancel</button>
+      </div>
       </div>
     </>
   );

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import 'flowbite'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-
+import Home2 from './paeges/Home2'
 import NavbarNew from './components/Navbarnew'
 import Navbar from './components/Navbar'
 import Login from './paeges/Login'
@@ -19,6 +19,7 @@ import Editstore from './paeges/EditStore'
 
 
 
+
 function App() {
   
 
@@ -26,6 +27,7 @@ function App() {
     
       <Router>
         <NavbarNew/>
+        <Home2/>
         
       <Routes> 
       
