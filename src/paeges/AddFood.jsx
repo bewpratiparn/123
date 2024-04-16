@@ -4,6 +4,7 @@ import "./AddFood.css";
 function AddFood() {
   return (
     <>
+    <div className="background">
       <div className="flex flex-col justify-center items-center m-10">
         <div className="m-5 text-center ">เพิ่มข้อมูลอาหาร</div>
         <form>
@@ -186,6 +187,7 @@ function AddFood() {
             </button>
           </div>
         </form>
+      </div>
       </div>
     </>
   );

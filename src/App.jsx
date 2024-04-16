@@ -3,6 +3,7 @@ import 'flowbite'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 
+import NavbarNew from './components/Navbarnew'
 import Navbar from './components/Navbar'
 import Login from './paeges/Login'
 import Home from './paeges/Home'
@@ -24,7 +25,8 @@ function App() {
   return (
     
       <Router>
-        <Navbar/>
+        <NavbarNew/>
+        
       <Routes> 
       
         <Route path="/Home" element={<Home />} /> 
