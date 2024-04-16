@@ -48,15 +48,9 @@ function Fooddetails() {
   <div style={{ marginLeft: '20px'  ,fontSize: '19px'}}>
     <div>
       <p>วัตถุดิบ 
-        <input type="text" id="ingredients1" name="ingredients1" style={{ marginLeft: '30px', padding: '5px', width: '80px' }} />
+        <input type="text" id="ingredients1" name="ingredients1" style={{ marginLeft: '30px', padding: '5px', width: '900px' }} />
         ,
-        <input type="text" id="ingredients2" name="ingredients2" style={{ marginLeft: '10px', padding: '5px', width: '80px' }} />
-        ,
-        <input type="text" id="ingredients3" name="ingredients3" style={{ marginLeft: '10px', padding: '5px', width: '80px' }} />
-        ,
-        <input type="text" id="vegetables3" name="vegetables3" style={{ marginLeft: '10px', padding: '5px', width: '80px' }} />
-        ,
-        <input type="text" id="vegetables3" name="vegetables3" style={{ marginLeft: '10px', padding: '5px', width: '80px' }} />
+        
       </p>
     </div>
     <div>

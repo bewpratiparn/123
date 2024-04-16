@@ -54,11 +54,11 @@ body {
 
   .grid-button {
     display: grid;
-    width: 350px;
+    width: 0px;
     grid-template-columns: auto auto ;
     position: relative;
-    margin-left: 200px;
-    margin-top: 200px;
+    margin-left: -950px;
+    margin-top: 400px;
     gap: 20px;
   }
   .success-button {
