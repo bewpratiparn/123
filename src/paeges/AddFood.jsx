@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-
+import "./AddFood.css";
 function AddFood() {
   return (
     <>
@@ -9,6 +9,14 @@ function AddFood() {
         <form>
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div>
+              <div className="button_outer">
+                <div className="btn_upload">
+                  <input type="file" id="upload_file" name />
+                  Upload Image
+                </div>
+                <div class="processing_bar"></div>
+                <div class="success_box"></div>
+              </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2 width ">
                   ชื่อเมนู

@@ -47,11 +47,12 @@ input.form-check-input {
   margin: 15px;
 }
 .grid-button {
+  position: relative;
   display: grid;
   width: 350px;
   grid-template-columns: auto auto ;
-  position: relative;
-  left: 40%;
+  top: -13rem;
+  left: 26%;
   gap: 10px;
 }
 .success-button {

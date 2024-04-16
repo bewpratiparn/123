@@ -1,25 +1,23 @@
 import React from "react";
 import "./AddDataShop.css";
 
-
 function AddDataShop() {
-  
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     const formData = new FormData(event.target);
     const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
+      name: formData.get("name"),
+      email: formData.get("email"),
     };
-  
+
     try {
-      const response = await fetch('/api/submit-data', {
-        method: 'POST',
+      const response = await fetch("/api/submit-data", {
+        method: "POST",
         body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" },
       });
-  
+
       if (response.ok) {
         // Handle success
       } else {
@@ -31,10 +29,18 @@ function AddDataShop() {
   };
   return (
     <>
-      
+    <div className="form-center">
       <form>
         <div className="flex flex-col justify-center items-center m-10 ">
-          <div className="m-5 text-center ">เพิ่มข้อมูลอาหาร</div>
+          <div className="m-5 text-center ">เพิ่มข้อมูลร้านค้า</div>
+          <div className="button_outer">
+				<div className="btn_upload">
+					<input type="file" id="upload_file" name />
+					Upload Image
+				</div>
+				<div class="processing_bar"></div>
+				<div class="success_box"></div>
+			</div>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2 ">
               ชื่อร้าน
@@ -156,6 +162,7 @@ function AddDataShop() {
           </div>
         </div>
       </form>
+      </div>
     </>
   );
 }
