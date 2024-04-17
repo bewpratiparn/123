@@ -1,4 +1,5 @@
-import React from "react";
+/*ปอนด์ Do*/
+import React,{useState, useEffect } from "react";
 import "./AddDataShop.css";
 
 function AddDataShop() {
