@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "flowbite";
 import Search from "../components/Search";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import "./Home.css";
+import axios from "axios";
+import Swal from "sweetalert2";
+
 
 function Home() {
+  const [store, setStore] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    try {
+      axios
+        .get(/**api endpoint */)
+        .then((res) => {
+          setStore(res.data);
+        })
+        .catch((err) => {
+          throw err.response;
+        });
+    } catch (e) {
+      Swal.fire({
+        title: "error",
+        text: e,
+        icon: "error",
+      });
+    }
+  };
+
   return (
     <>
       <header>
@@ -23,7 +51,7 @@ function Home() {
                   style={{ width: "15rem", margin: "1rem" }}
                   className="picture-home"
                 />
-             
+
                 <div className="data-storehome">
                   <div className="storename">ชื่อร้าน : </div>
                   <div className="tel">เบอร์โทร : </div>
@@ -48,7 +76,6 @@ function Home() {
                   className="picture-home"
                 />
 
-              
                 <div className="data-storehome">
                   <div className="storename">ชื่อร้าน : </div>
                   <div className="tel">เบอร์โทร : </div>
@@ -72,7 +99,7 @@ function Home() {
                   style={{ width: "15rem", margin: "1rem", borderRadius: "" }}
                   className="picture-home"
                 />
-            
+
                 <div className="data-storehome">
                   <div className="storename">ชื่อร้าน : </div>
                   <div className="tel">เบอร์โทร : </div>
