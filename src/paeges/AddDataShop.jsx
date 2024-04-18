@@ -13,7 +13,7 @@ function AddDataShop() {
     };
 
     try {
-      const response = await fetch("/api/submit-data", {
+      const response = await fetch("", {
         method: "POST",
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" },
