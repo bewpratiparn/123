@@ -51,8 +51,8 @@ input.form-check-input {
   display: grid;
   width: 350px;
   grid-template-columns: auto auto ;
-  top: -13rem;
-  left: 26%;
+  top: 10%;
+  left: 30%;
   gap: 10px;
 }
 .success-button {
