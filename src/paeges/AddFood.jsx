@@ -3,6 +3,55 @@ import Navbar from "../components/Navbar";
 import "./AddFood.css";
 
 function AddFood() {
+
+  const sendDataToBackend = async (data) => {
+    try {
+      const response = await fetch('your-backend-api-url', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        throw new Error('เกิดข้อผิดพลาดในการส่งข้อมูลไปยังเซิร์ฟเวอร์');
+      }
+  
+      // ดำเนินการเพิ่มข้อมูลเสร็จสิ้น
+      console.log('ส่งข้อมูลสำเร็จ');
+    } catch (error) {
+      console.error('เกิดข้อผิดพลาด:', error.message);
+    }
+  };
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // ป้องกันการรีเฟรชหน้าเว็บ
+  
+    // รวบรวมข้อมูลจากฟอร์ม
+    const formData = {
+      foodName: event.target.food_name.value, // รับค่าชื่อเมนูจาก input ชื่อเมนู
+      foodDescription: event.target.food_description.value, // รับค่ารายละเอียดอาหารจาก input รายละเอียดอาหาร
+      cookingMethod: event.target.cooking_method.value, // รับค่าวิธีการทำจาก input วิธีการทำ
+      foodPrice: event.target.food_price.value, // รับค่าราคาจาก input ราคา
+      foodCategory: event.target.food_category.value, // รับค่าหมวดหมู่อาหารจาก input หมวดหมู่
+      foodType: [] // เพิ่มข้อมูลอาหารพิเศษเช่น มังสวิรัติ, อาหารเจ, ฮาลาล เป็นต้น
+    };
+  
+    // ตรวจสอบ checkbox และเพิ่มข้อมูลลงใน formData.foodType ตามความเหมาะสม
+    const specialFoods = document.querySelectorAll('input[type="checkbox"]:checked');
+    specialFoods.forEach(food => {
+      formData.foodType.push(food.nextSibling.textContent.trim()); // เพิ่มข้อมูลอาหารพิเศษลงใน formData.foodType
+    });
+  
+    // เรียกใช้ฟังก์ชันสำหรับส่งข้อมูลไปยัง API ที่สร้างขึ้น
+    sendDataToBackend(formData);
+  };
+  
+  
+
+
   return (
     <>
       <div className="white-background">
@@ -14,7 +63,8 @@ function AddFood() {
             <div>
               <div className="button_outer">
                 <div className="btn_upload">
-                  <input type="file" id="upload_file" name />
+                  <input type="file"
+                   id="food_price" name />
                   Upload Image
                 </div>
                 <div class="processing_bar"></div>
@@ -26,7 +76,7 @@ function AddFood() {
                 </label>
                 <input
                   className=" p-2 border rounded-md"
-                  name="username"
+                  name="food_name"
                   type="text"
                   placeholder="ชื่อเมนู..."
                   htmlFor="ชื่อเมนู"
@@ -127,7 +177,7 @@ function AddFood() {
             </select>
           </div>
 
-          <div>
+          
             <div>
               <label className="inline-flex items-center mb-2">
                 <input
@@ -172,22 +222,26 @@ function AddFood() {
                 />
               </label>
             </div>
-          </div>
+        
 
-          <div>
-            <button
-              type="button"
-              class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-            >
-              ยืนยัน
-            </button>
-            <button
-              type="button"
-              class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-            >
-              ยกเลิก
-            </button>
-          </div>
+          <form onSubmit={handleSubmit}>
+  {/* ฟอร์มและฟิลด์ข้อมูลอื่น ๆ ที่คุณมี */}
+  <div>
+    <button
+      type="submit"
+      className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+    >
+      ยืนยัน
+    </button>
+    <button
+      type="button"
+      className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+    >
+      ยกเลิก
+    </button>
+  </div>
+</form>
+
         </form>
         </div>
       </div>
