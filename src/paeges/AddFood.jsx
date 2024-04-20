@@ -4,14 +4,33 @@ import "./AddFood.css";
 
 function AddFood() {
 
-  const sendDataToBackend = async (data) => {
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // ป้องกันการรีเฟรชหน้าเว็บ
+  
+    // รวบรวมข้อมูลจากฟอร์ม
+    const formData = {
+      foodPrice: event.target.food_price.value,
+      foodName: event.target.food_name.value,
+      foodDescription: event.target.food_description.value,
+      cookingMethod: event.target.cooking_method.value,
+      foodCategory: event.target.food_category.value,
+      foodType: []
+    };
+  
+    // ตรวจสอบ checkbox และเพิ่มข้อมูลลงใน formData.foodType ตามความเหมาะสม
+    const specialFoods = document.querySelectorAll('input[type="checkbox"]:checked');
+    specialFoods.forEach(food => {
+      formData.foodType.push(food.nextSibling.textContent.trim());
+    });
+  
     try {
+      // เรียกใช้ API โดยการส่งข้อมูลไปยัง URL ของ API และใช้ข้อมูลที่ส่งผ่าน JSON.stringify เป็น body
       const response = await fetch('your-backend-api-url', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
       });
   
       if (!response.ok) {
@@ -24,30 +43,7 @@ function AddFood() {
       console.error('เกิดข้อผิดพลาด:', error.message);
     }
   };
-
-
-  const handleSubmit = (event) => {
-    event.preventDefault(); // ป้องกันการรีเฟรชหน้าเว็บ
   
-    // รวบรวมข้อมูลจากฟอร์ม
-    const formData = {
-      foodName: event.target.food_name.value, // รับค่าชื่อเมนูจาก input ชื่อเมนู
-      foodDescription: event.target.food_description.value, // รับค่ารายละเอียดอาหารจาก input รายละเอียดอาหาร
-      cookingMethod: event.target.cooking_method.value, // รับค่าวิธีการทำจาก input วิธีการทำ
-      foodPrice: event.target.food_price.value, // รับค่าราคาจาก input ราคา
-      foodCategory: event.target.food_category.value, // รับค่าหมวดหมู่อาหารจาก input หมวดหมู่
-      foodType: [] // เพิ่มข้อมูลอาหารพิเศษเช่น มังสวิรัติ, อาหารเจ, ฮาลาล เป็นต้น
-    };
-  
-    // ตรวจสอบ checkbox และเพิ่มข้อมูลลงใน formData.foodType ตามความเหมาะสม
-    const specialFoods = document.querySelectorAll('input[type="checkbox"]:checked');
-    specialFoods.forEach(food => {
-      formData.foodType.push(food.nextSibling.textContent.trim()); // เพิ่มข้อมูลอาหารพิเศษลงใน formData.foodType
-    });
-  
-    // เรียกใช้ฟังก์ชันสำหรับส่งข้อมูลไปยัง API ที่สร้างขึ้น
-    sendDataToBackend(formData);
-  };
   
   
 
