@@ -6,51 +6,25 @@ import axios from "axios";
 function AddDataShop() {
   const [isUploading, setIsUploading] = useState(false);
   const [isUploaded, setIsUploaded] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [fStorename , setStorename] = useState('');
+  const [fLocation , setLocation] = useState('');
+  const [fTel , setTel] = useState('');
+  const [fMaplink , setMaplink] = useState('');
+  const [fOnclose , setOnclose] = useState('');
 
-  const [formData, setformData] = useState({
-    storename: "",
-    location: "",
-    tel: "",
-    maplink: "",
-    onclose: "",
-  });
+  const handleSubmit = e =>{
+    
+  }
 
-  useEffect(() => {
-    axios
-      .get(
-        "http://127.0.0.1:8000/docs#/default/register_shop_shops_register__post"
-      )
-      .then((response) => {
-        const { storename, location, tel, maplink, onclose } = response.data;
-        setformData({ storename, location, tel, maplink, onclose });
-      })
-      .catch((error) => {
-        console.error("error fetching user data", error);
-      });
-  }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    console.log(formData);
-
-    setformData({
-      storename: "",
-      location: "",
-      tel: "",
-      maplink: "",
-      onclose: "",
-    });
-  };
   const handleFileChange = (e) => {
     const btnUpload = e.target;
-    const ext = btnUpload.value.split('.').pop().toLowerCase();
-    if (!['gif', 'png', 'jpg', 'jpeg'].includes(ext)) {
-      setErrorMessage('Not an Image...');
+    const ext = btnUpload.value.split(".").pop().toLowerCase();
+    if (!["gif", "png", "jpg", "jpeg"].includes(ext)) {
+      setErrorMessage("Not an Image...");
     } else {
-      setErrorMessage('');
+      setErrorMessage("");
       setIsUploading(true);
       setTimeout(() => {
         setIsUploading(false);
@@ -67,8 +41,12 @@ function AddDataShop() {
     setIsUploaded(false);
     setUploadedFile(null);
     setIsUploading(false);
-    setErrorMessage('');
+    setErrorMessage("");
   };
+
+
+
+  
   return (
     <>
       <div className="form-center">
@@ -76,12 +54,16 @@ function AddDataShop() {
           <div className="flex flex-col justify-center items-center m-10 ">
             <div className="m-5 text-center ">เพิ่มข้อมูลร้านค้า</div>
             <div className="containeruploadfile">
-              <input className="" type="file" id="upload_file" onChange={handleFileChange} />
+              <input
+                className=""
+                type="file"
+                id="upload_file"
+                onChange={handleFileChange}
+              />
               <div
                 className={
                   isUploading ? "button_outer file_uploading" : "button_outer"
                 }
-               
               >
                 {isUploaded && (
                   <div id="uploaded_view" className="show">
@@ -101,7 +83,10 @@ function AddDataShop() {
               <input
                 className="p-2 border rounded-md"
                 name="storename"
+                id="fstore"
                 type="text"
+                onChange={(e) => setStorename(e.target.value)}
+               
                 placeholder="กรอกชื่อร้าน"
               />
             </div>
@@ -114,7 +99,10 @@ function AddDataShop() {
                 className=" p-2 border rounded-md"
                 name="location"
                 type="text"
-                placeholder="กรอกสถานที่"
+                id="flocation"
+                onChange={(e) => setLocation(e.target.value)}
+                placeholder="สถานที่"
+              
               />
             </div>
             <div className="mb-4">
@@ -125,6 +113,8 @@ function AddDataShop() {
                 className=" p-2 border rounded-md"
                 name="tel"
                 type="text"
+                id="ftel"
+                onChange={(e) => setTel(e.target.value)}
                 placeholder="กรอกเบอร์โทรศัพท์"
               />
             </div>
@@ -137,6 +127,8 @@ function AddDataShop() {
                 className=" p-2 border rounded-md"
                 name="maplink"
                 type="text"
+                id="fmaplink"
+                onChange={(e) => setMaplink(e.target.value)}
                 placeholder="กรอก map link"
               />
             </div>
@@ -149,6 +141,8 @@ function AddDataShop() {
                 className=" p-2 border rounded-md"
                 name="onclose"
                 type="text"
+                id="onclose"
+                onChange={(e) => setOnclose(e.target.value)}
                 placeholder="เวลา เปิด-ปิด"
               />
             </div>
@@ -158,6 +152,7 @@ function AddDataShop() {
                   <input
                     type="checkbox"
                     name="mungsavirat"
+                    
                     className="form-checkbox text-blue-600"
                   />
                   <span className="ml-2 text-black">เพิ่มมังสวิรัติ</span>
@@ -174,6 +169,7 @@ function AddDataShop() {
                   <input
                     type="checkbox"
                     name="jay"
+                    
                     className="form-checkbox text-blue-600"
                   />
                   <span className="ml-2 text-black">เพิ่มอาหารเจ</span>
@@ -190,6 +186,7 @@ function AddDataShop() {
                   <input
                     type="checkbox"
                     name="halan"
+                    
                     className="form-checkbox text-blue-600"
                   />
                   <span className="ml-2 text-black ">เพิ่มฮาลาน</span>
