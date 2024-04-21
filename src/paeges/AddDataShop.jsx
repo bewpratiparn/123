@@ -14,7 +14,7 @@ function AddDataShop() {
   const [fMaplink , setMaplink] = useState('');
   const [fOnclose , setOnclose] = useState('');
 
-  const handleSubmit = e =>{
+  const handleSubmit = (e) =>{
     
   }
 

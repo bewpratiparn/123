@@ -17,7 +17,7 @@ function Home() {
   const fetchData = () => {
     try {
       axios
-        .get(/**api endpoint */)
+        .get("http://127.0.0.1:8000/shops/10")
         .then((res) => {
           setStore(res.data);
         })
