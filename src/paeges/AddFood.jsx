@@ -1,19 +1,26 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 import "./AddFood.css";
 
-function AddFood() {
 
+function AddFood() {
+  
   const handleSubmit = async (event) => {
     event.preventDefault(); // ป้องกันการรีเฟรชหน้าเว็บ
   
     // รวบรวมข้อมูลจากฟอร์ม
     const formData = {
-      foodPrice: event.target.food_price.value,
+      UploadImage: event.target.Upload_Image.value,
       foodName: event.target.food_name.value,
-      foodDescription: event.target.food_description.value,
+      foodDatails: event.target.Food_details.value,
       cookingMethod: event.target.cooking_method.value,
-      foodCategory: event.target.food_category.value,
+      Foodprices: event.target.Food_prices.value,
+      Foodlist: event.target.Food_list.value,
+      Foodcategory: event.target.Food_category.value,
+      Checkbox1: event.target.checbox_1.value,
+      Checkbox2: event.target.checbox_2.value,
+      Checkbox3: event.target.checbox_3.value,
+      
+      
       foodType: []
     };
   
@@ -60,7 +67,7 @@ function AddFood() {
               <div className="button_outer">
                 <div className="btn_upload">
                   <input type="file"
-                   id="food_price" name />
+                   name="Upload_Image"  />
                   Upload Image
                 </div>
                 <div class="processing_bar"></div>
@@ -85,7 +92,7 @@ function AddFood() {
                 </label>
                 <input
                   className=" p-2 border rounded-md"
-                  name="username"
+                  name="Food_details"
                   type="text"
                   placeholder="รายละเอียดอาหาร..."
                   htmlFor="รายละเอียดอาหาร"
@@ -94,14 +101,14 @@ function AddFood() {
 
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2 width ">
-                  วิธีการทำ
+                  วิธีการทำอาหาร
                 </label>
                 <input
                   className=" p-2 border rounded-md"
-                  name="username"
+                  name="cooking_method"
                   type="text"
-                  placeholder="วิธีการทำ..."
-                  htmlFor="วิธีการทำ"
+                  placeholder="วิธีการทำอาหาร..."
+                  htmlFor="วิธีการทำอาหาร"
                 />
               </div>
               <div className="mb-4">
@@ -110,7 +117,7 @@ function AddFood() {
                 </label>
                 <input
                   className=" p-2 border rounded-md"
-                  name="username"
+                  name="Food_prices"
                   type="text"
                   placeholder="ราคา..."
                   htmlFor="ราคา"
@@ -122,7 +129,7 @@ function AddFood() {
           <div>
             <label
               className="block mb-2 text-l font-medium text-gray-900 dark:text-back"
-              htmlFor="first_name"
+              name="Food_list"
             >
               รายการอาหาร
             </label>
@@ -157,7 +164,7 @@ function AddFood() {
           <div>
             <label
               className="block mb-2 text-l -medium text-gray-900 dark:text-back mb-2"
-              htmlFor="หมวดหมู่อาหาร"
+              name="Food_category"
             >
               หมวดหมู่
             </label>
@@ -178,6 +185,7 @@ function AddFood() {
               <label className="inline-flex items-center mb-2">
                 <input
                   type="checkbox"
+                  name="checbox_1"
                   className="form-checkbox text-blue-600"
                 />
                 <span className="ml-2 text-black">เพิ่มมังสวิรัติ</span>
@@ -193,6 +201,7 @@ function AddFood() {
               <label className="inline-flex items-center mb-2">
                 <input
                   type="checkbox"
+                  name="checbox_2"
                   className="form-checkbox text-blue-600"
                 />
                 <span className="ml-2 text-black">เพิ่มอาหารเจ</span>
@@ -208,6 +217,7 @@ function AddFood() {
               <label className="inline-flex items-center  mb-4 ">
                 <input
                   type="checkbox"
+                  name="checbox_3"
                   className="form-checkbox text-blue-600"
                 />
                 <span className="ml-2 text-black ">เพิ่มฮาลาน</span>
