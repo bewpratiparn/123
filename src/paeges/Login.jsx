@@ -26,13 +26,13 @@ function Login() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        Username: input.username,
-        Password: input.password,
+        username: input.username,
+        password: input.password,
       }),
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/Login/?Username=pondz&Password=123456789p", requestOptions);
+      const response = await fetch("http://127.0.0.1:8000/login/", requestOptions);
       const result = await response.json();
 
       if (result.access_token) {
