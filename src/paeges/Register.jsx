@@ -12,26 +12,20 @@ function Register() {
   const [inputs, setInputs] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const onFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file && file.type.startsWith("image/")) {
-      setSelectedFile(file);
-    } else {
-      setSelectedFile(null);
-      // Optional: Show an error message for invalid file types
-    }
-  };
+  
 
   const handleChange = (event) => {
     const name = event.target.name;
+    const picture = event.target.picture;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
+    setSelectedFile((values) => ({ ...values, [picture]: value }));
+    
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    
+    console.log(inputs);
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -60,7 +54,7 @@ function Register() {
             html: <i>{result.message}</i>,
             icon: "success",
           }).then((value) => {
-            navigate("/Home");
+            navigate("/Login");
           });
         } else {
           MySwal.fire({
@@ -149,9 +143,12 @@ function Register() {
             />
           </div>
           <div>
-            <input type="file" accept="image/*" 
+            <input
+              type="file"
+              name="picture"
               value={inputs.picture}
-            onChange={onFileChange} />
+              onChange={handleChange}
+            />
             {selectedFile && (
               <div>
                 <img
@@ -161,7 +158,7 @@ function Register() {
                 <p>Selected file: {selectedFile.name}</p>
               </div>
             )}
-            {/* Button to trigger upload logic (replace with your implementation) */}
+            
             <button disabled={!selectedFile}>Upload Image</button>
           </div>
           <button
