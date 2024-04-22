@@ -19,7 +19,7 @@ function Register() {
     const picture = event.target.picture;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
-    setSelectedFile((values) => ({ ...values, [picture]: value }));
+   
     
   };
 
@@ -46,20 +46,20 @@ function Register() {
       redirect: "follow",
     };
 
-    fetch("http://127.0.0.1:8000/register/", requestOptions)
+    fetch('http://127.0.0.1:8000/register/', requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.status === "ok") {
           MySwal.fire({
             html: <i>{result.message}</i>,
-            icon: "success",
+            icon: "error",
           }).then((value) => {
             navigate("/Login");
           });
         } else {
           MySwal.fire({
             html: <i>{result.message}</i>,
-            icon: "error",
+            icon: "success",
           });
         }
       })
