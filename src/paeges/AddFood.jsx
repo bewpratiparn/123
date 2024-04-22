@@ -80,7 +80,7 @@ function AddFood() {
             <div className="grid gap-6 mb-6 md:grid-cols-2">
               <div>
                 <div className="button_outer">
-                  <div className="btn_upload">
+                  <div className="btnupload">
                     <input
                       type="file"
                       name="Upload_Image"
@@ -89,7 +89,7 @@ function AddFood() {
                     Upload Image
                   </div>
                   <div class="processing_bar"></div>
-                  <div class="success_box"></div>
+                  <div class="successbox"></div>
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2 width">
@@ -97,7 +97,7 @@ function AddFood() {
                   </label>
                   <input
                     className="p-2 border rounded-md"
-                    name="food_name"
+                    name="foodname"
                     type="text"
                     placeholder="ชื่อเมนู..."
                     value={foodName}
@@ -111,7 +111,7 @@ function AddFood() {
                   </label>
                   <input
                     className="p-2 border rounded-md"
-                    name="Food_details"
+                    name="Fooddetails"
                     type="text"
                     placeholder="รายละเอียดอาหาร..."
                     value={foodDetails}
@@ -125,7 +125,7 @@ function AddFood() {
                   </label>
                   <input
                     className="p-2 border rounded-md"
-                    name="cooking_method"
+                    name="cookingmethod"
                     type="text"
                     placeholder="วิธีการทำอาหาร..."
                     value={cookingMethod}
@@ -138,7 +138,7 @@ function AddFood() {
                   </label>
                   <input
                     className="p-2 border rounded-md"
-                    name="Food_prices"
+                    name="Foodprices"
                     type="text"
                     placeholder="ราคา..."
                     value={foodPrices}
@@ -151,7 +151,7 @@ function AddFood() {
             <div>
               <label
                 className="block mb-2 text-l font-medium text-gray-900 dark:text-back"
-                name="Food_list"
+                name="Foodlist"
               >
                 รายการอาหาร
               </label>
@@ -172,7 +172,7 @@ function AddFood() {
             <div>
               <label
                 className="block mb-2 text-l -medium text-gray-900 dark:text-back mb-2"
-                name="Food_category"
+                name="Foodcategory"
               >
                 หมวดหมู่
               </label>
@@ -196,7 +196,7 @@ function AddFood() {
               <label className="inline-flex items-center mb-2">
                 <input
                   type="checkbox"
-                  name="checbox_1"
+                  name="checbox1"
                   className="form-checkbox text-blue-600"
                   checked={checkbox1}
                   onChange={(e) => setCheckbox1(e.target.checked)}
@@ -214,7 +214,7 @@ function AddFood() {
   <label className="inline-flex items-center mb-2">
     <input
       type="checkbox"
-      name="checkbox_2"
+      name="checkbox2"
       className="form-checkbox text-blue-600"
       checked={checkbox2}
       onChange={(e) => setCheckbox2(e.target.checked)}
@@ -232,7 +232,7 @@ function AddFood() {
   <label className="inline-flex items-center mb-4">
     <input
       type="checkbox"
-      name="checkbox_3"
+      name="checkbox3"
       className="form-checkbox text-blue-600"
       checked={checkbox3}
       onChange={(e) => setCheckbox3(e.target.checked)}
