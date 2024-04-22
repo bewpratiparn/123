@@ -211,36 +211,41 @@ function AddFood() {
               </label>
             </div>
             <div>
-              <label className="inline-flex items-center mb-2">
-                <input
-                  type="checkbox"
-                  name="checbox_2"
-                  className="form-checkbox text-blue-600"
-                />
-                <span className="ml-2 text-black">เพิ่มอาหารเจ</span>
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS-b1-Nxx_cbgUySvFd2emKL8rQwR39810zYZp2U9PMgLXojLNnR8XlPJcUXEEs4ucfq0&usqp=CAU"
-                  alt="อาหารเจ"
-                  style={{ width: "70px", height: "auto" }} 
-                />
-              </label>
-            </div>
+  <label className="inline-flex items-center mb-2">
+    <input
+      type="checkbox"
+      name="checkbox_2"
+      className="form-checkbox text-blue-600"
+      checked={checkbox2}
+      onChange={(e) => setCheckbox2(e.target.checked)}
+    />
+    <span className="ml-2 text-black">เพิ่มอาหารเจ</span>
+    <img
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS-b1-Nxx_cbgUySvFd2emKL8rQwR39810zYZp2U9PMgLXojLNnR8XlPJcUXEEs4ucfq0&usqp=CAU"
+      alt="อาหารเจ"
+      style={{ width: "70px", height: "auto" }}
+    />
+  </label>
+</div>
 
-            <div>
-              <label className="inline-flex items-center  mb-4 ">
-                <input
-                  type="checkbox"
-                  name="checbox_3"
-                  className="form-checkbox text-blue-600"
-                />
-                <span className="ml-2 text-black ">เพิ่มฮาลาน</span>
-                <img
-                  src="https://assets.brandinside.asia/uploads/2017/09/HALAL.jpg"
-                  alt="ฮาลาน"
-                  style={{ width: "70px", height: "auto" }}
-                />
-              </label>
-            </div>
+<div>
+  <label className="inline-flex items-center mb-4">
+    <input
+      type="checkbox"
+      name="checkbox_3"
+      className="form-checkbox text-blue-600"
+      checked={checkbox3}
+      onChange={(e) => setCheckbox3(e.target.checked)}
+    />
+    <span className="ml-2 text-black">เพิ่มฮาลาล</span>
+    <img
+      src="https://assets.brandinside.asia/uploads/2017/09/HALAL.jpg"
+      alt="ฮาลาล"
+      style={{ width: "70px", height: "auto" }}
+    />
+  </label>
+</div>
+
             
             <div>
               <button
