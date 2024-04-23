@@ -93,6 +93,7 @@ body {
   .description {
     font-size: larger; /* ทำให้ขนาดตัวอักษรใหญ่ขึ้น */
     font-weight: bold;
+    font-Size: '18px';
 }
 
 .backgroud-bk{
