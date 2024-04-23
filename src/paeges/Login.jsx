@@ -41,7 +41,7 @@ function Login() {
           html: <i>{result.message}</i>,
           icon: "success",
         }).then(() => {
-          navigate("/home");
+          Navigate("/home");
         });
       } else {
         MySwal.fire({

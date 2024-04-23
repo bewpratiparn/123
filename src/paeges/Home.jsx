@@ -7,36 +7,15 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 function Home() {
-const [data ,setdata] = useState([])
-
-useEffect (() => {
-  axios.get('http://127.0.0.1:8000/shops/')
-  .then(res => setdata(res.data))
-  .catch(err => console.log(err));
-},[])
-/*
-  const [shops, setShops] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchData;
+    axios
+      .get("http://127.0.0.1:8000/shops/")
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err));
   }, []);
 
-  const fetchData = () => {
-    try {
-      axios
-        .get('http://127.0.0.1:8000/shops/10')
-       .then(res = setShops(res.data))
-        .catch((err) => {
-          throw err.response;
-        });
-    } catch (e) {
-      Swal.fire({
-        title: "error",
-        text: e,
-        icon: "error",
-      });
-    }
-  };*/
   return (
     <>
       <header>
@@ -47,38 +26,39 @@ useEffect (() => {
         <div className="text-2xl font-bold text-center mb-*">ร้านอาหาร</div>
         <div className="grid-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-white p-4 rounded-lg shadow-lg">
-          {data.length > 0
-                  ? data.map((item ,i) => (
-            <div className="containner-store-1"key={item.id} style={{}}>
-              <div className="card" style={{ width: "60rem" }}>
-                <img
-                  src={item.shop_picture}
-                  alt=""
-                  style={{ width: "15rem", margin: "1rem" }}
-                  className="picture-home"
-                />
-               
+            {data.length > 0
+              ? data.map((item, i) => (
+                  <div className="containner-store-1" key={item.id} style={{}}>
+                    <div className="card" style={{ width: "70rem" }}>
+                      <img
+                        src={item.shop_picture} // ใช้ URL ที่ส่งมาจาก API
+                        alt={item.shop_name}
+                        style={{ width: "25rem", margin: "1rem" ,padding:"1rem" }}
+                        className="picture-home"
+                      />
+
                       <div className="data-storehome">
-                        <div className="storename">ชื่อร้านค้า:{item.shop_name} </div> 
-                        <div className="tel">เบอร์โทร:{item.shop_phone} </div>
-                        <div className="location-store">สถานที่:{item.shop_location}</div>
-                        
+                        <div className="storename">
+                          ชื่อร้านค้า: {item.shop_name}{" "}
+                        </div>
+                        <div className="tel">เบอร์โทร: {item.shop_phone} </div>
+                        <div className="location-store">
+                          สถานที่: {item.shop_location}
+                        </div>
                       </div>
-                    
-                <Link to="/Store_information">
-                  <button
-                    className="btn btn-primary"
-                    style={{ width: "10rem" }}
-                  >
-                    ไปยังร้านค้า
-                  </button>
-                </Link>
-              </div>
-            </div>
-            ))
-            : ""}
-            
-            
+
+                      <Link to="/Store_information">
+                        <button
+                          className="btn btn-primary"
+                          style={{ width: "10rem" }}
+                        >
+                          ไปยังร้านค้า
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                ))
+              : ""}
           </div>
         </div>
       </div>

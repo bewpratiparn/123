@@ -52,14 +52,14 @@ function Register() {
         if (result.status === "ok") {
           MySwal.fire({
             html: <i>{result.message}</i>,
-            icon: "error",
+            icon: "success",
           }).then((value) => {
             navigate("/Login");
           });
         } else {
           MySwal.fire({
             html: <i>{result.message}</i>,
-            icon: "success",
+            icon: "error",
           });
         }
       })
