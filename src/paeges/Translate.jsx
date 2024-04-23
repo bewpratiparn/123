@@ -12,7 +12,7 @@ function Translate() {
   const submitTranslate = async () => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/translate/th-en/",
+        "http://127.0.0.1:8000/translate/",
         {
           text: inputText,
         }

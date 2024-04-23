@@ -10,7 +10,7 @@ function Home() {
 const [data ,setdata] = useState([])
 
 useEffect (() => {
-  axios.get('https://www.melivecode.com/api/users')
+  axios.get('http://127.0.0.1:8000/shops/')
   .then(res => setdata(res.data))
   .catch(err => console.log(err));
 },[])
@@ -52,16 +52,16 @@ useEffect (() => {
             <div className="containner-store-1"key={item.id} style={{}}>
               <div className="card" style={{ width: "60rem" }}>
                 <img
-                  src={item.avatar}
+                  src={item.shop_picture}
                   alt=""
                   style={{ width: "15rem", margin: "1rem" }}
                   className="picture-home"
                 />
                
                       <div className="data-storehome">
-                        <div className="storename">ชื่อร้านค้า:{item.fname} </div> 
-                        <div className="tel">เบอร์โทร:{item.lname} </div>
-                        <div className="location-store">สถานที่:{item.username}</div>
+                        <div className="storename">ชื่อร้านค้า:{item.shop_name} </div> 
+                        <div className="tel">เบอร์โทร:{item.shop_phone} </div>
+                        <div className="location-store">สถานที่:{item.shop_location}</div>
                         
                       </div>
                     
