@@ -25,6 +25,7 @@ body {
     position: relative;
     top: 7rem;
     left: 15rem;
+    
   }
   /*ทำสี ทำเส้นขอบบาง ด้านข้างในมีสีเทา*/
   .containner-box {
@@ -49,3 +50,4 @@ body {
     left: 15rem;
     top: 9rem;
   }
+

@@ -95,10 +95,10 @@
                   className="block mb-2 text-l font-medium text-gray-900 dark:text-black"
                   htmlFor="first_name"
                 >
-                  เวลาเปิด-ปิด
+                  วันที่,เวลา เปิด-ปิด
                 </label>
                 <textarea
-                  placeholder="เวลาเปิด-ปิด"
+                  placeholder="วันที่,เวลาเปิด-ปิด"
                   className="textarea-white text-black textarea-bordered textarea-xs w-full max-w-xs dark:text-white"
                 ></textarea>
               </div>
