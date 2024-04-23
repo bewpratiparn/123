@@ -8,15 +8,13 @@ function AddDataShop() {
   const [isUploaded, setIsUploaded] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [uploadedFile, setUploadedFile] = useState(null);
-  const [fStorename , setStorename] = useState('');
-  const [fLocation , setLocation] = useState('');
-  const [fTel , setTel] = useState('');
-  const [fMaplink , setMaplink] = useState('');
-  const [fOnclose , setOnclose] = useState('');
+  const [fStorename, setStorename] = useState("");
+  const [fLocation, setLocation] = useState("");
+  const [fTel, setTel] = useState("");
+  const [fMaplink, setMaplink] = useState("");
+  const [fOnclose, setOnclose] = useState("");
 
-  const handleSubmit = (e) =>{
-    
-  }
+  const handleSubmit = (e) => {};
 
   const handleFileChange = (e) => {
     const btnUpload = e.target;
@@ -44,9 +42,6 @@ function AddDataShop() {
     setErrorMessage("");
   };
 
-
-
-  
   return (
     <>
       <div className="form-center">
@@ -86,7 +81,6 @@ function AddDataShop() {
                 id="fstore"
                 type="text"
                 onChange={(e) => setStorename(e.target.value)}
-               
                 placeholder="กรอกชื่อร้าน"
               />
             </div>
@@ -102,7 +96,6 @@ function AddDataShop() {
                 id="flocation"
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="สถานที่"
-              
               />
             </div>
             <div className="mb-4">
@@ -152,7 +145,6 @@ function AddDataShop() {
                   <input
                     type="checkbox"
                     name="mungsavirat"
-                    
                     className="form-checkbox text-blue-600"
                   />
                   <span className="ml-2 text-black">เพิ่มมังสวิรัติ</span>
@@ -169,7 +161,6 @@ function AddDataShop() {
                   <input
                     type="checkbox"
                     name="jay"
-                    
                     className="form-checkbox text-blue-600"
                   />
                   <span className="ml-2 text-black">เพิ่มอาหารเจ</span>
@@ -186,7 +177,6 @@ function AddDataShop() {
                   <input
                     type="checkbox"
                     name="halan"
-                    
                     className="form-checkbox text-blue-600"
                   />
                   <span className="ml-2 text-black ">เพิ่มฮาลาน</span>
