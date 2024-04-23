@@ -18,7 +18,7 @@ function Editstore() {
                 console.error(err);
             });
     }, []);
-    
+
 
 
 
@@ -27,7 +27,7 @@ function Editstore() {
 
 
 
-<div className="container">
+
             <div style={{
                 marginLeft: '0px',
                 marginRight: '0px',
@@ -39,8 +39,8 @@ function Editstore() {
 
 
 
-
 <div>
+                <div>
                     <img
                         src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
                         className="picture"
@@ -51,16 +51,16 @@ function Editstore() {
                 </div>
 
                 <div style={{ marginLeft: '580px', marginTop: '-250px', justifyContent: 'flex-start', fontSize: '14px' }}>
-               
-                <label className="dayoff" htmlFor="ชื่อร้านค้า">
-                        ชื่อร้านค้า : 
+
+                    <label className="dayoff" htmlFor="ชื่อร้านค้า">
+                        ชื่อร้านค้า :
                     </label>
                     <br />
                     <label className="dayoff" htmlFor="ชื่อร้านค้า">
-                    วันที่,เวลา เปิด-ปิด
+                        วันที่,เวลา เปิด-ปิด
                     </label>
                     <br />
-                
+
                 </div>
 
                 <div style={{ marginLeft: '200px', marginTop: '200px', display: 'flex', justifyContent: 'flex-start', fontSize: '14px' }}>
@@ -73,95 +73,98 @@ function Editstore() {
                         </div>
                     </div>
                 </div>
+</div>
 
-                
+
+
+
                 <div className="grid-item">
-                
+
                     <div>
-                    <img
-                        src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
-                        className="picture-menu"
-                    />
-                    <div>ชื่ออาหาร :</div>
-                    <div>ราคา : </div>
+                        <img
+                            src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
+                            className="picture-menu"
+                        />
+                        <div>ชื่ออาหาร :</div>
+                        <div>ราคา : </div>
+                    </div>
+                    <div>
+                        <img
+                            src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
+                            className="picture-menu"
+                        />
+                        <div>ชื่ออาหาร :</div>
+                        <div>ราคา : </div>
+                    </div>
+                    <div>
+                        <img
+                            src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
+                            className="picture-menu"
+                        />
+                        <div>ชื่ออาหาร :</div>
+                        <div>ราคา : </div>
+                    </div>
+                    <div>
+                        <img
+                            src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
+                            className="picture-menu"
+                        />
+                        <div>ชื่ออาหาร :</div>
+                        <div>ราคา : </div>
+                    </div>
+                    <div>
+                        <img
+                            src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
+                            className="picture-menu"
+                        />
+                        <div>ชื่ออาหาร :</div>
+                        <div>ราคา : </div>
+                    </div>
+                    <div>
+                        <img
+                            src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
+                            className="picture-menu"
+                        />
+                        <div>ชื่ออาหาร :</div>
+                        <div>ราคา : </div>
+                    </div>
+                    <div>
+                        <img
+                            src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
+                            className="picture-menu"
+                        />
+                        <div>ชื่ออาหาร :</div>
+                        <div>ราคา : </div>
+                    </div>
+                    <div>
+                        <img
+                            src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
+                            className="picture-menu"
+                        />
+                        <div>ชื่ออาหาร :</div>
+                        <div>ราคา : </div>
+                    </div>
+                    <div>
+                        <img
+                            src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
+                            className="picture-menu"
+                        />
+                        <div>ชื่ออาหาร :</div>
+                        <div>ราคา : </div>
+                    </div>
+
+
+
+
                 </div>
-                <div>
-                    <img
-                        src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
-                        className="picture-menu"
-                    />
-                    <div>ชื่ออาหาร :</div>
-                    <div>ราคา : </div>
-                </div>
-                <div>
-                    <img
-                        src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
-                        className="picture-menu"
-                    />
-                    <div>ชื่ออาหาร :</div>
-                    <div>ราคา : </div>
-                </div>
-                <div>
-                    <img
-                        src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
-                        className="picture-menu"
-                    />
-                    <div>ชื่ออาหาร :</div>
-                    <div>ราคา : </div>
-                </div>
-                <div>
-                    <img
-                        src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
-                        className="picture-menu"
-                    />
-                    <div>ชื่ออาหาร :</div>
-                    <div>ราคา : </div>
-                </div>
-                <div>
-                    <img
-                        src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
-                        className="picture-menu"
-                    />
-                    <div>ชื่ออาหาร :</div>
-                    <div>ราคา : </div>
-                </div>
-                <div>
-                    <img
-                        src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
-                        className="picture-menu"
-                    />
-                    <div>ชื่ออาหาร :</div>
-                    <div>ราคา : </div>
-                </div>
-                <div>
-                    <img
-                        src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
-                        className="picture-menu"
-                    />
-                    <div>ชื่ออาหาร :</div>
-                    <div>ราคา : </div>
-                </div>
-                <div>
-                    <img
-                        src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
-                        className="picture-menu"
-                    />
-                    <div>ชื่ออาหาร :</div>
-                    <div>ราคา : </div>
-                </div>
+
+
 
 
 
 
             </div>
 
-            
-     
-
-            
-           
-        </div>
-        </div>
         </>
     );
 }
