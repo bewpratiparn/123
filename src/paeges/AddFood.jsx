@@ -51,18 +51,6 @@ function AddFood() {
 
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2 width ">
-                    วิธีการทำ
-                  </label>
-                  <input
-                    className=" p-2 border rounded-md"
-                    name="username"
-                    type="text"
-                    placeholder="วิธีการทำ..."
-                    htmlFor="วิธีการทำ"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2 width ">
                     ราคา
                   </label>
                   <input
@@ -118,16 +106,6 @@ function AddFood() {
               >
                 หมวดหมู่
               </label>
-              <select className=" w-full max-w-xs mb-4">
-                <option disabled selected>
-                  เพิ่มหมวดหมู่
-                </option>
-
-                <option>อาหาร</option>
-                <option>ของว่าง</option>
-                <option>เครื่องดื่ม</option>
-                <option>ของหวาน</option>
-              </select>
             </div>
 
             <div>
