@@ -12,15 +12,11 @@ function Register() {
   const [inputs, setInputs] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
 
-  
-
   const handleChange = (event) => {
     const name = event.target.name;
     const picture = event.target.picture;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
-   
-    
   };
 
   const handleSubmit = (event) => {
@@ -46,7 +42,7 @@ function Register() {
       redirect: "follow",
     };
 
-    fetch('http://127.0.0.1:8000/register/', requestOptions)
+    fetch("http://127.0.0.1:8000/register/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.status === "ok") {
@@ -62,8 +58,7 @@ function Register() {
             icon: "error",
           });
         }
-      })
-      .catch((error) => console.error(error));
+      });
   };
 
   return (
@@ -146,7 +141,7 @@ function Register() {
             <input
               type="file"
               name="picture"
-              value={inputs.picture}
+              value={inputs.picture || ""}
               onChange={handleChange}
             />
             {selectedFile && (
@@ -158,7 +153,7 @@ function Register() {
                 <p>Selected file: {selectedFile.name}</p>
               </div>
             )}
-            
+
             <button disabled={!selectedFile}>Upload Image</button>
           </div>
           <button
