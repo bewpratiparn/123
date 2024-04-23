@@ -1,10 +1,20 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import "flowbite";
 import Search from "../components/Search";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import "./Home.css";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 function Home() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/shops/')
+      .then(res => setData(res.data))
+      .catch(err => console.log(err));
+  }, []);
+
   return (
     <>
       <header>
@@ -15,88 +25,34 @@ function Home() {
         <div className="text-2xl font-bold text-center mb-*">ร้านอาหาร</div>
         <div className="grid-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-white p-4 rounded-lg shadow-lg">
-            <div className="containner-store-1" style={{}}>
-              <div className="card" style={{ width: "50rem" }}>
-                <img
-                  src="https://img.wongnai.com/p/192x192/2023/08/10/017075cfb4714776bd5b1551069c81d3.jpg"
-                  alt=""
-                  style={{ width: "15rem", margin: "1rem" }}
-                  className="picture-home"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">ร้านค้าที่ 1</h5>
-                  <p className="CardText">Datail Store</p>
-                </div>
-                <div className="data-storehome">
-                  <div className="storename">ชื่อร้าน : </div>
-                  <div className="tel">เบอร์โทร : </div>
-                  <div className="location-store">สถานที่ : </div>
-                </div>
-                <Link to="/Store_information">
-                  <button
-                    className="btn btn-primary"
-                    style={{ width: "10rem" }}
-                  >
-                    ไปยังร้านค้า
-                  </button>
-                </Link>
-              </div>
-            </div>
-            <div className="containner-store-1" style={{}}>
-              <div className="card" style={{ width: "50rem" }}>
-                <img
-                  src="https://img.wongnai.com/p/192x192/2022/11/19/11f8710d64cf44b4b8c04b8ded1b0f73.jpg"
-                  alt=""
-                  style={{ width: "15rem", margin: "15px" }}
-                  className="picture-home"
-                />
+            {data.length > 0
+              ? data.map((item, i) => (
+                <div className="containner-store-1" key={item.id} style={{}}>
+                  <div className="card" style={{ width: "60rem" }}>
+                    <img
+                      src={item.shop_picture} // Use the URL from the API
+                      alt={item.shop_name}
+                      style={{ width: "15rem", margin: "1rem" }}
+                    />
 
-                <div className="card-body">
-                  <h5 className="card-title">ร้านค้าที่ 2</h5>
-                  <p className="CardText">Datail Store</p>
+                    <div className="data-storehome">
+                      <div className="storename">ชื่อร้านค้า: {item.shop_name} </div>
+                      <div className="tel">เบอร์โทร: {item.shop_phone} </div>
+                      <div className="location-store">สถานที่: {item.shop_location}</div>
+                    </div>
+
+                    <Link to="/Store_information">
+                      <button
+                        className="btn btn-primary"
+                        style={{ width: "10rem" }}
+                      >
+                        ไปยังร้านค้า
+                      </button>
+                    </Link>
+                  </div>
                 </div>
-                <div className="data-storehome">
-                  <div className="storename">ชื่อร้าน : </div>
-                  <div className="tel">เบอร์โทร : </div>
-                  <div className="location-store">สถานที่ : </div>
-                </div>
-                <Link to="/Store_information">
-                  <button
-                    className="btn btn-primary"
-                    style={{ width: "10rem" }}
-                  >
-                    ไปยังร้านค้า
-                  </button>
-                </Link>
-              </div>
-            </div>
-            <div className="containner-store-1" style={{}}>
-              <div className="card" style={{ width: "50rem" }}>
-                <img
-                  src="https://img.wongnai.com/p/192x192/2023/08/10/017075cfb4714776bd5b1551069c81d3.jpg"
-                  alt=""
-                  style={{ width: "15rem", margin: "1rem", borderRadius: "" }}
-                  className="picture-home"
-                />
-                <div className="card-body">
-                  <h5 className="card-title">ร้านค้าที่ 3</h5>
-                  <p className="CardText">Datail Store</p>
-                </div>
-                <div className="data-storehome">
-                  <div className="storename">ชื่อร้าน : </div>
-                  <div className="tel">เบอร์โทร : </div>
-                  <div className="location-store">สถานที่ : </div>
-                </div>
-                <Link to="/Store_information">
-                  <button
-                    className="btn btn-primary"
-                    style={{ width: "10rem" }}
-                  >
-                    ไปยังร้านค้า
-                  </button>
-                </Link>
-              </div>
-            </div>
+              ))
+              : ""}
           </div>
         </div>
       </div>
