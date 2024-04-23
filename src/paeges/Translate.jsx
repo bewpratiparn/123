@@ -14,13 +14,8 @@ function Translate() {
 
   const languageOptions = [
     { key: "en", Text: "English", value: "male" },
-    { key: "hi ", Text: "Hindi", value: "female" },
-    { key: "ar", Text: "Arabic", value: "other" },
-    { key: "fr", Text: "French", value: "other" },
-    { key: "es", Text: "Spanish", value: "other" },
-    { key: "bg", Text: "Bangla", value: "other" },
-    { key: "ur", Text: "Arabic", value: "other" },
-    { key: "gr", Text: "Greek", value: "other" },
+    { key: "thai ", Text: "Thai", value: "female" },
+    
   ];
 
   const getLanguageSource = () => {
