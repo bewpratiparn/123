@@ -1,20 +1,76 @@
 /*ปอนด์ Do*/
 import React, { useState, useEffect } from "react";
+import ReactDOM from 'react-dom/client';
 import "./AddDataShop.css";
-import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function AddDataShop() {
+  const navigate = useNavigate();
+  const MySwal = withReactContent(Swal);
   const [isUploading, setIsUploading] = useState(false);
   const [isUploaded, setIsUploaded] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [uploadedFile, setUploadedFile] = useState(null);
-  const [fStorename, setStorename] = useState("");
-  const [fLocation, setLocation] = useState("");
-  const [fTel, setTel] = useState("");
-  const [fMaplink, setMaplink] = useState("");
-  const [fOnclose, setOnclose] = useState("");
+  const[addShop ,setAddshop] = useState ({});
+  /*const [shopId, setShopid] = useState("");
+  const [shopName, setShopname] = useState("");
+  const [shopLocation, setShoplocation] = useState("");
+  const [shopPhone, setShopphone] = useState("");
+  const [shopMap, setShopMap] = useState("");
+  const [shopTime, setShoptime] = useState("");
+  const [shopPicture, setShoppicture] = useState("");
+  const [shopType, setShoptype] = useState("");*/
 
-  const handleSubmit = (e) => {};
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const picture = event.target.picture;
+    const value = event.target.value;
+    setAddshop((values) => ({ ...values, [name]: value }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const myHeaders = new Headers();
+
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      shop_name: addShop.storename,
+      shop_location: addShop.location,
+      shop_phone: addShop.phone,
+      shop_map: addShop.maplink,
+      shop_time: addShop.onclose,
+      shop_picture: addShop.pictureshop,
+      shop_type: addShop.mungsavirat,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("http://127.0.0.1:8000/add_shop/", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.status === "ok") {
+          MySwal.fire({
+            html: <i>{result.message}</i>,
+            icon: "success",
+          }).then((value) => {});
+        } else {
+          MySwal.fire({
+            html: <i>เกิดข้อผิดพลาด</i>,
+            icon: "error",
+          }).then((value) => {
+            Navigate("/Login");
+          });
+        }
+      })
+      .catch((error) => console.error(error));
+  };
 
   const handleFileChange = (e) => {
     const btnUpload = e.target;
@@ -51,9 +107,10 @@ function AddDataShop() {
             <div className="containeruploadfile">
               <input
                 className=""
+                name="pictureshop"
                 type="file"
                 id="upload_file"
-                onChange={handleFileChange}
+                onChange={handleChange}
               />
               <div
                 className={
@@ -71,6 +128,8 @@ function AddDataShop() {
                 Remove
               </button>
             </div>
+
+           
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2 ">
                 ชื่อร้าน
@@ -80,7 +139,7 @@ function AddDataShop() {
                 name="storename"
                 id="fstore"
                 type="text"
-                onChange={(e) => setStorename(e.target.value)}
+                onChange={handleChange}
                 placeholder="กรอกชื่อร้าน"
               />
             </div>
@@ -94,7 +153,7 @@ function AddDataShop() {
                 name="location"
                 type="text"
                 id="flocation"
-                onChange={(e) => setLocation(e.target.value)}
+                onChange={handleChange}
                 placeholder="สถานที่"
               />
             </div>
@@ -104,10 +163,10 @@ function AddDataShop() {
               </label>
               <input
                 className=" p-2 border rounded-md"
-                name="tel"
+                name="phone"
                 type="text"
                 id="ftel"
-                onChange={(e) => setTel(e.target.value)}
+                onChange={handleChange}
                 placeholder="กรอกเบอร์โทรศัพท์"
               />
             </div>
@@ -121,7 +180,7 @@ function AddDataShop() {
                 name="maplink"
                 type="text"
                 id="fmaplink"
-                onChange={(e) => setMaplink(e.target.value)}
+                onChange={handleChange}
                 placeholder="กรอก map link"
               />
             </div>
@@ -135,7 +194,7 @@ function AddDataShop() {
                 name="onclose"
                 type="text"
                 id="onclose"
-                onChange={(e) => setOnclose(e.target.value)}
+                onChange={handleChange}
                 placeholder="เวลา เปิด-ปิด"
               />
             </div>
@@ -146,6 +205,7 @@ function AddDataShop() {
                     type="checkbox"
                     name="mungsavirat"
                     className="form-checkbox text-blue-600"
+                    onChange={handleChange}
                   />
                   <span className="ml-2 text-black">เพิ่มมังสวิรัติ</span>
                   <img
@@ -191,7 +251,7 @@ function AddDataShop() {
 
             <div>
               <button
-                type="button"
+                type="submit"
                 className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
               >
                 ยืนยัน
