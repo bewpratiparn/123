@@ -5,6 +5,8 @@ import "./Editstore.css";
 
 function Editstore() {
     const [data, setData] = useState([]);
+    const [dataShops, setDataShops] = useState([]);
+
 
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/foods/')
@@ -17,33 +19,58 @@ function Editstore() {
                 });
                 console.error(err);
             });
-    }, []);
+   
+
+            axios.get('http://127.0.0.1:8000/shops/')
+            .then(res => setDataShops(res.data)) // แก้เป็น setDataShops(res.data) แทน setDataShops(res.dataShops)
+            .catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'เกิดข้อผิดพลาดในการโหลดข้อมูล!',
+                });
+                console.error(err);
+            });
+}, []);
 
     return (
+
+
+
+        
         <div style={{
             display: 'flex',
             justifyContent: 'center',
             backgroundColor: 'white',
             width: '100vw',
-            height: '250vh',
+            height: '3000vh',
         }}>
             <div>
-                <div>
+
+            <div className="bg-white p-4 rounded-lg shadow-lg">
+            {dataShops.length > 0
+              ? dataShops.map((item, i) => (
+                <div className="containner-store-1" key={item.id} 
+                style={{}}>
+                  <div className="card" style={{ width: "60rem" }}>
                     <img
-                        src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg"
-                        className="picture"
+                      src={item.shop_picture} // Use the URL from the API
+                      alt={item.shop_name}
+                      style={{ width: "15rem", margin: "1rem" }}
                     />
-                </div>
+
+
+                
                 <div style={{ marginTop: '160px' }}> </div>
                    
                
                 <div style={{ marginLeft: '550px', marginTop: '-250px', fontSize: '16px' }}>
                 <label className="dayoff" htmlFor="ชื่อร้านค้า">
-                        ชื่อร้านค้า :
+                        ชื่อร้านค้า :{item.shop_name}
                     </label>
                     <br />
                     <label className="dayoff" htmlFor="ชื่อร้านค้า">
-                        วันที่,เวลา เปิด-ปิด :
+                        วันที่,เวลา เปิด-ปิด :{item.shop_time}
                     </label>
                     
                 </div>
@@ -51,20 +78,23 @@ function Editstore() {
                 <div className="containner-box">
                         <div className="colorinside">
                             <label className="description" htmlFor="description">Description</label>
-                            <div className="location">สถานที่ ชื่อสถานที่ :</div>
-                            <div className="maplink">Map-link :</div>
-                            <div className="phone">เบอร์ติดต่อ :</div>
+                            <div className="location">สถานที่ ชื่อสถานที่ :{item.shop_location}</div>
+                            <div className="maplink">Map-link :{item.shop_map}</div>
+                            <div className="phone">เบอร์ติดต่อ :{item.shop_phone}</div>
                         </div>
                     </div>
                 </div>
-           
-
+                </div>
+                </div>
+              ))
+              : ""}
+          </div>
             
            
              <div className="grid-item" style={{ marginLeft: '-90px' , padding: 10 ,marginTop: '-120px',fontSize: '16px',display: 'grid', gridTemplateColumns: 'repeat(2, 20fr)', gap: '8rem' }}>
                 {data.length > 0
                     ? data.map((item, i) => (
-                        <div className="containner-store-1" key={item.id}>
+                        <div className="containner-store-Food" key={item.id}>
                             <div className="card" style={{ width: "100%" }}>
                                 <img
                                     src={item.Food_picture}
@@ -78,6 +108,12 @@ function Editstore() {
                     ))
                     : ""}
             </div>
+          
+
+
+
+
+
           
             </div>
 
