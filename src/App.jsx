@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Search from './components/Search'
 import Navbar from './components/Navbar'
 import Login from './paeges/Login'
+import Logout from './paeges/Logout'
 import Home from './paeges/Home'
 import Home2 from './paeges/Home2'
 import Translate from './paeges/Translate'
@@ -39,6 +40,8 @@ function App() {
         <Route path="/Home2" element={<Home2 />} />
         <Route path="/Fooddetails" element={<Fooddetails />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/Login" element={<Logout />} />
+        <Route path="/Logout" element={<Logout />} />
         <Route path="/Login" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/Translate" element={<Translate />} />
