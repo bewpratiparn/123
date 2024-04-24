@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,13 @@ function Login() {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
   const [input, setInputs] = useState({});
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/home");
+    }
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -17,7 +24,7 @@ function Login() {
     event.preventDefault();
     if (!input.username || !input.password) {
       MySwal.fire({
-        html: <i>โปรดใส่ ชื่อ หรือ รหัสผ่าน</i>,
+        html: <i>Please enter username and password</i>,
         icon: "error",
       });
       return;
@@ -32,25 +39,25 @@ function Login() {
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/login/", requestOptions);
+      const response = await fetch(
+        "http://127.0.0.1:8000/login/",
+        requestOptions
+      );
       const result = await response.json();
 
-      if (result.status === 'ok') {
-        
+      if (response.ok) {
+        localStorage.setItem("token", result.access_token);
         MySwal.fire({
           html: <i>{result.message}</i>,
           icon: "success",
         }).then(() => {
           navigate("/home");
-        })
-      } else {
-        MySwal.fire({
-          html: <i>{result.message}</i>,
-          icon: "error",
         });
+      } else {
+        throw new Error(result.message || "Failed to login");
       }
     } catch (error) {
-      console.log("Error:", error);
+      console.error("Error:", error);
       MySwal.fire({
         html: <i>Something went wrong. Please try again later.</i>,
         icon: "error",
