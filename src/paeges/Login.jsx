@@ -35,14 +35,14 @@ function Login() {
       const response = await fetch("http://127.0.0.1:8000/login/", requestOptions);
       const result = await response.json();
 
-      if (result.access_token) {
-        localStorage.setItem("token", result.access_token);
+      if (result.status === 'ok') {
+        
         MySwal.fire({
           html: <i>{result.message}</i>,
           icon: "success",
         }).then(() => {
-          Navigate("/home");
-        });
+          navigate("/home");
+        })
       } else {
         MySwal.fire({
           html: <i>{result.message}</i>,
@@ -50,15 +50,13 @@ function Login() {
         });
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.log("Error:", error);
       MySwal.fire({
         html: <i>Something went wrong. Please try again later.</i>,
         icon: "error",
       });
     }
   };
-
-  fetch
 
   return (
     <div className="flex justify-center items-center-top h-screen bg-gray-100">
@@ -86,7 +84,7 @@ function Login() {
               className="w-full p-2 border rounded-md"
               name="password"
               type="password"
-              placeholder="********"
+              placeholder="******"
               value={input.password || ""}
               onChange={handleChange}
             />
