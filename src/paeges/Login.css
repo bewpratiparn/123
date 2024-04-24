@@ -1,0 +1,47 @@
+/* styles.css */
+/* ปรับการจัดวางข้อความให้อยู่ตรงกลาง */
+.text-center {
+    text-align: center;
+  }
+  
+  /* ปรับขนาดและสีของปุ่มและเปลี่ยนรูปแบบเมื่อนำเมาส์ไปชี้ */
+  button {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    filter: brightness(1.2); /* ทำให้ปุ่มสว่างขึ้นเมื่อนำเมาส์ไปชี้ */
+  }
+  
+  /* ปรับสีของลิงก์ Register เมื่อนำเมาส์ไปชี้ */
+  a.text-blue-500:hover {
+    color: #3b82f6;
+  }
+/* เพิ่มเอฟเฟค Hover สำหรับปุ่มและลิงก์ */
+button:hover,
+a.text-blue-500:hover {
+  filter: brightness(1.2); /* ทำให้สว่างขึ้นเมื่อนำเมาส์ไปชี้ */
+}
+/* ปรับขนาดและสีของปุ่ม Logout */
+button.logout-button {
+    width: 100%; /* ปรับความกว้างให้เต็มขอบ */
+    background-color: #ff4d4f; /* สีแดงเข้ม */
+    border: none; /* ไม่มีเส้นขอบ */
+    color: white; /* สีข้อความเป็นขาว */
+    font-weight: bold; /* ตัวหนา */
+    padding: 12px 0; /* ขนาดการเส้นขอบ */
+    border-radius: 4px; /* ปรับเส้นขอบ */
+    transition: background-color 0.3s; /* เพิ่มเอฟเฟคที่ตอบสนอง */
+  }
+  
+  button.logout-button:hover {
+    background-color: #ff7875; /* เปลี่ยนสีเมื่อ Hover */
+  }
+/* Login.css */
+body {
+    background-color: #ffffff; /* กำหนดพื้นหลังเป็นสีขาว */
+    margin: 0; /* ลบ margin ทั้งหมดของ body */
+    padding: 0; /* ลบ padding ทั้งหมดของ body */
+  }
+      
