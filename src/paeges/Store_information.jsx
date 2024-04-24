@@ -47,51 +47,43 @@ function Editstore() {
         }}>
             <div>
 
-            <div className="bg-white p-4 rounded-lg shadow-lg">
-            {dataShops.length > 0
-              ? dataShops.map((item, i) => (
-                <div className="containner-store-1" key={item.id} 
-                style={{}}>
-                  <div className="card" style={{ width: "60rem" }}>
-                    <img
-                      src={item.shop_picture} // Use the URL from the API
-                      alt={item.shop_name}
-                      style={{ width: "15rem", margin: "1rem" }}
-                    />
-
-
-                
+            <div className="">
+    {dataShops.length > 0 && (
+        <div className="containner-store-1" key={dataShops[0].id}>
+            <div className="card" style={{ width: "70rem" }}>
+                <img
+                    src={dataShops[0].shop_picture}
+                    alt={dataShops[0].shop_name}
+                    style={{ width: "25rem", margin: "1rem" }}
+                />
                 <div style={{ marginTop: '160px' }}> </div>
-                   
-               
-                <div style={{ marginLeft: '550px', marginTop: '-250px', fontSize: '16px' }}>
-                <label className="dayoff" htmlFor="ชื่อร้านค้า">
-                        ชื่อร้านค้า :{item.shop_name}
+                <div style={{ marginLeft: '450px', marginTop: '-400px', fontSize: '18px' }}>
+                    <label className="dayoff" htmlFor="ชื่อร้านค้า">
+                        ชื่อร้านค้า : {dataShops[0].shop_name}
                     </label>
                     <br />
                     <label className="dayoff" htmlFor="ชื่อร้านค้า">
-                        วันที่,เวลา เปิด-ปิด :{item.shop_time}
+                        วันที่,เวลา เปิด-ปิด : {dataShops[0].shop_time}
                     </label>
-                    
                 </div>
-                <div style={{ marginLeft: '200px', marginTop: '200px', fontSize: '15px' }}>
-                <div className="containner-box">
+                <div style={{ marginLeft: '10px', marginTop: '200px', fontSize: '18px' }}>
+                    <div className="containner-box">
                         <div className="colorinside">
                             <label className="description" htmlFor="description">Description</label>
-                            <div className="location">สถานที่ ชื่อสถานที่ :{item.shop_location}</div>
-                            <div className="maplink">Map-link :{item.shop_map}</div>
-                            <div className="phone">เบอร์ติดต่อ :{item.shop_phone}</div>
+                            <div className="location">สถานที่ ชื่อสถานที่ : {dataShops[0].shop_location}</div>
+                            <div className="maplink">Map-link : {dataShops[0].shop_map}</div>
+                            <div className="phone">เบอร์ติดต่อ : {dataShops[0].shop_phone}</div>
                         </div>
                     </div>
                 </div>
-                </div>
-                </div>
-              ))
-              : ""}
-          </div>
+            </div>
+        </div>
+    )}
+</div>
+
             
            
-             <div className="grid-item" style={{ marginLeft: '-90px' , padding: 10 ,marginTop: '-120px',fontSize: '16px',display: 'grid', gridTemplateColumns: 'repeat(2, 20fr)', gap: '8rem' }}>
+             <div className="grid-item" style={{ marginLeft: '-90px' , padding: 10 ,marginTop: '-120px',fontSize: '18px',display: 'grid', gridTemplateColumns: 'repeat(2, 20fr)', gap: '8rem' }}>
                 {data.length > 0
                     ? data.map((item, i) => (
                         <div className="containner-store-Food" key={item.id}>
@@ -99,7 +91,7 @@ function Editstore() {
                                 <img
                                     src={item.Food_picture}
                                     alt={item.Food_name}
-                                    style={{ width: "100%", margin: "1rem" }}
+                                    style={{ width: "100%", margin: "11rem" }}
                                 />
                                 <div>ชื่ออาหาร: {item.Food_name}</div>
                                 <div>ราคา: {item.Food_price}</div>
