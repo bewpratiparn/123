@@ -1,6 +1,7 @@
 import React from "react";
 import "flowbite";
 import { Link, useLocation } from "react-router-dom";
+import Home2 from "../paeges/Home2";
 
 function Navbar() {
   return (

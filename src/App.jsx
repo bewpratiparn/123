@@ -27,6 +27,7 @@ function App() {
   return (
 
     <Router>
+      
       <Navbarnew />
       <Home2 />
       
@@ -38,12 +39,15 @@ function App() {
         <Route path="/Home" element={<Home />} />
         <Route path="/Search" element={<Search />} />
         <Route path="/Home2" element={<Home2 />} />
+        <Route path="/Home2" element={<Login />} />
         <Route path="/Fooddetails" element={<Fooddetails />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Login" element={<Logout />} />
         <Route path="/Logout" element={<Logout />} />
         <Route path="/Login" element={<Home />} />
+        <Route path="/Login" element={<Home2 />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Login />} />
         <Route path="/Translate" element={<Translate />} />
         <Route path="/AddFood" element={<AddFood />} />
         <Route path="/AddDataShop" element={<AddDataShop />} />

@@ -9,7 +9,7 @@ function Editstore() {
 
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/foods/')
+        axios.get('http://127.0.0.1:8000/show_all_food/')
             .then(res => setData(res.data))
             .catch(err => {
                 Swal.fire({

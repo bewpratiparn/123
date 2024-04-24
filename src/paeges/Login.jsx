@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import "./Login.css";
+import Home2 from "./Home2"; 
 
 function Login() {
   const navigate = useNavigate();
@@ -56,7 +58,7 @@ function Login() {
           html: <i>{result.message}</i>,
           icon: "success",
         }).then(() => {
-          navigate("/Login");
+          navigate("/Home");
         });
       } else {
         throw new Error(result.message || "Failed to login");
@@ -119,17 +121,9 @@ function Login() {
           </form>
         )}
         {isLoggedIn && (
-          <div>
-            <p>Welcome, {username}! You are logged in.</p>
-            <button
-              className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
-          </div>
+          <Home2 isLoggedIn={isLoggedIn} username={username} handleLogout={handleLogout} />
         )}
-        {!isLoggedIn && <a href="/register">Register</a>}
+        {!isLoggedIn && <Link to="/register">Register</Link>}
       </div>
     </div>
   );

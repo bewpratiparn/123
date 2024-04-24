@@ -7,7 +7,7 @@ function Logout() {
   useEffect(() => {
     const handleLogout = async () => {
       localStorage.removeItem("token"); // ลบ Token ออกจาก Local Storage
-      await navigate("/login"); // เปลี่ยนเส้นทางไปยังหน้า login
+      await navigate("/Login"); // เปลี่ยนเส้นทางไปยังหน้า login
     };
 
     handleLogout();
