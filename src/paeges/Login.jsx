@@ -16,7 +16,7 @@ function Login() {
       setIsLoggedIn(true);
       const user = localStorage.getItem("username");
       setUsername(user);
-      navigate("/home");
+      navigate("/Login");
     }
   }, []);
 
@@ -56,7 +56,7 @@ function Login() {
           html: <i>{result.message}</i>,
           icon: "success",
         }).then(() => {
-          navigate("/home");
+          navigate("/Login");
         });
       } else {
         throw new Error(result.message || "Failed to login");
