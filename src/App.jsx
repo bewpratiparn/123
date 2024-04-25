@@ -31,7 +31,6 @@ function App() {
 
     <Router>
       <Navbartest />
-      <Navbarnew />
       <Home2 />
       
       <Routes>
