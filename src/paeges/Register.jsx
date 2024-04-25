@@ -7,14 +7,20 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { withEmotionCache } from "@emotion/react";
 
 function Register() {
-  const navigate = useNavigate();
+  const Navigate = useNavigate();
   const MySwal = withReactContent(Swal);
   const [inputs, setInputs] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleChange = (event) => {
     const name = event.target.name;
-    const picture = event.target.picture;
+    if (event.target.name === "picture") {
+      setSelectedFile(event.target.files[0]);
+    } else {
+      const name = event.target.name;
+      const value = event.target.value;
+      setInputs((values) => ({ ...values, [name]: value }));
+    }
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
@@ -45,22 +51,29 @@ function Register() {
     fetch("http://127.0.0.1:8000/register/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        if (result.status === "ok") {
+        if (result.status === "OK") {
+          // Change "ok" to "OK"
           MySwal.fire({
-            html: <i>{result.message}</i>,
-            icon: "success",
+            html: <i></i>,
+            icon: "error",
           }).then((value) => {
-            navigate("/Login");
+            Navigate("/Login");
           });
         } else {
           MySwal.fire({
             html: <i>{result.message}</i>,
-            icon: "error",
+            icon: "success",
           });
         }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        MySwal.fire({
+          html: <i>เกิดข้อผิดพลาด</i>,
+          icon: "error",
+        });
       });
   };
-
   return (
     <div className="flex justify-center items-center-top h-screen bg-gray-100">
       <div className="bg-white-screen p-8 rounded-lg shadow-lg">

@@ -1,6 +1,6 @@
 /*ปอนด์ Do*/
 import React, { useState, useEffect } from "react";
-import ReactDOM from 'react-dom/client';
+import ReactDOM from "react-dom/client";
 import "./AddDataShop.css";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -9,11 +9,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 function AddDataShop() {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
-  const [isUploading, setIsUploading] = useState(false);
-  const [isUploaded, setIsUploaded] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [uploadedFile, setUploadedFile] = useState(null);
-  const[addShop ,setAddshop] = useState ({});
+  const [addShop, setAddshop] = useState({});
+
   /*const [shopId, setShopid] = useState("");
   const [shopName, setShopname] = useState("");
   const [shopLocation, setShoplocation] = useState("");
@@ -25,7 +22,7 @@ function AddDataShop() {
 
   const handleChange = (event) => {
     const name = event.target.name;
-    const picture = event.target.picture;
+
     const value = event.target.value;
     setAddshop((values) => ({ ...values, [name]: value }));
   };
@@ -35,6 +32,11 @@ function AddDataShop() {
 
     myHeaders.append("Content-Type", "application/json");
 
+    const shopTypes = [];
+    if (addShop.mangswirat) shopTypes.push("มังสวิรัติ");
+    if (addShop.jay) shopTypes.push("อาหารเจ");
+    if (addShop.halan) shopTypes.push("ฮาลาน");
+
     const raw = JSON.stringify({
       shop_name: addShop.storename,
       shop_location: addShop.location,
@@ -42,7 +44,7 @@ function AddDataShop() {
       shop_map: addShop.maplink,
       shop_time: addShop.onclose,
       shop_picture: addShop.pictureshop,
-      shop_type: addShop.mungsavirat,
+      shop_type: addShop.mangswirat,
     });
 
     const requestOptions = {
@@ -72,32 +74,6 @@ function AddDataShop() {
       .catch((error) => console.error(error));
   };
 
-  const handleFileChange = (e) => {
-    const btnUpload = e.target;
-    const ext = btnUpload.value.split(".").pop().toLowerCase();
-    if (!["gif", "png", "jpg", "jpeg"].includes(ext)) {
-      setErrorMessage("Not an Image...");
-    } else {
-      setErrorMessage("");
-      setIsUploading(true);
-      setTimeout(() => {
-        setIsUploading(false);
-        setIsUploaded(true);
-      }, 3000);
-      const uploadedFileURL = URL.createObjectURL(btnUpload.files[0]);
-      setTimeout(() => {
-        setUploadedFile(uploadedFileURL);
-      }, 3500);
-    }
-  };
-
-  const handleFileRemove = () => {
-    setIsUploaded(false);
-    setUploadedFile(null);
-    setIsUploading(false);
-    setErrorMessage("");
-  };
-
   return (
     <>
       <div className="form-center">
@@ -112,24 +88,7 @@ function AddDataShop() {
                 id="upload_file"
                 onChange={handleChange}
               />
-              <div
-                className={
-                  isUploading ? "button_outer file_uploading" : "button_outer"
-                }
-              >
-                {isUploaded && (
-                  <div id="uploaded_view" className="show">
-                    <img src={uploadedFile} alt="Uploaded File" />
-                  </div>
-                )}
-              </div>
-              {errorMessage && <div className="error_msg">{errorMessage}</div>}
-              <button className="file_remove" onClick={handleFileRemove}>
-                Remove
-              </button>
             </div>
-
-           
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2 ">
                 ชื่อร้าน
@@ -203,9 +162,10 @@ function AddDataShop() {
                 <label className="inline-flex items-center mb-2">
                   <input
                     type="checkbox"
-                    name="mungsavirat"
+                    name="mangswirat"
                     className="form-checkbox text-blue-600"
                     onChange={handleChange}
+                    value="mangswirat"
                   />
                   <span className="ml-2 text-black">เพิ่มมังสวิรัติ</span>
                   <img

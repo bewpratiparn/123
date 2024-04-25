@@ -39,14 +39,16 @@ function Login() {
         localStorage.setItem("token", result.access_token);
         MySwal.fire({
           html: <i>{result.message}</i>,
-          icon: "success",
+          icon: "error",
         }).then(() => {
           navigate("/home");
         });
       } else {
         MySwal.fire({
           html: <i>{result.message}</i>,
-          icon: "error",
+          icon: "success",
+        }).then(() =>{
+          navigate("/home");
         });
       }
     } catch (error) {
