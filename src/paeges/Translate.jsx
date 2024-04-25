@@ -8,15 +8,20 @@ import Navbar from "../components/Navbar";
 function Translate() {
   const [inputText, setInputText] = useState("");
   const [translatedText, setTranslatedText] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("");
 
   const submitTranslate = async () => {
     try {
+      const translationDirection =
+        selectedLanguage === "en" ? "th-en" : "en-th";
+
       const response = await axios.post(
-        "http://127.0.0.1:8000/translate/",
+        `http://127.0.0.1:8000/translate/${translationDirection}/`,
         {
           text: inputText,
         }
       );
+
       setTranslatedText(response.data.translated_text);
     } catch (error) {
       console.error("Error translating:", error);
@@ -25,6 +30,10 @@ function Translate() {
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
+  };
+
+  const handleLanguageChange = (e, { value }) => {
+    setSelectedLanguage(value);
   };
 
   const languageOptions = [
@@ -44,6 +53,7 @@ function Translate() {
             <Form.TextArea
               label="About"
               placeholder="Type Text to Translate.."
+              className="inputtext"
               value={inputText}
               onChange={handleInputChange}
             />
@@ -52,15 +62,19 @@ function Translate() {
               placeholder="Please Select Language.."
               options={languageOptions}
               className="language-select"
+              onChange={handleLanguageChange}
+              value={selectedLanguage}
             />
+            
 
             <Form.TextArea
               placeholder="Your Result Translation.."
+              className="result"
               value={translatedText}
               readOnly
             />
 
-            <Button color="orange" size="large" type="submit">
+            <Button className="translatebutton"color="orange" size="large" type="submit">
               Translate
             </Button>
           </Form>

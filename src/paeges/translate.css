@@ -7,16 +7,37 @@
 
 .header {
   font-family: "Azeret Mono", monospace;
-  font-size: 30px;
+  font-size: 40px;
+  
 }
 
 .app-body {
-  padding: 20px;
+  position: relative;
+  left: 30%;  
+  padding: 10px;
   text-align: center;
 }
 
 .language-select {
-  height: 40px !important;
-  margin-bottom: 15px;
+  width: 300px;
+  height: 50px !important;
+  margin-bottom: 20px;
   outline: none !important;
+}
+.pleaseselectLanguage{
+  position: absolute;
+  bottom: 170px;
+  left: 25%;
+}
+.inputtext{
+  width: 500px;
+}
+.result{
+  position: absolute;
+  width: 500px;
+}
+.translatebutton{
+  position: absolute;
+  top: 179%;
+  left: 10%;
 }
