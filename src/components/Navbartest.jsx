@@ -9,9 +9,9 @@ function Navbartest() {
   return (
 
     <>
-     <header>
+     <div>
         <Sidebar />
-      </header>
+      </div>
     <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
       <div className="max-w-h-screen-xl flex flex-wrap items-center justify-between mx-auto p-1"
       style={{ backgroundColor: "#FFBB5C" }}

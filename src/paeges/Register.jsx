@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate, Link } from "react-router-dom";
@@ -7,6 +7,18 @@ function Register() {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
   const [inputs, setInputs] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+      const user = localStorage.getItem("username");
+      setUsername(user);
+      navigate("/Login");
+    }
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -15,22 +27,24 @@ function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({
-      firstname: inputs.firstname,
-      lastname: inputs.lastname,
-      phone: inputs.phone,
-      username: inputs.username,
-      password: inputs.password,
-    });
+    if (!inputs.firstname || !inputs.lastname || !inputs.phone || !inputs.username || !inputs.password) {
+      MySwal.fire({
+        html: <i>Please fill out all fields</i>,
+        icon: "error",
+      });
+      return;
+    }
 
     const requestOptions = {
       method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstname: inputs.firstname,
+        lastname: inputs.lastname,
+        phone: inputs.phone,
+        username: inputs.username,
+        password: inputs.password,
+      }),
     };
 
     try {
