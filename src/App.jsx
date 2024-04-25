@@ -17,10 +17,11 @@ import RecipeDetail from './paeges/RecipeDetail'
 import Register from './paeges/Register'
 import Fooddetails from './paeges/Fooddetails'
 import Editstore from './paeges/Editstore'
-import Store_information from './paeges/Store_information'
+import Storeinformation from './paeges/Storeinformation'
 import Notshowfood from './paeges/Notshowfood'
 import Navbarnew from './components/Navbarnew'
 import Navbartest from './components/Navbartest'
+import Sidebar from './components/Sidebar'
 
 
 
@@ -31,13 +32,16 @@ function App() {
 
     <Router>
       <Navbartest />
-      <Home2 />
+      <Sidebar/>
+      <Home2/>
+
+
       
       <Routes>
 
 
         <Route path="/Notshowfood" element={<Notshowfood />} />
-        <Route path="/Store_information" element={<Store_information />} />
+        <Route path="/Storeinformation" element={<Storeinformation />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Search" element={<Search />} />
         <Route path="/Home2" element={<Home2 />} />

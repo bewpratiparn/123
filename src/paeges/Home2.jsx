@@ -1,6 +1,8 @@
 import React from "react";
 import { Avatar, Dropdown } from 'flowbite-react';
 import Login from "./Login";
+
+
 function Home2({ isLoggedIn, username, handleLogout }) {
   return (
     <div className="flex justify-end" style={{ backgroundColor: "#FFBB5C" }}>

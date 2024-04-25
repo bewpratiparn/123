@@ -1,6 +1,5 @@
 import React from "react";
 import "flowbite";
-import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {

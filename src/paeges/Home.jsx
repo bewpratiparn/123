@@ -34,7 +34,7 @@ function Home() {
                 <h2 className="text-xl font-bold">{item.shop_name}</h2>
                 <p className="text-gray-600">เบอร์โทร: {item.shop_phone}</p>
                 <p className="text-gray-600">สถานที่: {item.shop_location}</p>
-                <Link to="/Store_information" className="block mt-4">
+                <Link to="/Storeinformation" className="block mt-4">
                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     ไปยังร้านค้า
                   </button>
