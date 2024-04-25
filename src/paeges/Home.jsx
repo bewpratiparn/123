@@ -1,10 +1,8 @@
-import { useState, useEffect } from "react";
-import "flowbite";
-import Search from "../components/Search";
-import { Routes, Route, useNavigate, Link } from "react-router-dom";
-import "./Home.css";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import Swal from "sweetalert2";
+import Search from "../components/Search";
+import "./Home.css";
 
 function Home() {
   const [data, setData] = useState([]);
@@ -22,39 +20,28 @@ function Home() {
       </header>
 
       <div className="bg-gray-100 min-h-screen p-4">
-        <div className="text-2xl font-bold text-center mb-*">ร้านอาหาร</div>
-        <div className="grid-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white p-4 rounded-lg shadow-lg">
-            {data.length > 0
-              ? data.map((item, i) => (
-                <div className="containner-store-1" key={item.id} 
-                style={{}}>
-                  <div className="card" style={{ width: "60rem" }}>
-                    <img
-                      src={item.shop_picture} // Use the URL from the API
-                      alt={item.shop_name}
-                      style={{ width: "15rem", margin: "1rem" }}
-                    />
+        <div className="text-2xl font-bold text-center mb-8">ร้านอาหาร</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {data.map(item => (
+            <div key={item.id} className="bg-white p-4 rounded-lg shadow-lg">
+              <img
+                src={item.shop_picture}
+                alt={item.shop_name}
+                className="w-64 mx-auto"
+              />
 
-                    <div className="data-storehome">
-                      <div className="storename">ชื่อร้านค้า: {item.shop_name} </div>
-                      <div className="tel">เบอร์โทร: {item.shop_phone} </div>
-                      <div className="location-store">สถานที่: {item.shop_location}</div>
-                    </div>
-
-                    <Link to="/Store_information">
-                      <button
-                        className="btn btn-primary"
-                        style={{ width: "10rem" }}
-                      >
-                        ไปยังร้านค้า
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              ))
-              : ""}
-          </div>
+              <div className="text-center mt-4">
+                <h2 className="text-xl font-bold">{item.shop_name}</h2>
+                <p className="text-gray-600">เบอร์โทร: {item.shop_phone}</p>
+                <p className="text-gray-600">สถานที่: {item.shop_location}</p>
+                <Link to="/Store_information" className="block mt-4">
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    ไปยังร้านค้า
+                  </button>
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>
