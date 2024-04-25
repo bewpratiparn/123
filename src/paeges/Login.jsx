@@ -58,7 +58,7 @@ function Login() {
           html: <i>{result.message}</i>,
           icon: "success",
         }).then(() => {
-          navigate("/Home");
+          navigate("/Login");
         });
       } else {
         throw new Error(result.message || "Failed to login");

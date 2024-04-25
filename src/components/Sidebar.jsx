@@ -83,7 +83,7 @@ class Sidebar extends React.Component {
 
 
         <div className="hi">
-              ยินดีต้อนรับ
+              
             </div>
         <div id="main">
           <button className="openbtn" onClick={this.openNav}>&#9776; </button>

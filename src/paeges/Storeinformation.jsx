@@ -8,23 +8,24 @@ function Storeinformation() {
     const [dataShops, setDataShops] = useState([]);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/show_all_food/')
-            .then(res => setData(res.data))
-            .catch(err => handleError());
+    axios.get('http://127.0.0.1:8000/show_all_food/')
+        .then(res => setData(res.data))
+        .catch(err => handleError(err)); // จัดการข้อผิดพลาด
 
-        axios.get('http://127.0.0.1:8000/shops/')
-            .then(res => setDataShops(res.data))
-            .catch(err => handleError());
-    }, []);
+    axios.get('http://127.0.0.1:8000/shops/')
+        .then(res => setDataShops(res.data))
+        .catch(err => handleError(err)); // จัดการข้อผิดพลาด
+}, []);
 
-    const handleError = () => {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'เกิดข้อผิดพลาดในการโหลดข้อมูล!',
-        });
-        console.error(err);
-    };
+const handleError = (err) => {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'เกิดข้อผิดพลาดในการโหลดข้อมูล!',
+    });
+    console.error(err);
+};
+
 
     return (
         <div className="container">
