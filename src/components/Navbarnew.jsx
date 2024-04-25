@@ -3,7 +3,7 @@ import "flowbite";
 import { Link, useLocation } from "react-router-dom";
 import Home2 from "../paeges/Home2";
 
-function Navbar() {
+function Navbarnew() {
   return (
     <>
       <div>
@@ -434,4 +434,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Navbarnew;
