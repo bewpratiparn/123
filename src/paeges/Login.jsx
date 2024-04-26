@@ -11,6 +11,7 @@ function Login() {
   const [input, setInputs] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
+  const [picture, setPicture] = useState(""); // เปลี่ยนชื่อ prop เป็น picture
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -18,6 +19,15 @@ function Login() {
       setIsLoggedIn(true);
       const user = localStorage.getItem("username");
       setUsername(user);
+
+      fetchUserProfile(user)
+        .then((profileData) => {
+          setPicture(profileData.picture); // กำหนดค่า prop picture จากข้อมูลโปรไฟล์
+        })
+        .catch((error) => {
+          console.error("Error fetching user profile:", error);
+        });
+
       navigate("/Login");
     }
   }, []);
@@ -81,8 +91,8 @@ function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center-top h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
+    <div className="flex justify-center items-center-top w-screen h-screen bg-gray-100">
+      <div className="bg-white p-8 w-screen h-screen  rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-4">Login</h1>
         {!isLoggedIn && (
           <form onSubmit={handleSubmit}>
@@ -121,7 +131,7 @@ function Login() {
           </form>
         )}
         {isLoggedIn && (
-          <Home2 isLoggedIn={isLoggedIn} username={username} handleLogout={handleLogout} />
+          <Home2 isLoggedIn={isLoggedIn} username={username} picture={picture} handleLogout={handleLogout} /> // ส่ง prop picture ไปยัง Home2 component
         )}
         {!isLoggedIn && <Link to="/register">Register</Link>}
       </div>

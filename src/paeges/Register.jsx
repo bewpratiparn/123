@@ -1,85 +1,88 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
+import "flowbite";
+import ReactDOM from "react-dom/client";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { withEmotionCache } from "@emotion/react";
 
 function Register() {
-  const navigate = useNavigate();
+  const Navigate = useNavigate();
   const MySwal = withReactContent(Swal);
   const [inputs, setInputs] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-      const user = localStorage.getItem("username");
-      setUsername(user);
-      navigate("/Login");
-    }
-  }, []);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setInputs({ ...inputs, [name]: value });
+    const name = event.target.name;
+    if (event.target.name === "picture") {
+      setSelectedFile(event.target.files[0]);
+    } else {
+      const name = event.target.name;
+      const value = event.target.value;
+      setInputs((values) => ({ ...values, [name]: value }));
+    }
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    if (!inputs.firstname || !inputs.lastname || !inputs.phone || !inputs.username || !inputs.password) {
-      MySwal.fire({
-        html: <i>Please fill out all fields</i>,
-        icon: "error",
-      });
-      return;
-    }
+    console.log(inputs);
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      firstname: inputs.firstname,
+      lastname: inputs.lastname,
+      username: inputs.username,
+      password: inputs.password,
+      phone: inputs.phone,
+      picture: inputs.picture,
+    });
 
     const requestOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        firstname: inputs.firstname,
-        lastname: inputs.lastname,
-        phone: inputs.phone,
-        username: inputs.username,
-        password: inputs.password,
-      }),
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
     };
 
-    try {
-      const response = await fetch("http://127.0.0.1:8000/register/", requestOptions);
-      const result = await response.json();
-
-      if (response.ok) {
+    fetch("http://127.0.0.1:8000/register/", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.status === "OK") {
+          // Change "ok" to "OK"
+          MySwal.fire({
+            html: <i></i>,
+            icon: "error",
+          }).then((value) => {
+            Navigate("/Login");
+          });
+        } else {
+          MySwal.fire({
+            html: <i>{result.message}</i>,
+            icon: "success",
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
         MySwal.fire({
-          html: <i>{result.message}</i>,
-          icon: "success",
-        }).then((value) => {
-          navigate("/Login");
-        });
-      } else {
-        MySwal.fire({
-          html: <i>{result.message}</i>,
+          html: <i>เกิดข้อผิดพลาด</i>,
           icon: "error",
         });
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      MySwal.fire({
-        html: <i>Something went wrong. Please try again later.</i>,
-        icon: "error",
       });
-    }
   };
-
   return (
     <div className="flex justify-center items-center-top h-screen bg-gray-100">
       <div className="bg-white-screen p-8 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-4">Register</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">Firstname</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Firstname
+            </label>
             <input
               className="w-full p-2 border rounded-md"
               type="text"
@@ -91,7 +94,9 @@ function Register() {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">Lastname</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Lastname
+            </label>
             <input
               className="w-full p-2 border rounded-md"
               type="text"
@@ -103,7 +108,9 @@ function Register() {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">Phone</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Phone
+            </label>
             <input
               className="w-full p-2 border rounded-md"
               type="text"
@@ -115,38 +122,59 @@ function Register() {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">Username</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Username
+            </label>
             <input
               className="w-full p-2 border rounded-md"
               type="text"
               name="username"
-              placeholder="Username"
+              placeholder="username"
               value={inputs.username || ""}
               onChange={handleChange}
             />
           </div>
-
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="name"
+            >
+              Password
+            </label>
             <input
               className="w-full p-2 border rounded-md"
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder="*****"
               value={inputs.password || ""}
               onChange={handleChange}
             />
           </div>
+          <div>
+            <input
+              type="file"
+              name="picture"
+              value={inputs.picture || ""}
+              onChange={handleChange}
+            />
+            {selectedFile && (
+              <div>
+                <img
+                  src={URL.createObjectURL(selectedFile)}
+                  alt="Selected Image"
+                />
+                <p>Selected file: {selectedFile.name}</p>
+              </div>
+            )}
 
-          <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md" type="submit">
+            <button disabled={!selectedFile}>Upload Image</button>
+          </div>
+          <button
+            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+            type="submit"
+          >
             Register
           </button>
-
-          <div className="mt-4">
-            <p>
-              Already have an account? <Link to="/login" className="text-blue-500 font-semibold">Login here</Link>
-            </p>
-          </div>
         </form>
       </div>
     </div>
