@@ -22,6 +22,8 @@ function AddDataShop() {
   const [addVegetarian, setVegetarian] = useState(false);
   const [addHalal, setHalal] = useState(false);
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+
   const handlecheckboxchange = (e) => {
     const { name, checked } = e.target;
     switch (name) {
@@ -45,9 +47,16 @@ function AddDataShop() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!isLoggedIn) {
+      MySwal.fire({
+        html: <i>กรุณาเข้าสู่ระบบเพื่อเพิ่มข้อมูล</i>,
+        icon: "warning",
+      });
+      return; // หยุดการส่งฟอร์มหากผู้ใช้ยังไม่ได้เข้าสู่ระบบ
+    }
+
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-
     const shopTypeArray = [];
     if (addMangswirat) shopTypeArray.push("Mangswirat");
     if (addVegetarian) shopTypeArray.push("Vegetarian");
@@ -230,7 +239,7 @@ function AddDataShop() {
                 </label>
               </div>
             </div>
-
+          
             <div>
               <button
                 type="submit"
