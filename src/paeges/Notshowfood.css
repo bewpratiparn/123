@@ -32,8 +32,8 @@ body {
 .food-name {
   font-size: 20px;
   position: absolute;
-  right: 15%;
-  top: 8rem;
+  right: 10%;
+  top: 1rem;
   width: 400px;
   padding: 10px;
 }
@@ -41,9 +41,9 @@ body {
 input.form-check-input {
   display: inline-block;
   position: absolute;
-  left: 90%;
-  top: 40%;
-  transform: scale(3);
+  left: 86%;
+  top: 20%;
+  transform: scale(2);
   margin: 15px;
 }
 .grid-button {

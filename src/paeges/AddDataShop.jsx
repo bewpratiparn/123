@@ -22,7 +22,16 @@ function AddDataShop() {
   const [addVegetarian, setVegetarian] = useState(false);
   const [addHalal, setHalal] = useState(false);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const userLoggedIn = localStorage.getItem("isLoggedIn");
+    if (userLoggedIn === "true") {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   const handlecheckboxchange = (e) => {
     const { name, checked } = e.target;
@@ -45,14 +54,15 @@ function AddDataShop() {
     const { name, value } = event.target;
     setAddShop((values) => ({ ...values, [name]: value }));
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isLoggedIn) {
       MySwal.fire({
-        html: <i>กรุณาเข้าสู่ระบบเพื่อเพิ่มข้อมูล</i>,
+        html: <i>โปรดล็อคอิน</i>,
         icon: "warning",
       });
-      return; // หยุดการส่งฟอร์มหากผู้ใช้ยังไม่ได้เข้าสู่ระบบ
+      return;
     }
 
     const myHeaders = new Headers();
@@ -84,6 +94,7 @@ function AddDataShop() {
       .then((response) => response.json())
       .then((result) => {
         if (result.status === "ok") {
+          setIsLoggedIn(true);
           MySwal.fire({
             html: <i>{result.message}</i>,
             icon: "success",
@@ -92,7 +103,7 @@ function AddDataShop() {
           });
         } else {
           MySwal.fire({
-            html: <i>เกิดข้อผิดพลาด</i>,
+            html: <i>An error occurred</i>,
             icon: "error",
           });
         }

@@ -14,6 +14,8 @@ import Register from './paeges/Register'
 import Store_information from './paeges/Store_information'
 import Notshowfood from './paeges/Notshowfood'
 import Editstore from './paeges/EditStore'
+import Detailfood from './paeges/detailfood'
+
 
 
 
@@ -41,6 +43,9 @@ function App() {
         <Route path="/Store_information" element={<Store_information />} />
         <Route path="/Notshowfood" element={<Notshowfood />} />
         <Route path="/EditStore" element={<Editstore />} />
+        <Route path="/Detailfood" element={<Detailfood />} />
+      
+       
         
         
        

@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import "./AddFood.css";
-
+import axios from "axios";
 function AddFood() {
-  const [foods, setfoods] = useState([]);
+  const [foodNames, setFoodNames] = useState([]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/food_names/")
+      .then((response) => {
+        setFoodNames(response.data.food_names);
+      })
+      .catch((error) => {
+        console.error("Error fetching food names:", error);
+      });
+  }, []);
 
   return (
     <>
@@ -20,8 +29,8 @@ function AddFood() {
                     <input type="file" id="upload_file" name />
                     Upload Image
                   </div>
-                  <div class="processing_bar"></div>
-                  <div class="success_box"></div>
+                  <div className="processing_bar"></div>
+                  <div className="success_box"></div>
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2 width ">
@@ -67,35 +76,16 @@ function AddFood() {
             <div>
               <label
                 className="block mb-2 text-l font-medium text-gray-900 dark:text-back"
-                htmlFor="first_name"
+                htmlFor="food_name"
               >
                 รายการอาหาร
               </label>
-              <select className="mb-5 w-full max-w-xs">
-                <option disabled selected>
-                  รายการเมนู
-                </option>
 
-                <option>กระเพราไก่</option>
-                <option>กระเพราหมูสับ</option>
-                <option>กระเพราหมูกรอบ</option>
-                <option>กระเพราตับ</option>
-                <option>ข้าวผัดต้มยำรวมมิตร</option>
-                <option>ข้าวผัดต้มยำหมู</option>
-                <option>คะน้าปลากระป๋อง</option>
-                <option>ผัดผัก</option>
-                <option>ก๋วยเตี๋ยวน้ำ</option>
-                <option>ก๋วยเตี๋ยวแห้ง</option>
-                <option>กระเพราไก่</option>
-                <option>กระเพราหมูสับ</option>
-                <option>กระเพราหมูกรอบ</option>
-                <option>กระเพราตับ</option>
-                <option>ข้าวผัดต้มยำรวมมิตร</option>
-                <option>ข้าวผัดต้มยำหมู</option>
-                <option>คะน้าปลากระป๋อง</option>
-                <option>ผัดผัก</option>
-                <option>ก๋วยเตี๋ยวน้ำ</option>
-                <option>ก๋วยเตี๋ยวแห้ง</option>
+              <select className="mb-5 w-full max-w-xs">
+                {foodNames.map((foodName, index) => (
+                  
+                  <option key={index}>{foodName}</option>
+                ))}
               </select>
             </div>
 

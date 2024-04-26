@@ -10,17 +10,9 @@ function Register() {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
   const [inputs, setInputs] = useState({});
-  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleChange = (event) => {
     const name = event.target.name;
-    if (event.target.name === "picture") {
-      setSelectedFile(event.target.files[0]);
-    } else {
-      const name = event.target.name;
-      const value = event.target.value;
-      setInputs((values) => ({ ...values, [name]: value }));
-    }
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
   };
@@ -51,28 +43,21 @@ function Register() {
     fetch("http://127.0.0.1:8000/register/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        if (result.status === "OK") {
-          // Change "ok" to "OK"
+        if (result && result.status === 'ok') {
           MySwal.fire({
-            html: <i></i>,
-            icon: "error",
+            html: <i>{result.message}</i>,
+            icon: "success",
           }).then((value) => {
-            navigate("/Login");
+            navigate("/");
           });
         } else {
           MySwal.fire({
             html: <i>{result.message}</i>,
-            icon: "success",
+            icon: "error",
           });
         }
       })
-      .catch((error) => {
-        console.error("Error:", error);
-        MySwal.fire({
-          html: <i>เกิดข้อผิดพลาด</i>,
-          icon: "error",
-        });
-      });
+      .catch((error) => console.error(error));
   };
   return (
     <div className="flex justify-center items-center-top h-screen bg-gray-100">
@@ -150,24 +135,15 @@ function Register() {
               onChange={handleChange}
             />
           </div>
+
           <div>
             <input
               type="file"
+              id="files"
               name="picture"
               value={inputs.picture || ""}
               onChange={handleChange}
             />
-            {selectedFile && (
-              <div>
-                <img
-                  src={URL.createObjectURL(selectedFile)}
-                  alt="Selected Image"
-                />
-                <p>Selected file: {selectedFile.name}</p>
-              </div>
-            )}
-
-            <button disabled={!selectedFile}>Upload Image</button>
           </div>
           <button
             className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"

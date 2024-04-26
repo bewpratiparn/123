@@ -1,42 +1,41 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import "./Notshowfood.css";
+import axios from "axios";
 
 function Notshowfood() {
+  const [fooddata, setFooddata] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/show_all_food/")
+      .then((res) => setFooddata(res.data))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <>
-    <div className="background-notshow">
-      <div className="notshowfood">ไม่เเสดงรายการอาหาร</div>
+      <div className="background-notshow">
+        <div className="notshowfood">ไม่เเสดงรายการอาหาร</div>
 
-      <div className="box-container">
-        <img
-          src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
-          className="picture-menu"
-        />
-        <div className="food-name">ชื่ออาหาร กระเพราหมูสับใส่ไข่ไม่ใส่กุ้ง</div>
-        <input
-          className="form-check-input"
-          type="checkbox"
-          defaultValue
-          id="flexCheckDefault"
-        />
-      </div>
-      <div className="box-container">
-        <img
-          src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
-          className="picture-menu"
-        />
-        <div className="food-name">ชื่ออาหาร กระเพราหมูสับใส่ไข่ไม่ใส่กุ้ง</div>
-        <input
-          className="form-check-input"
-          type="checkbox"
-          defaultValue
-          id="flexCheckDefault"
-        />
-      </div>
-      <div className="grid-button">
-        <button className="success-button">success</button>
-        <button className="cancel-button">cancel</button>
-      </div>
+        {fooddata.length > 0
+          ? fooddata.map((itemfood, i) => (
+              <div className="box-container">
+                  <img src={itemfood.image_url} className="picture-menu" alt="Food" />
+                <div className="food-name">
+                  ชื่ออาหาร {itemfood.Food_name}
+                </div>
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  defaultValue
+                  id="flexCheckDefault"
+                />
+              </div>
+            ))
+          : ""}
+        <div className="grid-button">
+          <button className="success-button">success</button>
+          <button className="cancel-button">cancel</button>
+        </div>
       </div>
     </>
   );
