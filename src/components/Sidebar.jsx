@@ -4,7 +4,8 @@ import './Sidebar.css';
 class Sidebar extends React.Component {
   state = {
     showProfileDropdown: false,
-    showLoginDropdown: false
+    showLoginDropdown: false,
+    isSidebarOpen: false // เพิ่ม state ใหม่เพื่อเก็บสถานะของ Sidebar
   };
 
   toggleProfileDropdown = () => {
@@ -20,19 +21,17 @@ class Sidebar extends React.Component {
   };
 
   openNav = () => {
-    document.getElementById("mySidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
+    this.setState({ isSidebarOpen: true }); // ตั้งค่า isSidebarOpen เป็น true เมื่อเปิด Sidebar
   }
 
   closeNav = () => {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
+    this.setState({ isSidebarOpen: false }); // ตั้งค่า isSidebarOpen เป็น false เมื่อปิด Sidebar
   }
 
   render() {
     return (
       <div>
-        <div id="mySidebar" className="sidebar">
+        <div id="mySidebar" className={`sidebar ${this.state.isSidebarOpen ? 'open' : ''}`}>
           <a href="javascript:void(0)" className="closebtn" onClick={this.closeNav}>&times;</a>
           <a href="/Home">หน้าร้านค้า</a>
           <a href="/Translate">แปลภาษา</a>
@@ -45,9 +44,9 @@ class Sidebar extends React.Component {
           </a>
           {this.state.showProfileDropdown && (
             <div className="dropdown-content">
-              <a href="/AddDataShop">เพิ่มข้อมูลร้านค้า</a>
-              <a href="/AddFood">เพิ่มข้อมูลอาหาร</a>
-              <a href="/Fooddetails">แสดงรายละเอียดข้อมูลร้านค้า</a>
+              <a href="/AddDataShop">-เพิ่มข้อมูลร้านค้า</a>
+              <a href="/AddFood">-เพิ่มข้อมูลอาหาร</a>
+              <a href="/Fooddetails">-แสดงรายละเอียดข้อมูลร้านค้า</a>
             </div>
           )}
           <a href="#" onClick={this.toggleLoginDropdown}>แก้ไข้โปรไฟล์
@@ -59,8 +58,8 @@ class Sidebar extends React.Component {
           </a>
           {this.state.showLoginDropdown && (
             <div className="dropdown-content">
-              <a href="/Editstore">แก้ไข้ข้อมูลร้านค้า</a>
-              <a href="/Notshowfood">ไม่แสดงรายการอาหาร</a>
+              <a href="/Editstore">-แก้ไข้ข้อมูลร้านค้า</a>
+              <a href="/Notshowfood">-ไม่แสดงรายการอาหาร</a>
             </div>
           )}
           
@@ -73,10 +72,10 @@ class Sidebar extends React.Component {
           </a>
           {this.state.showLoginDropdown && (
             <div className="dropdown-content">
-              <a href="/Login">เข้าสู่ระบบ</a>
-              <a href="/Register">สมัครสมาชิก</a>
-              <a href="/Logout">ลงชื่อเข้าใช้</a>
-              <a href="/">ลบบัญชี</a>
+              <a href="/Login">-เข้าสู่ระบบ</a>
+              <a href="/Register">-สมัครสมาชิก</a>
+              <a href="/Logout">-ออกจาระบบ</a>
+              <a href="/">-ลบบัญชี</a>
             </div>
           )}
         </div>
@@ -86,7 +85,7 @@ class Sidebar extends React.Component {
               
             </div>
         <div id="main">
-          <button className="openbtn" onClick={this.openNav}>&#9776; </button>
+          <button className="openbtn" onClick={this.state.isSidebarOpen ? this.closeNav : this.openNav}>&#9776; </button>
         </div>
         
       </div>

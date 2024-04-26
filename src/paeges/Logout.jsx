@@ -9,16 +9,36 @@ function Logout() {
 
   useEffect(() => {
     const handleLogout = async () => {
-      localStorage.removeItem("token"); // ลบ Token ออกจาก Local Storage
+      try {
+        // เรียกใช้ API สำหรับออกจากระบบ
+        const response = await fetch("http://127.0.0.1:8000/logout/", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
 
-      // แสดงการแจ้งเตือนเมื่อออกจากระบบเสร็จสมบูรณ์
-      MySwal.fire({
-        title: "Logging out...",
-        text: "You have been logged out successfully.",
-        icon: "success",
-      }).then(() => {
-        navigate("/Login"); // เปลี่ยนเส้นทางไปยังหน้า login
-      });
+        if (response.ok) {
+          // ลบ Token ออกจาก Local Storage เมื่อออกจากระบบสำเร็จ
+          localStorage.removeItem("token");
+          MySwal.fire({
+            title: "Logging out...",
+            text: "You have been logged out successfully.",
+            icon: "success",
+          }).then(() => {
+            navigate("/Login"); // เปลี่ยนเส้นทางไปยังหน้า login
+          });
+        } else {
+          throw new Error("Failed to logout");
+        }
+      } catch (error) {
+        console.error("Error logging out:", error);
+        MySwal.fire({
+          title: "Error",
+          text: "Failed to logout. Please try again later.",
+          icon: "error",
+        });
+      }
     };
 
     handleLogout();

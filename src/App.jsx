@@ -10,6 +10,7 @@ import Login from './paeges/Login'
 import Logout from './paeges/Logout'
 import Home from './paeges/Home'
 import Home2 from './paeges/Home2'
+import Home3 from './paeges/Home3'
 import Translate from './paeges/Translate'
 import AddFood from './paeges/AddFood'
 import AddDataShop from './paeges/AddDataShop'
@@ -25,16 +26,22 @@ import Sidebar from './components/Sidebar'
 
 
 
+
 function App() {
 
 
   return (
 
     <Router>
+     
       <Navbartest />
       <Sidebar/>
       <Home2/>
-
+      
+    
+      
+      
+      
 
       
       <Routes>
@@ -46,12 +53,16 @@ function App() {
         <Route path="/Search" element={<Search />} />
         <Route path="/Home2" element={<Home2 />} />
         <Route path="/Home2" element={<Login />} />
+        <Route path="/Home2" element={<Logout />} />
         <Route path="/Fooddetails" element={<Fooddetails />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/Login" element={<Home2 />} />
+        <Route path="/Login" element={<Home3 />} />
         <Route path="/Login" element={<Logout />} />
         <Route path="/Logout" element={<Logout />} />
         <Route path="/Login" element={<Home />} />
         <Route path="/Login" element={<Home2 />} />
+        <Route path="/Login" element={<Home3 />} />
         <Route path="/register" element={<Register />} />
         <Route path="/register" element={<Login />} />
         <Route path="/Translate" element={<Translate />} />

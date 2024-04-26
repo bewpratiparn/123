@@ -1,5 +1,11 @@
-/* styles.css */
+/* Login.css */
+body {
+  background-color: #ffffff; /* กำหนดพื้นหลังเป็นสีขาว */
+  margin: 0; /* ลบ margin ทั้งหมดของ body */
+  padding: 0; /* ลบ padding ทั้งหมดของ body */
+}
 
+/* styles.css */
 /* ปรับขนาดของ container ให้เต็มหน้าจอ */
 .container {
   display: flex;
@@ -13,7 +19,6 @@
   width: 400px; /* กำหนดความกว้างของ content */
 }
 
-/* styles.css */
 /* ปรับการจัดวางข้อความให้อยู่ตรงกลาง */
 .text-center {
   text-align: center;
@@ -54,11 +59,4 @@ button.logout-button {
 
 button.logout-button:hover {
   background-color: #ff7875; /* เปลี่ยนสีเมื่อ Hover */
-}
-
-/* Login.css */
-body {
-  background-color: #ffffff; /* กำหนดพื้นหลังเป็นสีขาว */
-  margin: 0; /* ลบ margin ทั้งหมดของ body */
-  padding: 0; /* ลบ padding ทั้งหมดของ body */
 }

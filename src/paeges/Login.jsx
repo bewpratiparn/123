@@ -3,7 +3,8 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
-import Home2 from "./Home2"; 
+import Home2 from "./Home2";
+import "./Home2.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ function Login() {
   const [input, setInputs] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
-  const [picture, setPicture] = useState(""); // เปลี่ยนชื่อ prop เป็น picture
+  const [picture, setPicture] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -22,13 +23,11 @@ function Login() {
 
       fetchUserProfile(user)
         .then((profileData) => {
-          setPicture(profileData.picture); // กำหนดค่า prop picture จากข้อมูลโปรไฟล์
+          setPicture(profileData.picture);
         })
         .catch((error) => {
           console.error("Error fetching user profile:", error);
         });
-
-      navigate("/Login");
     }
   }, []);
 
@@ -87,19 +86,26 @@ function Login() {
     localStorage.removeItem("username");
     setIsLoggedIn(false);
     setUsername("");
-    navigate("/login");
+    navigate("/Login");
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/Login");
+    }
+  }, [navigate]);
 
   return (
     <div className="flex justify-center items-center-top w-screen h-screen bg-gray-100">
+      
+      {!isLoggedIn && <Link to="/register">Register</Link>}
       <div className="bg-white p-8 w-screen h-screen  rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-4">Login</h1>
         {!isLoggedIn && (
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Username
-              </label>
+              <label className="block text-gray-700 text-sm font-bold mb-2">Username</label>
               <input
                 className="w-full p-2 border rounded-md"
                 name="username"
@@ -110,9 +116,7 @@ function Login() {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Enter Password
-              </label>
+              <label className="block text-gray-700 text-sm font-bold mb-2">Enter Password</label>
               <input
                 className="w-full p-2 border rounded-md"
                 name="password"
@@ -122,17 +126,12 @@ function Login() {
                 onChange={handleChange}
               />
             </div>
-            <button
-              className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
-              type="submit"
-            >
+            <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md" type="submit">
               Login
             </button>
           </form>
         )}
-        {isLoggedIn && (
-          <Home2 isLoggedIn={isLoggedIn} username={username} picture={picture} handleLogout={handleLogout} /> // ส่ง prop picture ไปยัง Home2 component
-        )}
+        {isLoggedIn && <Home2 isLoggedIn={isLoggedIn} username={username} picture={picture} handleLogout={handleLogout} />}
         {!isLoggedIn && <Link to="/register">Register</Link>}
       </div>
     </div>
