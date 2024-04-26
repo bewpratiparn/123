@@ -3,11 +3,11 @@ import "flowbite";
 import ReactDOM from "react-dom/client";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { withEmotionCache } from "@emotion/react";
 
 function Register() {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
   const [inputs, setInputs] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
@@ -57,7 +57,7 @@ function Register() {
             html: <i></i>,
             icon: "error",
           }).then((value) => {
-            Navigate("/Login");
+            navigate("/Login");
           });
         } else {
           MySwal.fire({

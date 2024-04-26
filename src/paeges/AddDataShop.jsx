@@ -4,38 +4,55 @@ import ReactDOM from "react-dom/client";
 import "./AddDataShop.css";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AddDataShop() {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
-  const [addShop, setAddshop] = useState({});
+  const [addShop, setAddShop] = useState({
+    pictureshop: "",
+    storename: "",
+    location: "",
+    phone: "",
+    maplink: "",
+    onclose: "",
+  });
 
-  /*const [shopId, setShopid] = useState("");
-  const [shopName, setShopname] = useState("");
-  const [shopLocation, setShoplocation] = useState("");
-  const [shopPhone, setShopphone] = useState("");
-  const [shopMap, setShopMap] = useState("");
-  const [shopTime, setShoptime] = useState("");
-  const [shopPicture, setShoppicture] = useState("");
-  const [shopType, setShoptype] = useState("");*/
+  const [addMangswirat, setMangswirat] = useState(false);
+  const [addVegetarian, setVegetarian] = useState(false);
+  const [addHalal, setHalal] = useState(false);
+
+  const handlecheckboxchange = (e) => {
+    const { name, checked } = e.target;
+    switch (name) {
+      case "Mangswirat":
+        setMangswirat(checked);
+        break;
+      case "Vegetarian":
+        setVegetarian(checked);
+        break;
+      case "Halal":
+        setHalal(checked);
+        break;
+      default:
+        break;
+    }
+  };
 
   const handleChange = (event) => {
-    const name = event.target.name;
-
-    const value = event.target.value;
-    setAddshop((values) => ({ ...values, [name]: value }));
+    const { name, value } = event.target;
+    setAddShop((values) => ({ ...values, [name]: value }));
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     const myHeaders = new Headers();
-
     myHeaders.append("Content-Type", "application/json");
 
-    const shopTypes = [];
-    if (addShop.mangswirat) shopTypes.push("มังสวิรัติ");
-    if (addShop.jay) shopTypes.push("อาหารเจ");
-    if (addShop.halan) shopTypes.push("ฮาลาน");
+    const shopTypeArray = [];
+    if (addMangswirat) shopTypeArray.push("Mangswirat");
+    if (addVegetarian) shopTypeArray.push("Vegetarian");
+    if (addHalal) shopTypeArray.push("Halal");
+    const shopType = shopTypeArray.join(", ");
 
     const raw = JSON.stringify({
       shop_name: addShop.storename,
@@ -44,7 +61,7 @@ function AddDataShop() {
       shop_map: addShop.maplink,
       shop_time: addShop.onclose,
       shop_picture: addShop.pictureshop,
-      shop_type: addShop.mangswirat,
+      shop_type: shopType,
     });
 
     const requestOptions = {
@@ -61,13 +78,13 @@ function AddDataShop() {
           MySwal.fire({
             html: <i>{result.message}</i>,
             icon: "success",
-          }).then((value) => {});
+          }).then((value) => {
+            navigate("/Login");
+          });
         } else {
           MySwal.fire({
             html: <i>เกิดข้อผิดพลาด</i>,
             icon: "error",
-          }).then((value) => {
-            Navigate("/Login");
           });
         }
       })
@@ -162,10 +179,11 @@ function AddDataShop() {
                 <label className="inline-flex items-center mb-2">
                   <input
                     type="checkbox"
-                    name="mangswirat"
+                    name="Mangswirat"
                     className="form-checkbox text-blue-600"
-                    onChange={handleChange}
-                    value="mangswirat"
+                    /*onChange={() => handlecheckboxchange("Mangswirat")}*/
+                    checked={addMangswirat}
+                    onChange={handlecheckboxchange}
                   />
                   <span className="ml-2 text-black">เพิ่มมังสวิรัติ</span>
                   <img
@@ -180,8 +198,10 @@ function AddDataShop() {
                 <label className="inline-flex items-center mb-2">
                   <input
                     type="checkbox"
-                    name="jay"
+                    name="Vegetarian"
                     className="form-checkbox text-blue-600"
+                    checked={addVegetarian}
+                    onChange={handlecheckboxchange}
                   />
                   <span className="ml-2 text-black">เพิ่มอาหารเจ</span>
                   <img
@@ -196,8 +216,10 @@ function AddDataShop() {
                 <label className="inline-flex items-center  mb-4 ">
                   <input
                     type="checkbox"
-                    name="halan"
+                    name="Halal"
                     className="form-checkbox text-blue-600"
+                    checked={addHalal}
+                    onChange={handlecheckboxchange}
                   />
                   <span className="ml-2 text-black ">เพิ่มฮาลาน</span>
                   <img
