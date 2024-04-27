@@ -101,12 +101,7 @@ function AddDataShop() {
           }).then((value) => {
             navigate("/Login");
           });
-        } else {
-          MySwal.fire({
-            html: <i>An error occurred</i>,
-            icon: "error",
-          });
-        }
+        } 
       })
       .catch((error) => console.error(error));
   };

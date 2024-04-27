@@ -2,20 +2,37 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import "./AddFood.css";
 import axios from "axios";
+
 function AddFood() {
   const [foodNames, setFoodNames] = useState([]);
+  const [selectedFood, setSelectedFood] = useState({});
+  const [foodDetails, setFoodDetails] = useState({});
+  const [foodNamesWithElements, setFoodNamesWithElements] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/food_names/")
-      .then((response) => {
-        setFoodNames(response.data.food_names);
-      })
-      .catch((error) => {
-        console.error("Error fetching food names:", error);
-      });
+      .get("http://127.0.0.1:8000/food_names")
+      .then((res) => setFoodNamesWithElements(res.data))
+      .catch((err) => console.log(err));
   }, []);
 
+  const handleFoodSelection = (event) => {
+    const selectedFoodName = event.target.value;
+    const selectedFoodItem = foodNamesWithElements.find(
+      (food) => food.food_name === selectedFoodName
+    );
+    setSelectedFood(selectedFoodItem);
+    // เรียกใช้ API เพื่อโหลดข้อมูลเพิ่มเติมเกี่ยวกับอาหาร
+    axios
+      .get(`http://127.0.0.1:8000/food_names/`)
+      .then((res) => {
+        const selectedFoodDetails = res.data.find(
+          (food) => food.food_name === selectedFoodName
+        );
+        setFoodDetails(selectedFoodDetails);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <>
       <div className="background">
@@ -24,80 +41,60 @@ function AddFood() {
           <form>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
               <div>
-                <div className="button_outer">
-                  <div className="btn_upload">
-                    <input type="file" id="upload_file" name />
-                    Upload Image
-                  </div>
-                  <div className="processing_bar"></div>
-                  <div className="success_box"></div>
-                </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2 width ">
                     ชื่อเมนู
                   </label>
                   <input
-                    className=" p-2 border rounded-md"
-                    name="username"
+                    className="p-2 border rounded-md"
+                    name="food_name"
                     type="text"
                     placeholder="ชื่อเมนู..."
                     htmlFor="ชื่อเมนู"
+                    onChange={(e) => setSelectedFood(e.target.value)}
                   />
                 </div>
-
-                <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2 width ">
-                    รายละเอียดอาหาร
+                <div>
+                  <label
+                    className="block mb-2 text-l font-medium text-gray-900 dark:text-back"
+                    htmlFor="food_name"
+                  >
+                    รายการอาหาร
                   </label>
-                  <input
-                    className=" p-2 border rounded-md"
-                    name="username"
-                    type="text"
-                    placeholder="รายละเอียดอาหาร..."
-                    htmlFor="รายละเอียดอาหาร"
-                  />
+                  <select
+                    className="mb-5 w-full max-w-xs"
+                    onChange={handleFoodSelection}
+                  >
+                    {foodNamesWithElements.length > 0
+                      ? foodNamesWithElements.map((food, i) => (
+                          <option key={i}>{food.food_name}</option>
+                        ))
+                      : ""}
+                  </select>
                 </div>
-
+                <textarea
+                  name="food_details"
+                  id="food_details"
+                  cols="30"
+                  rows="10"
+                  value={foodDetails.food_element || ""}
+                  readOnly
+                />
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2 width ">
                     ราคา
                   </label>
                   <input
-                    className=" p-2 border rounded-md"
-                    name="username"
+                    className="p-2 border rounded-md"
+                    name="food_price"
                     type="text"
                     placeholder="ราคา..."
+                    value={foodDetails.price || ""}
                     htmlFor="ราคา"
                   />
                 </div>
               </div>
             </div>
-
-            <div>
-              <label
-                className="block mb-2 text-l font-medium text-gray-900 dark:text-back"
-                htmlFor="food_name"
-              >
-                รายการอาหาร
-              </label>
-
-              <select className="mb-5 w-full max-w-xs">
-                {foodNames.map((foodName, index) => (
-                  
-                  <option key={index}>{foodName}</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label
-                className="block mb-2 text-l -medium text-gray-900 dark:text-back mb-2"
-                htmlFor="หมวดหมู่อาหาร"
-              >
-                หมวดหมู่
-              </label>
-            </div>
-
             <div>
               <div>
                 <label className="inline-flex items-center mb-2">
@@ -148,13 +145,13 @@ function AddFood() {
             <div>
               <button
                 type="button"
-                class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
               >
                 ยืนยัน
               </button>
               <button
                 type="button"
-                class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
               >
                 ยกเลิก
               </button>
