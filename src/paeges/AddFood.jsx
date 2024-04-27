@@ -33,6 +33,10 @@ function AddFood() {
       })
       .catch((err) => console.log(err));
   };
+
+  const handlesubmit = (e) =>{
+    
+  }
   return (
     <>
       <div className="background">
@@ -89,8 +93,8 @@ function AddFood() {
                     name="food_price"
                     type="text"
                     placeholder="ราคา..."
-                    value={foodDetails.price || ""}
                     htmlFor="ราคา"
+                    onChange={(e) => setSelectedFood(e.target.value)}
                   />
                 </div>
               </div>
