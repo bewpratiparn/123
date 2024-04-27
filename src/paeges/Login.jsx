@@ -4,20 +4,16 @@ import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 import Home3 from "./Home3";
 
-
 function Login({ setIsLoggedIn }) {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
   const [input, setInputs] = useState({});
   const [username, setUsername] = useState(""); // เพิ่ม state เก็บชื่อผู้ใช้
-  const handleLogin = () => {
-    // อัปเดตสถานะการล็อคอินเป็น true
-    setIsLoggedIn(true);
-  };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigate("/Login");
+      navigate("/Home");
     }
   }, []);
 
@@ -45,7 +41,10 @@ function Login({ setIsLoggedIn }) {
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/login/", requestOptions);
+      const response = await fetch(
+        "http://127.0.0.1:8000/login/",
+        requestOptions
+      );
       const result = await response.json();
 
       if (response.ok) {
@@ -55,6 +54,7 @@ function Login({ setIsLoggedIn }) {
           html: <i>{result.message}</i>,
           icon: "success",
         }).then(() => {
+          setIsLoggedIn(true);
           navigate("/Home");
         });
       } else {
@@ -100,11 +100,12 @@ function Login({ setIsLoggedIn }) {
               onChange={handleChange}
             />
           </div>
-          <button onClick={handleLogin}>Login</button>
+          <button type="submit">Login</button>
         </form>
         <a href="/register">Register</a>
       </div>
-      {username && <Home3 username={username} />} {/* เรียก Home3 component และส่งชื่อผู้ใช้เข้าไป */}
+      {username && <Home3 username={username} />}{" "}
+      {/* เรียก Home3 component และส่งชื่อผู้ใช้เข้าไป */}
     </div>
   );
 }

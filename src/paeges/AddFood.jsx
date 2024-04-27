@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import "./AddFood.css";
 import axios from "axios";
 
+// Import statements...
+
 function AddFood() {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
@@ -17,14 +19,9 @@ function AddFood() {
     Food_picture: "",
     Food_text2: "",
   });
-  const [foodNames, setFoodNames] = useState([]);
   const [selectedFood, setSelectedFood] = useState({});
   const [foodDetails, setFoodDetails] = useState({});
   const [foodNamesWithElements, setFoodNamesWithElements] = useState([]);
-  const [foodPrice, setFoodPrice] = useState("");
-  const [isHalal, setIsHalal] = useState(false);
-  const [isVegetarian, setIsVegetarian] = useState(false);
-  const [isVegan, setIsVegan] = useState(false);
   const [addMangswirat, setMangswirat] = useState(false);
   const [addVegetarian, setVegetarian] = useState(false);
   const [addHalal, setHalal] = useState(false);
@@ -42,7 +39,6 @@ function AddFood() {
       (food) => food.food_name === selectedFoodName
     );
     setSelectedFood(selectedFoodItem);
-    // เรียกใช้ API เพื่อโหลดข้อมูลเพิ่มเติมเกี่ยวกับอาหาร
     axios
       .get(`http://127.0.0.1:8000/food_names/`)
       .then((res) => {
@@ -53,7 +49,8 @@ function AddFood() {
       })
       .catch((err) => console.log(err));
   };
-  const handlecheckboxchange = (e) => {
+
+  const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
     switch (name) {
       case "Mangswirat":
@@ -69,15 +66,17 @@ function AddFood() {
         break;
     }
   };
+
   const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
+    const { name, value } = event.target;
+    setInputs((prevInputs) => ({
+      ...prevInputs,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const shopTypeArray = [];
@@ -88,7 +87,7 @@ function AddFood() {
 
     const raw = JSON.stringify({
       Food_name: input.Food_name,
-      Food_name2: input.selectedFoodDetails,
+      Food_name2: input.Food_name2,
       Food_element: input.Food_element,
       Food_price: input.Food_price,
       Food_picture: input.Food_picture,
@@ -147,7 +146,7 @@ function AddFood() {
                 <div>
                   <label
                     className="block mb-2 text-l font-medium text-gray-900 dark:text-back"
-                    htmlFor="food_name"
+                    htmlFor="food_name2"
                   >
                     รายการอาหาร
                   </label>
@@ -155,21 +154,40 @@ function AddFood() {
                     className="mb-5 w-full max-w-xs"
                     onChange={handleFoodSelection}
                   >
-                    {foodNamesWithElements.length > 0
-                      ? foodNamesWithElements.map((food, i) => (
-                          <option key={i}>{food.food_name}</option>
-                        ))
-                      : ""}
+                    {foodNamesWithElements.length > 0 &&
+                      foodNamesWithElements.map((food, i) => (
+                        <option key={i} value={food.food_name}>
+                          {food.food_name}
+                        </option>
+                      ))}
                   </select>
                 </div>
+               
                 <textarea
+                className="p-2 border rounded-md white"
                   name="food_details"
                   id="food_details"
-                  cols="30"
-                  rows="10"
-                  value={foodDetails.food_element || ""}
-                  readOnly
-                />
+                  cols="25"
+                  rows="3"
+                  value={
+                    (foodDetails.food_element || "") +   (input.Food_name2 || "")
+                  }
+                  
+                ></textarea>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2 width ">
+                    เดี๋ยวมาเปลี่ยน
+                  </label>
+                  <input
+                    className="p-2 border rounded-md"
+                    name="Food_element"
+                    type="text"
+                    placeholder="ชื่อเมนู..."
+                    htmlFor="ชื่อเมนู"
+                    value={input.Food_element || ""}
+                    onChange={handleChange}
+                  />
+                </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2 width ">
                     ราคา
@@ -184,6 +202,21 @@ function AddFood() {
                     onChange={handleChange}
                   />
                 </div>
+
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2 width ">
+                    โปรดเพิ่มรูปอาหารของท่าน
+                  </label>
+                  <input
+                    className="p-2 border rounded-md"
+                    name="Food_picture"
+                    type="file"
+                    placeholder="ราคา..."
+                    htmlFor="รูปภาพ"
+                    value={input.Food_picture || ""}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
             </div>
             <div>
@@ -194,14 +227,10 @@ function AddFood() {
                     type="checkbox"
                     className="form-checkbox text-blue-600"
                     checked={addMangswirat}
-                    onChange={handlecheckboxchange}
+                    onChange={handleCheckboxChange}
                   />
                   <span className="ml-2 text-black">เพิ่มมังสวิรัติ</span>
-                  <img
-                    src="https://media.istockphoto.com/id/1311125920/th/%E0%B9%80%E0%B8%A7%E0%B8%84%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C/%E0%B8%9C%E0%B8%A5%E0%B8%B4%E0%B8%95%E0%B8%A0%E0%B8%B1%E0%B8%93%E0%B8%91%E0%B9%8C%E0%B8%A1%E0%B8%B1%E0%B8%87%E0%B8%AA%E0%B8%A7%E0%B8%B4%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%B4-100-%E0%B9%80%E0%B8%9B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%80%E0%B8%8B%E0%B9%87%E0%B8%99%E0%B8%95%E0%B9%8C-%E0%B9%82%E0%B8%A5%E0%B9%82%E0%B8%81%E0%B9%89%E0%B8%AA%E0%B8%B5%E0%B9%80%E0%B8%82%E0%B8%B5%E0%B8%A2%E0%B8%A7%E0%B8%A1%E0%B8%B1%E0%B8%87%E0%B8%AA%E0%B8%A7%E0%B8%B4%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%B4-%E0%B8%AA%E0%B8%B1%E0%B8%8D%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B8%93%E0%B9%8C-eco-bio-%E0%B9%81%E0%B8%A5%E0%B8%B0-organic.jpg?s=612x612&w=0&k=20&c=FvYOIGvyyb941-1vz-_s2ZGgOUz-AZMEJ5zW8yFhU5g="
-                    alt="มังสวิรัติ"
-                    style={{ width: "70px", height: "auto" }} // กำหนดขนาดภาพเป็น 100px กว้างและปรับความสูงตามอัตราส่วน
-                  />
+                  {/* Image */}
                 </label>
               </div>
 
@@ -212,14 +241,10 @@ function AddFood() {
                     name="Vegetarian"
                     className="form-checkbox text-blue-600"
                     checked={addVegetarian}
-                    onChange={handlecheckboxchange}
+                    onChange={handleCheckboxChange}
                   />
                   <span className="ml-2 text-black">เพิ่มอาหารเจ</span>
-                  <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS-b1-Nxx_cbgUySvFd2emKL8rQwR39810zYZp2U9PMgLXojLNnR8XlPJcUXEEs4ucfq0&usqp=CAU"
-                    alt="อาหารเจ"
-                    style={{ width: "70px", height: "auto" }} // กำหนดขนาดภาพเป็น 100px กว้างและปรับความสูงตามอัตราส่วน
-                  />
+                  {/* Image */}
                 </label>
               </div>
 
@@ -230,14 +255,10 @@ function AddFood() {
                     name="Halal"
                     className="form-checkbox text-blue-600"
                     checked={addHalal}
-                    onChange={handlecheckboxchange}
+                    onChange={handleCheckboxChange}
                   />
                   <span className="ml-2 text-black ">เพิ่มฮาลาน</span>
-                  <img
-                    src="https://assets.brandinside.asia/uploads/2017/09/HALAL.jpg"
-                    alt="ฮาลาน"
-                    style={{ width: "70px", height: "auto" }} // กำหนดขนาดภาพเป็น 100px กว้างและปรับความสูงตามอัตราส่วน
-                  />
+                  {/* Image */}
                 </label>
               </div>
             </div>
@@ -250,7 +271,7 @@ function AddFood() {
                 ยืนยัน
               </button>
               <button
-                type="submit"
+                type="reset"
                 className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
               >
                 ยกเลิก
