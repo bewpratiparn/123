@@ -78,7 +78,7 @@ function Login() {
               className="w-full p-2 border rounded-md"
               name="password"
               type="password"
-              placeholder="**"
+              placeholder="********"
               value={input.password || ""}
               onChange={handleChange}
             />
