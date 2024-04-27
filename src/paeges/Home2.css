@@ -1,6 +1,6 @@
 .navbar {
   position: fixed; /* กำหนดให้ Navbar อยู่ในตำแหน่งที่ต้องการ */
-  top: 0; /* ตั้งค่าให้ Navbar อยู่บนสุดของหน้าจอ */
+  top: 50; /* ตั้งค่าให้ Navbar อยู่บนสุดของหน้าจอ */
   right: 0; /* ตั้งค่าให้ Navbar ชิดขอบขวาของหน้าจอ */
   max-width: 2200px;
   display: flex;
