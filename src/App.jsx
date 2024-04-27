@@ -35,6 +35,7 @@ function App() {
           path="/Store_information"
           element={<Store_information isLoggedIn={isLoggedIn} />}
         />
+        
         <Route path="/Home" element={<Home isLoggedIn={isLoggedIn} />} />
         <Route path="/Search" element={<Search isLoggedIn={isLoggedIn} />} />
         <Route path="/Home2" element={<Home2 isLoggedIn={isLoggedIn} />} />

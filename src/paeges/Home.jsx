@@ -28,7 +28,7 @@ function Home() {
           <div className="bg-white p-4 rounded-lg shadow-lg">
             {data.length > 0
               ? data.map((item, i) => (
-                  <div className="containner-store-1" key={item.id} style={{}}>
+                  <div className="containner-store-1" key={i} style={{}}>
                     <div className="card" style={{ width: "70rem" }}>
                       <img
                         src={item.shop_picture} // ใช้ URL ที่ส่งมาจาก API
