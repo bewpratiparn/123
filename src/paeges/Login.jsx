@@ -89,12 +89,14 @@ function Login() {
     navigate("/Login");
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/Login");
-    }
-  }, [navigate]);
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (!token && isLoggedIn) {
+    navigate("/Login");
+  }
+}, [isLoggedIn, navigate]);
+
+  
 
   return (
     <div className="flex justify-center items-center-top w-screen h-screen bg-gray-100">
