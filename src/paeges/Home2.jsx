@@ -1,23 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import "./Home2.css";
 
-function Home2({ username, picture }) {
+function Home2({ isLoggedIn, username, picture, handleLogout }) {
   return (
-    <>
-      <div className="flex md:order-2 justify-end" style={{ backgroundColor: "#FFBB5C" }}>
-        <div className="flex items-center">
-          <img 
-            src={picture} 
-            alt="User profile" 
-            className="rounded-full w-6 h-6 md:w-8 md:h-8 mr-2" // เปลี่ยนขนาดรูปภาพตามความต้องการ
-          />
+    <div className="navbar">
+      {isLoggedIn ? (
+        <div className="user-info">
+          <img src={picture} alt="User profile" className="avatar" />
           <div>
-            <span className="block text-xl font-bold">ยินดีต้อนรับ</span>
-            <span className="block truncate text-sm font-medium">{username}</span>
+            <span className="text-xl font-bold">ยินดีต้อนรับ</span>
+            <br></br>
+            <span className="truncate text-sm font-medium">{username}</span>
           </div>
-          
+          <button className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
         </div>
-      </div>
-    </>
+      ) : (
+        <div>ตัวยึดตำแหน่งเมื่อผู้ใช้ไม่ได้เข้าสู่ระบบ</div> // Placeholder for when user is not logged in
+      )}
+    </div>
   );
 }
 

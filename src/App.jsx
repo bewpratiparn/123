@@ -1,61 +1,50 @@
-import { useState } from 'react'
-import 'flowbite'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-
-import Home2 from './paeges/Home2'
-import NavbarNew from './components/Navbarnew'
-import Navbar from './components/Navbar'
-import Login from './paeges/Login'
-import Home from './paeges/Home'
-import Translate from './paeges/Translate'
-import AddFood from './paeges/AddFood'
-import AddDataShop from './paeges/AddDataShop'
-import Register from './paeges/Register'
-import Store_information from './paeges/Store_information'
-import Notshowfood from './paeges/Notshowfood'
-import Editstore from './paeges/EditStore'
-import Detailfood from './paeges/detailfood'
-
-
-
-
-
-
+import { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbartest from './components/Navbartest';
+import Sidebar from './components/Sidebar';
+import Home3 from './paeges/Home3';
+import Home from './paeges/Home';
+import Login from './paeges/Login';
+import Logout from './paeges/Logout';
+import Search from './components/Search';
+import Home2 from './paeges/Home2';
+import Register from './paeges/Register';
+import Translate from './paeges/Translate';
+import AddFood from './paeges/AddFood';
+import AddDataShop from './paeges/AddDataShop';
+import RecipeDetail from './paeges/RecipeDetail';
+import Fooddetails from './paeges/Fooddetails';
+import Editstore from './paeges/Editstore';
+import Storeinformation from './paeges/Storeinformation';
+import Notshowfood from './paeges/Notshowfood';
 
 function App() {
-  
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // สถานะการล็อคอินเริ่มต้นเป็น false
 
   return (
-    
-      <Router>
-        <NavbarNew/>
-        <Home2/>
-        
-      <Routes> 
+    <Router>
+      <Home3 isLoggedIn={isLoggedIn} />
+      <Navbartest />
+      <Sidebar />
       
-        <Route path="/Home" element={<Home />} /> 
-        <Route path="/Login" element ={<Login/>} />
-        <Route path="/Login" element ={<Home/>} />
-        <Route path="/register" element={<Register />} /> 
-        <Route path="/Translate" element={<Translate />} /> 
-        <Route path="/AddFood" element={<AddFood />} /> 
-        <Route path="/AddDataShop" element={<AddDataShop />} />
-        <Route path="/Store_information" element={<Store_information />} />
-        <Route path="/Notshowfood" element={<Notshowfood />} />
-        <Route path="/EditStore" element={<Editstore />} />
-        <Route path="/Detailfood" element={<Detailfood />} />
-      
-       
-        
-        
-       
-        
-        
-        
+      <Routes>
+        <Route path="/Notshowfood" element={<Notshowfood isLoggedIn={isLoggedIn} />} />
+        <Route path="/Storeinformation" element={<Storeinformation isLoggedIn={isLoggedIn} />} />
+        <Route path="/Home" element={<Home isLoggedIn={isLoggedIn} />} />
+        <Route path="/Search" element={<Search isLoggedIn={isLoggedIn} />} />
+        <Route path="/Home2" element={<Home2 isLoggedIn={isLoggedIn} />} />
+        <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/Login" element={<Home3 setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/Logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/Fooddetails" element={<Fooddetails isLoggedIn={isLoggedIn} />} />
+        <Route path="/Register" element={<Register setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/Translate" element={<Translate isLoggedIn={isLoggedIn} />} />
+        <Route path="/AddFood" element={<AddFood isLoggedIn={isLoggedIn} />} />
+        <Route path="/AddDataShop" element={<AddDataShop isLoggedIn={isLoggedIn} />} />
+        <Route path="/RecipeDetail" element={<RecipeDetail isLoggedIn={isLoggedIn} />} />
+        <Route path="/Editstore" element={<Editstore isLoggedIn={isLoggedIn} />} />
       </Routes>
     </Router>
- 
-  )
+  );
 }
-
 export default App
