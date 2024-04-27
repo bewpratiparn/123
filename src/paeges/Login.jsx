@@ -1,57 +1,73 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+
+function Login({ setIsLoggedIn }) {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
   const [input, setInputs] = useState({});
+  const [username, setUsername] = useState(""); // เพิ่ม state เก็บชื่อผู้ใช้
+  const handleLogin = () => {
+    // อัปเดตสถานะการล็อคอินเป็น true
+    setIsLoggedIn(true);
+  };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/Login");
+    }
+  }, []);
 
   const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
+    const { name, value } = event.target;
+    setInputs({ ...input, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({
-      username: input.username,
-      password: input.password,
-    });
-
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!input.username || !input.password) {
+      MySwal.fire({
+        html: <i>Please enter username and password</i>,
+        icon: "error",
+      });
+      return;
+    }
     const requestOptions = {
       method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: input.username,
+        password: input.password,
+      }),
     };
 
-    fetch("http://127.0.0.1:8000/login/", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.status === "ok") {
-          // กระบวนการเข้าสู่ระบบเสร็จสมบูรณ์
-          localStorage.setInputs("isLoggedIn", "true");
+    try {
+      const response = await fetch("http://127.0.0.1:8000/login/", requestOptions);
+      const result = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("token", result.access_token);
+        setUsername(input.username); // เซ็ตชื่อผู้ใช้เมื่อล็อกอินสำเร็จ
+        MySwal.fire({
+          html: <i>{result.message}</i>,
+          icon: "success",
+        }).then(() => {
           navigate("/Home");
-          MySwal.fire({
-            html: <i>{result.message}</i>,
-            icon: "success",
-          });
-        } else {
-          // กระบวนการเข้าสู่ระบบไม่สำเร็จ
-          MySwal.fire({
-            html: <i>{result.message}</i>,
-            icon: "error",
-          });
-          console.log(result);
-        }
-      })
+        });
+      } else {
+        throw new Error(result.message || "Failed to login");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      MySwal.fire({
+        html: <i>Something went wrong. Please try again later.</i>,
+        icon: "error",
+      });
+    }
   };
+
   return (
     <div className="flex justify-center items-center-top h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg">
@@ -83,15 +99,11 @@ function Login() {
               onChange={handleChange}
             />
           </div>
-          <button
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
-            type="submit"
-          >
-            Login
-          </button>
+          <button onClick={handleLogin}>Login</button>
         </form>
         <a href="/register">Register</a>
       </div>
+      {username && <Home3 username={username} />} {/* เรียก Home3 component และส่งชื่อผู้ใช้เข้าไป */}
     </div>
   );
 }
