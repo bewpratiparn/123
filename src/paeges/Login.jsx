@@ -89,6 +89,13 @@ function Login() {
     navigate("/Login");
   };
 
+ useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (!token && isLoggedIn) {
+    navigate("/Login");
+  }
+}, [isLoggedIn, navigate]);
+
 useEffect(() => {
   const token = localStorage.getItem("token");
   if (!token && isLoggedIn) {
