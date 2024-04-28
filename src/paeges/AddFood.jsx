@@ -25,7 +25,9 @@ function AddFood() {
   const [addMangswirat, setMangswirat] = useState(false);
   const [addVegetarian, setVegetarian] = useState(false);
   const [addHalal, setHalal] = useState(false);
+  const [showTextarea, setShowTextarea] = useState(false);
 
+  
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/food_names")
@@ -48,6 +50,11 @@ function AddFood() {
         setFoodDetails(selectedFoodDetails);
       })
       .catch((err) => console.log(err));
+  };
+
+
+  const handleToggleTextarea = () => {
+    setShowTextarea(!showTextarea);
   };
 
   const handleCheckboxChange = (e) => {
@@ -162,32 +169,40 @@ function AddFood() {
                       ))}
                   </select>
                 </div>
-               
-                <textarea
-                className="p-2 border rounded-md white"
-                  name="food_details"
-                  id="food_details"
-                  cols="25"
-                  rows="3"
-                  value={
-                    (foodDetails.food_element || "") +   (input.Food_name2 || "")
-                  }
-                  
-                ></textarea>
+                <button
+                  onClick={handleToggleTextarea}
+                  className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                >
+                  คุณต้องการใช้รายละเอียดอาหารของเราหรือไม่
+                </button>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2 width ">
-                    เดี๋ยวมาเปลี่ยน
+                    เพิ่มรายละเอียดอาหารที่ต้องการเพิ่ม
                   </label>
                   <input
                     className="p-2 border rounded-md"
-                    name="Food_element"
+                    name="Food_name2"
                     type="text"
                     placeholder="ชื่อเมนู..."
                     htmlFor="ชื่อเมนู"
-                    value={input.Food_element || ""}
+                    value={input.Food_name2 || ""}
                     onChange={handleChange}
                   />
                 </div>
+                {showTextarea && (    <div>
+                  <textarea
+                    className="p-2 border rounded-md white"
+                    name="food_details"
+                    id="food_details"
+                    cols="25"
+                    rows="3"
+                    value={
+                      (foodDetails.food_element || "") +
+                      (input.Food_name2 || "")
+                    }
+                  ></textarea>
+                </div>
+)}
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2 width ">
                     ราคา

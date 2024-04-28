@@ -22,7 +22,7 @@ function App() {
 
   return (
     <Router>
-      <Home3 isLoggedIn={isLoggedIn} />
+      
       <Navbartest />
       <Sidebar />
 
