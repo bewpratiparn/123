@@ -59,6 +59,7 @@ function AddDataShop() {
 
     // ตรวจสอบว่าผู้ใช้ล็อกอินหรือไม่
     if (!isLoggedIn) {
+      localStorage.getItem(token)
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 

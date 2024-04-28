@@ -39,7 +39,7 @@ function Login() {
             html: <i>Login success</i>,
             icon: "success",
           }).then((value) => {
-            localStorage.setItem("token", result.access_token);
+            localStorage.setItem("token", result.token);
             navigate("/Home");
           });
         } else {
