@@ -13,11 +13,9 @@ function AddFood() {
   const MySwal = withReactContent(Swal);
   const [input, setInputs] = useState({
     Food_name: "",
-    Food_name2: "",
     Food_element: "",
     Food_price: "",
     Food_picture: "",
-    Food_text2: "",
   });
   const [selectedFood, setSelectedFood] = useState({});
   const [foodDetails, setFoodDetails] = useState({});
@@ -27,7 +25,6 @@ function AddFood() {
   const [addHalal, setHalal] = useState(false);
   const [showTextarea, setShowTextarea] = useState(false);
 
-  
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/food_names")
@@ -52,30 +49,9 @@ function AddFood() {
       .catch((err) => console.log(err));
   };
 
-
-  const handleToggleTextarea = () => {
-    setShowTextarea(!showTextarea);
-  };
-
-  const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    switch (name) {
-      case "Mangswirat":
-        setMangswirat(checked);
-        break;
-      case "Vegetarian":
-        setVegetarian(checked);
-        break;
-      case "Halal":
-        setHalal(checked);
-        break;
-      default:
-        break;
-    }
-  };
-
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     setInputs((prevInputs) => ({
       ...prevInputs,
       [name]: value,
@@ -85,37 +61,34 @@ function AddFood() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const userToken = localStorage.getItem("token");
-  
+
     if (userToken) {
       const headers = {
         Authorization: `Bearer ${userToken}`,
         "Content-Type": "application/json",
       };
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    const shopTypeArray = [];
-    if (addMangswirat) shopTypeArray.push("Mangswirat");
-    if (addVegetarian) shopTypeArray.push("Vegetarian");
-    if (addHalal) shopTypeArray.push("Halal");
-    const shopType = shopTypeArray.join(", ");
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      const combinedFoodElement = `${foodDetails.food_element || ""} ${
+        input.Food_element || ""
+      }`;
 
-    const raw = JSON.stringify({
-      Food_name: input.Food_name,
-      Food_name2: input.Food_name2,
-      Food_element: input.Food_element,
-      Food_price: input.Food_price,
-      Food_picture: input.Food_picture,
-      Food_text2: shopType,
-    });
+      const raw = JSON.stringify({
+        Food_name: input.Food_name,
+        Food_element: combinedFoodElement,
+        Food_price: input.Food_price,
+        Food_picture: input.Food_picture,
+      });
 
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
 
-    axios.post("http://127.0.0.1:8000/add_food/", requestData, { headers })
+      axios
+        .post("http://127.0.0.1:8000/add_food/", raw, { headers })
         .then((response) => {
           if (response.data === "token") {
             MySwal.fire({
@@ -187,22 +160,37 @@ function AddFood() {
                       ))}
                   </select>
                 </div>
-                
+
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2 width ">
+                    รายละเอียดอาหารเเนะนำ
+                  </label>
+                  <input
+                    className="p-2 border rounded-md"
+                    name="foodDatails"
+                    type="text"
+                    placeholder="ชื่อเมนู..."
+                    htmlFor="ชื่อเมนู"
+                    value={foodDetails.food_element}
+                    onChange={handleChange}
+                  />
+                </div>
+
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2 width ">
                     เพิ่มรายละเอียดอาหารที่ต้องการเพิ่ม
                   </label>
                   <input
                     className="p-2 border rounded-md"
-                    name="Food_name2"
+                    name="Food_element"
                     type="text"
-                    placeholder="ชื่อเมนู..."
+                    placeholder="โปรดใส่รายละเอียดอาหารที่ท่านต้องการ"
                     htmlFor="ชื่อเมนู"
-                    value={input.Food_name2 || "" + foodDetails.food_element ||""}
+                    value={input.Food_element || ""}
                     onChange={handleChange}
                   />
                 </div>
-            
+
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2 width ">
                     ราคา

@@ -20,12 +20,14 @@ function AddDataShop() {
   const [addMangswirat, setMangswirat] = useState(false);
   const [addVegetarian, setVegetarian] = useState(false);
   const [addHalal, setHalal] = useState(false);
+  const [addNothing, setNothing] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const shopTypeArray = [];
   if (addMangswirat) shopTypeArray.push("Mangswirat");
   if (addVegetarian) shopTypeArray.push("Vegetarian");
   if (addHalal) shopTypeArray.push("Halal");
+  if (addNothing) shopTypeArray.push("Nothing");
   const shopType = shopTypeArray.join(", ");
 
   const handleCheckboxChange = (e) => {
@@ -39,6 +41,9 @@ function AddDataShop() {
         break;
       case "Halal":
         setHalal(checked);
+        break;
+        case "Nothing":
+        setNothing(checked);
         break;
       default:
         break;
@@ -182,6 +187,7 @@ function AddDataShop() {
                       onChange={handleCheckboxChange}
                     />
                     <span className="ml-2 text-black">เพิ่มมังสวิรัติ</span>
+                    <img src="https://png.pngtree.com/png-vector/20191030/ourlarge/pngtree-icon-for-vegan-food-vector-illustration-symbols-isolated-on-white-background-png-image_1870591.jpg" alt="" width={50}/>
                   </label>
                 </div>
 
@@ -195,6 +201,7 @@ function AddDataShop() {
                       onChange={handleCheckboxChange}
                     />
                     <span className="ml-2 text-black">เพิ่มอาหารเจ</span>
+                    <img src="https://st4.depositphotos.com/1877361/23487/v/450/depositphotos_234872180-stock-illustration-universal-vegetarian-symbol-label-leaf.jpg" alt="" width={50}/>
                   </label>
                 </div>
 
@@ -208,6 +215,21 @@ function AddDataShop() {
                       onChange={handleCheckboxChange}
                     />
                     <span className="ml-2 text-black ">เพิ่มฮาลาน</span>
+                    <img src="https://www.lsfpackaging.com/images/editor/21-%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%AE%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%A5%E0%B8%84%E0%B8%B7%E0%B8%AD_Pic.jpg" alt="" width={50}/>
+                  </label>
+                </div>
+                <div>
+                  <label className="inline-flex items-center  mb-4 ">
+                    
+                    <input
+                    
+                      type="checkbox"
+                      name="Nothing"
+                      className="form-checkbox text-blue-600"
+                      checked={addNothing}
+                      onChange={handleCheckboxChange}
+                    />
+                    <span className="ml-2 text-black ">ไม่จำกัดประเภทอาหาร</span>
                   </label>
                 </div>
               </div>
