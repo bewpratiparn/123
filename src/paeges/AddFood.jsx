@@ -84,6 +84,13 @@ function AddFood() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const userToken = localStorage.getItem("token");
+  
+    if (userToken) {
+      const headers = {
+        Authorization: `Bearer ${userToken}`,
+        "Content-Type": "application/json",
+      };
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const shopTypeArray = [];
@@ -108,24 +115,35 @@ function AddFood() {
       redirect: "follow",
     };
 
-    fetch("http://127.0.0.1:8000/add_food/", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.status === "ok") {
+    axios.post("http://127.0.0.1:8000/add_food/", requestData, { headers })
+        .then((response) => {
+          if (response.data === "token") {
+            MySwal.fire({
+              html: <i>{response.data.message}</i>,
+              icon: "success",
+            }).then((value) => {
+              navigate("/Home");
+            });
+          } else {
+            MySwal.fire({
+              html: <i>เพิ่มข้อมูลร้านค้าสำเร็จ</i>,
+              icon: "success",
+            });
+          }
+        })
+        .catch((error) => {
+          console.error(error);
           MySwal.fire({
-            html: <i>{result.message}</i>,
-            icon: "success",
-          }).then((value) => {
-            navigate("/");
-          });
-        } else {
-          MySwal.fire({
-            html: <i>{result.message}</i>,
+            html: <i>เกิดข้อผิดพลาดในการเพิ่มข้อมูลร้านค้า</i>,
             icon: "error",
           });
-        }
-      })
-      .catch((error) => console.error(error));
+        });
+    } else {
+      MySwal.fire({
+        html: <i>โปรดล็อกอิน</i>,
+        icon: "warning",
+      });
+    }
   };
 
   return (
@@ -169,12 +187,7 @@ function AddFood() {
                       ))}
                   </select>
                 </div>
-                <button
-                  onClick={handleToggleTextarea}
-                  className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                >
-                  คุณต้องการใช้รายละเอียดอาหารของเราหรือไม่
-                </button>
+                
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2 width ">
                     เพิ่มรายละเอียดอาหารที่ต้องการเพิ่ม
@@ -185,24 +198,11 @@ function AddFood() {
                     type="text"
                     placeholder="ชื่อเมนู..."
                     htmlFor="ชื่อเมนู"
-                    value={input.Food_name2 || ""}
+                    value={input.Food_name2 || "" +foodDetails.food_element ||""}
                     onChange={handleChange}
                   />
                 </div>
-                {showTextarea && (    <div>
-                  <textarea
-                    className="p-2 border rounded-md white"
-                    name="food_details"
-                    id="food_details"
-                    cols="25"
-                    rows="3"
-                    value={
-                      (foodDetails.food_element || "") +
-                      (input.Food_name2 || "")
-                    }
-                  ></textarea>
-                </div>
-)}
+            
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2 width ">
                     ราคา
