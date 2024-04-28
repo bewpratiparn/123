@@ -198,7 +198,7 @@ function AddFood() {
                     type="text"
                     placeholder="ชื่อเมนู..."
                     htmlFor="ชื่อเมนู"
-                    value={input.Food_name2 || "" +foodDetails.food_element ||""}
+                    value={input.Food_name2 || "" + foodDetails.food_element ||""}
                     onChange={handleChange}
                   />
                 </div>
@@ -232,49 +232,6 @@ function AddFood() {
                     onChange={handleChange}
                   />
                 </div>
-              </div>
-            </div>
-            <div>
-              <div>
-                <label className="inline-flex items-center mb-2">
-                  <input
-                    name="Mangswirat"
-                    type="checkbox"
-                    className="form-checkbox text-blue-600"
-                    checked={addMangswirat}
-                    onChange={handleCheckboxChange}
-                  />
-                  <span className="ml-2 text-black">เพิ่มมังสวิรัติ</span>
-                  {/* Image */}
-                </label>
-              </div>
-
-              <div>
-                <label className="inline-flex items-center mb-2">
-                  <input
-                    type="checkbox"
-                    name="Vegetarian"
-                    className="form-checkbox text-blue-600"
-                    checked={addVegetarian}
-                    onChange={handleCheckboxChange}
-                  />
-                  <span className="ml-2 text-black">เพิ่มอาหารเจ</span>
-                  {/* Image */}
-                </label>
-              </div>
-
-              <div>
-                <label className="inline-flex items-center  mb-4 ">
-                  <input
-                    type="checkbox"
-                    name="Halal"
-                    className="form-checkbox text-blue-600"
-                    checked={addHalal}
-                    onChange={handleCheckboxChange}
-                  />
-                  <span className="ml-2 text-black ">เพิ่มฮาลาน</span>
-                  {/* Image */}
-                </label>
               </div>
             </div>
 
