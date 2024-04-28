@@ -20,9 +20,18 @@ import Detailfood from "./paeges/Detailfood";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // สถานะการล็อคอินเริ่มต้นเป็น false
 
+  const checkLogin = () => {
+    // ถ้า isLoggedIn เป็น true ให้สามารถใช้งานทุกหน้าได้
+    if (isLoggedIn) {
+      return true;
+    } else {
+      // ถ้า isLoggedIn เป็น false ให้ redirect ไปยังหน้า Login
+      window.location.href = "/Login"; // หรือใช้ history.push() ก็ได้
+      return false;
+    }
+  };
   return (
     <Router>
-      
       <Navbartest />
       <Sidebar />
 
@@ -35,7 +44,7 @@ function App() {
           path="/Store_information"
           element={<Store_information isLoggedIn={isLoggedIn} />}
         />
-        
+
         <Route path="/Home" element={<Home isLoggedIn={isLoggedIn} />} />
         <Route path="/Search" element={<Search isLoggedIn={isLoggedIn} />} />
         <Route path="/Home2" element={<Home2 isLoggedIn={isLoggedIn} />} />
@@ -59,7 +68,8 @@ function App() {
           path="/Translate"
           element={<Translate isLoggedIn={isLoggedIn} />}
         />
-        <Route path="/AddFood" element={<AddFood isLoggedIn={isLoggedIn} />} />
+        <Route path="/AddFood" 
+        element={<AddFood isLoggedIn={setIsLoggedIn} />} />
         <Route
           path="/AddDataShop"
           element={<AddDataShop isLoggedIn={isLoggedIn} />}

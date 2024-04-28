@@ -43,7 +43,7 @@ function Register() {
     fetch("http://127.0.0.1:8000/register/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        if (result && result.status === 'ok') {
+        if (result) {
           MySwal.fire({
             html: <i>{result.message}</i>,
             icon: "success",

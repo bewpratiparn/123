@@ -26,7 +26,7 @@ function Logout() {
             text: "You have been logged out successfully.",
             icon: "success",
           }).then(() => {
-            navigate("/Logout"); // เปลี่ยนเส้นทางไปยังหน้า login
+            navigate("/Login"); // เปลี่ยนเส้นทางไปยังหน้า login
           });
         } else {
           throw new Error("Failed to logout");
