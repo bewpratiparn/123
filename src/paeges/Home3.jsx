@@ -1,9 +1,10 @@
 import React from "react";
 
-function Home3({ username }) {
+function Home3() {
   return (
     <div>
-      <h1>Welcome to Home3 Page{username}</h1>
+      <h1>Welcome to Home3 Page</h1>
+      
     </div>
   );
 }

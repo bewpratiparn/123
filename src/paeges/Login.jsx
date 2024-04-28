@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { useNavigate } from "react-router-dom";
-import Home3 from "../paeges/Home3";
+import { useNavigate, Link } from "react-router-dom"; // เพิ่ม Link จาก React Router
 
-function Login({ setIsLoggedIn }) {
+
+function Login() {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
   const [input, setInputs] = useState({});
-  const [username, setUsername] = useState(""); // เพิ่ม state เก็บชื่อผู้ใช้
-  const handleLogin = () => {
-    // อัปเดตสถานะการล็อคอินเป็น true
-    setIsLoggedIn(true);
-  };
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
+      setIsLoggedIn(true);
+      const user = localStorage.getItem("username");
+      setUsername(user);
       navigate("/Login");
     }
   }, []);
@@ -49,12 +50,15 @@ function Login({ setIsLoggedIn }) {
 
       if (response.ok) {
         localStorage.setItem("token", result.access_token);
-        setUsername(input.username); // เซ็ตชื่อผู้ใช้เมื่อล็อกอินสำเร็จ
+        localStorage.setItem("username", input.username);
+        setIsLoggedIn(true);
+        setUsername(input.username);
         MySwal.fire({
           html: <i>{result.message}</i>,
           icon: "success",
         }).then(() => {
           navigate("/Login");
+        
         });
       } else {
         throw new Error(result.message || "Failed to login");
@@ -68,43 +72,70 @@ function Login({ setIsLoggedIn }) {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    setIsLoggedIn(false);
+    setUsername("");
+    navigate("/login");
+  };
+
+  
   return (
     <div className="flex justify-center items-center-top h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-4">Login</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Username
-            </label>
-            <input
-              className="w-full p-2 border rounded-md"
-              name="username"
-              type="text"
-              value={input.username || ""}
-              onChange={handleChange}
-              placeholder="Username"
-            />
+        {!isLoggedIn && (
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Username
+              </label>
+              <input
+                className="w-full p-2 border rounded-md"
+                name="username"
+                type="text"
+                value={input.username || ""}
+                onChange={handleChange}
+                placeholder="Username"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Enter Password
+              </label>
+              <input
+                className="w-full p-2 border rounded-md"
+                name="password"
+                type="password"
+                placeholder="****"
+                value={input.password || ""}
+                onChange={handleChange}
+              />
+            </div>
+            <button
+              className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+              type="submit"
+            >
+              Login
+            </button>
+          </form>
+        )}
+        {isLoggedIn && (
+          <div>
+            <p>Welcome, {input.username}! You are logged in.</p>
+            <button
+              className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Enter Password
-            </label>
-            <input
-              className="w-full p-2 border rounded-md"
-              name="password"
-              type="password"
-              placeholder="********"
-              value={input.password || ""}
-              onChange={handleChange}
-            />
-          </div>
-          <button onClick={handleLogin}>Login</button>
-        </form>
-        <a href="/register">Register</a>
+        )}
+        {!isLoggedIn && <Link to="/register">Register</Link>} {/* ใช้ Link จาก React Router */}
       </div>
-      {username && <Home3 username={username} />} {/* เรียก Home3 component และส่งชื่อผู้ใช้เข้าไป */}
     </div>
+    
   );
 }
 

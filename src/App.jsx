@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import Navbartest from './components/Navbartest';
 import Sidebar from './components/Sidebar';
 import Home3 from './paeges/Home3';
@@ -17,22 +18,31 @@ import Fooddetails from './paeges/Fooddetails';
 import Editstore from './paeges/Editstore';
 import Storeinformation from './paeges/Storeinformation';
 import Notshowfood from './paeges/Notshowfood';
+import NavbarSidebar from './components/NavbarSidebar';
+import Profile from './paeges/Profile';
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // สถานะการล็อคอินเริ่มต้นเป็น false
-
+  
   return (
     <Router>
+      <Profile isLoggedIn={isLoggedIn} />
       <Home3 isLoggedIn={isLoggedIn} />
-      <Navbartest />
+      <NavbarSidebar isLoggedIn={isLoggedIn}  />
       <Sidebar />
       
       <Routes>
+
+        
         <Route path="/Notshowfood" element={<Notshowfood isLoggedIn={isLoggedIn} />} />
         <Route path="/Storeinformation" element={<Storeinformation isLoggedIn={isLoggedIn} />} />
         <Route path="/Home" element={<Home isLoggedIn={isLoggedIn} />} />
         <Route path="/Search" element={<Search isLoggedIn={isLoggedIn} />} />
         <Route path="/Home2" element={<Home2 isLoggedIn={isLoggedIn} />} />
+        <Route path="/Home3" element={<Home3 isLoggedIn={isLoggedIn} />} />
+        <Route path="/Home3" element={<Home isLoggedIn={isLoggedIn} />} />
+        <Route path="/Home3" element={<Login isLoggedIn={isLoggedIn} />} />
         <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/Login" element={<Home3 setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/Logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
