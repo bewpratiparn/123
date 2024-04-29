@@ -4,21 +4,27 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Navbar from "../components/Navbar";
+import { Navigate, useLocation } from "react-router-dom";
 
 function Store_information() {
-  const [data, setData] = useState([]);
-
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const shopId = searchParams.get("shop_id");
+  const foodName = searchParams.get("food_name");
+  const foodPrice = searchParams.get("food_price");
+  
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/get_food/?shop_id=67")
-      .then((res) => {
-        const arrayData = res.data.food_data
-        console.log('data',arrayData)
-        setData(arrayData)
+    fetch("http://127.0.0.1:8000/show_all_food/")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
       })
-      
       .catch((err) => console.log(err));
   }, []);
+
+  const handleGoToStore = () => {
+    window.location.href = `/Detailfood`;
+  };
 
   return (
     <>
@@ -26,7 +32,7 @@ function Store_information() {
         src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
         className="picture"
       />
-      
+
       <div className="containner-description">
         <div className="containner-box">
           <div className="colorinside">
@@ -39,18 +45,18 @@ function Store_information() {
         </div>
       </div>
 
-     <div className="grid-container">
+      <div className="grid-container">
         <div className="grid-item">
-          <img
-            src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
+          <img onClick={() => handleGoToStore()}
+            src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg"
             className="picture-menu"
           />
-          <div>ชื่ออาหาร</div>
-          <div>ราคา</div>
+
+          <div>ชื่ออาหาร : {foodName}</div>
+          <div>ราคา : {foodPrice} บาท</div>
+          
         </div>
-      
       </div>
-      
     </>
   );
 }

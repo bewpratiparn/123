@@ -26,10 +26,10 @@ function Home() {
     setDatasearch(res);
   };
 
-  const handleGoToStore = (shopId) => {
+  const handleGoToStore = (shopId, foodName, foodPrice) => {
     // Navigate to Store_information page with shop_id as parameter
     // Example URL: /Store_information?shop_id=67
-    window.location.href = `/Store_information?shop_id=${shopId}`;
+    window.location.href = `/Store_information?shop_id=${shopId}&food_name=${foodName}&food_price=${foodPrice}`;
   };
 
   return (
@@ -88,9 +88,9 @@ function Home() {
                   <button
                     className="btn btn-primary"
                     style={{ width: "10rem" }}
-                    onClick={() => handleGoToStore(d.shop_id)}
+                    onClick={() => handleGoToStore(d.shop_id, d.food_name, d.food_price)}
                   >
-                    ไปยังร้านค้า
+                    เเสดงข้อมูลอาหาร
                   </button>
                 </div>
               </div>
