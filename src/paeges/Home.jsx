@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "flowbite";
-import Search from "../components/Search";
-import { Routes, Route, useNavigate, Link } from "react-router-dom";
+
 import "./Home.css";
-import axios from "axios";
 
 function Home() {
   const [data, setData] = useState([]);
@@ -26,6 +24,12 @@ function Home() {
     );
 
     setDatasearch(res);
+  };
+
+  const handleGoToStore = (shopId) => {
+    // Navigate to Store_information page with shop_id as parameter
+    // Example URL: /Store_information?shop_id=67
+    window.location.href = `/Store_information?shop_id=${shopId}`;
   };
 
   return (
@@ -81,14 +85,13 @@ function Home() {
                     </div>
                   </div>
 
-                  <Link to="/Store_information">
-                    <button
-                      className="btn btn-primary"
-                      style={{ width: "10rem" }}
-                    >
-                      ไปยังร้านค้า
-                    </button>
-                  </Link>
+                  <button
+                    className="btn btn-primary"
+                    style={{ width: "10rem" }}
+                    onClick={() => handleGoToStore(d.shop_id)}
+                  >
+                    ไปยังร้านค้า
+                  </button>
                 </div>
               </div>
             </div>
