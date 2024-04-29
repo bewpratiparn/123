@@ -98,7 +98,7 @@ function AddDataShop() {
             html: <i>{result.message}</i>,
             icon: "success",
           }).then((value) => {
-            navigate("/Login");
+            navigate("/Home");
           });
         } 
       })

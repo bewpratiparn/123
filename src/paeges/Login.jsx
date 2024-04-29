@@ -1,8 +1,9 @@
+// ใน Login.js
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { useNavigate, Link } from "react-router-dom"; // เพิ่ม Link จาก React Router
-
+import { useNavigate, Link } from "react-router-dom";
+import NavbarSidebar from "../components/NavbarSidebar"; // เพิ่มการ import NavbarSidebar
 
 function Login() {
   const navigate = useNavigate();
@@ -80,62 +81,63 @@ function Login() {
     navigate("/login");
   };
 
-  
   return (
-    <div className="flex justify-center items-center-top h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-4">Login</h1>
-        {!isLoggedIn && (
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Username
-              </label>
-              <input
-                className="w-full p-2 border rounded-md"
-                name="username"
-                type="text"
-                value={input.username || ""}
-                onChange={handleChange}
-                placeholder="Username"
-              />
+    <>
+      <NavbarSidebar username={username} /> {/* ส่ง username เข้าไป */}
+      <div className="flex justify-center items-center-top h-screen bg-gray-100">
+        <div className="bg-white p-8 rounded-lg shadow-lg">
+          <h1 className="text-2xl font-bold mb-4">Login</h1>
+          {!isLoggedIn && (
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Username
+                </label>
+                <input
+                  className="w-full p-2 border rounded-md"
+                  name="username"
+                  type="text"
+                  value={input.username || ""}
+                  onChange={handleChange}
+                  placeholder="Username"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Enter Password
+                </label>
+                <input
+                  className="w-full p-2 border rounded-md"
+                  name="password"
+                  type="password"
+                  placeholder="****"
+                  value={input.password || ""}
+                  onChange={handleChange}
+                />
+              </div>
+              <button
+                className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+                type="submit"
+              >
+                Login
+              </button>
+            </form>
+          )}
+          {isLoggedIn && (
+            <div>
+              <p>Welcome, {username}! You are logged in.</p>
+              <button
+                className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
             </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Enter Password
-              </label>
-              <input
-                className="w-full p-2 border rounded-md"
-                name="password"
-                type="password"
-                placeholder="****"
-                value={input.password || ""}
-                onChange={handleChange}
-              />
-            </div>
-            <button
-              className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
-              type="submit"
-            >
-              Login
-            </button>
-          </form>
-        )}
-        {isLoggedIn && (
-          <div>
-            <p>Welcome, {input.username}! You are logged in.</p>
-            <button
-              className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
-          </div>
-        )}
-        {!isLoggedIn && <Link to="/register">Register</Link>} {/* ใช้ Link จาก React Router */}
+          )}
+          {!isLoggedIn && <Link to="/register">Register</Link>} {/* ใช้ Link จาก React Router */}
+        </div>
       </div>
-    </div>
-    
+    </>
   );
 }
 

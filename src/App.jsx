@@ -23,14 +23,14 @@ import Profile from './paeges/Profile';
 
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // สถานะการล็อคอินเริ่มต้นเป็น false
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // สถานะการล็อคอินเริ่มต้นเป็น false
   
   return (
     <Router>
-      <Profile isLoggedIn={isLoggedIn} />
-      <Home3 isLoggedIn={isLoggedIn} />
+     
       <NavbarSidebar isLoggedIn={isLoggedIn}  />
       <Sidebar />
+      
       
       <Routes>
 
@@ -44,7 +44,9 @@ function App() {
         <Route path="/Home3" element={<Home isLoggedIn={isLoggedIn} />} />
         <Route path="/Home3" element={<Login isLoggedIn={isLoggedIn} />} />
         <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path="/Login" element={<Home3 setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/Login" element={<NavbarSidebar setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/NavbarSidebar" element={<NavbarSidebar setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/NavbarSidebar" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/Logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/Fooddetails" element={<Fooddetails isLoggedIn={isLoggedIn} />} />
         <Route path="/Register" element={<Register setIsLoggedIn={setIsLoggedIn} />} />

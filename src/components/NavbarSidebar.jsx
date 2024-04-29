@@ -2,9 +2,13 @@ import React from "react";
 import 'flowbite';
 
 
-function NavbarSidebar({ username }) {
+function NavbarSidebar({ username , picture }) {
+
+  
+
   return (
     <>
+  
       <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
         <div className="max-w-h-screen-xl flex flex-wrap items-center justify-between mx-auto p-1" style={{ backgroundColor: "#FFBB5C" }}>
 
@@ -49,7 +53,7 @@ function NavbarSidebar({ username }) {
 
           <div class="flex items-center space-x-6 rtl:space-x-reverse">
             <p class="text-sm text-gray-500 dark:text-white">ยินดีต้อนรับ</p>
-            <span className="text-sm text-gray-500 dark:text-white">{username}</span> {/* Display username */}
+            <span className="text-sm text-gray-500 dark:text-white">{username} {picture}</span> {/* Display username */}
             <a href="/Login" class="text-sm text-blue-600 dark:text-blue-500 hover:underline">Login</a>
           </div>
 

@@ -25,7 +25,7 @@ function Home() {
           {data.map(item => (
             <div key={item.id} className="bg-white p-4 rounded-lg shadow-lg">
               <img
-                src={item.shop_picture}
+                src={item.shop_text}
                 alt={item.shop_name}
                 className="w-64 mx-auto"
               />

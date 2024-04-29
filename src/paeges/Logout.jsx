@@ -10,7 +10,7 @@ function Logout() {
   useEffect(() => {
     const handleLogout = async () => {
       try {
-        // เรียกใช้ API สำหรับออกจากระบบ
+        // ส่งคำร้องขอเพื่อออกจากระบบ
         const response = await fetch("http://127.0.0.1:8000/logout/", {
           method: "POST",
           headers: {
@@ -21,19 +21,21 @@ function Logout() {
         if (response.ok) {
           // ลบ Token ออกจาก Local Storage เมื่อออกจากระบบสำเร็จ
           localStorage.removeItem("token");
-          MySwal.fire({
+          // แสดงข้อความด้วย SweetAlert เมื่อออกจากระบบสำเร็จ
+          await MySwal.fire({
             title: "Logging out...",
             text: "You have been logged out successfully.",
             icon: "success",
-          }).then(() => {
-            navigate("/Login"); // เปลี่ยนเส้นทางไปยังหน้า login
           });
+          // เปลี่ยนเส้นทางไปยังหน้า Login
+          navigate("/login");
         } else {
           throw new Error("Failed to logout");
         }
       } catch (error) {
         console.error("Error logging out:", error);
-        MySwal.fire({
+        // แสดงข้อความข้อผิดพลาด
+        await MySwal.fire({
           title: "Error",
           text: "Failed to logout. Please try again later.",
           icon: "error",

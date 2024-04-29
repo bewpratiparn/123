@@ -33,7 +33,7 @@ const handleError = (err) => {
                 <div className="shop-container" key={dataShops[8].id}>
                     <div className="card">
                         <img
-                            src={dataShops[8].shop_picture}
+                            src={dataShops[8].shop_text}
                             alt={dataShops[8].shop_name}
                             className="shop-image"
                         />
@@ -57,15 +57,17 @@ const handleError = (err) => {
             <div className="food-container">
                 {data.length > 0 && data.map(item => (
                     <div className="food-card" key={item.id}>
-                        <img
-                            src={item.Food_picture}
+      <a href="/Fooddetails" class="text-sm text-blue-600 dark:text-blue-500 ">            
+                            <img src={item.Food_picture}
                             alt={item.Food_name}
                             className="food-image"
                         />
+                        
                         <div className="food-details">
                             <div>ชื่ออาหาร: {item.Food_name}</div>
                             <div>ราคา: {item.Food_price}</div>
                         </div>
+                        </a>
                     </div>
                 ))}
             </div>
