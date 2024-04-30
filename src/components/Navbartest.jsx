@@ -143,7 +143,7 @@ function Navbartest({username}) {
           </div>
 
           <div className="flex items-center space-x-6 rtl:space-x-reverse">
-            <p className="text-sm text-gray-500 dark:text-white">ยินดีต้อนรับ</p>
+            
             <span className="text-sm text-gray-500 dark:text-white">{username}</span> {/* Display username */}
             <a href="/Login" className="text-sm text-blue-600 dark:text-blue-500 hover:underline">Login</a>
           </div>

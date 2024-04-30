@@ -69,8 +69,7 @@ class Sidebar extends React.Component {
           </a>
           {this.state.showLoginDropdown && (
             <div className="dropdown-content">
-              <a href="/Editstore">-แก้ไข้ข้อมูลร้านค้า</a>
-              <a href="/Notshowfood">-ไม่แสดงรายการอาหาร</a>
+              
             </div>
           )}
 

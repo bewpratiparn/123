@@ -1,10 +1,11 @@
+
 import React from "react";
 import "./Store_information.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Navbar from "../components/Navbar";
-import { Navigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Store_information() {
   const location = useLocation();
@@ -12,51 +13,58 @@ function Store_information() {
   const shopId = searchParams.get("shop_id");
   const foodName = searchParams.get("food_name");
   const foodPrice = searchParams.get("food_price");
+  const shopName = searchParams.get("shop_name");
+  const shopText = searchParams.get("shop_text");
+  const shoplocation = searchParams.get("shop_location");
+  const shopphone = searchParams.get("shop_phone");
+
+
+
+
+  console.log(foodName);
+  console.log(foodPrice);
+  console.log(shopName);
+  console.log(shopText);
+  console.log(shoplocation);
+  console.log(shopphone);
+
   
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/show_all_food/")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  const handleGoToStore = () => {
-    window.location.href = `/Detailfood`;
-  };
-
+  
   return (
     <>
       <img
-        src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
+        src={shopText}
         className="picture"
       />
-
+      
       <div className="containner-description">
+      <div className="location">ชื่อร้านค้า : {shopName}</div>
+    
         <div className="containner-box">
+            
           <div className="colorinside">
             <label htmlFor="description">Description</label>
 
-            <div className="location">สถานที่ ชื่อสถานที่ :</div>
-            <div className="maplink">Map-link :</div>
-            <div className="phone">เบอร์ติดต่อ :</div>
+            <div className="location">สถานที่ ชื่อสถานที่ : {shoplocation} </div>
+            <div className="phone">เบอร์ติดต่อ : {shopphone} </div>
           </div>
         </div>
       </div>
 
-      <div className="grid-container">
+     <div className="grid-container">
         <div className="grid-item">
-          <img onClick={() => handleGoToStore()}
-            src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg"
+          <img
+            src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
             className="picture-menu"
           />
-
+          <button href ="Detailfood">
           <div>ชื่ออาหาร : {foodName}</div>
           <div>ราคา : {foodPrice} บาท</div>
-          
+          </button>
         </div>
+      
       </div>
+      
     </>
   );
 }

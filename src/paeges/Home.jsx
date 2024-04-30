@@ -26,10 +26,10 @@ function Home() {
     setDatasearch(res);
   };
 
-  const handleGoToStore = (shopId, foodName, foodPrice) => {
+  const handleGoToStore = (shopId, foodName, foodPrice , shopName,shopText,shoplocation,shopphone) => {
     // Navigate to Store_information page with shop_id as parameter
     // Example URL: /Store_information?shop_id=67
-    window.location.href = `/Store_information?shop_id=${shopId}&food_name=${foodName}&food_price=${foodPrice}`;
+    window.location.href = `/Store_information?shop_id=${shopId}&food_name=${foodName}&food_price=${foodPrice}&shop_name=${shopName}&shop_text=${shopText}&shop_location=${shoplocation}&shop_phone=${shopphone}`;
   };
 
   return (
@@ -71,7 +71,7 @@ function Home() {
               <div className="containner-store-1" style={{}}>
                 <div className="card" style={{ width: "70rem" }}>
                   <img
-                    src={d.shop_picture} // ใช้ URL ที่ส่งมาจาก API
+                    src={d.shop_text} // ใช้ URL ที่ส่งมาจาก API
                     alt={d.shop_name}
                     style={{ width: "25rem", margin: "1rem", padding: "1rem" }}
                     className="picture-home"
@@ -88,9 +88,9 @@ function Home() {
                   <button
                     className="btn btn-primary"
                     style={{ width: "10rem" }}
-                    onClick={() => handleGoToStore(d.shop_id, d.food_name, d.food_price)}
+                    onClick={() => handleGoToStore(d.shop_id, d.food_name, d.food_price,d.shop_name,d.shop_text,d.shop_location,d.shop_phone)}
                   >
-                    เเสดงข้อมูลอาหาร
+                    ไปยังร้านค้า
                   </button>
                 </div>
               </div>
