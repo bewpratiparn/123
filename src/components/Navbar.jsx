@@ -9,16 +9,7 @@ function Navbar() {
       <div>
         <nav classname="bg-white border-gray-200 dark:bg-gray-900">
           <div classname="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="/Home" classname="flex items-center">
-              <img
-                src="https://i.ibb.co/8NCWKFN/420970713-1319255045405174-2605956450177240696-n.png"
-                classname="h-8 mr-3"
-                alt
-              />
-              <span classname="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                หน้าเมนูอาหาร
-              </span>
-            </a>
+           
             <div classname="flex items-center md:order-2">
               <button
                 type="button"
