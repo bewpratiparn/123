@@ -6,11 +6,19 @@ body {
 }
 
 /*ปรับขนาดโลโก้ร้านค้าที่จะเเสดง*/
-.picture {
+.image-store {
   position: relative;
+  border-radius: 26px;
   left: 16rem;
-  top: 5rem;
-  width: 250px;
+  top: 7rem;
+  width: 150px;
+}
+
+.store-name{
+  position: relative;
+  font-size: 22px;
+  font-family: 'Simple Food', sans-serif;
+  left: 28%;
 }
 
 /*ตำเเหน่งของชื่อร้าน,วันเปิดปิด*/

@@ -30,9 +30,9 @@ function App() {
   };
   return (
     <Router>
-       
       <Sidebar />
       <Routes>
+        <Route path="/Home" element={<Home isLoggedIn={isLoggedIn} />} />
         <Route
           path="/Notshowfood"
           element={<Notshowfood isLoggedIn={isLoggedIn} />}
@@ -42,14 +42,12 @@ function App() {
           element={<Store_information isLoggedIn={isLoggedIn} />}
         />
 
-        <Route path="/Home" element={<Home isLoggedIn={isLoggedIn} />} />
-
         <Route path="/Home2" element={<Home2 isLoggedIn={isLoggedIn} />} />
         <Route
           path="/Login"
           element={<Login setIsLoggedIn={setIsLoggedIn} />}
         />
-      
+
         <Route
           path="/Logout"
           element={<Logout setIsLoggedIn={setIsLoggedIn} />}
