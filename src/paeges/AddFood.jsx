@@ -24,6 +24,8 @@ function AddFood() {
   const [addVegetarian, setVegetarian] = useState(false);
   const [addHalal, setHalal] = useState(false);
   const [showTextarea, setShowTextarea] = useState(false);
+  const [showNoneOption, setShowNoneOption] = useState(true);
+  
 
   useEffect(() => {
     axios
@@ -32,6 +34,8 @@ function AddFood() {
       .catch((err) => console.log(err));
   }, []);
 
+
+  
   const handleFoodSelection = (event) => {
     const selectedFoodName = event.target.value;
     const selectedFoodItem = foodNamesWithElements.find(
@@ -48,6 +52,9 @@ function AddFood() {
       })
       .catch((err) => console.log(err));
   };
+
+
+  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -141,6 +148,25 @@ function AddFood() {
                     onChange={handleChange}
                   />
                 </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2 width ">
+                    องค์ประกอบอาหาร
+                  </label>
+                  <input
+                    className="p-2 border rounded-md w-96 "
+                    name="Food_elements"
+                    type="text"
+                    placeholder="องค์ประกอบของอาหาร"
+                    htmlFor="Foodextraction"
+                    
+                  
+                  />
+                </div>
+
+
+
+
+
                 <div>
                   <label
                     className="block mb-2 text-l font-medium text-gray-900 dark:text-back"
@@ -152,6 +178,9 @@ function AddFood() {
                     className="mb-5 w-full max-w-xs"
                     onChange={handleFoodSelection}
                   >
+                    <option disabled selected>
+                      ไม่ต้องการใช้รายการเเนะนำ
+                    </option>
                     {foodNamesWithElements.length > 0 &&
                       foodNamesWithElements.map((food, i) => (
                         <option key={i} value={food.food_name}>
@@ -169,7 +198,7 @@ function AddFood() {
                     className="p-2 border rounded-md"
                     name="foodDatails"
                     type="text"
-                    placeholder="ชื่อเมนู..."
+                    placeholder="รายการเเนะนำ"
                     htmlFor="ชื่อเมนู"
                     value={foodDetails.food_element}
                     onChange={handleChange}
