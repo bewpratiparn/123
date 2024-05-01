@@ -1,78 +1,71 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import "./Storeinformation.css";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import "./Storeinformation.css";
+import Navbar from "../components/Navbar";
+import { useLocation } from "react-router-dom";
 
 function Storeinformation() {
-    const [data, setData] = useState([]);
-    const [dataShops, setDataShops] = useState([]);
-
-    useEffect(() => {
-    axios.get('http://127.0.0.1:8000/show_all_food/')
-        .then(res => setData(res.data))
-        .catch(err => handleError(err)); // จัดการข้อผิดพลาด
-
-    axios.get('http://127.0.0.1:8000/shops/')
-        .then(res => setDataShops(res.data))
-        .catch(err => handleError(err)); // จัดการข้อผิดพลาด
-}, []);
-
-const handleError = (err) => {
-    Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'เกิดข้อผิดพลาดในการโหลดข้อมูล!',
-    });
-    console.error(err);
-};
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const shopId = searchParams.get("shop_id");
+  const foodName = searchParams.get("food_name");
+  const foodPrice = searchParams.get("food_price");
+  const shopName = searchParams.get("shop_name");
+  const shopText = searchParams.get("shop_text");
+  const shoplocation = searchParams.get("shop_location");
+  const shopphone = searchParams.get("shop_phone");
 
 
-    return (
-        <div className="container">
-            {dataShops.length > 8 && (
-                <div className="shop-container" key={dataShops[8].id}>
-                    <div className="card">
-                        <img
-                            src={dataShops[8].shop_text}
-                            alt={dataShops[8].shop_name}
-                            className="shop-image"
-                        />
-                        <div className="shop-details">
-                            <label className="shop-name">ชื่อร้านค้า : {dataShops[8].shop_name}</label>
-                            <br />
-                            <label className="shop-time">วัน-เวลา,เปิด-ปิด : {dataShops[8].shop_time}</label>
-                        </div>
-                        <div className="shop-description">
-                            <label className="description">Description</label>
-                            <div className="location">สถานที่ ชื่อสถานที่ : {dataShops[8].shop_location}</div>
-                            <div className="map-link">Map-link : {dataShops[8].shop_map}</div>
-                            <div className="phone">เบอร์ติดต่อ : {dataShops[8].shop_phone}</div>
-                        </div>
-                    </div>
-                </div>
-            )}
+
+
+  console.log(foodName);
+  console.log(foodPrice);
+  console.log(shopName);
+  console.log(shopText);
+  console.log(shoplocation);
+  console.log(shopphone);
+
+  
+  
+  return (
+    <>
+      <img
+        src={shopText}
+        className="picture"
+      />
+      
+      <div className="containner-description">
+      <div className="location">ชื่อร้านค้า : {shopName}</div>
+    
+        <div className="containner-box">
             
-            <div>เมนูอาหาร</div>
+          <div className="colorinside">
+            <label htmlFor="description">Description</label>
 
-            <div className="food-container">
-                {data.length > 0 && data.map(item => (
-                    <div className="food-card" key={item.id}>
-      <a href="/Fooddetails" class="text-sm text-blue-600 dark:text-blue-500 ">            
-                            <img src={item.Food_picture}
-                            alt={item.Food_name}
-                            className="food-image"
-                        />
-                        
-                        <div className="food-details">
-                            <div>ชื่ออาหาร: {item.Food_name}</div>
-                            <div>ราคา: {item.Food_price}</div>
-                        </div>
-                        </a>
-                    </div>
-                ))}
-            </div>
+            <div className="location">สถานที่ ชื่อสถานที่ : {shoplocation} </div>
+            <div className="phone">เบอร์ติดต่อ : {shopphone} </div>
+          </div>
         </div>
-    );
-}
+      </div>
 
+     <div className="grid-container">
+        <div className="grid-item">
+          <img
+            src="https://www.southernliving.com/thmb/dvvxHbEnU5yOTSV1WKrvvyY7clY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1205217071-2000-2a26022fe10b4ec8923b109197ea5a69.jpg "
+            className="picture-menu"
+          />
+          <button href ="Detailfood">
+          <div>ชื่ออาหาร : {foodName}</div>
+          <div>ราคา : {foodPrice} บาท</div>
+          </button>
+        </div>
+      
+      </div>
+      
+    </>
+  );
+}
+/*เหลือ ทำ ชื่ออาหาร เเละ ราคา ให้มาอยู่ด้านข้างขวาของรูป เเละ เอาสีดำเเถบด้านล่างออก*/
 export default Storeinformation;

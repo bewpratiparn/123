@@ -34,7 +34,8 @@ function App() {
       
       <Routes>
 
-        
+
+     
         <Route path="/Notshowfood" element={<Notshowfood isLoggedIn={isLoggedIn} />} />
         <Route path="/Storeinformation" element={<Storeinformation isLoggedIn={isLoggedIn} />} />
         <Route path="/Home" element={<Home isLoggedIn={isLoggedIn} />} />
