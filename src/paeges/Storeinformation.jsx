@@ -7,6 +7,9 @@ import Navbar from "../components/Navbar";
 import { useLocation } from "react-router-dom";
 
 function Storeinformation() {
+
+
+  
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const shopId = searchParams.get("shop_id");
