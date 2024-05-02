@@ -1,6 +1,7 @@
 import React from 'react';
 import './Fooddetails.css';
 
+
 function Fooddetails() {
   return (
     <>

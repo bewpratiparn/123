@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "flowbite";
-
 import "./Home.css";
 
 function Home() {
-  const [data, setData] = useState([]);
-
+ 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/shops/")
       .then((res) => res.json())
@@ -18,6 +16,7 @@ function Home() {
   }, []);
   const [datasearch, setDatasearch] = useState([]);
   const [filterData, setfilterData] = useState([]);
+
   const handleFilter = (value) => {
     const res = filterData.filter((f) =>
       f.shop_name.toLowerCase().includes(value)
@@ -26,10 +25,10 @@ function Home() {
     setDatasearch(res);
   };
 
-  const handleGoToStore = (shopId, foodName, foodPrice , shopName,shopText,shoplocation,shopphone) => {
+  const handleGoToStore = (shopId, foodName, foodPrice, shopName, shopPicture, shopLocation, shopPhone,shopTime,shopText) => {
     // Navigate to Store_information page with shop_id as parameter
     // Example URL: /Store_information?shop_id=67
-    window.location.href = `/Storeinformation?shop_id=${shopId}&food_name=${foodName}&food_price=${foodPrice}&shop_name=${shopName}&shop_text=${shopText}&shop_location=${shoplocation}&shop_phone=${shopphone}`;
+    window.location.href = `/Store_information?shop_id=${shopId}&food_name=${foodName}&food_price=${foodPrice}&shop_name=${shopName}&shop_picture=${shopPicture}&shop_location=${shopLocation}&shop_phone=${shopPhone}&shop_time=${shopTime}&shop_text=${shopText}`;
   };
 
   return (
@@ -66,29 +65,44 @@ function Home() {
       <div className="bg-gray-100 min-h-screen p-4">
         <div className="text-2xl font-bold text-center mb-*">ร้านอาหาร</div>
         <div className="grid-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {datasearch.map((d, i) => (
+          {datasearch.reduce((acc, curr) => {
+            const existingShop = acc.find((shop) => shop.shop_id === curr.shop_id);
+            if (!existingShop) {
+              acc.push(curr);
+            }
+            return acc;
+          }, []).map((d, i) => (
             <div key={i} className="bg-white p-4 rounded-lg shadow-lg">
               <div className="containner-store-1" style={{}}>
                 <div className="card" style={{ width: "70rem" }}>
                   <img
-                    src={d.shop_text} // ใช้ URL ที่ส่งมาจาก API
+                    src={d.shop_picture}
                     alt={d.shop_name}
-                    style={{ width: "25rem", margin: "1rem", padding: "1rem" }}
+                    style={{ width: "400px", margin: "1rem", padding: "1rem" }}
                     className="picture-home"
                   />
 
                   <div className="data-storehome">
                     <div className="storename">ชื่อร้านค้า: {d.shop_name} </div>
+                    <div className="location-store"> สถานที่: {d.shop_location} </div>
                     <div className="tel">เบอร์โทร: {d.shop_phone} </div>
-                    <div className="location-store">
-                      สถานที่: {d.shop_location}
-                    </div>
+                    <div className="time">วันเวลาเปิด-ปิด: {d.shop_time} </div>
+                    <div className="symbol">ตราสัญลักษณ์: {d.shop_text} </div>
+                  
+                  </div>
+
+                  <div className="carousel">
+                      <div className="">นี่คือรูป
+                        <img src="https://cdn.britannica.com/36/123536-050-95CB0C6E/Variety-fruits-vegetables.jpg" alt="pictureex"  width={50}/>
+                      </div>
+
+
                   </div>
 
                   <button
                     className="btn btn-primary"
                     style={{ width: "10rem" }}
-                    onClick={() => handleGoToStore(d.shop_id, d.food_name, d.food_price,d.shop_name,d.shop_text,d.shop_location,d.shop_phone)}
+                    onClick={() => handleGoToStore(d.shop_id, d.food_name, d.food_price,d.shop_name,d.shop_picture,d.shop_location,d.shop_phone,d.shop_time,d.shop_text)}
                   >
                     ไปยังร้านค้า
                   </button>

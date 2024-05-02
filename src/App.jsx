@@ -16,7 +16,7 @@ import AddDataShop from './paeges/AddDataShop';
 import RecipeDetail from './paeges/RecipeDetail';
 import Fooddetails from './paeges/Fooddetails';
 import Editstore from './paeges/Editstore';
-import Storeinformation from './paeges/Storeinformation';
+import Store_information from './paeges/Store_information';
 import Notshowfood from './paeges/Notshowfood';
 import NavbarSidebar from './components/NavbarSidebar';
 import Profile from './paeges/Profile';
@@ -37,7 +37,7 @@ function App() {
 
      
         <Route path="/Notshowfood" element={<Notshowfood isLoggedIn={isLoggedIn} />} />
-        <Route path="/Storeinformation" element={<Storeinformation isLoggedIn={isLoggedIn} />} />
+        <Route path="/Store_information" element={<Store_information isLoggedIn={isLoggedIn} />} />
         <Route path="/Home" element={<Home isLoggedIn={isLoggedIn} />} />
         <Route path="/Search" element={<Search isLoggedIn={isLoggedIn} />} />
         <Route path="/Home2" element={<Home2 isLoggedIn={isLoggedIn} />} />
