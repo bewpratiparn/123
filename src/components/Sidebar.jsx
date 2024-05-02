@@ -48,7 +48,7 @@ function Sidebar({ username }) {
             <div className="dropdown-content">
               <a className="textinsidebar" href="/AddDataShop">เพิ่มข้อมูลร้านค้า</a>
               <a className="textinsidebar" href="/AddFood">เพิ่มข้อมูลอาหาร</a>
-              <a className="textinsidebar" href="/Detailfood">แสดงรายละเอียดข้อมูลร้านค้า</a>
+            
             </div>
           )}
 

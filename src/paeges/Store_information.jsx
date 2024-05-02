@@ -14,17 +14,39 @@ function Store_information() {
   const shopTime = searchParams.get("shop_time");
 
   const [foodItems, setFoodItems] = useState([]);
+  const [fooddetail, setFoodDetail] = useState([]);
 
   useEffect(() => {
     // Fetch food items data from an API endpoint
-    axios.get(`http://127.0.0.1:8000/show_all_food/?shop_id=${shopId}`)
-      .then(response => {
-        setFoodItems(response.data);
+    axios
+      .get(`http://127.0.0.1:8000/show_all_food/?shop_id=${shopId}`)
+      .then((response) => {
+        // Filter food items by shop_id
+        const filteredFoodItems = response.data.filter(
+          (item) => item.shop_id === parseInt(shopId)
+        );
+        setFoodItems(filteredFoodItems);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching food items:", error);
       });
   }, [shopId]);
+
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/food_names/")
+      .then((response) => {
+        setFoodDetail(response.data); // นี่คือการกำหนดค่า state ด้วยข้อมูลที่ได้รับจาก API
+      })
+      .catch((error) => {
+        console.error("Error fetching food items:", error);
+      });
+  }, []);
+
+  const handleGotodetailfood = (foodId, foodElement) => {
+    // Navigate to Detailfood page with foodElement as a query parameter
+    window.location.href = `/Detailfood?food_id=${foodId}&food_elements=${foodElement}`;
+  };
 
   return (
     <>
@@ -37,30 +59,33 @@ function Store_information() {
           <div className="colorinside">
             <label htmlFor="description">Description</label>
 
-            <div className="location">
-              สถานที่ ชื่อสถานที่ : {shoplocation}{" "}
-            </div>
+            <div className="location">สถานที่ ชื่อสถานที่ : {shoplocation}</div>
             <div className="phone">เบอร์ติดต่อ : {shopphone} </div>
           </div>
         </div>
       </div>
-
-      {foodItems.map((item, index) => (
-        <div className="grid-container" key={index}>
-          <div className="grid-item">
-            <img
-              src={item.Food_picture}
-              className="picture-menu"
-              alt={`รูปภาพของ ${item.Food_picture}`}
-            />
-            <button href="Detailfood">
-              <div>ชื่ออาหาร : {item.Food_name}</div>
-              <div>ราคา : {item.food_Price} บาท</div>
-            </button>
-          </div>
-        </div>
+      
+          {foodItems.map((item, index) => (
+            <div className="grid-container" key={index}>
+              <div className="grid-item">
+                <img
+                  onClick={() =>
+                    handleGotodetailfood(item.food_id, item.food_elements)
+                  }
+                  src={item.Food_picture}
+                  className="picture-menu"
+                  alt={`รูปภาพของ ${item.Food_picture}`}
+                />
+                <button href="Detailfood">
+                  <div>ชื่ออาหาร : {item.Food_name}</div>
+                  <div>ราคา : {item.Food_Price} บาท</div>
+                </button>
+              </div>
+            </div>
       ))}
+    
     </>
   );
 }
+
 export default Store_information;

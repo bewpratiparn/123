@@ -1,7 +1,11 @@
 import React from "react";
 import "./Detailfood.css";
-
+import { useLocation } from "react-router-dom";
 function Detailfood() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const foodElement = searchParams.get("food_elements");
+
   return (
     <>
       <div
@@ -32,8 +36,7 @@ function Detailfood() {
             marginTop: "10px",
             display: "flex",
             justifyContent: "flex-start",
-            fontSize: "24px",
-            fontWeight: "bold",
+            fontSize: "19px",
           }}
         >
           <div
@@ -43,12 +46,16 @@ function Detailfood() {
               marginRight: "450px",
             }}
           >
-            แกงเทโพ
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEc0mgPQFd2aU7fBXDhGnQxTLAHsPxPZ1n8MNVJUWwS0jcqsRu3uDM7QWzVJh_9odxNj4&usqp=CAU"
-              alt="แกงเทโพ Image"
-              style={{ width: "20%", marginTop: "10px", marginLeft: "30px" }}
-            />
+            ชื่ออาหาร :{" "}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginRight: "450px",
+            }}
+          >
+            ราคา :{" "}
           </div>
         </div>
 
@@ -70,89 +77,26 @@ function Detailfood() {
               <p>
                 วัตถุดิบ
                 <input
+                 value={foodElement}
                   type="text"
                   id="ingredients1"
                   name="ingredients1"
-                  style={{ marginLeft: "30px", padding: "5px", width: "900px" }}
+                  style={{ marginLeft: "31px", padding: "5px", width: "900px" }}
                 />
-                ,
               </p>
             </div>
             <div>
-              <p>
-                เครื่องปรุง
-                <input
-                  type="text"
-                  id="seasonings1"
-                  name="seasonings1"
-                  style={{ marginLeft: "10px", padding: "5px", width: "80px" }}
-                />
-                ,
-                <input
-                  type="text"
-                  id="seasonings2"
-                  name="seasonings2"
-                  style={{ marginLeft: "10px", padding: "5px", width: "80px" }}
-                />
-                ,
-                <input
-                  type="text"
-                  id="seasonings3"
-                  name="seasonings3"
-                  style={{ marginLeft: "10px", padding: "5px", width: "80px" }}
-                />
-                ,
-                <input
-                  type="text"
-                  id="vegetables3"
-                  name="vegetables3"
-                  style={{ marginLeft: "10px", padding: "5px", width: "80px" }}
-                />
-                ,
-                <input
-                  type="text"
-                  id="vegetables3"
-                  name="vegetables3"
-                  style={{ marginLeft: "10px", padding: "5px", width: "80px" }}
-                />
-              </p>
+             
+              
             </div>
             <div>
               <p>
                 ผัก
                 <input
                   type="text"
-                  id="vegetables1"
-                  name="vegetables1"
-                  style={{ marginLeft: "63px", padding: "5px", width: "80px" }}
-                />
-                ,
-                <input
-                  type="text"
-                  id="vegetables2"
-                  name="vegetables2"
-                  style={{ marginLeft: "10px", padding: "5px", width: "80px" }}
-                />
-                ,
-                <input
-                  type="text"
-                  id="vegetables3"
-                  name="vegetables3"
-                  style={{ marginLeft: "10px", padding: "5px", width: "80px" }}
-                />
-                ,
-                <input
-                  type="text"
-                  id="vegetables3"
-                  name="vegetables3"
-                  style={{ marginLeft: "10px", padding: "5px", width: "80px" }}
-                />
-                ,
-                <input
-                  type="text"
-                  id="vegetables3"
-                  name="vegetables3"
-                  style={{ marginLeft: "10px", padding: "5px", width: "80px" }}
+                  id="ingredients1"
+                  name="ingredients1"
+                  style={{ marginLeft: "63px", padding: "5px", width: "900px" }}
                 />
               </p>
             </div>
@@ -161,37 +105,9 @@ function Detailfood() {
                 รสชาติ
                 <input
                   type="text"
-                  id="flavors1"
-                  name="flavors1"
-                  style={{ marginLeft: "34px", padding: "5px", width: "80px" }}
-                />
-                ,
-                <input
-                  type="text"
-                  id="flavors2"
-                  name="flavors2"
-                  style={{ marginLeft: "10px", padding: "5px", width: "80px" }}
-                />
-                ,
-                <input
-                  type="text"
-                  id="flavors3"
-                  name="flavors3"
-                  style={{ marginLeft: "10px", padding: "5px", width: "80px" }}
-                />
-                ,
-                <input
-                  type="text"
-                  id="vegetables3"
-                  name="vegetables3"
-                  style={{ marginLeft: "10px", padding: "5px", width: "80px" }}
-                />
-                ,
-                <input
-                  type="text"
-                  id="vegetables3"
-                  name="vegetables3"
-                  style={{ marginLeft: "10px", padding: "5px", width: "80px" }}
+                  id="ingredients1"
+                  name="ingredients1"
+                  style={{ marginLeft: "34px", padding: "5px", width: "900px" }}
                 />
               </p>
             </div>
@@ -202,9 +118,9 @@ function Detailfood() {
           <div
             style={{
               marginTop: "30px",
-              marginLeft: "0px",
+              marginLeft: "30px",
               fontSize: "19px",
-              marginRight: "10px",
+              marginRight: "6px",
               display: "inline-block",
             }}
           >
@@ -215,33 +131,10 @@ function Detailfood() {
             id="ingredients1"
             name="ingredients1"
             style={{
-              marginLeft: "10px",
+              marginLeft: "200px",
               marginTop: "20px",
               padding: "80px",
-              width: "500px",
-              display: "inline-block",
-            }}
-          />
-
-          <div
-            style={{
-              marginLeft: "20px",
-              fontSize: "19px",
-              marginRight: "auto",
-              display: "inline-block",
-            }}
-          >
-            วิธีการทำ
-          </div>
-          <input
-            type="text"
-            id="ingredients1"
-            name="ingredients1"
-            style={{
-              marginLeft: "10px",
-              padding: "80px",
-              width: "500px",
-              display: "inline-block",
+              width: "900px",
             }}
           />
         </div>

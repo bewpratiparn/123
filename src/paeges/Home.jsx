@@ -5,7 +5,9 @@ import "./Home.css";
 
 function Home() {
   const [data, setData] = useState([]);
-
+ 
+  
+  
   useEffect(() => {
     fetch("http://127.0.0.1:8000/shops/")
       .then((res) => res.json())
@@ -90,6 +92,14 @@ function Home() {
                     <div className="location-store">
                       สถานที่: {d.shop_location}
                     </div>
+                  </div>
+
+                  <div className="carousel">
+                      <div className="">นี่คือรูป
+                        <img src="https://cdn.britannica.com/36/123536-050-95CB0C6E/Variety-fruits-vegetables.jpg" alt="pictureex"  width={50}/>
+                      </div>
+
+
                   </div>
 
                   <button

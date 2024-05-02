@@ -107,7 +107,7 @@ function AddFood() {
           } else {
             MySwal.fire({
               html: <i>เพิ่มข้อมูลร้านค้าสำเร็จ</i>,
-              icon: "success",
+              icon: "error",
             });
           }
         })
