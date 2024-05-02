@@ -4,138 +4,74 @@ import { useLocation } from "react-router-dom";
 function Detailfood() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const foodElement = searchParams.get("food_elements");
-
+  const foodElements = searchParams.get("food_elements");
+  const foodPicture = searchParams.get("Food_picture");
+  const foodElement = searchParams.get("Food_element");
+  console.log(foodPicture);
+  console.log(location.search);
   return (
     <>
       <div
         style={{
-          marginLeft: "40px",
+          marginLeft: "0px",
           marginRight: "40px",
-          backgroundColor: "gray",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          fontSize: "24px",
+          fontWeight: "bold",
+          color: "black",
+          textAlign: "center",
         }}
       >
-        <div
-          style={{
-            marginLeft: "0px",
-            marginRight: "40px",
-            fontSize: "24px",
-            fontWeight: "bold",
-            color: "black",
-            textAlign: "left",
-          }}
-        >
-          หน้าแสดงรายละเอียดอาหาร
-        </div>
+        หน้าแสดงรายละเอียดอาหาร
+      </div>
 
-        <div
-          style={{
-            marginTop: "10px",
-            display: "flex",
-            justifyContent: "flex-start",
-            fontSize: "19px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginRight: "450px",
-            }}
-          >
-            ชื่ออาหาร :{" "}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginRight: "450px",
-            }}
-          >
-            ราคา :{" "}
-          </div>
-        </div>
+      <div
+        style={{
+          marginTop: "30px",
+          display: "flex",
+          justifyContent: "flex-end",
+          fontSize: "19px",
+        }}
+      >
+        <div className="namefood">ชื่ออาหาร :</div>
+        <div className="price">ราคา : </div>
+      </div>
 
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginTop: "20px",
-            justifyContent: "center",
-          }}
-        >
-          <img
-            src="https://i.ytimg.com/vi/XyYMbh2uay4/maxresdefault.jpg"
-            alt="Food Image"
-            style={{ width: "20%", marginTop: "10px" }}
-          />
-          <div style={{ marginLeft: "20px", fontSize: "19px" }}>
-            <div>
-              <p>
-                วัตถุดิบ
-                <input
-                 value={foodElement}
-                  type="text"
-                  id="ingredients1"
-                  name="ingredients1"
-                  style={{ marginLeft: "31px", padding: "5px", width: "900px" }}
-                />
-              </p>
-            </div>
-            <div>
-             
-              
-            </div>
-            <div>
-              <p>
-                ผัก
-                <input
-                  type="text"
-                  id="ingredients1"
-                  name="ingredients1"
-                  style={{ marginLeft: "63px", padding: "5px", width: "900px" }}
-                />
-              </p>
-            </div>
-            <div>
-              <p>
-                รสชาติ
-                <input
-                  type="text"
-                  id="ingredients1"
-                  name="ingredients1"
-                  style={{ marginLeft: "34px", padding: "5px", width: "900px" }}
-                />
-              </p>
-            </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          marginTop: "20px",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          className="picture_in_detailstore"
+          src={foodPicture}
+          alt="Food_picture"
+        />
+        <div className="titlebar">วัตถุดิบ</div>
+
+        <div style={{ marginLeft: "10px", fontSize: "16px" }}>
+          <div className="foodElements">
+            <textarea
+              value={foodElements}
+              id="ingredients1"
+              name="ingredients1"
+              style={{ marginLeft: "100px", padding: "10px", width: "800px" }}
+            />
           </div>
         </div>
+      </div>
 
-        <div>
-          <div
-            style={{
-              marginTop: "30px",
-              marginLeft: "30px",
-              fontSize: "19px",
-              marginRight: "6px",
-              display: "inline-block",
-            }}
-          >
-            รายละเอียดอาหาร
-          </div>
-          <input
+      <div>
+        <div className="detail_food">รายละเอียดอาหาร</div>
+        <div className="textelement">
+          <textarea
+            value={foodElement}
             type="text"
             id="ingredients1"
             name="ingredients1"
-            style={{
-              marginLeft: "200px",
-              marginTop: "20px",
-              padding: "80px",
-              width: "900px",
-            }}
+            style={{ width: "750px", padding: "20px" }}
           />
         </div>
       </div>

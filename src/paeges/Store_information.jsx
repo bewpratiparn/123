@@ -43,9 +43,9 @@ function Store_information() {
       });
   }, []);
 
-  const handleGotodetailfood = (foodId, foodElement) => {
+  const handleGotodetailfood = (foodId, foodElements,foodPicture,foodElement) => {
     // Navigate to Detailfood page with foodElement as a query parameter
-    window.location.href = `/Detailfood?food_id=${foodId}&food_elements=${foodElement}`;
+    window.location.href = `/Detailfood?food_id=${foodId}&food_elements=${foodElements}&Food_picture=${foodPicture}&Food_element=${foodElement}`;
   };
 
   return (
@@ -70,7 +70,7 @@ function Store_information() {
               <div className="grid-item">
                 <img
                   onClick={() =>
-                    handleGotodetailfood(item.food_id, item.food_elements)
+                    handleGotodetailfood(item.food_id, item.food_elements,item.Food_picture,item.Food_element)
                   }
                   src={item.Food_picture}
                   className="picture-menu"

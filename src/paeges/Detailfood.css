@@ -1,4 +1,45 @@
-.custom-dropdown select,
-.custom-dropdown option {
-  background-color: white;
+
+.namefood{
+  position: relative;
+  top: 325px;
+  right:75%;
+  font-size:22px ;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.price{
+  position: relative;
+  top: 360px;
+  right:78%;
+}
+
+
+.picture_in_detailstore {
+ position: relative;
+  width: 400px;
+  border-radius: 26px;
+}
+
+.titlebar {
+  position: relative;
+  font-size: 22px;
+  bottom: 55px;
+  left: 8rem;
+}
+
+.foodElements{
+  position: relative;
+  top: 10px;
+  
+ right: 90px;
+}
+.detail_food {
+  position: relative;
+  font-size: 22px;
+  left: 40%;
+}
+.textelement {
+  padding: 10px;
+  position: relative;
+  left: 38%;
+  font-size: 18px;
 }
