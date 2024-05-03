@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "flowbite";
 import "./Home.css";
 
+
 function Home() {
  
   useEffect(() => {
@@ -63,7 +64,7 @@ function Home() {
       </header>
 
       <div className="bg-gray-100 min-h-screen p-4">
-        <div className="text-2xl font-bold text-center mb-*">ร้านอาหาร</div>
+        <div className="text-2xl font-bold text-center mb-8">ร้านอาหาร</div>
         <div className="grid-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {datasearch.reduce((acc, curr) => {
             const existingShop = acc.find((shop) => shop.shop_id === curr.shop_id);
@@ -73,12 +74,12 @@ function Home() {
             return acc;
           }, []).map((d, i) => (
             <div key={i} className="bg-white p-4 rounded-lg shadow-lg">
-              <div className="containner-store-1" style={{}}>
+              <div className="container-store">
                 <div className="card" style={{ width: "70rem" }}>
                   <img
                     src={d.shop_picture}
                     alt={d.shop_name}
-                    style={{ width: "400px", margin: "1rem", padding: "1rem" }}
+                    style={{ width: "100%", margin: "1rem", padding: "1rem", borderRadius: "0.5rem" }} // Updated image style
                     className="picture-home"
                   />
 

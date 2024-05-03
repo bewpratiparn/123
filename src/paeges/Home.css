@@ -39,3 +39,7 @@ body {
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+
+.storename, .location-store, .tel, .time, .symbol {
+  font-size: 1.2rem; /* Adjust font size as needed */
+}
