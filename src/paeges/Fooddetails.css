@@ -3,6 +3,82 @@
   background-color: white;
 }
 
+/* Fooddetails.css */
 
+/* Fooddetails.css */
+
+.container {
+  margin-left: 40px;
+  margin-right: 40px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.detail-food,
+.detail-price {
+  display: inline-block;
+  width: 500px; /* ปรับขนาดตามที่ต้องการ */
+  font-size: 19px;
+  color: #555;
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.food-image {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.ingredients-container {
+  flex: 1;
+}
+
+.ingredients-label {
+  font-size: 19px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+
+
+.description {
+  font-size: 19px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.ingredients-input,
+.description-input {
+  width: 700px;
+  height: 150px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  overflow-y: auto; /* ทำให้เป็น scroll ในแนวแกน y เมื่อข้อความเกินขนาดกล่อง */
+  resize: vertical; /* ทำให้สามารถปรับขนาดกล่องได้แค่แนวแกน y */
+}
 
 
