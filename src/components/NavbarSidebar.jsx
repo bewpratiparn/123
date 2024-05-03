@@ -10,6 +10,8 @@ const NavbarSidebar = ({ username, picture }) => {
           <img src="https://i.ibb.co/8NCWKFN/420970713-1319255045405174-2605956450177240696-n.png" className="h-20  mr-10" alt="" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">หน้าหลัก</span>
         </a>
+
+        
         
         {/* Sidebar component */}
         <Sidebar username={username} picture={picture} />

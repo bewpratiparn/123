@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import "./Store_information.css";
 import { Link } from "react-router-dom";
 
-
 function Store_information() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -20,7 +19,7 @@ function Store_information() {
 
   useEffect(() => {
     // Fetch food items data from an API endpoint
-    axios.get("http://127.0.0.1:8000/show_all_food/?shop_id=${shopId}")
+    axios.get(`http://127.0.0.1:8000/show_all_food/?shop_id=${shopId}`)
       .then(response => {
         // Filter food items by shop_id
         const filteredFoodItems = response.data.filter(item => item.shop_id === parseInt(shopId));
@@ -31,49 +30,42 @@ function Store_information() {
       });
   }, [shopId]);
 
-
-
   return (
-    <>
     <div className="bk">
-    <div>
-      <img src={shopPicture} className="image-store" />
-      </div>
-      <div className="store-name">ชื่อร้านค้า : {shopName}</div>
+      <div className="card2">
+  <div className="store-information-container">
+  <div className="store-details">
+    <img src={shopPicture} className="image-store" alt={shopName} />
       <div className="containner-description">
-        
         <div className="containner-box">
           <div className="colorinside">
-            
-            <label htmlFor="description">Description</label>
-
+            <div className="store-name">ชื่อร้านค้า : {shopName}</div>
             <div className="location">สถานที่ ชื่อสถานที่ : {shopLocation}</div>
-            <div className="phone">เบอร์ติดต่อ : {shopPhone} </div>
+            <div className="phone">เบอร์ติดต่อ : {shopPhone}</div>
             <div className="time">วันเวลาเปิด-ปิด : {shopTime}</div>
             <div className="symbol">ตราสัญลักษณ์ : {shopText}</div>
           </div>
         </div>
       </div>
-
-      {foodItems.map((item, index) => (
+    </div>
+  </div>
+  <div className="grid-container2">
+  {foodItems.map((item, index) => (
+    <div className="grid-item-wrapper" key={index}>
+      <div className="grid-item">
+        <img src={item.Food_picture} className="picture-menu" alt={`รูปภาพของ ${item.Food_picture}`} />
+        <div>ชื่ออาหาร : {item.Food_name}</div>
+        <div>ราคา : {item.Food_price} บาท</div>
         <Link to="/Fooddetails">
-        <div className="grid-container" key={index}>
-          <div className="grid-item">
-            <img
-              src={item.Food_picture}
-              className="picture-menu"
-              alt={`รูปภาพของ ${item.Food_picture}`}
-            />
-            <button href="Detailfood">
-              <div>ชื่ออาหาร : {item.Food_name}</div>
-              <div>ราคา : {item.Food_price} บาท</div>
-            </button>
-          </div>
-        </div>
+          <button>ดูรายละเอียด</button>
         </Link>
-      ))}
       </div>
-    </>
+    </div>
+  ))}
+</div>
+
+</div>
+    </div>
   );
 }
 

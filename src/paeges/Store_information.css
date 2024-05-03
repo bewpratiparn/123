@@ -1,0 +1,103 @@
+
+body {
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+
+.bk {
+  background-color: #fff;
+  height: 500vh;
+}
+/* Global font size */
+body {
+  font-size: 16px;
+}
+
+.bk {
+  background-color: #f0f0f0;
+  padding: 20px;
+  min-height: 200vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.card2 {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  max-width: 1980px;
+  min-height: 200vh;
+  margin-top: 20px;
+}
+
+.store-information-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.image-store,
+.picture-menu {
+  max-width: 9000px; /* กำหนดให้รูปภาพไม่เกินขนาด container */
+  max-height: 9000px; /* กำหนดให้รูปภาพไม่เกินความสูงของ container */
+  display: block;
+  margin-left: auto; /* ขยับรูปภาพไปทางด้านซ้ายสุด */
+  margin-right: auto; /* คั่นรูปภาพให้อยู่ตรงกลาง */
+}
+
+
+
+.store-details {
+  flex: 1;
+  text-align: left;
+  margin-left: 0px;
+}
+
+.store-name ,
+.location,
+.phone,
+.time,
+.symbol,
+.grid-item div {
+  font-size: 18px; /* Set font size for all text elements */
+  margin-bottom: 8px;
+  margin-left: 20px;
+  
+}
+
+
+
+.grid-container2 {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr); /* Ensure one column */
+  gap: 30px;
+  justify-items: center;
+}
+
+.grid-item-wrapper {
+  width: 100%;
+}
+
+
+
+
+
+button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
