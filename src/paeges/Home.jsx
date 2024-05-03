@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "flowbite";
-import "./Home.css"; // เพิ่ม import ไฟล์ CSS ที่สร้างไว้
+import "./Home.css";
+import { Link } from "react-router-dom";
 
 function Home() {
   useEffect(() => {
@@ -12,7 +13,7 @@ function Home() {
       })
       .catch((err) => console.log(err));
   }, []);
-  
+
   const [datasearch, setDatasearch] = useState([]);
   const [filterData, setfilterData] = useState([]);
 
@@ -22,10 +23,6 @@ function Home() {
     );
 
     setDatasearch(res);
-  };
-
-  const handleGoToStore = (shopId, foodName, foodPrice, shopName, shopPicture, shopLocation, shopPhone,shopTime,shopText) => {
-    window.location.href = `/Store_information?shop_id=${shopId}&food_name=${foodName}&food_price=${foodPrice}&shop_name=${shopName}&shop_picture=${shopPicture}&shop_location=${shopLocation}&shop_phone=${shopPhone}&shop_time=${shopTime}&shop_text=${shopText}`;
   };
 
   return (
@@ -92,12 +89,15 @@ function Home() {
                       </div>
                   </div>
 
-                  <button
+                  <Link
+                    to={{
+                      pathname: `/Store_information`,
+                      search: `?shop_id=${d.shop_id}&shop_name=${d.shop_name}&shop_picture=${d.shop_picture}&shop_location=${d.shop_location}&shop_phone=${d.shop_phone}&shop_time=${d.shop_time}&shop_text=${d.shop_text}`
+                    }}
                     className="btn btn-primary"
-                    onClick={() => handleGoToStore(d.shop_id, d.food_name, d.food_price,d.shop_name,d.shop_picture,d.shop_location,d.shop_phone,d.shop_time,d.shop_text)}
                   >
                     ไปยังร้านค้า
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
