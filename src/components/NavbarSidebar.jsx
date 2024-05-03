@@ -13,7 +13,7 @@ const NavbarSidebar = ({ username, picture }) => {
         
         {/* Sidebar component */}
         <Sidebar username={username} picture={picture} />
-      
+        <div class="flex items-center space-x-6 rtl:space-x-reverse"> <p class="text-sm text-gray-500 dark:text-white ">ยินดีต้อนรับ</p> <span className="text-sm text-gray-500 dark:text-white">{username} {picture}</span> {/* Display username */} <a href="/Login" class="text-sm text-blue-600 dark:text-blue-500 hover:underline">Login</a> </div>
       </div>
     </nav>
   );
@@ -44,8 +44,18 @@ const Sidebar = ({ username, picture }) => {
     <div>
       <div id="mySidebar" className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
-        <a href="/Home">หน้าร้านค้า</a>
-        <a href="/Translate">แปลภาษา</a>
+        
+        
+        <a href="/Home">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAARZJREFUSEvVldsNwjAMRd1NYBOYBJgEMQlsApvAJsCRcpEbOY1bqR/4B+Qk91z5AYOtHMPK+jYHsDGzazF0MrNXxlwWIPFdEUV8n4FkAF5crsmlID1ALb41M3L38tmFTAEicZU9DWkBpsRnQSJARjwNqQEtcfLnb2OPpbkPM7uU75Pl8oB6FHVG/hnMvG+wvzNqvAewRDhU6Ex5XLNgBDl2ghz7QLzd218+A8A9DhHiISHHuGV0UwAZkBPBIwDu2QVC9+p3o0Nf4voiQiqHGqsS3VzZFgMyTfYlGk1mtAeREyAHNwS+4a3SpksUTGiYWlyi/wNoLLPO/T2/F80eMJKMIY2dE/p90jI2AXNEu3d7/2hdgd6FD/I5Wxnr0cXbAAAAAElFTkSuQmCC" alt="Home" />
+    หน้าหลัก
+</a>
+
+
+<a href="/Translate">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAMhJREFUSEvtldENgzAMRI9N2k3YpGWStpPAJnQT2IT2ohisEqLIivtF/pDwvdzZcho4n8ZZHxpwB9AbgDOAAcArVasBi0FcSgi5egKonYy7loMTUNR+iXvSU+XRA07jOlVegLXpJ4BRMG+uCa4LHtkIIZ1cRCzoiuZn+6kFMMbPLIDCcqNSxiUuS0IOm0y7FH8rVesS3Dngqk5F8vjCnqU21H87gEEjlDCaW+IS1QBysV+n1QHihlNEVy4AHVl4Qv/66FubnK37AGDPKRn4mzOpAAAAAElFTkSuQmCC" alt="แปลภาษา" />
+    แปลภาษา
+</a>
         <a href="#" onClick={toggleProfileDropdown}>เพิ่มข้อมูลสำหรับร้าน
           <img
             src="https://cdn.icon-icons.com/icons2/1659/PNG/512/3844438-hamburger-menu-more-navigation_110319.png"
