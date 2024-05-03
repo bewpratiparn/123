@@ -42,10 +42,10 @@ function Store_information() {
         console.error("Error fetching food items:", error);
       });
   }, []);
-
-  const handleGotodetailfood = (foodId, foodElements,foodPicture,foodElement) => {
+// ส่งจากเส้น allfood
+  const handleGotodetailfood = (foodId, foodElements,foodPicture,foodElement,foodPrice) => {
     // Navigate to Detailfood page with foodElement as a query parameter
-    window.location.href = `/Detailfood?food_id=${foodId}&food_elements=${foodElements}&Food_picture=${foodPicture}&Food_element=${foodElement}`;
+    window.location.href = `/Detailfood?food_id=${foodId}&food_elements=${foodElements}&Food_picture=${foodPicture}&Food_element=${foodElement}&Food_price=${foodPrice}`;
   };
 
   return (
@@ -70,7 +70,7 @@ function Store_information() {
               <div className="grid-item">
                 <img
                   onClick={() =>
-                    handleGotodetailfood(item.food_id, item.food_elements,item.Food_picture,item.Food_element)
+                    handleGotodetailfood(item.food_id, item.food_elements,item.Food_picture,item.Food_element,item.Food_price)
                   }
                   src={item.Food_picture}
                   className="picture-menu"
