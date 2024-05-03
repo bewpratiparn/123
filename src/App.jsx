@@ -29,7 +29,7 @@ function App() {
     <Router>
      
       <NavbarSidebar isLoggedIn={isLoggedIn}  />
-      <Sidebar />
+     
       
       
       <Routes>
