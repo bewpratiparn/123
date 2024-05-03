@@ -66,7 +66,7 @@ function Store_information() {
             />
             <button href="Detailfood">
               <div>ชื่ออาหาร : {item.Food_name}</div>
-              <div>ราคา : {item.Food_Price} บาท</div>
+              <div>ราคา : {item.Food_price} บาท</div>
             </button>
           </div>
         </div>
