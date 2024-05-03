@@ -23,28 +23,15 @@ function Fooddetails() {
   <div style={{ marginLeft: '20px'  ,fontSize: '19px'}}>
     <div>
       <p>วัตถุดิบ 
-        <input type="text" id="ingredients1" name="ingredients1" style={{ marginLeft: '31px', padding: '5px', width: '900px' }} />
+      <input type="text" id="ingredients1" name="ingredients1" style={{ marginLeft: '200px', marginTop: '20px', padding: '80px', width: '900px', }} />
         
         
       </p>
     </div>
-    <div>
-      <p>เครื่องปรุง 
-      <input type="text" id="ingredients1" name="ingredients1" style={{ marginLeft: '10px', padding: '5px', width: '900px' }} />
-      </p>
-    </div>
-    <div>
-      <p>ผัก 
-      <input type="text" id="ingredients1" name="ingredients1" style={{ marginLeft: '63px', padding: '5px', width: '900px' }} />
-      </p>
-    </div>
-    <div>
-      <p>รสชาติ 
-      <input type="text" id="ingredients1" name="ingredients1" style={{ marginLeft: '34px', padding: '5px', width: '900px' }} />
-      </p>
+    
       
     </div>
-  </div>
+  
 </div>
 
 
@@ -56,11 +43,11 @@ function Fooddetails() {
   <input type="text" id="ingredients1" name="ingredients1" style={{ marginLeft: '200px', marginTop: '20px', padding: '80px', width: '900px', }} />
   </div>
  
+  </div>
 
 
 
 
-</div>
 
     </>
   );
