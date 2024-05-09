@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "flowbite";
 import "./Home.css";
 import { Link } from "react-router-dom";
+import Slideshow from './Slideshow'; // Import Slideshow component
 
 function Home() {
   useEffect(() => {
@@ -81,13 +82,10 @@ function Home() {
                     <div className="tel">เบอร์โทร: {d.shop_phone} </div>
                     <div className="time">วันเวลาเปิด-ปิด: {d.shop_time} </div>
                     <div className="symbol">ตราสัญลักษณ์: {d.shop_text} </div>
+                    <br></br>
                   </div>
 
-                  <div className="carousel">
-                      <div className="">นี่คือรูป
-                        <img src="https://cdn.britannica.com/36/123536-050-95CB0C6E/Variety-fruits-vegetables.jpg" alt="pictureex"  width={50}/>
-                      </div>
-                  </div>
+                  <Slideshow shopId={d.shop_id} /> {/* Render Slideshow component and pass shopId as props */}
 
                   <Link
                     to={{
