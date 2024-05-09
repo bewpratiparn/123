@@ -16,6 +16,8 @@ function Slideshow({ shopId }) { // Receive shopId as props
       .catch(error => console.error('Error fetching slides data:', error));
   }, [shopId, slideIndex]);
 
+
+
   function plusSlides(n) {
     let newIndex = slideIndex + n;
     const totalSlides = slidesData.length;
@@ -50,8 +52,9 @@ function Slideshow({ shopId }) { // Receive shopId as props
       {slidesData.map((slide, index) => (
         <div className="mySlides fade" key={index}>
           <div className="numbertext">{index + 1} / {slidesData.length}</div>
-          <img src={slide.Food_picture} alt={`Slide ${index + 1}`} />
           <div className="text">{slide.Food_name}</div>
+          <img src={slide.Food_picture} alt={`Slide ${index + 1}`} />
+          
         </div>
       ))}
       
