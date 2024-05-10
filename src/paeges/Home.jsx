@@ -87,7 +87,7 @@ function Home() {
 
                   <Slideshow shopId={d.shop_id} /> {/* Render Slideshow component and pass shopId as props */}
 
-                  <Link
+                  <Link 
                     to={{
                       pathname: `/Store_information`,
                       search: `?shop_id=${d.shop_id}&shop_name=${d.shop_name}&shop_picture=${d.shop_picture}&shop_location=${d.shop_location}&shop_phone=${d.shop_phone}&shop_time=${d.shop_time}&shop_text=${d.shop_text}`

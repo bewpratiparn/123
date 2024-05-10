@@ -6,17 +6,19 @@ function Slideshow({ shopId }) { // Receive shopId as props
   const [slidesData, setSlidesData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from API using shopId
+    // Fetch food items data from an API endpoint using shopId
     fetch(`http://127.0.0.1:8000/show_all_food/?shop_id=${shopId}`)
       .then(response => response.json())
       .then(data => {
-        setSlidesData(data);
-        showSlides(slideIndex);
+        // Filter food items by shop_id
+        const filteredslidesData = data.filter(slide => slide.shop_id === parseInt(shopId));
+        setSlidesData(filteredslidesData);
+        showSlides(slideIndex); // Show slides after data is fetched
       })
-      .catch(error => console.error('Error fetching slides data:', error));
-  }, [shopId, slideIndex]);
-
-
+      .catch(error => {
+        console.error("Error fetching food slidesData:", error);
+      });
+  }, [shopId, slideIndex]); // Include slideIndex in dependency array
 
   function plusSlides(n) {
     let newIndex = slideIndex + n;
@@ -33,20 +35,21 @@ function Slideshow({ shopId }) { // Receive shopId as props
   function currentSlide(n) {
     setSlideIndex(n);
   }
-
   function showSlides(n) {
     const slides = document.getElementsByClassName("mySlides");
     const dots = document.getElementsByClassName("dot");
+    
+    // Hide all slides and remove active class from dots
     for (let i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
-    }
-    for (let i = 0; i < dots.length; i++) {
       dots[i].className = dots[i].className.replace(" active", "");
     }
+  
+    // Show the slide with the given index
     slides[n - 1].style.display = "block";
     dots[n - 1].className += " active";
   }
-
+  
   return (
     <div className="slideshow-container">
       {slidesData.map((slide, index) => (
@@ -54,7 +57,6 @@ function Slideshow({ shopId }) { // Receive shopId as props
           <div className="numbertext">{index + 1} / {slidesData.length}</div>
           <div className="text">{slide.Food_name}</div>
           <img src={slide.Food_picture} alt={`Slide ${index + 1}`} />
-          
         </div>
       ))}
       
