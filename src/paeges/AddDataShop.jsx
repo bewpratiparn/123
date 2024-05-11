@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useState,useCallback } from "react";
 import "./AddDataShop.css";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDropzone } from "react-dropzone";
 import Dropzone from "../components/Dropzone";
 
 function AddDataShop() {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
-
+  const [imageFile, setImageFile] = useState("");
   const [addShop, setAddShop] = useState({
     pictureshop: null, // เปลี่ยนเป็น null แทน "" เพื่อรับค่าไฟล์ภาพ
     storename: "",
@@ -50,13 +51,27 @@ function AddDataShop() {
         break;
     }
   };
-  const handleFileChange = (files) => {
-    // เมื่อไฟล์ถูกเลือกใหม่ อัปเดตค่า pictureshop ใน state
-    setAddShop((prevState) => ({
-      ...prevState,
-      pictureshop: files[0],
-    }));
+
+  const onDrop = useCallback((acceptedFiles) => {
+    handleFileInputChange(acceptedFiles[0]);
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accepts: "image/*",
+    multiple: false,
+  });
+
+  const handleFileInputChange = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImageFile(reader.result);
+      const formData = new FormData();
+      formData.append("pictureshop", file);
+      setAddShop((values) => ({ ...values, pictureshop: formData }));
+    };
   };
+  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -65,7 +80,7 @@ function AddDataShop() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (!imageFile) return;
     const userToken = localStorage.getItem("token");
 
     if (userToken) {
@@ -117,14 +132,32 @@ function AddDataShop() {
 
   return (
     <>
-    
       <div className="form-center">
         {isLoggedIn && (
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col justify-center items-center m-10 ">
-           
               <div className="m-5 text-center ">เพิ่มข้อมูลร้านค้า</div>
-              <Dropzone onChange={handleFileChange} />
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                {isDragActive ? (
+                  <p>Drop the files here ...</p>
+                ) : (
+                  <p>Drag 'n' drop some files here, or click to select files</p>
+                )}
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2 ">
+                  ชื่อร้าน
+                </label>
+                <input
+                  className="p-2 border rounded-md"
+                  name="storename"
+                  id="fstore"
+                  type="text"
+                  onChange={handleChange}
+                  placeholder="กรอกชื่อร้าน"
+                />
+              </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2 ">
                   ชื่อร้าน

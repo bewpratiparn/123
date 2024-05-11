@@ -13,6 +13,7 @@ import Editstore from "./paeges/Editstore";
 import Store_information from "./paeges/Store_information";
 import Notshowfood from "./paeges/Notshowfood";
 import Detailfood from "./paeges/Detailfood";
+import Dropzone from "./components/Dropzone";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -32,6 +33,11 @@ function App() {
     <Router>
       <Sidebar />
       <Routes>
+      <Route
+          path="/Dropzone"
+          element={<Dropzone isLoggedIn={isLoggedIn} />}
+        />
+
         <Route path="/Home" element={<Home isLoggedIn={isLoggedIn} />} />
         <Route
           path="/Notshowfood"
