@@ -18,7 +18,7 @@ body {
 .bk {
   background-color: #f0f0f0;
   padding: 20px;
-  min-height: 200vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -102,6 +102,8 @@ button:hover {
   background-color: #0056b3;
 }
 
-.containner-box{
-margin-left: 218px
+.container-box {
+  display: flex;
+  justify-content: center; /* จัดให้อยู่ตรงกลางของแกน X */
+  align-items: center; /* จัดให้อยู่ตรงกลางของแกน Y */
 }

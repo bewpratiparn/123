@@ -53,7 +53,7 @@
 
 /* Style for individual slide */
 .slick-slide {
-  padding: 0 10px;
+  padding: 10px;
 }
 
 /* Style for arrow buttons */
@@ -63,13 +63,7 @@
   z-index: 1;
 }
 
-.slick-prev {
-  left: 0;
-}
 
-.slick-next {
-  right: 0;
-}
 
 /* Style for dots */
 .slick-dots {
@@ -98,5 +92,47 @@
 }
 
 .slick-dots li.slick-active button {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(11, 243, 3, 0.9);
+  margin-top: 0px;
+}
+/* Style for arrow buttons */
+.slick-arrow {
+  line-height: 1;
+  z-index: 1;
+  background-color: transparent;
+  border: none;
+  transition: font-size 0.3s ease, color 0.3s ease;
+}
+
+
+/* Style for Next button */
+.slick-next {
+  font-size: 24px; /* กำหนดขนาดใหญ่ขึ้น */
+  line-height: 1;
+  z-index: 1;
+  background-color: transparent;
+  border: none;
+  color: #333; /* สีของปุ่ม Next */
+  transition: font-size 0.3s ease, color 0.3s ease;
+}
+
+.slick-next:hover {
+  font-size: 28px; /* เพิ่มขนาดเมื่อโฮเวอร์ */
+  color: orange; /* เปลี่ยนสีเป็นสีส้ม */
+}
+
+/* Style for Previous button */
+.slick-prev {
+  font-size: 24px; /* กำหนดขนาดใหญ่ขึ้น */
+  line-height: 1;
+  z-index: 1;
+  background-color: transparent;
+  border: none;
+  color: #333; /* สีของปุ่ม Previous */
+  transition: font-size 0.3s ease, color 0.3s ease;
+}
+
+.slick-prev:hover {
+  font-size: 28px; /* เพิ่มขนาดเมื่อโฮเวอร์ */
+  color: orange; /* เปลี่ยนสีเป็นสีส้ม */
 }

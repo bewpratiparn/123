@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Slider from "react-slick"; // เพิ่ม import สำหรับ React Slick
-import "slick-carousel/slick/slick.css"; // เพิ่ม import CSS สำหรับ React Slick
-import "slick-carousel/slick/slick-theme.css"; // เพิ่ม import CSS สำหรับ React Slick
+import Slider from "react-slick"; 
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css"; 
 import "./Home.css";
 
 function Home() {
@@ -103,23 +103,29 @@ function Home() {
                     <div className="tel">เบอร์โทร: {d.shop_phone} </div>
                     <div className="time">วันเวลาเปิด-ปิด: {d.shop_time} </div>
                     <div className="symbol">ตราสัญลักษณ์: {d.shop_text} </div>
-                    <br />
+                   
                     <div>
                       <h2>รายการอาหาร</h2>
                       <Slider {...settings}>
-  {foodData
-    .filter((food) => food.shop_id === d.shop_id)
-    .map((food, index) => (
-      <div key={index}>
-        <h3>{food.Food_name}</h3>
-        <img src={food.Food_picture} alt={food.Food_name} style={{ width: '100%' }} />
-      </div>
-    ))}
-</Slider>
-
+                        {foodData
+                          .filter((food) => food.shop_id === d.shop_id)
+                          .map((food, index) => (
+                            <div key={index}>
+                              <Link
+                                to={{
+                                  pathname: "/Fooddetails",
+                                  search: `?Food_name=${food.Food_name}&Food_price=${food.Food_price}&Food_picture=${food.Food_picture}&Food_element=${food.Food_element}&food_elements=${food.food_elements}`
+                                }}
+                              >
+                                <h3>{food.Food_name}</h3>
+                                <img src={food.Food_picture} alt={food.Food_name} style={{ width: '100%' }} />
+                              </Link>
+                            </div>
+                          ))}
+                      </Slider>
                     </div>
                   </div>
-
+                  <br></br>
                   {!displayedShopIds.includes(d.shop_id) && (
                     <Link
                       to={{
