@@ -4,13 +4,14 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Dropzone from "../components/Dropzone";
 
 function AddDataShop() {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
 
   const [addShop, setAddShop] = useState({
-    pictureshop: "",
+    pictureshop: null, // เปลี่ยนเป็น null แทน "" เพื่อรับค่าไฟล์ภาพ
     storename: "",
     location: "",
     phone: "",
@@ -42,12 +43,19 @@ function AddDataShop() {
       case "Halal":
         setHalal(checked);
         break;
-        case "Nothing":
+      case "Nothing":
         setNothing(checked);
         break;
       default:
         break;
     }
+  };
+  const handleFileChange = (files) => {
+    // เมื่อไฟล์ถูกเลือกใหม่ อัปเดตค่า pictureshop ใน state
+    setAddShop((prevState) => ({
+      ...prevState,
+      pictureshop: files[0],
+    }));
   };
 
   const handleChange = (event) => {
@@ -57,25 +65,25 @@ function AddDataShop() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const userToken = localStorage.getItem("token");
-  
+
     if (userToken) {
       const headers = {
         Authorization: `Bearer ${userToken}`,
         "Content-Type": "application/json",
       };
-  
-      const requestData = {
-        shop_name: addShop.storename,
-        shop_location: addShop.location,
-        shop_phone: addShop.phone,
-        shop_time: addShop.onclose,
-        shop_picture: addShop.pictureshop,
-        shop_type: shopType,
-      };
-  
-      axios.post("http://127.0.0.1:8000/add_shop/", requestData, { headers })
+
+      const formData = new FormData();
+      formData.append("shop_name", addShop.storename);
+      formData.append("shop_location", addShop.location);
+      formData.append("shop_phone", addShop.phone);
+      formData.append("shop_time", addShop.onclose);
+      formData.append("shop_picture", addShop.pictureshop); // เปลี่ยน FormData และ FormData เป็น formData
+      formData.append("shop_type", shopType);
+
+      axios
+        .post("http://127.0.0.1:8000/add_shop/", formData, { headers })
         .then((response) => {
           if (response.data === "token") {
             MySwal.fire({
@@ -84,6 +92,7 @@ function AddDataShop() {
             }).then((value) => {
               navigate("/Home");
             });
+            console.log(formData);
           } else {
             MySwal.fire({
               html: <i>เพิ่มข้อมูลร้านค้าสำเร็จ</i>,
@@ -108,20 +117,14 @@ function AddDataShop() {
 
   return (
     <>
+    
       <div className="form-center">
         {isLoggedIn && (
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col justify-center items-center m-10 ">
+           
               <div className="m-5 text-center ">เพิ่มข้อมูลร้านค้า</div>
-              <div className="containeruploadfile">
-                <input
-                  className=""
-                  name="pictureshop"
-                  type="file"
-                  id="upload_file"
-                  onChange={handleChange}
-                />
-              </div>
+              <Dropzone onChange={handleFileChange} />
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2 ">
                   ชื่อร้าน
@@ -187,7 +190,11 @@ function AddDataShop() {
                       onChange={handleCheckboxChange}
                     />
                     <span className="ml-2 text-black">เพิ่มมังสวิรัติ</span>
-                    <img src="https://png.pngtree.com/png-vector/20191030/ourlarge/pngtree-icon-for-vegan-food-vector-illustration-symbols-isolated-on-white-background-png-image_1870591.jpg" alt="" width={50}/>
+                    <img
+                      src="https://png.pngtree.com/png-vector/20191030/ourlarge/pngtree-icon-for-vegan-food-vector-illustration-symbols-isolated-on-white-background-png-image_1870591.jpg"
+                      alt=""
+                      width={50}
+                    />
                   </label>
                 </div>
 
@@ -201,7 +208,11 @@ function AddDataShop() {
                       onChange={handleCheckboxChange}
                     />
                     <span className="ml-2 text-black">เพิ่มอาหารเจ</span>
-                    <img src="https://st4.depositphotos.com/1877361/23487/v/450/depositphotos_234872180-stock-illustration-universal-vegetarian-symbol-label-leaf.jpg" alt="" width={50}/>
+                    <img
+                      src="https://st4.depositphotos.com/1877361/23487/v/450/depositphotos_234872180-stock-illustration-universal-vegetarian-symbol-label-leaf.jpg"
+                      alt=""
+                      width={50}
+                    />
                   </label>
                 </div>
 
@@ -215,21 +226,25 @@ function AddDataShop() {
                       onChange={handleCheckboxChange}
                     />
                     <span className="ml-2 text-black ">เพิ่มฮาลาน</span>
-                    <img src="https://www.lsfpackaging.com/images/editor/21-%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%AE%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%A5%E0%B8%84%E0%B8%B7%E0%B8%AD_Pic.jpg" alt="" width={50}/>
+                    <img
+                      src="https://www.lsfpackaging.com/images/editor/21-%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%AE%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%A5%E0%B8%84%E0%B8%B7%E0%B8%AD_Pic.jpg"
+                      alt=""
+                      width={50}
+                    />
                   </label>
                 </div>
                 <div>
                   <label className="inline-flex items-center  mb-4 ">
-                    
                     <input
-                    
                       type="checkbox"
                       name="Nothing"
                       className="form-checkbox text-blue-600"
                       checked={addNothing}
                       onChange={handleCheckboxChange}
                     />
-                    <span className="ml-2 text-black ">ไม่จำกัดประเภทอาหาร</span>
+                    <span className="ml-2 text-black ">
+                      ไม่จำกัดประเภทอาหาร
+                    </span>
                   </label>
                 </div>
               </div>
