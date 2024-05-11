@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import './Slideshow.css'; // Import CSS file or add styles inline
 
-function Slideshow({ shopId }) { // Receive shopId as props
-  const [slideIndex, setSlideIndex] = useState(1);
+function Slideshow({ shopId }) { // รับ shopId เป็น props
+  const [slideIndex, setSlideIndex] = useState([]);
   const [slidesData, setSlidesData] = useState([]);
-
+  
   useEffect(() => {
-    // Fetch food items data from an API endpoint using shopId
+    // ดึงข้อมูลรายการอาหารจาก API โดยใช้ shopId
     fetch(`http://127.0.0.1:8000/show_all_food/?shop_id=${shopId}`)
       .then(response => response.json())
       .then(data => {
-        // Filter food items by shop_id
+        // กรองรายการอาหารตาม shop_id
         const filteredslidesData = data.filter(slide => slide.shop_id === parseInt(shopId));
         setSlidesData(filteredslidesData);
-        showSlides(slideIndex); // Show slides after data is fetched
+        showSlides(slideIndex); // แสดง slides เมื่อข้อมูลถูกดึงมาแล้ว
       })
       .catch(error => {
-        console.error("Error fetching food slidesData:", error);
+        console.error("เกิดข้อผิดพลาดในการดึงข้อมูลรายการอาหาร:", error);
       });
-  }, [shopId, slideIndex]); // Include slideIndex in dependency array
+  }, [shopId, slideIndex]); // รวม slideIndex ใน dependency array
 
   function plusSlides(n) {
     let newIndex = slideIndex + n;
     const totalSlides = slidesData.length;
     if (newIndex > totalSlides) {
-      setSlideIndex(1); // Go back to the first slide when reaching the last one
+      setSlideIndex(1); // กลับไปที่ slide แรกเมื่อมาถึง slide สุดท้าย
     } else if (newIndex < 1) {
-      setSlideIndex(totalSlides); // Go to the last slide when reaching the first one
+      setSlideIndex(totalSlides); // ไปที่ slide สุดท้ายเมื่อมาถึง slide แรก
     } else {
       setSlideIndex(newIndex);
     }
@@ -39,13 +39,13 @@ function Slideshow({ shopId }) { // Receive shopId as props
     const slides = document.getElementsByClassName("mySlides");
     const dots = document.getElementsByClassName("dot");
     
-    // Hide all slides and remove active class from dots
+    // ซ่อน slides ทั้งหมดและลบคลาส active ออกจาก dots
     for (let i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
       dots[i].className = dots[i].className.replace(" active", "");
     }
   
-    // Show the slide with the given index
+    // แสดง slide ตาม index ที่กำหนด
     slides[n - 1].style.display = "block";
     dots[n - 1].className += " active";
   }
@@ -60,16 +60,17 @@ function Slideshow({ shopId }) { // Receive shopId as props
         </div>
       ))}
       
-      {/* Navigation buttons */}
+      {/* ปุ่มนำทาง */}
       <a className="prev" onClick={() => plusSlides(-1)}>❮</a>
       <a className="next" onClick={() => plusSlides(1)}>❯</a>
 
-      {/* Dots */}
+      {/* จุด */}
       <div style={{ textAlign: 'center' }}>
         {slidesData.map((_, index) => (
           <span className="dot" key={index} onClick={() => currentSlide(index + 1)}></span>
         ))}
       </div>
+      
     </div>
   );
 }

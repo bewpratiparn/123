@@ -4,19 +4,16 @@ import './Sidebar.css';
 const NavbarSidebar = ({ username, picture }) => {
   return (
     <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-      <div className="max-w-h-screen-xl flex flex-wrap items-center justify-between mx-auto p-1" style={{ backgroundColor: "#FFBB5C" }}>
-
-        <a href="/Home" className="flex items-center justify-center w-full">
-          <img src="https://i.ibb.co/8NCWKFN/420970713-1319255045405174-2605956450177240696-n.png" className="h-20  mr-10" alt="" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">หน้าหลัก</span>
-        </a>
+      
+      
 
         
         
         {/* Sidebar component */}
         <Sidebar username={username} picture={picture} />
-        <div class="flex items-center space-x-6 rtl:space-x-reverse"> <p class="text-sm text-gray-500 dark:text-white ">ยินดีต้อนรับ</p> <span className="text-sm text-gray-500 dark:text-white">{username} {picture}</span> {/* Display username */} <a href="/Login" class="text-sm text-blue-600 dark:text-blue-500 hover:underline">Login</a> </div>
-      </div>
+       
+      
+      
     </nav>
   );
 };
@@ -44,6 +41,8 @@ const Sidebar = ({ username, picture }) => {
 
   return (
     <div>
+
+
       <div id="mySidebar" className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
         
@@ -103,8 +102,14 @@ const Sidebar = ({ username, picture }) => {
       </div>
 
       <div className="hi"></div>
+      <div className="max-w-h-screen-xl  p-1" style={{ backgroundColor: "#FFBB5C" }}>
+
       <div id="main">
+      <a href="/Home" className="flex items-center justify-center w-full">
+         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">หน้าหลัก</span>
+       </a>
         <button className="openbtn" onClick={isSidebarOpen ? closeNav : openNav}>&#9776; </button>
+      </div>
       </div>
     </div>
   );

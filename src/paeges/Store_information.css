@@ -44,8 +44,8 @@ body {
 
 .image-store,
 .picture-menu {
-  max-width: 9000px; /* กำหนดให้รูปภาพไม่เกินขนาด container */
-  max-height: 9000px; /* กำหนดให้รูปภาพไม่เกินความสูงของ container */
+  max-width: 640px; /* กำหนดให้รูปภาพไม่เกินขนาด container */
+  max-height: 680px; /* กำหนดให้รูปภาพไม่เกินความสูงของ container */
   display: block;
   margin-left: auto; /* ขยับรูปภาพไปทางด้านซ้ายสุด */
   margin-right: auto; /* คั่นรูปภาพให้อยู่ตรงกลาง */
@@ -100,4 +100,8 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+.containner-box{
+margin-left: 218px
 }

@@ -15,11 +15,18 @@ function Fooddetails() {
   console.log(location.search);
   
   return (
+    <div className="bk">
     <div className="container">
       <div className="title">รายละเอียดเกี่ยวกับอาหาร</div>
       <div className="details">
-        <div className="detail-food">ชื่ออาหาร : {Foodname}</div>
-        <div className="detail-price">ราคา : {foodPrice} บาท</div>
+      <div className="ingredients-container">
+          <div className="ingredients-label">ชื่ออาหาร : </div>
+          <div className="description-apiname">{Foodname}</div>
+        </div>
+        <div className="ingredients-container">
+          <div className="ingredients-label">ราคา : </div>
+          <div className="description-apiprice">{foodPrice}</div>
+        </div>  
       </div>
       <div className="image-container">
         <img
@@ -29,13 +36,14 @@ function Fooddetails() {
         />
         <div className="ingredients-container">
           <div className="ingredients-label">วัตถุดิบ</div>
-          <p>{foodElements}</p>
+          <div className="description-api">{foodElements}</div>
         </div>
       </div>
       <div className="description-container">
         <div className="description-label">รายละเอียดอาหาร</div>
-        <p>{foodElement}</p>
+        <div className="description-api">{foodElement}</div>
       </div>
+    </div>
     </div>
   );
 }
