@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import './Slideshow.css'; // Import CSS file or add styles inline
 
-function Slideshow({ shopId }) { // รับ shopId เป็น props
-  const [slideIndex, setSlideIndex] = useState([]);
+function Slideshow() {
+  const [slideIndex, setSlideIndex] = useState(1);
   const [slidesData, setSlidesData] = useState([]);
-  
+
   useEffect(() => {
-    // ดึงข้อมูลรายการอาหารจาก API โดยใช้ shopId
-    fetch(`http://127.0.0.1:8000/show_all_food/?shop_id=${shopId}`)
+    // ดึงข้อมูลร้านอาหารจาก API
+    fetch('http://127.0.0.1:8000/show_all_food/')
       .then(response => response.json())
       .then(data => {
-        // กรองรายการอาหารตาม shop_id
-        const filteredslidesData = data.filter(slide => slide.shop_id === parseInt(shopId));
-        setSlidesData(filteredslidesData);
+        setSlidesData(data); // กำหนดข้อมูลร้านอาหารทั้งหมด
         showSlides(slideIndex); // แสดง slides เมื่อข้อมูลถูกดึงมาแล้ว
       })
       .catch(error => {
-        console.error("เกิดข้อผิดพลาดในการดึงข้อมูลรายการอาหาร:", error);
+        console.error("เกิดข้อผิดพลาดในการดึงข้อมูลร้านอาหาร:", error);
       });
-  }, [shopId, slideIndex]); // รวม slideIndex ใน dependency array
+  }, [slideIndex]); // รวม slideIndex ใน dependency array
 
   function plusSlides(n) {
     let newIndex = slideIndex + n;
@@ -35,21 +33,22 @@ function Slideshow({ shopId }) { // รับ shopId เป็น props
   function currentSlide(n) {
     setSlideIndex(n);
   }
+
   function showSlides(n) {
     const slides = document.getElementsByClassName("mySlides");
     const dots = document.getElementsByClassName("dot");
-    
+
     // ซ่อน slides ทั้งหมดและลบคลาส active ออกจาก dots
     for (let i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
       dots[i].className = dots[i].className.replace(" active", "");
     }
-  
+
     // แสดง slide ตาม index ที่กำหนด
     slides[n - 1].style.display = "block";
     dots[n - 1].className += " active";
   }
-  
+
   return (
     <div className="slideshow-container">
       {slidesData.map((slide, index) => (
@@ -60,6 +59,7 @@ function Slideshow({ shopId }) { // รับ shopId เป็น props
         </div>
       ))}
       
+
       {/* ปุ่มนำทาง */}
       <a className="prev" onClick={() => plusSlides(-1)}>❮</a>
       <a className="next" onClick={() => plusSlides(1)}>❯</a>
@@ -70,7 +70,6 @@ function Slideshow({ shopId }) { // รับ shopId เป็น props
           <span className="dot" key={index} onClick={() => currentSlide(index + 1)}></span>
         ))}
       </div>
-      
     </div>
   );
 }
