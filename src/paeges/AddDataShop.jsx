@@ -4,13 +4,11 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDropzone } from "react-dropzone";
-import Dropzone from "../components/Dropzone";
 
 function AddDataShop() {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
-  const [imageFile, setImageFile] = useState("");
+
   const [addShop, setAddShop] = useState({
     pictureshop: null, // เปลี่ยนเป็น null แทน "" เพื่อรับค่าไฟล์ภาพ
     storename: "",
@@ -24,6 +22,7 @@ function AddDataShop() {
   const [addHalal, setHalal] = useState(false);
   const [addNothing, setNothing] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [file, setFile] = useState();
 
   const shopTypeArray = [];
   if (addMangswirat) shopTypeArray.push("Mangswirat");
@@ -51,35 +50,24 @@ function AddDataShop() {
         break;
     }
   };
-
-  const onDrop = useCallback((acceptedFiles) => {
-    handleFileInputChange(acceptedFiles[0]);
-  }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accepts: "image/*",
-    multiple: false,
-  });
-
-  const handleFileInputChange = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setImageFile(reader.result);
-      const formData = new FormData();
-      formData.append("pictureshop", file);
-      setAddShop((values) => ({ ...values, pictureshop: formData }));
-    };
-  };
+  /*--------------------------------------------------*/
+function handleFile(event){
+  setFile(event.target.files[0])
+  console.log(event.target.files[0])
+  
+}
+  /*--------------------------------------------------*/
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setAddShop((values) => ({ ...values, [name]: value }));
+    
+      const { name, value } = event.target;
+      setAddShop((values) => ({ ...values, [name]: value }));
+    
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!imageFile) return;
+
     const userToken = localStorage.getItem("token");
 
     if (userToken) {
@@ -136,15 +124,9 @@ function AddDataShop() {
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col justify-center items-center m-10 ">
               <div className="m-5 text-center ">เพิ่มข้อมูลร้านค้า</div>
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                {isDragActive ? (
-                  <p>Drop the files here ...</p>
-                ) : (
-                  <p>Drag 'n' drop some files here, or click to select files</p>
-                )}
-              </div>
-
+             <h2>upload your picture</h2>
+             <input type="file" name="file " onChange={handleFile} />
+          
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2 ">
                   ชื่อร้าน
