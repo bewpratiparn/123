@@ -1,4 +1,4 @@
-import React, { useState,useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import "./AddDataShop.css";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -71,7 +71,6 @@ function AddDataShop() {
       setAddShop((values) => ({ ...values, pictureshop: formData }));
     };
   };
-  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -145,19 +144,7 @@ function AddDataShop() {
                   <p>Drag 'n' drop some files here, or click to select files</p>
                 )}
               </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2 ">
-                  ชื่อร้าน
-                </label>
-                <input
-                  className="p-2 border rounded-md"
-                  name="storename"
-                  id="fstore"
-                  type="text"
-                  onChange={handleChange}
-                  placeholder="กรอกชื่อร้าน"
-                />
-              </div>
+
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2 ">
                   ชื่อร้าน
