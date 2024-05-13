@@ -136,3 +136,39 @@
   font-size: 28px; /* เพิ่มขนาดเมื่อโฮเวอร์ */
   color: orange; /* เปลี่ยนสีเป็นสีส้ม */
 }
+
+
+header {
+  display: flex;
+  justify-content: center;
+}
+
+.boxsearch {
+  width: 615px;
+  margin: auto;
+}
+
+input[type="textsearch"] {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+}
+
+#default-search {
+  width: calc(100% - 40px); /* Adjust width to fit container */
+  padding: 10px 20px; /* Adjust padding for better spacing */
+  font-size: 16px; /* Set font size */
+  border: 1px solid #d1d5db; /* Set border color */
+  border-radius: 999px; /* Make the input rounded */
+  transition: border-color 0.3s ease-in-out; /* Add transition effect for better interaction */
+  
+}
+
+#default-search:focus {
+  outline: none; /* Remove focus outline */
+  border-color: #2563eb; /* Change border color on focus */
+}

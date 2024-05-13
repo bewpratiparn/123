@@ -1,14 +1,15 @@
 .show-user-container {
-    width: 254.34px;
-    height: 110px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    margin-top: -15px;
-  }
+  width: 254.34px;
+  height: 110px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  position: fixed;
+  top: 20px;
+  right: 0; /* กำหนดให้ชิดขวาสุด */
+  margin-top: -15px;
+}
+
   
   .user-info {
     width: 254.34px; /* ปรับขนาดของพื้นที่เพื่อให้ตรงกับ container */

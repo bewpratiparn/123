@@ -8,12 +8,15 @@
 /* Fooddetails.css */
 
 .container {
-  margin-left: 40px;
-  margin-right: 40px;
+  position: fixed;
+  top: 200px;
+  left: 0;
+  right: 0;
   background-color: #f5f5f5;
   padding: 20px;
   border-radius: 10px;
 }
+
 
 .title {
   font-size: 24px;

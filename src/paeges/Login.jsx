@@ -60,7 +60,6 @@ function Login() {
       .then((result) => {
         localStorage.setItem("token", result.token);
         navigate("/Home");
-        // แสดงข้อความแจ้งเตือนเมื่อเข้าสู่ระบบสำเร็จ
         Swal.fire({
           icon: "success",
           title: "Login Successful",
@@ -70,7 +69,6 @@ function Login() {
       })
       .catch((error) => {
         console.log(error);
-        // แสดงข้อความแจ้งเตือนเมื่อเข้าสู่ระบบไม่สำเร็จ
         Swal.fire({
           icon: "error",
           title: "Login Failed",
@@ -80,16 +78,13 @@ function Login() {
   };
 
   const handleLogout = () => {
-    // ลบ token ที่เก็บใน localStorage
     localStorage.removeItem("token");
-    // แสดงข้อความแจ้งเตือนเมื่อออกจากระบบ
     Swal.fire({
       icon: "success",
       title: "Logged out successfully",
       showConfirmButton: false,
       timer: 1500,
     }).then(() => {
-      // เมื่อผู้ใช้กดปุ่มตกลงใน SweetAlert ให้นำไปยังหน้า Logout
       navigate("/Home");
     });
   };
@@ -114,15 +109,15 @@ function Login() {
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
-              Enter Password
+              Password
             </label>
             <input
               className="w-full p-2 border rounded-md"
               type="password"
               name="password"
-              placeholder="**"
               value={inputs.password || ""}
               onChange={handleChange}
+              placeholder="Password"
             />
           </div>
           <button
@@ -132,17 +127,19 @@ function Login() {
             Login
           </button>
         </form>
-        <a href="/register">Register</a>
+        <a href="/register" className="block text-center mt-4">Register</a>
         {user && (
-          <div>
-            <p>Welcome, {user.username}</p>
-            <img
-              src={user.picture}
-              alt="Profile"
-              style={{ width: '100px', height: '100px' }} // กำหนดขนาดเล็กลงเป็น 100px x 100px
-            />
+          <div className="mt-4">
+            <p className="text-center mb-2">Welcome, {user.username}</p>
+            <div className="flex justify-center items-center">
+              <img
+                src={user.picture}
+                alt="Profile"
+                className="w-20 h-20 rounded-full"
+              />
+            </div>
             <button
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
+              className="block mx-auto mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
               onClick={handleLogout}
             >
               Logout
