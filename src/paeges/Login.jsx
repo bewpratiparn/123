@@ -34,7 +34,7 @@ function Login() {
     fetch("http://127.0.0.1:8000/login/", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        if (result) {
+        if (result && result.token) {
           MySwal.fire({
             html: <i>Login success</i>,
             icon: "success",
@@ -45,11 +45,25 @@ function Login() {
         } else {
           // กระบวนการเข้าสู่ระบบไม่สำเร็จ
           MySwal.fire({
-            html: <i>{result.message}</i>,
+            html: (
+              <i>
+                {result && result.message
+                  ? result.message
+                  : "ไม่พบ ผู้ใช้งานเเละรหัสผ่าน"}
+              </i>
+            ),
             icon: "error",
           });
           console.log(result);
         }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+
+        MySwal.fire({
+          html: <i>เข้าสู่ระบบไม่สำเร็จ</i>,
+          icon: "error",
+        });
       });
   };
   return (
