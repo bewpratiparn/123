@@ -172,3 +172,8 @@ input[type="textsearch"] {
   outline: none; /* Remove focus outline */
   border-color: #2563eb; /* Change border color on focus */
 }
+
+.highlight {
+  background-color: yellow;
+  font-weight: bold;
+}
