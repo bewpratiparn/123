@@ -1,17 +1,36 @@
-import React, { useState } from "react";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Login() {
   const navigate = useNavigate();
-  const MySwal = withReactContent(Swal);
   const [inputs, setInputs] = useState({});
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      fetch("http://127.0.0.1:8000/authorize/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setUser(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+        });
+    }
+  }, []);
 
   const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
+    const { name, value } = event.target;
+    setInputs((prevInputs) => ({
+      ...prevInputs,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -34,28 +53,47 @@ function Login() {
     fetch("http://127.0.0.1:8000/login/", requestOptions)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Failed to login');
+          throw new Error("Failed to login");
         }
         return response.json();
       })
       .then((result) => {
-        MySwal.fire({
-          html: <i>Login success</i>,
+        localStorage.setItem("token", result.token);
+        navigate("/Home");
+        // แสดงข้อความแจ้งเตือนเมื่อเข้าสู่ระบบสำเร็จ
+        Swal.fire({
           icon: "success",
-        }).then((value) => {
-          localStorage.setItem("token", result.token);
-          navigate("/Home");
+          title: "Login Successful",
+          showConfirmButton: false,
+          timer: 1500,
         });
       })
       .catch((error) => {
-        // กระบวนการเข้าสู่ระบบไม่สำเร็จ
-        MySwal.fire({
-          html: <i>Failed to login. Please check your credentials.</i>,
-          icon: "error",
-        });
         console.log(error);
+        // แสดงข้อความแจ้งเตือนเมื่อเข้าสู่ระบบไม่สำเร็จ
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: "Please check your username and password",
+        });
       });
   };
+
+  const handleLogout = () => {
+    // ลบ token ที่เก็บใน localStorage
+    localStorage.removeItem("token");
+    // แสดงข้อความแจ้งเตือนเมื่อออกจากระบบ
+    Swal.fire({
+      icon: "success",
+      title: "Logged out successfully",
+      showConfirmButton: false,
+      timer: 1500,
+    }).then(() => {
+      // เมื่อผู้ใช้กดปุ่มตกลงใน SweetAlert ให้นำไปยังหน้า Logout
+      navigate("/Home");
+    });
+  };
+
   return (
     <div className="flex justify-center items-center-top h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg">
@@ -95,6 +133,22 @@ function Login() {
           </button>
         </form>
         <a href="/register">Register</a>
+        {user && (
+          <div>
+            <p>Welcome, {user.username}</p>
+            <img
+              src={user.picture}
+              alt="Profile"
+              style={{ width: '100px', height: '100px' }} // กำหนดขนาดเล็กลงเป็น 100px x 100px
+            />
+            <button
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
