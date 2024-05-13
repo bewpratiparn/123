@@ -49,7 +49,7 @@ function Login() {
               <i>
                 {result && result.message
                   ? result.message
-                  : "ไม่พบ ผู้ใช้งานเเละรหัสผ่าน"}
+                  : "ผู้ใช้งานเเละรหัสผ่าน"}
               </i>
             ),
             icon: "error",
