@@ -21,6 +21,8 @@ import Notshowfood from './paeges/Notshowfood';
 import NavbarSidebar from './components/NavbarSidebar';
 import Profile from './paeges/Profile';
 import Slideshow from './paeges/Slideshow';
+import Showuser from './paeges/Showuser';
+
 
 
 function App() {
@@ -30,12 +32,15 @@ function App() {
     <Router>
      
       <NavbarSidebar isLoggedIn={isLoggedIn}  />
-     
+      <Showuser isLoggedIn={isLoggedIn}  />
       
       
       <Routes>
 
-         <Route path="/Slideshow" element={<Slideshow isLoggedIn={isLoggedIn} />} />
+
+        <Route path="/Showuser" element={<Showuser isLoggedIn={isLoggedIn} />} />
+        <Route path="/Showuser" element={<Showuser setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/Slideshow" element={<Slideshow isLoggedIn={isLoggedIn} />} />
         <Route path="/Slideshow" element={<Slideshow setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/Notshowfood" element={<Notshowfood isLoggedIn={isLoggedIn} />} />
         <Route path="/Store_information" element={<Store_information isLoggedIn={isLoggedIn} />} />
