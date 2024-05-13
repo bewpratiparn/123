@@ -1,56 +1,56 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: 0;
-    
-  }
+.container {
+  width: 50%;
+  margin: auto;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* จัดให้อยู่ตรงกลางแนวนอน */
+}
 
-  .white-background {
-    background-color: white;
-  }
-  
+h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
+form {
+  width: 100%; /* ตั้งความกว้างเป็น 100% */
+}
+
+input[type="text"],
+textarea {
   
-  .button_outer {
-    margin: 10px;
-    background: #d67e4e;
-    border-radius: 30px;
-    text-align: center;
-    height: 50px;
-    width: 200px;
-    display: inline-block;
-    transition: 0.2s;
-    position: relative;
-    overflow: hidden;
+  width: calc(100% - 24px);
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 10%; /* ตั้งความกว้างเป็น 50% */
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+input[type="file"] {
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 90%;
   }
-  .button_outer:hover {
-    filter: drop-shadow(8px 8px 10px gray);
-  }
-  
-  .btn_upload {
-    padding: 17px 30px 12px;
-    color: #fff;
-    text-align: center;
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    z-index: 3;
-    white-space: nowrap;
-  }
-  .btn_upload input {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 105%;
-    cursor: pointer;
-    opacity: 0;
-  }
-  
-  .file_uploading {
-    width: 100%;
-    height: 10px;
-    margin-top: 20px;
-    background: #ccc;
-  }
+}
