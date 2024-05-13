@@ -32,24 +32,28 @@ function Login() {
     };
 
     fetch("http://127.0.0.1:8000/login/", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result) {
-          MySwal.fire({
-            html: <i>Login success</i>,
-            icon: "success",
-          }).then((value) => {
-            localStorage.setItem("token", result.token);
-            navigate("/Home");
-          });
-        } else {
-          // กระบวนการเข้าสู่ระบบไม่สำเร็จ
-          MySwal.fire({
-            html: <i>{result.message}</i>,
-            icon: "error",
-          });
-          console.log(result);
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to login');
         }
+        return response.json();
+      })
+      .then((result) => {
+        MySwal.fire({
+          html: <i>Login success</i>,
+          icon: "success",
+        }).then((value) => {
+          localStorage.setItem("token", result.token);
+          navigate("/Home");
+        });
+      })
+      .catch((error) => {
+        // กระบวนการเข้าสู่ระบบไม่สำเร็จ
+        MySwal.fire({
+          html: <i>Failed to login. Please check your credentials.</i>,
+          icon: "error",
+        });
+        console.log(error);
       });
   };
   return (
