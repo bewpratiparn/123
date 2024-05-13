@@ -4,29 +4,30 @@ import "flowbite";
 import "./Home.css";
 
 function Home() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([]); 
+  const [datasearch, setDatasearch] = useState([]); 
 
   useEffect(() => {
+   
     fetch("http://127.0.0.1:8000/shops/")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
-        setfilterData(data);
+        setData(data); 
+        setDatasearch(data); 
       })
       .catch((err) => console.log(err));
   }, []);
-  const [datasearch, setDatasearch] = useState([]);
-  const [filterData, setfilterData] = useState([]);
 
+  
   const handleFilter = (value) => {
-    const res = filterData.filter((f) =>
-      f.shop_name.toLowerCase().includes(value)
+    const res = data.filter((f) =>
+      f.shop_name.toLowerCase().includes(value.toLowerCase())
     );
 
-    setDatasearch(res);
+    setDatasearch(res); 
   };
 
+  // ฟังก์ชันสำหรับไปยังหน้าข้อมูลร้านค้า
   const handleGoToStore = (
     shopId,
     foodName,
@@ -37,8 +38,8 @@ function Home() {
     shopPhone,
     shopTime
   ) => {
-    // Navigate to Store_information page with shop_id as parameter
-    // Example URL: /Store_information?shop_id=67
+    // ไปยังหน้า Store_information พร้อม shop_id เป็นพารามิเตอร์
+    // URL ตัวอย่าง: /Store_information?shop_id=67
     window.location.href = `/Store_information?shop_id=${shopId}&food_name=${foodName}&food_price=${foodPrice}&shop_name=${shopName}&shop_picture=${shopPicture}&shop_location=${shopLocation}&shop_phone=${shopPhone}&shop_time=${shopTime}`;
   };
 
@@ -67,7 +68,7 @@ function Home() {
             type="text"
             id="default-search"
             className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search"
+            placeholder="ค้นหา"
             onChange={(e) => handleFilter(e.target.value)}
           />
         </div>
@@ -76,63 +77,49 @@ function Home() {
       <div className="bg-gray-100 min-h-screen p-4">
         <div className="text-2xl font-bold text-center mb-*">ร้านอาหาร</div>
         <div className="grid-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {datasearch
-            .reduce((acc, curr) => {
-              const existingShop = acc.find(
-                (shop) => shop.shop_id === curr.shop_id
-              );
-              if (!existingShop) {
-                acc.push(curr);
-              }
-              return acc;
-            }, [])
-            .map((d, i) => (
-              <div key={i} className="bg-white p-4 rounded-lg shadow-lg">
-                <div className="containner-store-1" style={{}}>
-                  <div className="card" style={{ width: "70rem" }}>
-                    <img
-                      src={d.shop_picture}
-                      alt={d.shop_name}
-                      style={{
-                        width: "200px",
-                        margin: "1rem",
-                        padding: "1rem",
-                      }}
-                      className="picture-home"
-                    />
+          {datasearch.map((d, i) => ( // แสดงข้อมูลที่ถูกกรอง
+            <div key={i} className="bg-white p-4 rounded-lg shadow-lg">
+              <div className="containner-store-1" style={{}}>
+                <div className="card" style={{ width: "70rem" }}>
+                  <img
+                    src={d.shop_picture}
+                    alt={d.shop_name}
+                    style={{
+                      width: "200px",
+                      margin: "1rem",
+                      padding: "1rem",
+                    }}
+                    className="picture-home"
+                  />
 
-                    <div className="data-storehome">
-                      <div className="storename">
-                        ชื่อร้านค้า: {d.shop_name}{" "}
-                      </div>
-                      <div className="tel">เบอร์โทร: {d.shop_phone} </div>
-                      <div className="location-store">
-                        สถานที่: {d.shop_location}
-                      </div>
-                    </div>
-
-                    <button
-                      className="btn btn-primary"
-                      style={{ width: "10rem" }}
-                      onClick={() =>
-                        handleGoToStore(
-                          d.shop_id,
-                          d.food_name,
-                          d.food_price,
-                          d.shop_name,
-                          d.shop_picture,
-                          d.shop_location,
-                          d.shop_phone,
-                          d.shop_time
-                        )
-                      }
-                    >
-                      ไปยังร้านค้า
-                    </button>
+                  <div className="data-storehome">
+                    <div className="storename">ชื่อร้านค้า: {d.shop_name} </div>
+                    <div className="tel">เบอร์โทร: {d.shop_phone} </div>
+                    <div className="location-store">สถานที่: {d.shop_location}</div>
                   </div>
+
+                  <button
+                    className="btn btn-primary"
+                    style={{ width: "10rem" }}
+                    onClick={() =>
+                      handleGoToStore(
+                        d.shop_id,
+                        d.food_name,
+                        d.food_price,
+                        d.shop_name,
+                        d.shop_picture,
+                        d.shop_location,
+                        d.shop_phone,
+                        d.shop_time
+                      )
+                    }
+                  >
+                    ไปยังร้านค้า
+                  </button>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
       </div>
     </>
