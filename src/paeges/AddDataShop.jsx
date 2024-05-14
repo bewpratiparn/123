@@ -10,7 +10,7 @@ function AddDataShop() {
   const MySwal = withReactContent(Swal);
 
   const [addShop, setAddShop] = useState({
-    pictureshop: null, // เปลี่ยนเป็น null แทน "" เพื่อรับค่าไฟล์ภาพ
+    pictureshop: "", 
     storename: "",
     location: "",
     phone: "",
@@ -81,7 +81,7 @@ function handleFile(event){
       formData.append("shop_location", addShop.location);
       formData.append("shop_phone", addShop.phone);
       formData.append("shop_time", addShop.onclose);
-      formData.append("shop_picture", addShop.pictureshop); // เปลี่ยน FormData และ FormData เป็น formData
+      formData.append("shop_picture", addShop.pictureshop); 
       formData.append("shop_type", shopType);
 
       axios
@@ -98,7 +98,8 @@ function handleFile(event){
           } else {
             MySwal.fire({
               html: <i>เพิ่มข้อมูลร้านค้าสำเร็จ</i>,
-              icon: "success",
+              icon: "error",
+              
             });
           }
         })

@@ -70,13 +70,13 @@ function AddFood() {
       };
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-      const combinedFoodElement = `${foodDetails.food_element || ""} ${
+     /* const combinedFoodElement = `${foodDetails.food_element || ""} ${
         input.Food_element || ""
-      }`;
+      }`;*/
 
       const raw = JSON.stringify({
         Food_name: input.Food_name,
-        Food_element: combinedFoodElement,
+        Food_element: input.Food_element,
         Food_price: input.Food_price,
         Food_picture: input.Food_picture,
       });
@@ -91,9 +91,9 @@ function AddFood() {
       axios
         .post("http://127.0.0.1:8000/add_food/", raw, { headers })
         .then((response) => {
-          if (response.data === "token") {
+          if (response.message ==="Food data added successfully") {
             MySwal.fire({
-              html: <i>{response.data.message}</i>,
+              html: <i>{response.message}</i>,
               icon: "success",
             }).then((value) => {
               navigate("/Home");
@@ -148,14 +148,13 @@ function AddFood() {
                   </label>
                   <input
                     className="p-2 border rounded-md w-96 "
-                    name="Food_elements"
+                    name="Food_element"
                     type="text"
                     placeholder="องค์ประกอบของอาหาร"
-                    htmlFor="Foodextraction"
+                    value={input.Food_element || ""}
+                    onChange={handleChange}
                   />
                 </div>
-
-              
 
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2 width ">
