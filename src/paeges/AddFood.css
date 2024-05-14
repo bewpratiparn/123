@@ -1,56 +1,80 @@
-.container {
-  width: 50%;
-  margin: auto;
-  background-color: #f2f2f2;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* AddFood.css */
+.background {
+  background-color: #f3f4f6; /* light gray background */
+  min-height: 100vh; /* full screen height */
   display: flex;
-  flex-direction: column;
-  align-items: center; /* จัดให้อยู่ตรงกลางแนวนอน */
+  justify-content: center;
+  align-items: center;
 }
 
-h3 {
-  text-align: center;
-  margin-bottom: 20px;
+.form-container {
+  background: #ffffff; /* white background */
+  padding: 2rem; /* 32px padding */
+  border-radius: 8px; /* rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  width: 100%;
+  max-width: 600px; /* max width */
 }
 
-form {
-  width: 100%; /* ตั้งความกว้างเป็น 100% */
+.form-title {
+  font-size: 1.5rem; /* larger font size */
+  font-weight: bold;
+  color: #1a202c; /* dark gray color */
+  margin-bottom: 1rem; /* space below the title */
 }
 
-input[type="text"],
+.form-group {
+  margin-bottom: 1.5rem; /* space below each group */
+}
+
+.label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff; /* white color */
+  margin-bottom: 0.5rem; /* space below the label */
+}
+
+.input,
 textarea {
-  
-  width: calc(100% - 24px);
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  resize: vertical;
+  width: 100%;
+  padding: 0.75rem; /* 12px padding */
+  font-size: 1rem;
+  color: #2d3748; /* dark gray color */
+  background-color: #ffffff; /* white background */
+  border: 1px solid #cbd5e0; /* gray border */
+  border-radius: 4px; /* rounded corners */
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
 }
 
-input[type="submit"] {
-  background-color: #4caf50;
-  color: white;
-  padding: 12px 20px;
+.input:focus,
+textarea:focus {
+  border-color: #3182ce; /* blue border on focus */
+}
+
+.button {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff; /* white text */
+  background-color: #0015fe; /* blue background */
+  padding: 0.75rem 1.5rem; /* padding */
   border: none;
-  border-radius: 5px;
+  border-radius: 4px; /* rounded corners */
   cursor: pointer;
-  transition: background-color 0.3s;
-  width: 10%; /* ตั้งความกว้างเป็น 50% */
+  transition: background-color 0.3s ease-in-out;
+  margin-right: 0.5rem; /* space between buttons */
 }
 
-input[type="submit"]:hover {
-  background-color: #45a049;
+.button:hover {
+  background-color: #2b6cb0; /* darker blue on hover */
 }
 
-input[type="file"] {
-  margin-bottom: 15px;
+.button-cancel {
+  background-color: #e53e3e; /* red background */
 }
 
-@media screen and (max-width: 600px) {
-  .container {
-    width: 90%;
-  }
+.button-cancel:hover {
+  background-color: #c53030; /* darker red on hover */
 }
