@@ -5,14 +5,14 @@ import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
   const [inputs, setInputs] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleChange = (event) => {
     const name = event.target.name;
-    if (event.target.name === "picture") {
+    if (name === "picture") {
       setSelectedFile(event.target.files[0]);
     } else {
       const value = event.target.value;
@@ -22,7 +22,6 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(inputs);
 
     const formData = new FormData();
     formData.append("firstname", inputs.firstname);
@@ -30,9 +29,11 @@ function Register() {
     formData.append("username", inputs.username);
     formData.append("password", inputs.password);
     formData.append("phone", inputs.phone);
-    formData.append("picture", inputs.picture);
+    if (selectedFile) {
+      formData.append("picture", selectedFile);
+    }
 
-    fetch("http://127.0.0.1:8000/register/", {
+    fetch("http://127.0.0.1:8000/register", {
       method: "POST",
       body: formData,
     })
@@ -42,8 +43,8 @@ function Register() {
           MySwal.fire({
             html: <i>{result.message}</i>,
             icon: "success",
-          }).then((value) => {
-            Navigate("/Login");
+          }).then(() => {
+            navigate("/Login");
           });
         } else {
           MySwal.fire({
@@ -63,7 +64,7 @@ function Register() {
 
   return (
     <div className="flex justify-center items-center-top h-screen bg-gray-100">
-      <div className="bg-white-screen p-8 rounded-lg shadow-lg">
+      <div className="bg-white p-8 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-4">Register</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -116,16 +117,14 @@ function Register() {
               className="w-full p-2 border rounded-md"
               type="text"
               name="username"
-              placeholder="username"
+              placeholder="Username"
               value={inputs.username || ""}
               onChange={handleChange}
             />
           </div>
+
           <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="name"
-            >
+            <label className="block text-gray-700 text-sm font-bold mb-2">
               Password
             </label>
             <input
@@ -137,28 +136,29 @@ function Register() {
               onChange={handleChange}
             />
           </div>
-          <div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Picture
+            </label>
             <input
               type="file"
               name="picture"
               accept=".png,.jpeg"
-              value={inputs.picture}
               onChange={handleChange}
             />
             {selectedFile && (
               <div>
                 <img
                   src={URL.createObjectURL(selectedFile)}
-                  alt="Selected Image"
+                  alt="Selected"
+                  className="mt-2 mb-2"
                 />
                 <p>Selected file: {selectedFile.name}</p>
               </div>
             )}
-
-<button disabled={!selectedFile} onClick={handleSubmit}>
-  Upload Image
-</button>
           </div>
+
           <button
             className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
             type="submit"
