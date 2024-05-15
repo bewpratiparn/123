@@ -62,25 +62,7 @@ function Register() {
       });
   };
 
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  const raw = JSON.stringify({
-    firstname: "",
-    lastname: "",
-    username: "",
-    password: "",
-    phone: "",
-    file: "",
-  });
-
-  const requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow",
-  };
-
+ 
 
   return (
     <div className="flex justify-center items-center-top h-screen bg-gray-100">
