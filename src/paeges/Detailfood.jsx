@@ -7,7 +7,7 @@ function Detailfood() {
   const foodElements = searchParams.get("food_elements");
   const foodPicture = searchParams.get("Food_picture");
   const foodElement = searchParams.get("Food_element");
-  const foodPrice = searchParams.get("Food_price");
+  const foodPrice = searchParams.get("food_price");
   console.log(foodPicture);
   console.log(location.search);
   return (

@@ -17,14 +17,7 @@ function AddFood() {
     Food_price: "",
     Food_picture: "",
   });
-  const [selectedFood, setSelectedFood] = useState({});
-  const [foodDetails, setFoodDetails] = useState({});
   const [foodNamesWithElements, setFoodNamesWithElements] = useState([]);
-  const [addMangswirat, setMangswirat] = useState(false);
-  const [addVegetarian, setVegetarian] = useState(false);
-  const [addHalal, setHalal] = useState(false);
-  const [showTextarea, setShowTextarea] = useState(false);
-  const [showNoneOption, setShowNoneOption] = useState(true);
 
   useEffect(() => {
     axios
@@ -33,26 +26,8 @@ function AddFood() {
       .catch((err) => console.log(err));
   }, []);
 
-  const handleFoodSelection = (event) => {
-    const selectedFoodName = event.target.value;
-    const selectedFoodItem = foodNamesWithElements.find(
-      (food) => food.food_name === selectedFoodName
-    );
-    setSelectedFood(selectedFoodItem);
-    axios
-      .get(`http://127.0.0.1:8000/food_names/`)
-      .then((res) => {
-        const selectedFoodDetails = res.data.find(
-          (food) => food.food_name === selectedFoodName
-        );
-        setFoodDetails(selectedFoodDetails);
-      })
-      .catch((err) => console.log(err));
-  };
-
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setInputs((prevInputs) => ({
       ...prevInputs,
       [name]: value,
@@ -68,11 +43,6 @@ function AddFood() {
         Authorization: `Bearer ${userToken}`,
         "Content-Type": "application/json",
       };
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-     /* const combinedFoodElement = `${foodDetails.food_element || ""} ${
-        input.Food_element || ""
-      }`;*/
 
       const raw = JSON.stringify({
         Food_name: input.Food_name,
@@ -81,26 +51,19 @@ function AddFood() {
         Food_picture: input.Food_picture,
       });
 
-      const requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-      };
-
       axios
         .post("http://127.0.0.1:8000/add_food/", raw, { headers })
         .then((response) => {
-          if (response.message ==="Food data added successfully") {
+          if (response.data.message === "Food data added successfully") {
             MySwal.fire({
-              html: <i>{response.message}</i>,
+              html: <i>{response.data.message}</i>,
               icon: "success",
-            }).then((value) => {
+            }).then(() => {
               navigate("/Home");
             });
           } else {
             MySwal.fire({
-              html: <i>เพิ่มข้อมูลร้านค้าสำเร็จ</i>,
+              html: <i>เพิ่มข้อมูลไม่สำเร็จ</i>,
               icon: "error",
             });
           }
@@ -179,7 +142,7 @@ function AddFood() {
                     className="p-2 border rounded-md"
                     name="Food_picture"
                     type="file"
-                    placeholder="ราคา..."
+                    placeholder="รูปภาพ..."
                     htmlFor="รูปภาพ"
                     value={input.Food_picture || ""}
                     onChange={handleChange}

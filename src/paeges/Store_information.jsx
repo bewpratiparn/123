@@ -36,7 +36,7 @@ function Store_information() {
     axios
       .get("http://127.0.0.1:8000/food_names/")
       .then((response) => {
-        setFoodDetail(response.data); // นี่คือการกำหนดค่า state ด้วยข้อมูลที่ได้รับจาก API
+        setFoodDetail(response.data); 
       })
       .catch((error) => {
         console.error("Error fetching food items:", error);
