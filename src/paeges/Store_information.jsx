@@ -12,6 +12,7 @@ function Store_information() {
   const shoplocation = searchParams.get("shop_location");
   const shopphone = searchParams.get("shop_phone");
   const shopTime = searchParams.get("shop_time");
+  const foodPrice = searchParams.get("food_price");
 
   const [foodItems, setFoodItems] = useState([]);
   const [fooddetail, setFoodDetail] = useState([]);
@@ -36,16 +37,23 @@ function Store_information() {
     axios
       .get("http://127.0.0.1:8000/food_names/")
       .then((response) => {
-        setFoodDetail(response.data); 
+        setFoodDetail(response.data);
       })
       .catch((error) => {
         console.error("Error fetching food items:", error);
       });
   }, []);
-// ส่งจากเส้น allfood
-  const handleGotodetailfood = (foodId, foodElements,foodPicture,foodElement,foodPrice) => {
+  // ส่งจากเส้น allfood
+  const handleGotodetailfood = (
+    foodId,
+    foodName,
+    foodElements,
+    foodPicture,
+    foodElement,
+    foodPrice
+  ) => {
     // Navigate to Detailfood page with foodElement as a query parameter
-    window.location.href = `/Detailfood?food_id=${foodId}&food_elements=${foodElements}&Food_picture=${foodPicture}&Food_element=${foodElement}&Food_price=${foodPrice}`;
+    window.location.href = `/Detailfood?food_id=${foodId}&food_elements=${foodElements}&Food_name=${foodName}&Food_picture=${foodPicture}&Food_element=${foodElement}&Food_price=${foodPrice}`;
   };
 
   return (
@@ -64,26 +72,32 @@ function Store_information() {
           </div>
         </div>
       </div>
-      
-          {foodItems.map((item, index) => (
-            <div className="grid-container" key={index}>
-              <div className="grid-item">
-                <img
-                  onClick={() =>
-                    handleGotodetailfood(item.food_id, item.food_elements,item.Food_picture,item.Food_element,item.Food_price)
-                  }
-                  src={item.Food_picture}
-                  className="picture-menu"
-                  alt={`รูปภาพของ ${item.Food_picture}`}
-                />
-                <button href="Detailfood">
-                  <div>ชื่ออาหาร : {item.Food_name}</div>
-                  <div>ราคา : {item.Food_Price} บาท</div>
-                </button>
-              </div>
-            </div>
+
+      {foodItems.map((item, index) => (
+        <div className="grid-container" key={index}>
+          <div className="grid-item">
+            <img
+              onClick={() =>
+                handleGotodetailfood(
+                  item.food_id,
+                  item.Food_name,
+                  item.food_elements,
+                  item.Food_picture,
+                  item.Food_element,
+                  item.Food_price
+                )
+              }
+              src={item.Food_picture}
+              className="picture-menu"
+              alt={`รูปภาพของ ${item.Food_picture}`}
+            />
+            <button href="Detailfood">
+              <div>ชื่ออาหาร : {item.Food_name}</div>
+              <div>ราคา : {item.Food_price} บาท</div>
+            </button>
+          </div>
+        </div>
       ))}
-    
     </>
   );
 }
