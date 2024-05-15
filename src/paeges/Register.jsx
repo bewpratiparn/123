@@ -5,7 +5,7 @@ import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
-  /*  const navigate = useNavigate();
+  const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
   const [inputs, setInputs] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
@@ -60,7 +60,7 @@ function Register() {
           icon: "error",
         });
       });
-  };*/
+  };
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -81,13 +81,6 @@ function Register() {
     redirect: "follow",
   };
 
-  fetch(
-    "http://127.0.0.1:8000/register/?firstname=t&lastname=t&username=t&password=t&phone=t",
-    requestOptions
-  )
-    .then((response) => response.text())
-    .then((result) => console.log(result))
-    .catch((error) => console.error(error));
 
   return (
     <div className="flex justify-center items-center-top h-screen bg-gray-100">
