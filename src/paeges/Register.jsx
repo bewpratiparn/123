@@ -39,16 +39,17 @@ function Register() {
     })
       .then((response) => response.json())
       .then((result) => {
-        if (result.status === "OK") {
+        if (result) {
           MySwal.fire({
-            html: <i>{result.message}</i>,
+            html: <i>{result}</i>,
             icon: "success",
+            
           }).then(() => {
             navigate("/Login");
           });
         } else {
           MySwal.fire({
-            html: <i>{result.message}</i>,
+            html: <i>{result}</i>,
             icon: "error",
           });
         }
