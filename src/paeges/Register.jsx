@@ -21,59 +21,61 @@ function Register() {
       const value = event.target.value;
       setInputs((values) => ({ ...values, [name]: value }));
     }
-    const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(inputs);
 
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+    reader.onloadend = () => {
+      const base64String = reader.result;
 
-    const raw = JSON.stringify({
-      firstname: inputs.firstname,
-      lastname: inputs.lastname,
-      username: inputs.username,
-      password: inputs.password,
-      phone: inputs.phone,
-      picture: inputs.picture,
-    });
+      const data = {
+        firstname: inputs.firstname,
+        lastname: inputs.lastname,
+        username: inputs.username,
+        password: inputs.password,
+        phone: inputs.phone,
+        picture: base64String,
+      };
 
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+        redirect: "follow",
+      };
 
-    fetch("http://127.0.0.1:8000/register/", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.status === "OK") {
-          // Change "ok" to "OK"
+      fetch("http://127.0.0.1:8000/register/", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          if (result) {
+            MySwal.fire({
+              html: <i>{result.message}</i>,
+              icon: "success",
+            }).then((value) => {
+              Navigate("/Login");
+            });
+          } else {
+            MySwal.fire({
+              html: <i>{result.message}</i>,
+              icon: "error",
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
           MySwal.fire({
-            html: <i></i>,
+            html: <i>เกิดข้อผิดพลาด</i>,
             icon: "error",
-          }).then((value) => {
-            Navigate("/Login");
           });
-        } else {
-          MySwal.fire({
-            html: <i>{result.message}</i>,
-            icon: "success",
-          });
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        MySwal.fire({
-          html: <i>เกิดข้อผิดพลาด</i>,
-          icon: "error",
         });
-      });
+    };
   };
+
   return (
     <div className="flex justify-center items-center-top h-screen bg-gray-100">
       <div className="bg-white-screen p-8 rounded-lg shadow-lg">

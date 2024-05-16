@@ -15,14 +15,26 @@ function AddFood() {
     Food_price: "",
     Food_picture: "",
   });
+  const [imageURL, setImageURL] = useState("");
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, type } = event.target;
 
-    setInputs((prevInputs) => ({
-      ...prevInputs,
-      [name]: value,
-    }));
+    if (type === "file") {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setImageURL(reader.result);
+      };
+
+      reader.readAsDataURL(file);
+    } else {
+      setInputs((prevInputs) => ({
+        ...prevInputs,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = (event) => {
@@ -39,7 +51,7 @@ function AddFood() {
         Food_name: input.Food_name,
         Food_element: input.Food_element,
         Food_price: input.Food_price,
-        Food_picture: input.Food_picture,
+        Food_picture: imageURL, // เปลี่ยนจาก input.Food_picture เป็น imageURL
       });
 
       axios
@@ -132,6 +144,14 @@ function AddFood() {
                     placeholder="รูปภาพ..."
                     onChange={handleChange}
                   />
+                  {imageURL && (
+                    <img
+                      src={imageURL}
+                      alt="Food"
+                      className="mt-2 rounded-md shadow-md"
+                      style={{ maxWidth: "300px" }}
+                    />
+                  )}
                 </div>
               </div>
             </div>

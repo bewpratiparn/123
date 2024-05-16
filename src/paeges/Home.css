@@ -45,6 +45,23 @@
   height: auto;
 }
 
+.slick-prev:before, .slick-next:before {
+  font-family: 'slick';
+  font-size: 30px;
+  line-height: 1;
+  opacity: .75;
+  color: #dd5d14;
+  -webkit-font-smoothing: antialiased;
+}
+
+.slick-slide.slick-cloned {
+  transform: scale(0.8); /* ปรับขนาดให้เล็กลง 80% */
+  opacity: 0.7; /* ลดความโปร่งใสเพื่อแสดงความแตกต่าง */
+  max-width: 10px;
+  font-size: 0px;
+}
+
+
 /* Add custom styles for Slider */
 .slick-slider {
   margin: 0 auto;
@@ -104,38 +121,11 @@
   transition: font-size 0.3s ease, color 0.3s ease;
 }
 
-
 /* Style for Next button */
-.slick-next {
-  font-size: 24px; /* กำหนดขนาดใหญ่ขึ้น */
-  line-height: 1;
-  z-index: 1;
-  background-color: transparent;
-  border: none;
-  color: #333; /* สีของปุ่ม Next */
-  transition: font-size 0.3s ease, color 0.3s ease;
-}
 
-.slick-next:hover {
-  font-size: 28px; /* เพิ่มขนาดเมื่อโฮเวอร์ */
-  color: orange; /* เปลี่ยนสีเป็นสีส้ม */
-}
 
 /* Style for Previous button */
-.slick-prev {
-  font-size: 24px; /* กำหนดขนาดใหญ่ขึ้น */
-  line-height: 1;
-  z-index: 1;
-  background-color: transparent;
-  border: none;
-  color: #333; /* สีของปุ่ม Previous */
-  transition: font-size 0.3s ease, color 0.3s ease;
-}
 
-.slick-prev:hover {
-  font-size: 28px; /* เพิ่มขนาดเมื่อโฮเวอร์ */
-  color: orange; /* เปลี่ยนสีเป็นสีส้ม */
-}
 
 
 header {
