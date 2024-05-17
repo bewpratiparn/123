@@ -1,39 +1,40 @@
 import React, { useState } from "react";
-import { Form, TextArea, Button, Icon } from "semantic-ui-react";
-import "./translate.css";
+import { Form, Button, Dropdown } from "semantic-ui-react";
 import axios from "axios";
+import "./translate.css";
 import "semantic-ui-css/semantic.min.css";
-import Navbar from "../components/Navbar";
 
 function Translate() {
-  const [inputText, setInputText] = useState("");
-  const [translatedText, setTranslatedText] = useState("");
-  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [state, setState] = useState({
+    inputText: "",
+    translatedText: "",
+    selectedLanguage: "",
+    error: "",
+  });
 
   const submitTranslate = async () => {
     try {
       const translationDirection =
-        selectedLanguage === "en" ? "th-en" : "en-th";
+        state.selectedLanguage === "en" ? "th-en" : "en-th";
 
       const response = await axios.post(
         `http://127.0.0.1:8000/translate/${translationDirection}/`,
-        {
-          text: inputText,
-        }
+        { text: state.inputText }
       );
 
-      setTranslatedText(response.data.translated_text);
+      setState({ ...state, translatedText: response.data.translated_text, error: "" });
     } catch (error) {
       console.error("Error translating:", error);
+      setState({ ...state, error: "Error translating. Please try again." });
     }
   };
 
   const handleInputChange = (e) => {
-    setInputText(e.target.value);
+    setState({ ...state, inputText: e.target.value });
   };
 
   const handleLanguageChange = (e, { value }) => {
-    setSelectedLanguage(value);
+    setState({ ...state, selectedLanguage: value });
   };
 
   const languageOptions = [
@@ -44,41 +45,35 @@ function Translate() {
   return (
     <div>
       <div className="app-header">
-        <h2 className="header"> Translator</h2>
+        <h2 className="header">Translator</h2>
       </div>
-
       <div className="app-body">
-        <div>
-          <Form onSubmit={submitTranslate}>
-            <Form.TextArea
-              label="About"
-              placeholder="Type Text to Translate.."
-              className="inputtext"
-              value={inputText}
-              onChange={handleInputChange}
-            />
-
-            <Form.Select
-              placeholder="Please Select Language.."
-              options={languageOptions}
-              className="language-select"
-              onChange={handleLanguageChange}
-              value={selectedLanguage}
-            />
-            
-
-            <Form.TextArea
-              placeholder="Your Result Translation.."
-              className="result"
-              value={translatedText}
-              readOnly
-            />
-
-            <Button className="translatebutton"color="orange" size="large" type="submit">
-              Translate
-            </Button>
-          </Form>
-        </div>
+        <Form onSubmit={submitTranslate}>
+          <Form.TextArea
+            label="Text to Translate"
+            placeholder="Type text to translate..."
+            className="inputtext"
+            value={state.inputText}
+            onChange={handleInputChange}
+          />
+          <Form.Select
+            placeholder="Please Select Language..."
+            options={languageOptions}
+            className="language-select"
+            onChange={handleLanguageChange}
+            value={state.selectedLanguage}
+          />
+          <Form.TextArea
+            placeholder="Your translation will appear here..."
+            className="result"
+            value={state.translatedText}
+            readOnly
+          />
+          {state.error && <div className="error">{state.error}</div>}
+          <Button className="translatebutton" color="orange" size="large" type="submit">
+            Translate
+          </Button>
+        </Form>
       </div>
     </div>
   );
