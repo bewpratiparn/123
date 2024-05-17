@@ -1,68 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, TextArea, Button, Icon } from "semantic-ui-react";
 import "./translate.css";
 import axios from "axios";
-import 'semantic-ui-css/semantic.min.css'
+import "semantic-ui-css/semantic.min.css";
+import Navbar from "../components/Navbar";
+
 function Translate() {
-  const [inputText, setInputText] = useState('');
-  const [detectLanguageKey, setdetectedLanguageKey] = useState('');
-  const [selectedLanguageKey, setLanguageKey] = useState('');
-  const [languagesList, setLanguagesList] = useState([]);
-  const [resultText, setResultText] = useState('');
-  const [apiKey, setApiKey] = useState('');
+  const [inputText, setInputText] = useState("");
+  const [translatedText, setTranslatedText] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("");
 
+  const submitTranslate = async () => {
+    try {
+      const translationDirection =
+        selectedLanguage === "en" ? "th-en" : "en-th";
 
+      const response = await axios.post(
+        `http://127.0.0.1:8000/translate/${translationDirection}/`,
+        {
+          text: inputText,
+        }
+      );
+
+      setTranslatedText(response.data.translated_text);
+    } catch (error) {
+      console.error("Error translating:", error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setInputText(e.target.value);
+  };
+
+  const handleLanguageChange = (e, { value }) => {
+    setSelectedLanguage(value);
+  };
 
   const languageOptions = [
-      {key: 'en', Text: 'English', value:'male'},
-      {key: 'th ', Text: 'Thai', value:'female'},
-     // {key: 'ar', Text: 'Arabic', value:'other'},
-     //{key: 'fr', Text: 'French', value:'other'},
-     // {key: 'es', Text: 'Spanish', value:'other'},
-     // {key: 'bg', Text: 'Bangla', value:'other'},
-     // {key: 'ur', Text: 'Arabic', value:'other'},
-     // {key: 'gr', Text: 'Greek', value:'other'},
-
-  ]
-
-  const getLanguageSource = () => {
-    axios
-      .post(`https://libretranslate.com/translate`, {
-        q: inputText,
-      })
-      .then((response) => {
-        setdetectedLanguageKey(response.data[0].language);
-      })
-  }
-  
-  useEffect(() => {
-    axios
-      .get("https://libretranslate.de/languages")
-      .then((response) => {
-      setLanguagesList(response.data)
-    })
-
-    getLanguageSource();
-  }, [inputText])
-
-  
-  const languageKey = (selectedLanguage) => {
-    setLanguageKey(selectedLanguage.target.value)
-  }
-  const translateText = () => {
-    getLanguageSource();
-
-    let data = {
-      q: inputText,
-      source: detectLanguageKey,
-      target: selectedLanguageKey,
-    }
-    axios
-    .post(`https://libretranslate.de/translate`, data)
-    .then((response) => {
-      setResultText(response.data.translatedText)
-    })
-  }
+    { key: "en", text: "English", value: "en" },
+    { key: "th", text: "Thai", value: "th" },
+  ];
 
   return (
     <div>
@@ -70,41 +47,34 @@ function Translate() {
         <h2 className="header"> Translator</h2>
       </div>
 
-
       <div className="app-body">
         <div>
-          <Form>
-            <Form.Field
-              control={TextArea}
-              label='About'
+          <Form onSubmit={submitTranslate}>
+            <Form.TextArea
+              label="About"
               placeholder="Type Text to Translate.."
-              onChange={(e) => setInputText(e.target.value)}
+              className="inputtext"
+              value={inputText}
+              onChange={handleInputChange}
             />
 
-            <select className="language-select" onChange={languageKey}>
-              <option>Please Select Language..</option>
-              {languageOptions.map((language) => {
-                return( 
-                <option value={language.code}>
-                  {language.Text}
-                  </option>
-                )
-              })}
-            </select>
+            <Form.Select
+              placeholder="Please Select Language.."
+              options={languageOptions}
+              className="language-select"
+              onChange={handleLanguageChange}
+              value={selectedLanguage}
+            />
+            
 
-            <Form.Field
-              control={TextArea}
+            <Form.TextArea
               placeholder="Your Result Translation.."
-              value={resultText}
+              className="result"
+              value={translatedText}
+              readOnly
             />
 
-            <Button 
-            color="orange" 
-            size="large" 
-            onClick={translateText}
-
-            >
-           <Icon name="translate" />
+            <Button className="translatebutton"color="orange" size="large" type="submit">
               Translate
             </Button>
           </Form>
@@ -113,4 +83,5 @@ function Translate() {
     </div>
   );
 }
+
 export default Translate;
