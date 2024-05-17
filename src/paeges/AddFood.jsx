@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AddFood.css";
+import Resizer from "react-image-file-resizer";
 
 function AddFood() {
   const navigate = useNavigate();
@@ -13,22 +14,18 @@ function AddFood() {
     Food_name: "",
     Food_element: "",
     Food_price: "",
-    Food_picture: "",
   });
   const [imageURL, setImageURL] = useState("");
+  const [file, setFile] = useState(null);
 
   const handleChange = (event) => {
     const { name, value, type } = event.target;
 
     if (type === "file") {
-      const file = event.target.files[0];
-      const reader = new FileReader();
+      const selectedFile = event.target.files[0];
+      setFile(selectedFile);
 
-      reader.onloadend = () => {
-        setImageURL(reader.result);
-      };
-
-      reader.readAsDataURL(file);
+      // Handle image resizing if needed
     } else {
       setInputs((prevInputs) => ({
         ...prevInputs,
@@ -42,39 +39,38 @@ function AddFood() {
     const userToken = localStorage.getItem("token");
 
     if (userToken) {
+      const formData = new FormData();
+      formData.append("Food_name", input.Food_name);
+      formData.append("Food_element", input.Food_element);
+      formData.append("Food_price", input.Food_price);
+      formData.append("Food_picture", file);
+
       const headers = {
         Authorization: `Bearer ${userToken}`,
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
       };
 
-      const raw = JSON.stringify({
-        Food_name: input.Food_name,
-        Food_element: input.Food_element,
-        Food_price: input.Food_price,
-        Food_picture: imageURL, // เปลี่ยนจาก input.Food_picture เป็น imageURL
-      });
-
       axios
-        .post("http://127.0.0.1:8000/add_food/", raw, { headers })
+        .post("http://127.0.0.1:8000/upload_image/", formData, { headers })
         .then((response) => {
-          if (response.data.message === "Food data added successfully") {
-            MySwal.fire({
-              html: <i>{response.data.message}</i>,
-              icon: "success",
-            }).then(() => {
-              navigate("/Home");
-            });
-          } else {
-            MySwal.fire({
-              html: <i>เพิ่มข้อมูลร้านค้าสำเร็จ</i>,
-              icon: "error",
-            });
-          }
+          MySwal.fire({
+            html: (
+              <i>{response.data.message || "Food data added successfully"}</i>
+            ),
+            icon: "success",
+          }).then(() => {
+            navigate("/Home");
+          });
         })
         .catch((error) => {
           console.error(error);
           MySwal.fire({
-            html: <i>เกิดข้อผิดพลาดในการเพิ่มข้อมูลร้านค้า</i>,
+            html: (
+              <i>
+                เกิดข้อผิดพลาดในการเพิ่มข้อมูลร้านค้า:{" "}
+                {error.response?.data?.detail || error.message}
+              </i>
+            ),
             icon: "error",
           });
         });
@@ -90,7 +86,9 @@ function AddFood() {
     <>
       <div className="background">
         <div className="flex flex-col justify-center items-center m-10">
-          <div className="m-5 text-center">เพิ่มข้อมูลอาหาร</div>
+          <div className="m-5 text-center text-xl font-bold">
+            เพิ่มข้อมูลอาหาร
+          </div>
           <form onSubmit={handleSubmit}>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
               <div>
@@ -105,6 +103,7 @@ function AddFood() {
                     placeholder="ชื่อเมนู..."
                     value={input.Food_name}
                     onChange={handleChange}
+                    required
                   />
                 </div>
                 <div className="mb-4">
@@ -118,6 +117,7 @@ function AddFood() {
                     placeholder="องค์ประกอบของอาหาร"
                     value={input.Food_element}
                     onChange={handleChange}
+                    required
                   />
                 </div>
                 <div className="mb-4">
@@ -131,6 +131,7 @@ function AddFood() {
                     placeholder="ราคา..."
                     value={input.Food_price}
                     onChange={handleChange}
+                    required
                   />
                 </div>
                 <div className="mb-4">
@@ -139,10 +140,11 @@ function AddFood() {
                   </label>
                   <input
                     className="p-2 border rounded-md"
-                    name="Food_picture"
+                    name="food_picture" // Ensure this name matches the backend expectation
                     type="file"
                     placeholder="รูปภาพ..."
                     onChange={handleChange}
+                    required
                   />
                   {imageURL && (
                     <img

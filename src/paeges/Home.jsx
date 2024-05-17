@@ -16,20 +16,30 @@ function Home() {
     fetch("http://127.0.0.1:8000/shops/")
       .then((res) => res.json())
       .then((data) => {
-        const uniqueShops = data.filter((shop, index, self) =>
-          index === self.findIndex((s) => s.shop_id === shop.shop_id)
-        );
-        setfilterData(uniqueShops);
-        setDatasearch(uniqueShops); // แสดงร้านทั้งหมดเมื่อโหลดคอมโพเนนต์
+        console.log("Shops data:", data); // Debugging line
+        if (Array.isArray(data)) {
+          const uniqueShops = data.filter((shop, index, self) =>
+            index === self.findIndex((s) => s.shop_id === shop.shop_id)
+          );
+          setfilterData(uniqueShops);
+          setDatasearch(uniqueShops); // แสดงร้านทั้งหมดเมื่อโหลดคอมโพเนนต์
+        } else {
+          console.error("Shops data is not an array");
+        }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("Error fetching shops:", err));
 
     fetch("http://127.0.0.1:8000/show_all_food/")
       .then((res) => res.json())
       .then((data) => {
-        setFoodData(data);
+        console.log("Food data:", data); // Debugging line
+        if (Array.isArray(data)) {
+          setFoodData(data);
+        } else {
+          console.error("Food data is not an array");
+        }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("Error fetching food:", err));
   }, []);
 
   const handleFilter = (value) => {
@@ -63,7 +73,6 @@ function Home() {
     // ตั้งค่าข้อมูลที่ค้นหาและแสดงผล
     setDatasearch(uniqueResult);
   };
-  
 
   const handleShopClick = (shopId) => {
     if (!displayedShopIds.includes(shopId)) {
