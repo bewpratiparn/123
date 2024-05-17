@@ -13,7 +13,6 @@ function AddDataShop() {
     storename: "",
     location: "",
     phone: "",
-    maplink: "",
     onclose: "",
     shop_type: "",
   });
@@ -111,7 +110,7 @@ function AddDataShop() {
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                  สถานที่
+                  สถานที่ Map-link
                 </label>
                 <input
                   className="p-2 border rounded-md"
@@ -132,19 +131,6 @@ function AddDataShop() {
                   type="text"
                   placeholder="เบอร์โทรศัพท์..."
                   value={addShop.phone}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Map-link
-                </label>
-                <input
-                  className="p-2 border rounded-md"
-                  name="maplink"
-                  type="text"
-                  placeholder="Map-link..."
-                  value={addShop.maplink}
                   onChange={handleChange}
                 />
               </div>
@@ -201,7 +187,8 @@ function AddDataShop() {
             <button
               type="submit"
               className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm
-              px-5 py-2.5 text-center mr-2 mb-2"
+              px-5 py-2.5 text-center mr-2 mb-2
+              "
               >
                 ยืนยัน
               </button>
@@ -219,4 +206,3 @@ function AddDataShop() {
   }
   
   export default AddDataShop;
-  

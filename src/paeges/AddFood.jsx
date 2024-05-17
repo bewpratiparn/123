@@ -5,6 +5,7 @@ import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AddFood.css";
+import Resizer from "react-image-file-resizer";
 
 function AddFood() {
   const navigate = useNavigate();
@@ -19,16 +20,25 @@ function AddFood() {
 
   const handleChange = (event) => {
     const { name, value, type } = event.target;
-
+  
     if (type === "file") {
       const file = event.target.files[0];
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setImageURL(reader.result);
-      };
-
-      reader.readAsDataURL(file);
+  
+      // ปรับขนาดรูปภาพ
+      Resizer.imageFileResizer(
+        file,
+        300, // กว้างใหม่ของรูป (pixels)
+        300, // สูงใหม่ของรูป (pixels)
+        "JPEG", // รูปแบบของรูป
+        100, // คุณภาพของรูป (0-100)
+        0, // การหมุน (0 = ไม่หมุน, 90 = หมุนตามเข็มนาฬิกา, -90 = หมุนทวนเข็มนาฬิกา)
+        (uri) => {
+          setImageURL(uri);
+        },
+        "base64", // รูปแบบการออก
+        300, // ความละเอียดของชั้นสี
+        100 // ความจุของรูป (เซ้นต์)
+      );
     } else {
       setInputs((prevInputs) => ({
         ...prevInputs,

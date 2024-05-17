@@ -33,9 +33,9 @@ function Store_information() {
       });
   }, [shopId]);
 
-  const handleGotodetailfood = (foodId, foodElements,foodPicture,foodElement,foodPrice,foodName) => {
+  const handleGotodetailfood = (foodId, foodElements,foodPicture,foodElement,foodPrice,foodName,ShopPicture) => {
     // Navigate to Detailfood page with foodElement as a query parameter
-    window.location.href = `/Fooddetails?food_id=${foodId}&food_elements=${foodElements}&Food_picture=${foodPicture}&Food_element=${foodElement}&Food_price=${foodPrice}&Food_name=${foodName}`;
+    window.location.href = `/Fooddetails?food_id=${foodId}&food_elements=${foodElements}&Food_picture=${foodPicture}&Food_element=${foodElement}&Food_price=${foodPrice}&Food_name=${foodName}&Shop_picture=${ShopPicture}`;
   };
 
 
