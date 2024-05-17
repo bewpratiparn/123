@@ -19,7 +19,6 @@ import Editstore from './paeges/Editstore';
 import Store_information from './paeges/Store_information';
 import Notshowfood from './paeges/Notshowfood';
 import NavbarSidebar from './components/NavbarSidebar';
-import Profile from './paeges/Profile';
 import Slideshow from './paeges/Slideshow';
 import Showuser from './paeges/Showuser';
 

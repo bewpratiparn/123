@@ -19,11 +19,18 @@
 }
 
 .language-select {
-  width: 300px;
+  width: 50px;
   height: 50px !important;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   outline: none !important;
 }
+
+.long-select-language{
+  width: 350px;
+}
+
+
+
 .pleaseselectLanguage{
   position: absolute;
   bottom: 170px;
