@@ -8,7 +8,8 @@
 .container-store {
   display: flex;
   justify-content: center;
-  background-color: rgb(245, 159, 1); /* Add this line */
+  background-color: rgb(245, 159, 1);
+  /* Add this line */
 }
 
 
@@ -45,7 +46,8 @@
   height: auto;
 }
 
-.slick-prev:before, .slick-next:before {
+.slick-prev:before,
+.slick-next:before {
   font-family: 'slick';
   font-size: 30px;
   line-height: 1;
@@ -55,9 +57,11 @@
 }
 
 .slick-slide.slick-cloned {
-  transform: scale(0.8); /* ปรับขนาดให้เล็กลง 80% */
-  opacity: 0.7; /* ลดความโปร่งใสเพื่อแสดงความแตกต่าง */
-  max-width: 10px;
+  transform: scale(0.0);
+  /* ปรับขนาดให้เล็กลง 80% */
+  opacity: 0.0;
+  /* ลดความโปร่งใสเพื่อแสดงความแตกต่าง */
+  margin-top: -360px;
   font-size: 0px;
 }
 
@@ -112,6 +116,7 @@
   background-color: rgba(11, 243, 3, 0.9);
   margin-top: 0px;
 }
+
 /* Style for arrow buttons */
 .slick-arrow {
   line-height: 1;
@@ -149,18 +154,26 @@ input[type="textsearch"] {
 }
 
 #default-search {
-  width: calc(100% - 40px); /* Adjust width to fit container */
-  padding: 10px 20px; /* Adjust padding for better spacing */
-  font-size: 16px; /* Set font size */
-  border: 1px solid #d1d5db; /* Set border color */
-  border-radius: 999px; /* Make the input rounded */
-  transition: border-color 0.3s ease-in-out; /* Add transition effect for better interaction */
-  
+  width: calc(100% - 40px);
+  /* Adjust width to fit container */
+  padding: 10px 20px;
+  /* Adjust padding for better spacing */
+  font-size: 16px;
+  /* Set font size */
+  border: 1px solid #d1d5db;
+  /* Set border color */
+  border-radius: 999px;
+  /* Make the input rounded */
+  transition: border-color 0.3s ease-in-out;
+  /* Add transition effect for better interaction */
+
 }
 
 #default-search:focus {
-  outline: none; /* Remove focus outline */
-  border-color: #2563eb; /* Change border color on focus */
+  outline: none;
+  /* Remove focus outline */
+  border-color: #2563eb;
+  /* Change border color on focus */
 }
 
 .highlight {
