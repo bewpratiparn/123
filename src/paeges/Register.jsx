@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 import { withEmotionCache } from "@emotion/react";
+import axios from "axios"; // เพิ่มการ import Axios
 
 function Register() {
   const Navigate = useNavigate();
@@ -35,17 +36,11 @@ function Register() {
       formData.append("picture", selectedFile);
     }
 
-    const requestOptions = {
-      method: "POST",
-      body: formData,
-    };
-
-    fetch("http://127.0.0.1:8000/register/", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result) {
+    axios.post("http://127.0.0.1:8000/register/", formData) // ใช้ Axios ส่งข้อมูล
+      .then((response) => {
+        if (response.data) {
           MySwal.fire({
-            html: <i>{result}</i>,
+            html: <i>{response.data}</i>,
             icon: "success",
           }).then(() => {
             Navigate("/Login");
