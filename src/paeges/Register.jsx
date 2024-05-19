@@ -1,130 +1,129 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "flowbite";
-import ReactDOM from "react-dom/client";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
-import { withEmotionCache } from "@emotion/react";
-import axios from "axios"; // เพิ่มการ import Axios
+import axios from "axios";
 
 function Register() {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({
+    firstname: "",
+    lastname: "",
+    username: "",
+    password: "",
+    phone: "",
+  });
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleChange = (event) => {
-    const name = event.target.name;
+    const { name, value, files } = event.target;
     if (name === "picture") {
-      setSelectedFile(event.target.files[0]);
+      setSelectedFile(files[0]);
     } else {
-      const value = event.target.value;
-      setInputs((values) => ({ ...values, [name]: value }));
+      setInputs((prev) => ({ ...prev, [name]: value }));
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
     const formData = new FormData();
-    formData.append("firstname", inputs.firstname);
-    formData.append("lastname", inputs.lastname);
-    formData.append("username", inputs.username);
-    formData.append("password", inputs.password);
-    formData.append("phone", inputs.phone);
+
+    // Validation
+    if (
+      !inputs.firstname ||
+      !inputs.lastname ||
+      !inputs.username ||
+      !inputs.password ||
+      !inputs.phone ||
+      !selectedFile
+    ) {
+      MySwal.fire({
+        html: <i>กรุณากรอกข้อมูลให้ครบถ้วน</i>,
+        icon: "error",
+      });
+      return;
+    }
+
+    // Append data to FormData
+    Object.keys(inputs).forEach((key) => {
+      formData.append(key, inputs[key]);
+    });
     if (selectedFile) {
       formData.append("picture", selectedFile);
     }
 
-    axios.post("http://127.0.0.1:8000/register/", formData) // ใช้ Axios ส่งข้อมูล
-      .then((response) => {
-        if (response.data) {
-          MySwal.fire({
-            html: <i>{response.data}</i>,
-            icon: "success",
-          }).then(() => {
-            Navigate("/Login");
-          });
-        } else {
-          MySwal.fire({
-            html: <i>เกิดข้อผิดพลาด</i>,
-            icon: "error",
-          });
+    // Submit form
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/register/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Accept: "application/json",
+          },
         }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+      );
+      if (response.data) {
+        MySwal.fire({
+          html: <i>{response.data}</i>,
+          icon: "success",
+        }).then(() => {
+          navigate("/Login");
+        });
+      } else {
         MySwal.fire({
           html: <i>เกิดข้อผิดพลาด</i>,
           icon: "error",
         });
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      MySwal.fire({
+        html: <i>เกิดข้อผิดพลาด</i>,
+        icon: "error",
       });
+    }
   };
+
   return (
-    <div className="flex justify-center items-center-top h-screen bg-gray-100">
-      <div className="bg-white-screen p-8 rounded-lg shadow-lg">
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-4">ลงทะเบียน</h1>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
+          {["firstname", "lastname", "phone", "username"].map((field) => (
+            <div className="mb-4" key={field}>
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                {field === "firstname"
+                  ? "ชื่อ"
+                  : field === "lastname"
+                  ? "นามสกุล"
+                  : field === "phone"
+                  ? "เบอร์โทรศัพท์"
+                  : "ชื่อผู้ใช้"}
+              </label>
+              <input
+                className="w-full p-2 border rounded-md"
+                type="text"
+                name={field}
+                placeholder={
+                  field === "firstname"
+                    ? "ชื่อ"
+                    : field === "lastname"
+                    ? "นามสกุล"
+                    : field === "phone"
+                    ? "เบอร์โทรศัพท์"
+                    : "ชื่อผู้ใช้"
+                }
+                value={inputs[field] || ""}
+                onChange={handleChange}
+              />
+            </div>
+          ))}
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
-              ชื่อ
-            </label>
-            <input
-              className="w-full p-2 border rounded-md"
-              type="text"
-              name="firstname"
-              placeholder="ชื่อ"
-              value={inputs.firstname || ""}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              นามสกุล
-            </label>
-            <input
-              className="w-full p-2 border rounded-md"
-              type="text"
-              name="lastname"
-              placeholder="นามสกุล"
-              value={inputs.lastname || ""}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              เบอร์โทรศัพท์
-            </label>
-            <input
-              className="w-full p-2 border rounded-md"
-              type="text"
-              name="phone"
-              placeholder="เบอร์โทรศัพท์"
-              value={inputs.phone || ""}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              ชื่อผู้ใช้
-            </label>
-            <input
-              className="w-full p-2 border rounded-md"
-              type="text"
-              name="username"
-              placeholder="ชื่อผู้ใช้"
-              value={inputs.username || ""}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="name"
-            >
               รหัสผ่าน
             </label>
             <input
@@ -136,22 +135,26 @@ function Register() {
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              อัปโหลดรูปภาพ
+            </label>
             <input type="file" name="picture" onChange={handleChange} />
             {selectedFile && (
               <div>
                 <img
                   src={URL.createObjectURL(selectedFile)}
-                  alt="Selected Image"
+                  alt="Selected"
+                  className="my-4"
                 />
                 <p>ไฟล์ที่เลือก: {selectedFile.name}</p>
               </div>
             )}
-            <button disabled={!selectedFile}>อัปโหลดรูปภาพ</button>
           </div>
           <button
             className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
             type="submit"
+            disabled={!selectedFile}
           >
             ลงทะเบียน
           </button>
