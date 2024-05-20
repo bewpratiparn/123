@@ -27,7 +27,6 @@ function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
 
     if (
       !inputs.firstname ||
@@ -44,6 +43,7 @@ function Register() {
       return;
     }
 
+    const formData = new FormData();
     Object.keys(inputs).forEach((key) => {
       formData.append(key, inputs[key]);
     });
@@ -56,11 +56,10 @@ function Register() {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Accept: "application/json",
-            
           },
         }
       );
+
       if (response.data) {
         MySwal.fire({
           html: <i>{response.data}</i>,

@@ -51,7 +51,7 @@ function AddFood() {
       };
 
       axios
-        .post("http://127.0.0.1:8000/upload_image/", formData, { headers })
+        .post("http://127.0.0.1:8000/add_food/", formData, { headers })
         .then((response) => {
           MySwal.fire({
             html: (
