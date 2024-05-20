@@ -83,7 +83,7 @@ function Login() {
       icon: "success",
       title: "Logged out successfully",
       showConfirmButton: false,
-      timer: 1500,
+      timer: 5500,
     }).then(() => {
       navigate("/Home");
     });

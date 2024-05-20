@@ -26,7 +26,7 @@ function Showuser() {
     <div className="show-user-container">
       {user && (
         <div className="user-info">
-          <p className="welcome-text">Welcome, {user.username}</p>
+          <p className="welcome-text">Welcome {user.username}</p>
           <img
             src={user.picture}
             alt="Profile"
