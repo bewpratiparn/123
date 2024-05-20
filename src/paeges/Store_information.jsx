@@ -3,7 +3,6 @@ import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
 import "./Store_information.css";
 
-
 function Store_information() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -14,17 +13,23 @@ function Store_information() {
   const shopPhone = searchParams.get("shop_phone");
   const shopTime = searchParams.get("shop_time");
   const shopText = searchParams.get("shop_text");
- 
-
 
   const [foodItems, setFoodItems] = useState([]);
-  const [fooddetails, setFoodDetail] = useState([]);
+  const [shopDetails, setShopDetails] = useState(null);
 
   useEffect(() => {
-    // Fetch food items data from an API endpoint
+    // Fetch shop details
+    axios.get(`http://127.0.0.1:8000/shops/${shopId}`)
+      .then(response => {
+        setShopDetails(response.data);
+      })
+      .catch(error => {
+        console.error("Error fetching shop details:", error);
+      });
+
+    // Fetch food items
     axios.get(`http://127.0.0.1:8000/show_all_food/?shop_id=${shopId}`)
       .then(response => {
-        // Filter food items by shop_id
         const filteredFoodItems = response.data.filter(item => item.shop_id === parseInt(shopId));
         setFoodItems(filteredFoodItems);
       })
@@ -32,12 +37,6 @@ function Store_information() {
         console.error("Error fetching food items:", error);
       });
   }, [shopId]);
-
-  const handleGotodetailfood = (foodId, foodElements,foodPicture,foodElement,foodPrice,foodName,ShopPicture) => {
-    // Navigate to Detailfood page with foodElement as a query parameter
-    window.location.href = `/Fooddetails?food_id=${foodId}&food_elements=${foodElements}&Food_picture=${foodPicture}&Food_element=${foodElement}&Food_price=${foodPrice}&Food_name=${foodName}&Shop_picture=${ShopPicture}`;
-  };
-
 
   return (
     <div className="bk">
@@ -53,6 +52,13 @@ function Store_information() {
                   <div className="phone">เบอร์ติดต่อ : {shopPhone}</div>
                   <div className="time">วันเวลาเปิด-ปิด : {shopTime}</div>
                   <div className="symbol">ตราสัญลักษณ์ : {shopText}</div>
+                  {/* Display additional shop details */}
+                  {shopDetails && (
+                    <div className="additional-details">
+                      <div>Additional Details:</div>
+                      <div>Some additional shop details: {shopDetails.additionalDetails}</div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -66,15 +72,15 @@ function Store_information() {
                 <div>ชื่ออาหาร : {item.Food_name}</div>
                 <div>ราคา : {item.Food_price} บาท</div>
                 <Link
-                  onClick={() =>
-                    handleGotodetailfood(item.food_id, item.food_elements,item.Food_picture,item.Food_element,item.Food_price,item.Food_name)
-                  }
-                   // ส่ง foodId ไปยัง Fooddetails
+                  to={{
+                    pathname: `/Fooddetails`,
+                    search: `?food_id=${item.food_id}`,
+                    state: { foodItem: item }
+                  }}
                   className="btn btn-primary"
                 >
                   ดูรายละเอียด
                 </Link>
-
               </div>
             </div>
           ))}

@@ -166,22 +166,22 @@ function Home() {
                           .map((food, index) => (
                             <div key={index}>
                               <Link
-                                to={{
-                                  pathname: "/Fooddetails",
-                                  search: `?Food_name=${food.Food_name}&Food_price=${food.Food_price}&Food_picture=${food.Food_picture}&Food_element=${food.Food_element}&food_elements=${food.food_elements}`
-                                }}
-                              >
-                                <h3>
-                                  {searchTerm && food.Food_name.toLowerCase().includes(searchTerm.toLowerCase()) ? (
-                                    <span style={{backgroundColor: 'yellow'}}>
-                                      {food.Food_name}
-                                    </span>
-                                  ) : (
-                                    food.Food_name
-                                  )}
-                                </h3>
-                                <img src={food.Food_picture} alt={food.Food_name} style={{ width: '100%' }} />
-                              </Link>
+  to={{
+    pathname: "/Fooddetails",
+    search: `?food_id=${food.food_id}&Food_name=${food.Food_name}&Food_price=${food.Food_price}&Food_picture=${food.Food_picture}&Food_element=${food.Food_element}&food_elements=${food.food_elements}`
+  }}
+>
+  <h3>
+    {searchTerm && food.Food_name.toLowerCase().includes(searchTerm.toLowerCase()) ? (
+      <span style={{backgroundColor: 'yellow'}}>
+        {food.Food_name}
+      </span>
+    ) : (
+      food.Food_name
+    )}
+  </h3>
+  <img src={food.Food_picture} alt={food.Food_name} style={{ width: '100%' }} />
+</Link>
                             </div>
                           ))}
                       </Slider>
