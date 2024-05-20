@@ -15,17 +15,10 @@ function Store_information() {
   const shopText = searchParams.get("shop_text");
 
   const [foodItems, setFoodItems] = useState([]);
-  const [shopDetails, setShopDetails] = useState(null);
+ 
 
   useEffect(() => {
-    // Fetch shop details
-    axios.get(`http://127.0.0.1:8000/shops/${shopId}`)
-      .then(response => {
-        setShopDetails(response.data);
-      })
-      .catch(error => {
-        console.error("Error fetching shop details:", error);
-      });
+  
 
     // Fetch food items
     axios.get(`http://127.0.0.1:8000/show_all_food/?shop_id=${shopId}`)
@@ -52,13 +45,7 @@ function Store_information() {
                   <div className="phone">เบอร์ติดต่อ : {shopPhone}</div>
                   <div className="time">วันเวลาเปิด-ปิด : {shopTime}</div>
                   <div className="symbol">ตราสัญลักษณ์ : {shopText}</div>
-                  {/* Display additional shop details */}
-                  {shopDetails && (
-                    <div className="additional-details">
-                      <div>Additional Details:</div>
-                      <div>Some additional shop details: {shopDetails.additionalDetails}</div>
-                    </div>
-                  )}
+                  
                 </div>
               </div>
             </div>

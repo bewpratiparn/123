@@ -164,6 +164,7 @@ function Register() {
                 <img
                   src={URL.createObjectURL(selectedFile)}
                   alt="Selected Image"
+                  style={{ maxWidth: "300px", maxHeight: "300px" }}
                 />
                 <p>Selected file: {selectedFile.name}</p>
               </div>
