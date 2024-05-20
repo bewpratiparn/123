@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import "flowbite";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
@@ -17,31 +16,6 @@ function Register() {
   });
   const [selectedFile, setSelectedFile] = useState(null);
 
-  // Fetch API with useEffect
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://127.0.0.1:8000/some-endpoint/");
-        // Assume the response contains default data for the form
-        setInputs((prevInputs) => ({
-          ...prevInputs,
-          firstname: response.data.firstname || "",
-          lastname: response.data.lastname || "",
-          phone: response.data.phone || "",
-          username: response.data.username || "",
-        }));
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        MySwal.fire({
-          html: <i>เกิดข้อผิดพลาดในการโหลดข้อมูล</i>,
-          icon: "error",
-        });
-      }
-    };
-
-    fetchData();
-  }, []); // Empty dependency array means this useEffect runs once on mount
-
   const handleChange = (event) => {
     const { name, value, files } = event.target;
     if (name === "picture") {
@@ -55,7 +29,6 @@ function Register() {
     event.preventDefault();
     const formData = new FormData();
 
-    // Validation
     if (
       !inputs.firstname ||
       !inputs.lastname ||
@@ -71,15 +44,11 @@ function Register() {
       return;
     }
 
-    // Append data to FormData
     Object.keys(inputs).forEach((key) => {
       formData.append(key, inputs[key]);
     });
-    if (selectedFile) {
-      formData.append("picture", selectedFile);
-    }
+    formData.append("picture", selectedFile);
 
-    // Submit form
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/register/",
@@ -87,7 +56,8 @@ function Register() {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            "Accept": "application/json",
+            Accept: "application/json",
+            
           },
         }
       );
