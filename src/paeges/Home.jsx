@@ -166,22 +166,22 @@ function Home() {
                           .map((food, index) => (
                             <div key={index}>
                               <Link
-  to={{
-    pathname: "/Fooddetails",
-    search: `?food_id=${food.food_id}&Food_name=${food.Food_name}&Food_price=${food.Food_price}&Food_picture=${food.Food_picture}&Food_element=${food.Food_element}&food_elements=${food.food_elements}`
-  }}
->
-  <h3>
-    {searchTerm && food.Food_name.toLowerCase().includes(searchTerm.toLowerCase()) ? (
-      <span style={{backgroundColor: 'yellow'}}>
-        {food.Food_name}
-      </span>
-    ) : (
-      food.Food_name
-    )}
-  </h3>
-  <img src={food.Food_picture} alt={food.Food_name} style={{ width: '100%' }} />
-</Link>
+                                to={{
+                                  pathname: "/Fooddetails",
+                                  search: `?food_id=${food.food_id}&Food_name=${food.Food_name}&Food_price=${food.Food_price}&Food_picture=${encodeURIComponent(food.Food_picture)}&Food_element=${food.Food_element}&food_elements=${food.food_elements}`
+                                }}
+                              >
+                                <h3>
+                                  {searchTerm && food.Food_name.toLowerCase().includes(searchTerm.toLowerCase()) ? (
+                                    <span style={{backgroundColor: 'yellow'}}>
+                                      {food.Food_name}
+                                    </span>
+                                  ) : (
+                                    food.Food_name
+                                  )}
+                                </h3>
+                                <img src={`${food.Food_picture}`} alt={food.Food_name} style={{ width: '100%' }} />
+                              </Link>
                             </div>
                           ))}
                       </Slider>
@@ -190,7 +190,7 @@ function Home() {
                   <Link
                     to={{
                       pathname: `/Store_information`,
-                      search: `?shop_id=${d.shop_id}&shop_name=${d.shop_name}&shop_picture=${d.shop_picture}&shop_location=${d.shop_location}&shop_phone=${d.shop_phone}&shop_time=${d.shop_time}&shop_text=${d.shop_text}`
+                      search: `?shop_id=${d.shop_id}&shop_name=${d.shop_name}&shop_picture=${encodeURIComponent(d.shop_picture)}&shop_location=${d.shop_location}&shop_phone=${d.shop_phone}&shop_time=${d.shop_time}&shop_text=${d.shop_text}`
                     }}
                     className="btn btn-primary"
                     onClick={() => handleShopClick(d.shop_id)}

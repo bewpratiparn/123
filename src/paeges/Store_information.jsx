@@ -8,7 +8,7 @@ function Store_information() {
   const searchParams = new URLSearchParams(location.search);
   const shopId = searchParams.get("shop_id");
   const shopName = searchParams.get("shop_name");
-  const shopPicture = searchParams.get("shop_picture");
+  const shop_picture = searchParams.get("shop_picture");
   const shopLocation = searchParams.get("shop_location");
   const shopPhone = searchParams.get("shop_phone");
   const shopTime = searchParams.get("shop_time");
@@ -43,7 +43,7 @@ function Store_information() {
       <div className="card2">
         <div className="store-information-container">
           <div className="store-details">
-            <img src={shopPicture} className="image-store" alt={shopName} />
+            <img src={shop_picture} className="image-store" alt={shop_picture} />
             <div className="containner-description">
               <div className="containner-box">
                 <div className="colorinside">
