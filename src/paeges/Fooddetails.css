@@ -117,3 +117,22 @@
   height: 500vh;
 
 }
+
+.translation-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px; /* ระยะห่างจากด้านบน */
+  margin-bottom: 20px; /* ระยะห่างจากส่วนประกอบด้านล่าง */
+}
+.translation-buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center; /* จัดข้อมูลให้อยู่ตรงกลางแนวนอน */
+  align-items: center; /* จัดข้อมูลให้อยู่ตรงกลางแนวตั้ง */
+  height: 100vh; /* ให้คอนเทนเนอร์เต็มสูงของหน้าจอ */
+}

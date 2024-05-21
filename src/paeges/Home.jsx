@@ -38,32 +38,31 @@ function Home() {
     const filteredShops = filterData.filter((shop) =>
       shop.shop_name.toLowerCase().includes(value.toLowerCase())
     );
-    
+
     // กรองอาหารที่มีชื่อหรือส่วนหนึ่งของชื่อตรงกับคำค้นหา
     const filteredFoods = foodData.filter((food) =>
       food.Food_name.toLowerCase().includes(value.toLowerCase())
     );
-  
+
     // สร้างเซ็ตของ shop_id ที่เกี่ยวข้องกับอาหารที่ค้นหาได้
     const shopIds = new Set(filteredFoods.map((food) => food.shop_id));
-  
+
     // กรองร้านค้าที่เกี่ยวข้องกับอาหารที่ค้นหาได้
     const filteredShopsWithFood = filterData.filter((shop) =>
       shopIds.has(shop.shop_id)
     );
-  
+
     // เชื่อมร้านค้าที่ค้นหาได้และร้านค้าที่เกี่ยวข้องกับอาหารไว้ด้วยกัน
     const result = [...filteredShops, ...filteredShopsWithFood];
-  
+
     // ลบร้านค้าที่ซ้ำออก
     const uniqueResult = result.filter((shop, index, self) =>
       index === self.findIndex((s) => s.shop_id === shop.shop_id)
     );
-  
+
     // ตั้งค่าข้อมูลที่ค้นหาและแสดงผล
     setDatasearch(uniqueResult);
   };
-  
 
   const handleShopClick = (shopId) => {
     if (!displayedShopIds.includes(shopId)) {
@@ -76,7 +75,11 @@ function Home() {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    fade: true,
+    cssEase: "linear"
   };
 
   return (
@@ -143,9 +146,10 @@ function Home() {
                         <span style={{backgroundColor: 'yellow'}}>
                           {d.shop_time}
                         </span>
-                      ) : (
-                        d.shop_time
-                      )}
+                     
+                        ) : (
+                          d.shop_time
+                        )}
                     </div>
                     <div className="symbol">
                       ตราสัญลักษณ์:{" "}
@@ -208,4 +212,3 @@ function Home() {
 }
 
 export default Home;
-
