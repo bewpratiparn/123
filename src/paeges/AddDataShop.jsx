@@ -148,13 +148,13 @@ function AddDataShop() {
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                  เวลา เปิด-ปิด
+                  วัน,เวลา เปิด-ปิด
                 </label>
                 <input
                   className="p-2 border rounded-md"
                   name="onclose"
                   type="text"
-                  placeholder="เวลา เปิด-ปิด..."
+                  placeholder="วัน,เวลา เปิด-ปิด..."
                   value={addShop.onclose}
                   onChange={handleChange}
                 />

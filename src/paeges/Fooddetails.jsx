@@ -58,7 +58,7 @@ function Fooddetails() {
           />
           <div className="ingredients-container">
             <div className="ingredients-label">วัตถุดิบ :</div>
-            <div className="description-api">{food_elements}</div>
+            <div className="description-api">{food_elements.join(", ")}</div> {/* แสดงข้อมูล food_elements ในรูปแบบของสตริงและใช้ join(", ") เพื่อรวมสมาชิกของอาร์เรย์เข้าด้วยกัน */}
           </div>
         </div>
         <div className="description-container">

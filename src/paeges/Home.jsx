@@ -168,7 +168,7 @@ function Home() {
                               <Link
                                 to={{
                                   pathname: "/Fooddetails",
-                                  search: `?food_id=${food.food_id}&Food_name=${food.Food_name}&Food_price=${food.Food_price}&Food_picture=${encodeURIComponent(food.Food_picture)}&Food_element=${food.Food_element}&food_elements=${food.food_elements}`
+                                  search: `?food_id=${food.food_id}&Food_name=${food.Food_name}&Food_price=${food.Food_price}&Food_picture=${encodeURIComponent(food.Food_picture)}&Food_element=${food.Food_element}&food_elements=${food.food_elements.join(", ")}` // แปลงเป็นสตริงด้วยการรวมสมาชิกในอาร์เรย์ด้วยคำสั่ง join(", ")
                                 }}
                               >
                                 <h3>
@@ -208,3 +208,4 @@ function Home() {
 }
 
 export default Home;
+
