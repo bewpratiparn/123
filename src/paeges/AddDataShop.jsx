@@ -112,7 +112,7 @@ function AddDataShop() {
                   ชื่อร้าน
                 </label>
                 <input
-                  className="p-2 border rounded-md"
+                  className="input-style"
                   name="storename"
                   type="text"
                   placeholder="ชื่อร้าน..."
@@ -125,7 +125,7 @@ function AddDataShop() {
                   สถานที่ Map-link
                 </label>
                 <input
-                  className="p-2 border rounded-md"
+                  className="input-style"
                   name="location"
                   type="text"
                   placeholder="สถานที่..."
@@ -135,10 +135,10 @@ function AddDataShop() {
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                  เบอร์โทรศัพท์
+                เบอร์โทรศัพท์
                 </label>
                 <input
-                  className="p-2 border rounded-md"
+                  className="input-style"
                   name="phone"
                   type="text"
                   placeholder="เบอร์โทรศัพท์..."
@@ -151,7 +151,7 @@ function AddDataShop() {
                   วัน,เวลา เปิด-ปิด
                 </label>
                 <input
-                  className="p-2 border rounded-md"
+                  className="input-style"
                   name="onclose"
                   type="text"
                   placeholder="วัน,เวลา เปิด-ปิด..."
@@ -160,17 +160,24 @@ function AddDataShop() {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
+                <label className="block text-gray-700 text-sm font-bold mb-2 ">
                   ประเภทร้าน
                 </label>
-                <input
-                  className="p-2 border rounded-md"
-                  name="shop_type"
-                  type="text"
-                  placeholder="ประเภทร้าน..."
-                  value={addShop.shop_type}
-                  onChange={handleChange}
-                />
+                <div className="symbol007">
+                  <select
+                    className="input-style"
+                    name="shop_type"
+                    value={addShop.shop_type}
+                    onChange={handleChange}
+                  >
+                    <option disabled value="">
+                      เลือกประเภทร้าน...
+                    </option>
+                    <option value="Mangswirat">Mangswirat</option>
+                    <option value="Halal">Halal</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                  </select>
+                </div>
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
