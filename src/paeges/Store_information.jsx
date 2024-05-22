@@ -15,11 +15,15 @@ function Store_information() {
   const shopText = searchParams.get("shop_text");
 
   const [foodItems, setFoodItems] = useState([]);
- 
+  const [translatedShopName, setTranslatedShopName] = useState(shopName);
+  const [translatedShopLocation, setTranslatedShopLocation] = useState(shopLocation);
+  const [translatedShopPhone, setTranslatedShopPhone] = useState(shopPhone);
+  const [translatedShopTime, setTranslatedShopTime] = useState(shopTime);
+  const [translatedShopText, setTranslatedShopText] = useState(shopText);
+  const [translatedFoodName, setTranslatedFoodName] = useState("");
+  const [translatedFoodPrice, setTranslatedFoodPrice] = useState("");
 
   useEffect(() => {
-  
-
     // Fetch food items
     axios.get(`http://127.0.0.1:8000/show_all_food/?shop_id=${shopId}`)
       .then(response => {
@@ -29,7 +33,70 @@ function Store_information() {
       .catch(error => {
         console.error("Error fetching food items:", error);
       });
+
   }, [shopId]);
+
+  const handleLanguageChange = (lang) => {
+    const fromLang = lang === 'th' ? 'en' : 'th';
+    axios.get(`http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopName}`)
+      .then(response => {
+        setTranslatedShopName(response.data.translated_text);
+      })
+      .catch(error => {
+        console.error("Error fetching translated shop name:", error);
+      });
+
+    axios.get(`http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopLocation}`)
+      .then(response => {
+        setTranslatedShopLocation(response.data.translated_text);
+      })
+      .catch(error => {
+        console.error("Error fetching translated shop location:", error);
+      });
+
+    axios.get(`http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopPhone}`)
+      .then(response => {
+        setTranslatedShopPhone(response.data.translated_text);
+      })
+      .catch(error => {
+        console.error("Error fetching translated shop phone:", error);
+      });
+
+    axios.get(`http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopTime}`)
+      .then(response => {
+        setTranslatedShopTime(response.data.translated_text);
+      })
+      .catch(error => {
+        console.error("Error fetching translated shop time:", error);
+      });
+
+    axios.get(`http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopText}`)
+      .then(response => {
+        setTranslatedShopText(response.data.translated_text);
+      })
+      .catch(error => {
+        console.error("Error fetching translated shop text:", error);
+      });
+
+    // Translate food name and price for each food item
+    foodItems.forEach(item => {
+      axios.get(`http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${item.Food_name}`)
+        .then(response => {
+          setTranslatedFoodName(response.data.translated_text);
+        })
+        .catch(error => {
+          console.error("Error fetching translated food name:", error);
+        });
+
+      axios.get(`http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${item.Food_price}`)
+        .then(response => {
+          setTranslatedFoodPrice(response.data.translated_text);
+        })
+        .catch(error => {
+          console.error("Error fetching translated food price:", error);
+        });
+    });
+  };
 
   return (
     <div className="bk">
@@ -40,12 +107,16 @@ function Store_information() {
             <div className="containner-description">
               <div className="containner-box">
                 <div className="colorinside">
-                  <div className="store-name">ชื่อร้านค้า : {shopName}</div>
-                  <div className="location">สถานที่ ชื่อสถานที่ : {shopLocation}</div>
-                  <div className="phone">เบอร์ติดต่อ : {shopPhone}</div>
-                  <div className="time">วันเวลาเปิด-ปิด : {shopTime}</div>
-                  <div className="symbol">ตราสัญลักษณ์ : {shopText}</div>
-                  
+                  <div className="store-name">ชื่อร้านค้า : {translatedShopName}</div>
+                  <div className="location">สถานที่ ชื่อสถานที่ : {translatedShopLocation}</div>
+                  <div className="phone">เบอร์ติดต่อ : {translatedShopPhone}</div>
+                  <div className="time">วันเวลาเปิด-ปิด : {translatedShopTime}</div>
+                  <div className="symbol">ตราสัญลักษณ์ : {translatedShopText}</div>
+                  {/* Language change buttons */}
+                  <div>
+                    <button onClick={() => handleLanguageChange('th')}>ไทย</button>
+                    <button onClick={() => handleLanguageChange('en')}>English</button>
+                  </div>
                 </div>
               </div>
             </div>
