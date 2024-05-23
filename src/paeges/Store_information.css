@@ -103,3 +103,10 @@ button:hover {
   justify-content: center; /* จัดให้อยู่ตรงกลางของแกน X */
   align-items: center; /* จัดให้อยู่ตรงกลางของแกน Y */
 }
+/* Store_information.css */
+.image-store {
+  width: 500px; /* Set the desired width */
+  height: 225px; /* Set the desired height */
+  object-fit: cover; /* Ensures the image covers the area, maintaining aspect ratio */
+  border-radius: 10px; /* Optional: adds rounded corners */
+}

@@ -176,6 +176,7 @@ function AddDataShop() {
                     <option value="Mangswirat">Mangswirat</option>
                     <option value="Halal">Halal</option>
                     <option value="Vegetarian">Vegetarian</option>
+                    <option value="Nothing">Nothing</option>
                   </select>
                 </div>
               </div>
