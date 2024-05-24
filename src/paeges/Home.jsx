@@ -14,7 +14,6 @@ function Home() {
   const [language, setLanguage] = useState("th");
   const [originalData, setOriginalData] = useState({ shops: [], foods: [] });
 
-  
   useEffect(() => {
     fetch("http://127.0.0.1:8000/shops/")
       .then((res) => res.json())
@@ -65,67 +64,40 @@ function Home() {
   };
 
   const handleTranslate = () => {
-    const endpoint =
-      language === "th"
-        ? "http://127.0.0.1:8000/translate/th-en/"
-        : "http://127.0.0.1:8000/translate/en-th/";
+    const fromLang = language === "th" ? "th" : "en"; // กำหนดภาษาต้นฉบับ
+    const toLang = language === "th" ? "en" : "th"; // กำหนดภาษาที่ต้องการแปลเป็น
 
-    const textsToTranslate = originalData.shops.map((shop) => ({
-      Shop_name: shop.shop_name,
-      Shop_location: shop.shop_location,
-      Shop_phone: shop.shop_phone,
-      Shop_time: shop.shop_time,
-      Shop_text: shop.shop_text,
-      Food_items: originalData.foods
-        .filter((food) => food.shop_id === shop.shop_id)
-        .map((food) => ({
-          Food_name: food.Food_name,
-          Food_price: food.Food_price,
-          Food_picture: food.Food_picture,
-          Food_element: food.Food_element,
-          food_elements: food.food_elements,
-        })),
-    }));
-
-    fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ text: JSON.stringify(textsToTranslate) }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Translation response:", data); // Log the response
-        if (Array.isArray(data)) {
-          const translatedData = data.map((translatedShop, index) => ({
-            ...originalData.shops[index],
-            shop_name: translatedShop.Shop_name,
-            shop_location: translatedShop.Shop_location,
-            shop_phone: translatedShop.Shop_phone,
-            shop_time: translatedShop.Shop_time,
-            shop_text: translatedShop.Shop_text,
-          }));
-
-          const translatedFoodData = data.flatMap((translatedShop) =>
-            translatedShop.Food_items.map((food) => ({
-              ...food,
-              shop_id: originalData.shops.find(
-                (shop) => shop.shop_name === translatedShop.Shop_name
-              ).shop_id,
-            }))
-          );
-
-          setDatasearch(translatedData);
-          setfilterData(translatedData);
-          setFoodData(translatedFoodData);
-          setLanguage(language === "th" ? "en" : "th");
-        } else {
-          console.error("Translation API did not return an array:", data);
+    fetch(
+      `http://127.0.0.1:8000/translate/${fromLang}-${toLang}/?sentences=${encodeURIComponent(
+        originalData.shops.map((shop) => shop.shop_name).join(",")
+      )}`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
+        return response.json();
       })
-      .catch((err) => console.log(err));
+      .then((data) => {
+        // อัปเดตข้อมูลร้านค้าที่แปลเป็นภาษาปลายทาง
+        const translatedShops = data.translated_text.split(",");
+        const translatedData = originalData.shops.map((shop, index) => ({
+          ...shop,
+          shop_name: translatedShops[index],
+        }));
+        setDatasearch(translatedData);
+        setLanguage(toLang); // อัปเดตภาษาที่ใช้
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
   };
+
+  const handleLanguageChange = (event) => {
+    setLanguage(event.target.value);
+    handleTranslate();
+  };
+
   const settings = {
     dots: true,
     infinite: true,
@@ -149,14 +121,17 @@ function Home() {
             value={searchTerm}
             onChange={(e) => handleFilter(e.target.value)}
           />
-          <button onClick={handleTranslate}>
-            {language === "th" ? "Translate to English" : "แปลเป็นไทย"}
-          </button>
+          <h1>Select Language:</h1>
+          <select value={language} onChange={handleLanguageChange}>
+            <option value="th">ไทย</option>
+            <option value="en">English</option>
+          </select>
         </div>
       </header>
 
       <div className="bg-gray-100 min-h-screen p-4">
         <div className="text-3xl font-bold text-center mb-8">ร้านอาหาร</div>
+
         <div className="grid-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {Array.isArray(datasearch) &&
             datasearch.map((d, i) => (
