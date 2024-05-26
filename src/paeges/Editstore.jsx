@@ -10,71 +10,40 @@ function Editstore() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchShops = async () => {
-      try {
-        const userId = localStorage.getItem("user_id");
+    const fetchUserData = async () => {
+      const userId = localStorage.getItem("user_id");
 
-        if (!userId) {
-          throw new Error("User ID not found in local storage");
-        }
-
-        const response = await axios.get(
-          `http://127.0.0.1:8000/shops/?user_id=${userId}`
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch shops data");
-        }
-
-        const data = await response.json();
-        setShops(data);
+      if (!userId) {
+        Swal.fire({
+          title: "Error",
+          text: "User ID not found in local storage",
+          icon: "error",
+        });
         setLoading(false);
+        return;
+      }
+
+      try {
+        const [shopsResponse, storeResponse] = await Promise.all([
+          axios.get(`http://127.0.0.1:8000/shops/?user_id=${userId}`),
+          axios.get(`http://127.0.0.1:8000/edit_shop/${userId}`)
+        ]);
+
+        setShops(shopsResponse.data);
+        setStore(storeResponse.data);
       } catch (error) {
         setError(error);
-        setLoading(false);
         Swal.fire({
           title: "Error",
           text: error.message,
           icon: "error",
         });
-      }
-    };
-
-    fetchShops();
-  }, []);
-
-  useEffect(() => {
-    // เมื่อ component ถูก mount ให้ดึง user_id จาก localStorage
-    const userId = localStorage.getItem("user_id");
-
-    // ถ้าไม่มี user_id ใน localStorage ให้แสดงข้อความแจ้งเตือน
-    if (!userId) {
-      Swal.fire({
-        title: "Error",
-        text: "User ID not found in local storage",
-        icon: "error",
-      });
-      setLoading(false);
-      return;
-    }
-
-    const fetchStoreData = async () => {
-      try {
-        const response = await axios.get(`http://127.0.0.1:8000/edit_shop/${userId}`);
-        setStore(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching store data:", error);
-        Swal.fire({
-          title: "Error",
-          text: error.message,
-          icon: "error",
-        });
+      } finally {
         setLoading(false);
       }
     };
 
-    fetchStoreData();
+    fetchUserData();
   }, []);
 
   if (loading) {
