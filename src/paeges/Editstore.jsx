@@ -4,33 +4,52 @@ import Swal from "sweetalert2";
 import "./Editstore.css";
 
 function Editstore() {
-  const [store, setStore] = useState({});
-  const [loading, setLoading] = useState(true);
   const [shops, setShops] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const [editShopId, setEditShopId] = useState(null);
+  const [editShopData, setEditShopData] = useState({
+    shop_name: "",
+    shop_location: "",
+    shop_phone: "",
+    shop_time: "",
+    shop_picture: "",
+    shop_text: "",
+  });
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const userId = localStorage.getItem("user_id");
-
-      if (!userId) {
-        Swal.fire({
-          title: "Error",
-          text: "User ID not found in local storage",
-          icon: "error",
-        });
-        setLoading(false);
-        return;
-      }
-
+    const fetchData = async () => {
       try {
-        const [shopsResponse, storeResponse] = await Promise.all([
-          axios.get(`http://127.0.0.1:8000/shops/?user_id=${userId}`),
-          axios.get(`http://127.0.0.1:8000/edit_shop/${userId}`)
-        ]);
+        const token = localStorage.getItem("token");
+        if (!token) {
+          throw new Error("User not logged in");
+        }
 
-        setShops(shopsResponse.data);
-        setStore(storeResponse.data);
+        // Fetch user data
+        const userResponse = await axios.get(
+          "http://127.0.0.1:8000/authorize/",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUserData(userResponse.data);
+
+        // Fetch shops data
+        const shopsResponse = await axios.get("http://127.0.0.1:8000/shops/", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        // Filter shops to display only shops owned by the logged-in user
+        const userShops = shopsResponse.data.filter(
+          (shop) => shop.owner_id === userResponse.data.user_id
+        );
+
+        setShops(userShops);
       } catch (error) {
         setError(error);
         Swal.fire({
@@ -43,8 +62,66 @@ function Editstore() {
       }
     };
 
-    fetchUserData();
+    fetchData();
   }, []);
+
+  const handleEditClick = (shop) => {
+    setEditShopId(shop.shop_id);
+    setEditShopData({
+      shop_name: shop.shop_name,
+      shop_location: shop.shop_location,
+      shop_phone: shop.shop_phone,
+      shop_time: shop.shop_time,
+      shop_picture: shop.shop_picture,
+      shop_text: shop.shop_text,
+    });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditShopData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("User not logged in");
+      }
+
+      const response = await axios.put(
+        `http://127.0.0.1:8000/edit_shop/` + id,
+        editShopData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      Swal.fire({
+        title: "Success",
+        text: response.data.message,
+        icon: "success",
+      });
+      // Fetch updated shop data after editing
+      const updatedShops = await axios.get("http://127.0.0.1:8000/shops/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setShops(updatedShops.data);
+      setEditShopId(null);
+    } catch (error) {
+      setError(error);
+      Swal.fire({
+        title: "Error",
+        text: error.message,
+        icon: "error",
+      });
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -52,89 +129,96 @@ function Editstore() {
 
   return (
     <div className="main-container">
-      {shops.map((shop, index) => (
-        <div key={index} className="shop-container">
-          <div>
-            <img src={shop.shop_picture} className="picture" alt="Store" />
-          </div>
-          <div className="input-file-container">
-            <label
-              className="block mb-2 text-sm"
-              style={{ fontWeight: "bold", color: "black" }}
-              htmlFor="file_input"
-            >
-              Upload file
-            </label>
-            <input
-              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-              aria-describedby="file_input_help"
-              id="file_input"
-              type="file"
-            />
-            <p className="mt-1 text-sm" style={{ color: "black" }}>
-              SVG, PNG, JPG or GIF (MAX. 800x400px).
-            </p>
-          </div>
-          <div className="shop-info" style={{ marginLeft: "220px", marginTop: "20px" }}>
-            <div
-              style={{
-                marginTop: "20px",
-                display: "flex",
-                justifyContent: "flex-start",
-                fontSize: "24px",
-                fontWeight: "bold",
-              }}
-            >
-              <div style={{ maxWidth: "300px" }}>
-                <label className="name-store" htmlFor="store_name">
-                  ชื่อร้านค้า : {shop.shop_name}
-                </label>
-                <br />
-                <label className="dayoff" htmlFor="store_time">
-                  วัน เปิด-ปิด : {shop.shop_time}
-                </label>
-                <br />
-                <label className="Location" htmlFor="Location">
-                  สถานที่ : {shop.shop_location}
-                </label>
-              </div>
-            </div>
-          </div>
-          <div
-            style={{
-              marginTop: "20px",
-              display: "flex",
-              justifyContent: "flex-start",
-              fontSize: "14px",
-            }}
-          >
-            <div className="containner-box">
-              <div className="colorinside">
-                <label htmlFor="description">Description</label>
-                <div className="location">
-                  สถานที่ ชื่อสถานที่ : {shop.shop_location}
-                </div>
-                <div className="maplink">Map-link : {shop.maplink}</div>
-                <div className="phone">เบอร์ติดต่อ : {shop.phone}</div>
-              </div>
-            </div>
-          </div>
-          <div className="grid-container">
-            {shop.menu &&
-              shop.menu.map((item, menuIndex) => (
-                <div className="grid-item" key={menuIndex}>
-                  <img src={item.image} className="picture-menu" alt={item.name} />
-                  <div>ชื่ออาหาร: {item.name}</div>
-                  <div>ราคา: {item.price}</div>
-                </div>
-              ))}
-          </div>
+      {error && (
+        <div className="error-message">
+          <p>{error.message}</p>
         </div>
-      ))}
-      <div>
-        <div className="grid-button">
-          <button className="success-button">success</button>
-          <button className="cancel-button">cancel</button>
+      )}
+      {userData && (
+        <div className="user-info">
+          <h2>Welcome {userData.username}</h2>
+          <p>{userData.email}</p>
+        </div>
+      )}
+
+      <div className="flex items-center justify-center">
+        <div className="w-1/2 rounded-lg bg-amber-500 text-white p-5 mt-5 ml-5">
+          <form>
+            <div className="mb-4 text-black ">
+              <label htmlFor="" className="block">
+                ชื่อร้านค้า
+              </label>
+              <input
+                type="text"
+                name="shop_name"
+                className="w-full mt-3 p-3 rounded-lg"
+                placeholder="โปรดใส่ชื่อร้าน ...."
+              />
+            </div>
+            <div className="mb-4 text-black">
+              <label htmlFor="" className="block">
+                สถานที่
+              </label>
+              <input
+                type="text"
+                name="shop_location"
+                className="w-full mt-3 p-3 rounded-lg"
+                placeholder="โปรดใส่สถานที่ ...."
+              />
+            </div>
+            <div className="mb-4 text-black">
+              <label htmlFor="" className="block">
+                เบอร์ติดต่อ
+              </label>
+              <input
+                type="text"
+                name="shop_phone"
+                className="w-full mt-3 p-3 rounded-lg"
+                placeholder="โปรดใส่เบอร์ติดต่อ ...."
+              />
+            </div>
+
+            <div className="mb-4 text-black">
+              <label htmlFor="" className="block">
+                เวลาเปิดปิด
+              </label>
+              <input
+                type="text"
+                name="shop_time"
+                className="w-full mt-3 p-3 rounded-lg"
+                placeholder="โปรดใส่วัน-เวลา-เปิดปิด"
+              />
+            </div>
+            <div className="mb-4 text-black">
+              <label htmlFor="" className="block">
+                ประเภทร้านของท่าน
+              </label>
+              <select className="mt-3 p-3 rounded-lg">
+                <option>Halal</option>
+                <option>Mangswirat</option>
+                <option>Vegetarian</option>
+                <option>Nothting</option>
+              </select>
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="" className="block">
+                รูปภาพร้านค้า
+              </label>
+              <input
+                type="file"
+                name="shop_picture"
+                className="mt-3"
+                placeholder="Enter ...."
+              />
+            </div>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Update
+            </button>
+            <button className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-6">
+              Cancel
+            </button>
+          </form>
         </div>
       </div>
     </div>

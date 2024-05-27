@@ -59,7 +59,6 @@ function Login() {
       })
       .then((result) => {
         localStorage.setItem("token", result.token);
-        // เพิ่มการเก็บ user_id ใน localStorage
         navigate("/Home");
         Swal.fire({
           icon: "success",
