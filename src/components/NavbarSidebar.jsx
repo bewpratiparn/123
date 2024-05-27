@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
+import Showuser from "../paeges/Showuser";
 
 const NavbarSidebar = () => {
   return (
-    <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-      {/* Sidebar component */}
-      <Sidebar />
-    </nav>
+    <>
+      <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+        {/* Sidebar component */}
+        <Sidebar />
+      </nav>
+    </>
   );
 };
 
@@ -99,15 +102,21 @@ const Sidebar = () => {
           </div>
         )}
       </div>
-
-      <div className="hi"></div>
-      <div
-        className="max-w-h-screen-xl  p-1"
+      <div className="bg-white"> 
+        <button
+          className="openbtn"
+          onClick={isSidebarOpen ? closeNav : openNav}
+        >
+          &#9776;{" "}
+        </button>
+      </div>
+      {/* <div
+        className="p-1"
         style={{ backgroundColor: "#FFBB5C" }}
-      >
-        <div id="main">
-          <a href="/Home" className="flex items-center justify-center w-full">
-            <span className=" text-3xl font-semibold whitespace-nowrap">
+      > */}
+      {/* <div id="main">
+          <a href="/Home" className="flex items-center justify-center">
+            <span className=" text-3xl font-semibold ">
               หน้าหลัก
             </span>
           </a>
@@ -117,8 +126,8 @@ const Sidebar = () => {
           >
             &#9776;{" "}
           </button>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </div>
   );
 };

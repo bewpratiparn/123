@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Home.css";
+import Showuser from "./Showuser";
 
 function Home() {
   const [datasearch, setDatasearch] = useState([]);
@@ -200,9 +201,10 @@ function Home() {
 
   return (
     <>
-      <header>
+     <Showuser/>
+      <div>
         <select
-          className="appearance-none bg-transparent border-none text-gray-700 dark:text-gray-300 py-1 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="mt-3 ml-3   appearance-none bg-transparent text-gray-700 dark:text-gray-300 py-1 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={language}
           onChange={handleLanguageChange}
         >
@@ -222,159 +224,160 @@ function Home() {
             onChange={(e) => handleFilter(e.target.value)}
           />
         </div>
-      </header>
-
-      <div className="bg-gray-100 min-h-screen p-4">
         <div className="text-3xl font-bold text-center mb-8">
           {language === "th" ? "ร้านอาหาร" : "Restaurants"}
         </div>
-
-        <div className="grid-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Array.isArray(datasearch) &&
-            datasearch.map((d, i) => (
-              <div key={i} className="bg-white p-4 rounded-lg shadow-lg">
-                <div className="container-store">
-                  <div className="card">
-                    <img
-                      src={d.shop_picture}
-                      alt={d.shop_name}
-                      className="picture-home"
-                    />
-                    <div className="data-storehome">
-                      <div className="storename">
-                        {translatedTexts.shopName}:{" "}
-                        {searchTerm &&
+      </div>
+      <div className="grid-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Array.isArray(datasearch) &&
+          datasearch.map((d, i) => (
+            <div key={i} className="bg-white p-4 rounded-lg shadow-lg">
+              <div className="container-store">
+                <div className="card">
+                  <img
+                    src={d.shop_picture}
+                    alt={d.shop_name}
+                    className="picture-home rounded-lg"
+                  />
+                  <div className="card-outdatastore">
+                  <div className="data-storehome">
+                    <div className="storename">
+                      {translatedTexts.shopName}:{" "}
+                      {searchTerm &&
+                      d.shop_name
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ? (
+                        <span style={{ backgroundColor: "yellow" }}>
+                          {d.shop_name}
+                        </span>
+                      ) : (
                         d.shop_name
-                          .toLowerCase()
-                          .includes(searchTerm.toLowerCase()) ? (
-                          <span style={{ backgroundColor: "yellow" }}>
-                            {d.shop_name}
-                          </span>
-                        ) : (
-                          d.shop_name
-                        )}
-                      </div>
-                      <div className="location-store">
-                        {translatedTexts.shopLocation}:{" "}
-                        {searchTerm &&
+                      )}
+                    </div>
+                    <div className="location-store">
+                      {translatedTexts.shopLocation}:{" "}
+                      {searchTerm &&
+                      d.shop_location
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ? (
+                        <span style={{ backgroundColor: "yellow" }}>
+                          {d.shop_location}
+                        </span>
+                      ) : (
                         d.shop_location
-                          .toLowerCase()
-                          .includes(searchTerm.toLowerCase()) ? (
-                          <span style={{ backgroundColor: "yellow" }}>
-                            {d.shop_location}
-                          </span>
-                        ) : (
-                          d.shop_location
-                        )}
-                      </div>
-                      <div className="tel">
-                        {translatedTexts.shopPhone}:{" "}
-                        {searchTerm &&
+                      )}
+                    </div>
+                    <div className="tel">
+                      {translatedTexts.shopPhone}:{" "}
+                      {searchTerm &&
+                      d.shop_phone
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ? (
+                        <span style={{ backgroundColor: "yellow" }}>
+                          {d.shop_phone}
+                        </span>
+                      ) : (
                         d.shop_phone
-                          .toLowerCase()
-                          .includes(searchTerm.toLowerCase()) ? (
-                          <span style={{ backgroundColor: "yellow" }}>
-                            {d.shop_phone}
-                          </span>
-                        ) : (
-                          d.shop_phone
-                        )}
-                      </div>
-                      <div className="time">
-                        {translatedTexts.shopTime}:{" "}
-                        {searchTerm &&
+                      )}
+                    </div>
+                    <div className="time">
+                      {translatedTexts.shopTime}:{" "}
+                      {searchTerm &&
+                      d.shop_time
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ? (
+                        <span style={{ backgroundColor: "yellow" }}>
+                          {d.shop_time}
+                        </span>
+                      ) : (
                         d.shop_time
-                          .toLowerCase()
-                          .includes(searchTerm.toLowerCase()) ? (
-                          <span style={{ backgroundColor: "yellow" }}>
-                            {d.shop_time}
-                          </span>
-                        ) : (
-                          d.shop_time
-                        )}
-                      </div>
-                      <div className="symbol">
-                        {translatedTexts.shopText}:{" "}
-                        {searchTerm &&
+                      )}
+                    </div>
+                    <div className="symbol">
+                      {translatedTexts.shopText}:{" "}
+                      {searchTerm &&
+                      d.shop_text
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()) ? (
+                        <span style={{ backgroundColor: "yellow" }}>
+                          {d.shop_text}
+                        </span>
+                      ) : (
                         d.shop_text
-                          .toLowerCase()
-                          .includes(searchTerm.toLowerCase()) ? (
-                          <span style={{ backgroundColor: "yellow" }}>
-                            {d.shop_text}
-                          </span>
-                        ) : (
-                          d.shop_text
-                        )}
-                      </div>
-                      <div>
-                        <h2>{translatedTexts.foodList}</h2>
-                        <Slider {...settings}>
-                          {foodData
-                            .filter((food) => food.shop_id === d.shop_id)
-                            .map((food, index) => (
-                              <div key={index}>
-                                <Link
-                                  to={{
-                                    pathname: "/Fooddetails",
-                                    search: `?food_id=${
-                                      food.food_id
-                                    }&Food_name=${food.Food_name}&Food_price=${
-                                      food.Food_price
-                                    }&Food_picture=${encodeURIComponent(
-                                      food.Food_picture
-                                    )}&Food_element=${
-                                      food.Food_element
-                                    }&food_elements=${food.food_elements.join(
-                                      ", "
-                                    )}`,
-                                  }}
-                                >
-                                  <h3>
-                                    {searchTerm &&
-                                    food.Food_name.toLowerCase().includes(
-                                      searchTerm.toLowerCase()
-                                    ) ? (
-                                      <span
-                                        style={{ backgroundColor: "yellow" }}
-                                      >
-                                        {food.Food_name}
-                                      </span>
-                                    ) : (
-                                      food.Food_name
-                                    )}
-                                  </h3>
-                                  <img
-                                    src={`${food.Food_picture}`}
-                                    alt={food.Food_name}
-                                    style={{ width: "100%" }}
-                                  />
-                                </Link>
-                              </div>
-                            ))}
-                        </Slider>
+                      )}
                       </div>
                     </div>
-                    <Link
-                      to={{
-                        pathname: `/Store_information`,
-                        search: `?shop_id=${d.shop_id}&shop_name=${
-                          d.shop_name
-                        }&shop_picture=${encodeURIComponent(
-                          d.shop_picture
-                        )}&shop_location=${d.shop_location}&shop_phone=${
-                          d.shop_phone
-                        }&shop_time=${d.shop_time}&shop_text=${d.shop_text}`,
-                      }}
-                      className="btn btn-primary"
-                      onClick={() => handleShopClick(d.shop_id)}
-                    >
-                      {translatedTexts.goToShop}
-                    </Link>
+                    <div>
+                      <h2 className="underline underline-offset-4 pt-3 text-2xl">
+                        {translatedTexts.foodList}
+                      </h2>
+                      <Slider {...settings}>
+                        {foodData
+                          .filter((food) => food.shop_id === d.shop_id)
+                          .map((food, index) => (
+                            <div key={index}>
+                              <Link
+                                to={{
+                                  pathname: "/Fooddetails",
+                                  search: `?food_id=${food.food_id}&Food_name=${
+                                    food.Food_name
+                                  }&Food_price=${
+                                    food.Food_price
+                                  }&Food_picture=${encodeURIComponent(
+                                    food.Food_picture
+                                  )}&Food_element=${
+                                    food.Food_element
+                                  }&food_elements=${food.food_elements.join(
+                                    ", "
+                                  )}`,
+                                }}
+                              >
+                                <h3>
+                                  {searchTerm &&
+                                  food.Food_name.toLowerCase().includes(
+                                    searchTerm.toLowerCase()
+                                  ) ? (
+                                    <span style={{ backgroundColor: "yellow" }}>
+                                      {food.Food_name}
+                                    </span>
+                                  ) : (
+                                    food.Food_name
+                                  )}
+                                </h3>
+                                <div className="picturefood">
+                                <img
+                                  className="rounded-lg mt-3 w-3 h-55"
+                                  src={`${food.Food_picture}`}
+                                  alt={food.Food_name}
+                                  style={{ width: "100%" }}
+                                />
+                                </div>
+                              </Link>
+                            </div>
+                          ))}
+                      </Slider>
+                    </div>
                   </div>
+                  <Link 
+                    to={{
+                      pathname: `/Store_information`,
+                      search: `?shop_id=${d.shop_id}&shop_name=${
+                        d.shop_name
+                      }&shop_picture=${encodeURIComponent(
+                        d.shop_picture
+                      )}&shop_location=${d.shop_location}&shop_phone=${
+                        d.shop_phone
+                      }&shop_time=${d.shop_time}&shop_text=${d.shop_text}`,
+                    }}
+                    className="bg-amber-500 py-2 px-4  text-white font-bold py-2 px-4 rounded-full "
+                    onClick={() => handleShopClick(d.shop_id)}
+                  >
+                    {translatedTexts.goToShop}
+                  </Link>
                 </div>
               </div>
-            ))}
-        </div>
+            </div>
+          ))}
       </div>
     </>
   );
