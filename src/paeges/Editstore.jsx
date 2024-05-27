@@ -53,9 +53,8 @@ function Editstore() {
       } catch (error) {
         setError(error);
         Swal.fire({
-          title: "Error",
-          text: error.message,
-          icon: "error",
+          title: "โปรดล็อคอิน",
+          icon: "warning",
         });
       } finally {
         setLoading(false);
@@ -91,7 +90,7 @@ function Editstore() {
       }
 
       const response = await axios.put(
-        `http://127.0.0.1:8000/edit_shop/` + id,
+        `http://127.0.0.1:8000/edit_shop/${editShopId}`,
         editShopData,
         {
           headers: {
@@ -129,11 +128,6 @@ function Editstore() {
 
   return (
     <div className="main-container">
-      {error && (
-        <div className="error-message">
-          <p>{error.message}</p>
-        </div>
-      )}
       {userData && (
         <div className="user-info">
           <h2>Welcome {userData.username}</h2>
@@ -143,9 +137,9 @@ function Editstore() {
 
       <div className="flex items-center justify-center">
         <div className="w-1/2 rounded-lg bg-amber-500 text-white p-5 mt-5 ml-5">
-          <form>
+          <form onSubmit={handleFormSubmit}>
             <div className="mb-4 text-black ">
-              <label htmlFor="" className="block">
+              <label htmlFor="shop_name" className="block">
                 ชื่อร้านค้า
               </label>
               <input
@@ -153,10 +147,12 @@ function Editstore() {
                 name="shop_name"
                 className="w-full mt-3 p-3 rounded-lg"
                 placeholder="โปรดใส่ชื่อร้าน ...."
+                value={editShopData.shop_name}
+                onChange={handleInputChange}
               />
             </div>
             <div className="mb-4 text-black">
-              <label htmlFor="" className="block">
+              <label htmlFor="shop_location" className="block">
                 สถานที่
               </label>
               <input
@@ -164,10 +160,12 @@ function Editstore() {
                 name="shop_location"
                 className="w-full mt-3 p-3 rounded-lg"
                 placeholder="โปรดใส่สถานที่ ...."
+                value={editShopData.shop_location}
+                onChange={handleInputChange}
               />
             </div>
             <div className="mb-4 text-black">
-              <label htmlFor="" className="block">
+              <label htmlFor="shop_phone" className="block">
                 เบอร์ติดต่อ
               </label>
               <input
@@ -175,11 +173,13 @@ function Editstore() {
                 name="shop_phone"
                 className="w-full mt-3 p-3 rounded-lg"
                 placeholder="โปรดใส่เบอร์ติดต่อ ...."
+                value={editShopData.shop_phone}
+                onChange={handleInputChange}
               />
             </div>
 
             <div className="mb-4 text-black">
-              <label htmlFor="" className="block">
+              <label htmlFor="shop_time" className="block">
                 เวลาเปิดปิด
               </label>
               <input
@@ -187,39 +187,68 @@ function Editstore() {
                 name="shop_time"
                 className="w-full mt-3 p-3 rounded-lg"
                 placeholder="โปรดใส่วัน-เวลา-เปิดปิด"
+                value={editShopData.shop_time}
+                onChange={handleInputChange}
               />
             </div>
             <div className="mb-4 text-black">
-              <label htmlFor="" className="block">
+              <label htmlFor="shop_type" className="block">
                 ประเภทร้านของท่าน
               </label>
-              <select className="mt-3 p-3 rounded-lg">
-                <option>Halal</option>
-                <option>Mangswirat</option>
-                <option>Vegetarian</option>
-                <option>Nothting</option>
+              <select
+                name="shop_type"
+                className="mt-3 p-3 rounded-lg"
+                value={editShopData.shop_type}
+                onChange={handleInputChange}
+              >
+                <option value="Halal">Halal</option>
+                <option value="Mangswirat">Mangswirat</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Nothting">Nothting</option>
               </select>
             </div>
 
             <div className="mb-4">
-              <label htmlFor="" className="block">
+              <label htmlFor="shop_picture" className="block">
                 รูปภาพร้านค้า
               </label>
               <input
                 type="file"
                 name="shop_picture"
                 className="mt-3"
-                placeholder="Enter ...."
+                onChange={(e) =>
+                  setEditShopData((prevData) => ({
+                    ...prevData,
+                    shop_picture: e.target.files[0],
+                  }))
+                }
               />
             </div>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
               Update
             </button>
-            <button className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-6">
+            <button
+              type="button"
+              className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-6"
+              onClick={() => setEditShopId(null)}
+            >
               Cancel
             </button>
           </form>
         </div>
+      </div>
+
+      <div className="shops-list">
+        {shops.map((shop) => (
+          <div key={shop.shop_id} className="shop-item">
+            <h3>{shop.shop_name}</h3>
+            <p>{shop.shop_location}</p>
+            <button onClick={() => handleEditClick(shop)}>Edit</button>
+          </div>
+        ))}
       </div>
     </div>
   );
