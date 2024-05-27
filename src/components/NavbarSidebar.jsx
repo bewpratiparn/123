@@ -107,7 +107,7 @@ const Sidebar = () => {
       >
         <div id="main">
           <a href="/Home" className="flex items-center justify-center w-full">
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            <span className=" text-3xl font-semibold whitespace-nowrap">
               หน้าหลัก
             </span>
           </a>

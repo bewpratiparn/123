@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Showuser.css'; // นำเข้าไฟล์ CSS
+import './Showuser.css'; // Import CSS file
 
 function Showuser() {
   const [user, setUser] = useState(null);
@@ -22,18 +22,21 @@ function Showuser() {
     }
   }, []);
 
+  // If user is not logged in, return null to hide the component
+  if (!user) {
+    return null;
+  }
+
   return (
     <div className="show-user-container">
-      {user && (
-        <div className="user-info">
-          <p className="welcome-text">Welcome {user.username}</p>
-          <img
-            src={user.picture}
-            alt="Profile"
-            className="profile-picture"
-          />
-        </div>
-      )}
+      <div className="user-info">
+        <p className="welcome-text">{user.username}</p>
+        <img
+          src={user.picture}
+       
+          className="profile-picture"
+        />
+      </div>
     </div>
   );
 }

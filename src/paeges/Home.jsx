@@ -11,8 +11,17 @@ function Home() {
   const [foodData, setFoodData] = useState([]);
   const [displayedShopIds, setDisplayedShopIds] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [language, setLanguage] = useState("th");
   const [originalData, setOriginalData] = useState({ shops: [], foods: [] });
+  const [language, setLanguage] = useState("th");
+  const [translatedTexts, setTranslatedTexts] = useState({
+    shopName: "ชื่อร้านค้า",
+    shopLocation: "สถานที่",
+    shopPhone: "เบอร์โทร",
+    shopTime: "วันเวลาเปิด-ปิด",
+    shopText: "ตราสัญลักษณ์",
+    foodList: "รายการอาหาร",
+    goToShop: "ไปยังร้านค้า",
+  });
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/shops/")
@@ -64,30 +73,109 @@ function Home() {
   };
 
   const handleTranslate = () => {
-    const fromLang = language === "th" ? "th" : "en"; // กำหนดภาษาต้นฉบับ
-    const toLang = language === "th" ? "en" : "th"; // กำหนดภาษาที่ต้องการแปลเป็น
+    const fromLang = language === "th" ? "th" : "en";
+    const toLang = language === "th" ? "en" : "th";
 
-    fetch(
+    const shopNames = originalData.shops
+      .map((shop) => shop.shop_name)
+      .join(",");
+    const shopLocations = originalData.shops
+      .map((shop) => shop.shop_location)
+      .join(",");
+    const shopTimes = originalData.shops
+      .map((shop) => shop.shop_time)
+      .join(",");
+    const foodNames = originalData.foods
+      .map((food) => food.Food_name)
+      .join(",");
+
+    const uiTexts = [
+      translatedTexts.shopName,
+      translatedTexts.shopLocation,
+      translatedTexts.shopPhone,
+      translatedTexts.shopTime,
+      translatedTexts.shopText,
+      translatedTexts.foodList,
+      translatedTexts.goToShop,
+    ].join(",");
+
+    const translateShopNames = fetch(
       `http://127.0.0.1:8000/translate/${fromLang}-${toLang}/?sentences=${encodeURIComponent(
-        originalData.shops.map((shop) => shop.shop_name).join(",")
+        shopNames
       )}`
-    )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+    );
+    const translateShopLocations = fetch(
+      `http://127.0.0.1:8000/translate/${fromLang}-${toLang}/?sentences=${encodeURIComponent(
+        shopLocations
+      )}`
+    );
+    const translateShopTimes = fetch(
+      `http://127.0.0.1:8000/translate/${fromLang}-${toLang}/?sentences=${encodeURIComponent(
+        shopTimes
+      )}`
+    );
+    const translateFoodNames = fetch(
+      `http://127.0.0.1:8000/translate/${fromLang}-${toLang}/?sentences=${encodeURIComponent(
+        foodNames
+      )}`
+    );
+    const translateUiTexts = fetch(
+      `http://127.0.0.1:8000/translate/${fromLang}-${toLang}/?sentences=${encodeURIComponent(
+        uiTexts
+      )}`
+    );
+
+    Promise.all([
+      translateShopNames,
+      translateShopLocations,
+      translateShopTimes,
+      translateFoodNames,
+      translateUiTexts,
+    ])
+      .then((responses) =>
+        Promise.all(
+          responses.map((res) => {
+            if (!res.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return res.json();
+          })
+        )
+      )
+      .then(
+        ([namesData, locationsData, timesData, foodNamesData, uiTextsData]) => {
+          const translatedNames = namesData.translated_text.split(",");
+          const translatedLocations = locationsData.translated_text.split(",");
+          const translatedTimes = timesData.translated_text.split(",");
+          const translatedFoodNames = foodNamesData.translated_text.split(",");
+          const translatedUiTexts = uiTextsData.translated_text.split(",");
+
+          const translatedShops = originalData.shops.map((shop, index) => ({
+            ...shop,
+            shop_name: translatedNames[index],
+            shop_location: translatedLocations[index],
+            shop_time: translatedTimes[index],
+          }));
+
+          const translatedFoods = originalData.foods.map((food, index) => ({
+            ...food,
+            Food_name: translatedFoodNames[index],
+          }));
+
+          setDatasearch(translatedShops);
+          setFoodData(translatedFoods);
+          setTranslatedTexts({
+            shopName: translatedUiTexts[0],
+            shopLocation: translatedUiTexts[1],
+            shopPhone: translatedUiTexts[2],
+            shopTime: translatedUiTexts[3],
+            shopText: translatedUiTexts[4],
+            foodList: translatedUiTexts[5],
+            goToShop: translatedUiTexts[6],
+          });
+          setLanguage(toLang);
         }
-        return response.json();
-      })
-      .then((data) => {
-        // อัปเดตข้อมูลร้านค้าที่แปลเป็นภาษาปลายทาง
-        const translatedShops = data.translated_text.split(",");
-        const translatedData = originalData.shops.map((shop, index) => ({
-          ...shop,
-          shop_name: translatedShops[index],
-        }));
-        setDatasearch(translatedData);
-        setLanguage(toLang); // อัปเดตภาษาที่ใช้
-      })
+      )
       .catch((error) => {
         console.error("There was a problem with the fetch operation:", error);
       });
@@ -113,24 +201,33 @@ function Home() {
   return (
     <>
       <header>
+        <select
+          className="appearance-none bg-transparent border-none text-gray-700 dark:text-gray-300 py-1 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={language}
+          onChange={handleLanguageChange}
+        >
+          <option value="th" className="text-gray-900 dark:text-gray-100">
+            ไทย
+          </option>
+          <option value="en" className="text-gray-900 dark:text-gray-100">
+            English
+          </option>
+        </select>
         <div className="boxsearch">
           <input
             type="textsearch"
             id="default-search"
-            placeholder="ค้นหา"
+            placeholder={language === "th" ? "ค้นหา" : "Search"}
             value={searchTerm}
             onChange={(e) => handleFilter(e.target.value)}
           />
-          <h1>Select Language:</h1>
-          <select value={language} onChange={handleLanguageChange}>
-            <option value="th">ไทย</option>
-            <option value="en">English</option>
-          </select>
         </div>
       </header>
 
       <div className="bg-gray-100 min-h-screen p-4">
-        <div className="text-3xl font-bold text-center mb-8">ร้านอาหาร</div>
+        <div className="text-3xl font-bold text-center mb-8">
+          {language === "th" ? "ร้านอาหาร" : "Restaurants"}
+        </div>
 
         <div className="grid-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {Array.isArray(datasearch) &&
@@ -145,7 +242,7 @@ function Home() {
                     />
                     <div className="data-storehome">
                       <div className="storename">
-                        ชื่อร้านค้า:{" "}
+                        {translatedTexts.shopName}:{" "}
                         {searchTerm &&
                         d.shop_name
                           .toLowerCase()
@@ -158,7 +255,7 @@ function Home() {
                         )}
                       </div>
                       <div className="location-store">
-                        สถานที่:{" "}
+                        {translatedTexts.shopLocation}:{" "}
                         {searchTerm &&
                         d.shop_location
                           .toLowerCase()
@@ -171,7 +268,7 @@ function Home() {
                         )}
                       </div>
                       <div className="tel">
-                        เบอร์โทร:{" "}
+                        {translatedTexts.shopPhone}:{" "}
                         {searchTerm &&
                         d.shop_phone
                           .toLowerCase()
@@ -184,7 +281,7 @@ function Home() {
                         )}
                       </div>
                       <div className="time">
-                        วันเวลาเปิด-ปิด:{" "}
+                        {translatedTexts.shopTime}:{" "}
                         {searchTerm &&
                         d.shop_time
                           .toLowerCase()
@@ -197,7 +294,7 @@ function Home() {
                         )}
                       </div>
                       <div className="symbol">
-                        ตราสัญลักษณ์:{" "}
+                        {translatedTexts.shopText}:{" "}
                         {searchTerm &&
                         d.shop_text
                           .toLowerCase()
@@ -210,7 +307,7 @@ function Home() {
                         )}
                       </div>
                       <div>
-                        <h2>รายการอาหาร</h2>
+                        <h2>{translatedTexts.foodList}</h2>
                         <Slider {...settings}>
                           {foodData
                             .filter((food) => food.shop_id === d.shop_id)
@@ -271,7 +368,7 @@ function Home() {
                       className="btn btn-primary"
                       onClick={() => handleShopClick(d.shop_id)}
                     >
-                      ไปยังร้านค้า
+                      {translatedTexts.goToShop}
                     </Link>
                   </div>
                 </div>
