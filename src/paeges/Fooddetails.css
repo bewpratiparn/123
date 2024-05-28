@@ -4,20 +4,18 @@
 }
 
 /* Fooddetails.css */
-
-/* Fooddetails.css */
-
 .container {
   position: fixed;
-  top: 150px;
+  top: 30vh; /* 10% ของความสูงของ viewport จากด้านบน */
   left: 50%;
   transform: translateX(-50%);
-  width: 100vw;
+  width: 90vw; /* 90% ของความกว้างของ viewport */
+  max-height: 80vh; /* 80% ของความสูงของ viewport */
   background-color: #ffffff;
-  padding: 80px;
+  padding: 5vw; /* 5% ของความกว้างของ viewport */
   border-radius: 20px;
+  overflow-y: auto;
 }
-
 
 .title {
   font-size: 24px;
@@ -63,10 +61,7 @@
   font-weight: bold;
   color: #333;
   margin-bottom: 10px;
-  
 }
-
-
 
 .description {
   font-size: 19px;
@@ -87,26 +82,24 @@
   resize: vertical; /* ทำให้สามารถปรับขนาดกล่องได้แค่แนวแกน y */
 }
 
-
-.description-label{
+.description-label {
   font-size: 19px;
   font-weight: bold;
   color: #333;
   margin-bottom: 10px;
-
 }
 
-.description-api{
+.description-api {
   font-size: 18px;
 }
 
-.description-apiname{
+.description-apiname {
   font-size: 18px;
   margin-left: 110px;
   margin-top: -40px;
 }
 
-.description-apiprice{
+.description-apiprice {
   font-size: 18px;
   margin-left: 110px;
   margin-top: -40px;
@@ -115,7 +108,6 @@
 .bk {
   background-color: #fff;
   height: 500vh;
-
 }
 
 .translation-buttons {

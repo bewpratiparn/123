@@ -167,7 +167,7 @@ function Home() {
       <Showuser />
       <div>
         <select
-          className="mt-3 ml-3   appearance-none bg-transparent text-gray-700 dark:text-gray-300 py-1 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="mt-3 ml-3 appearance-none bg-transparent text-gray-700 dark:text-gray-300 py-1 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={language}
           onChange={handleLanguageChange}
         >
