@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./Editstore.css";
 
+
 function Editstore() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const shopIdFromURL = searchParams.get("shop_id");
+
   const [shops, setShops] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [userData, setUserData] = useState(null);
-  const [editShopId, setEditShopId] = useState(null);
+  const [editShopId, setEditShopId] = useState(shopIdFromURL || null);
   const [editShopData, setEditShopData] = useState({
     shop_name: "",
     shop_location: "",
     shop_phone: "",
     shop_time: "",
     shop_picture: "",
-    shop_text: "",
+    shop_type: "",
   });
 
   useEffect(() => {
@@ -50,6 +56,24 @@ function Editstore() {
         );
 
         setShops(userShops);
+
+        // If shopId is provided from URL, set the shop data for editing
+        if (shopIdFromURL) {
+          const shopToEdit = userShops.find(
+            (shop) => shop.shop_id === parseInt(shopIdFromURL)
+          );
+          if (shopToEdit) {
+            setEditShopId(shopToEdit.shop_id);
+            setEditShopData({
+              shop_name: shopToEdit.shop_name,
+              shop_location: shopToEdit.shop_location,
+              shop_phone: shopToEdit.shop_phone,
+              shop_time: shopToEdit.shop_time,
+              shop_picture: shopToEdit.shop_picture,
+              shop_text: shopToEdit.shop_text,
+            });
+          }
+        }
       } catch (error) {
         setError(error);
         Swal.fire({
@@ -62,7 +86,7 @@ function Editstore() {
     };
 
     fetchData();
-  }, []);
+  }, [shopIdFromURL]);
 
   const handleEditClick = (shop) => {
     setEditShopId(shop.shop_id);
@@ -71,14 +95,28 @@ function Editstore() {
       shop_location: shop.shop_location,
       shop_phone: shop.shop_phone,
       shop_time: shop.shop_time,
-      shop_picture: shop.shop_picture,
-      shop_text: shop.shop_text,
+      shop_picture: base64String,
+     
     });
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditShopData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setEditShopData((prevData) => ({
+          ...prevData,
+          shop_picture: reader.result,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleFormSubmit = async (e) => {
@@ -103,7 +141,7 @@ function Editstore() {
         title: "Success",
         text: response.data.message,
         icon: "success",
-      });
+      })
       // Fetch updated shop data after editing
       const updatedShops = await axios.get("http://127.0.0.1:8000/shops/", {
         headers: {
@@ -128,13 +166,6 @@ function Editstore() {
 
   return (
     <div className="main-container">
-      {userData && (
-        <div className="user-info">
-          <h2>Welcome {userData.username}</h2>
-          <p>{userData.email}</p>
-        </div>
-      )}
-
       <div className="flex items-center justify-center">
         <div className="w-1/2 rounded-lg bg-amber-500 text-white p-5 mt-5 ml-5">
           <form onSubmit={handleFormSubmit}>
@@ -216,13 +247,15 @@ function Editstore() {
                 type="file"
                 name="shop_picture"
                 className="mt-3"
-                onChange={(e) =>
-                  setEditShopData((prevData) => ({
-                    ...prevData,
-                    shop_picture: e.target.files[0],
-                  }))
-                }
+                onChange={handleFileChange}
               />
+              {editShopData.shop_picture && (
+                <img
+                  src={editShopData.shop_picture}
+                  alt="Shop"
+                  style={{ marginTop: "10px", maxWidth: "100%" }}
+                />
+              )}
             </div>
             <button
               type="submit"
@@ -241,15 +274,15 @@ function Editstore() {
         </div>
       </div>
 
-      <div className="shops-list">
+      {/* <div className="shops-list">
         {shops.map((shop) => (
-          <div key={shop.shop_id} className="shop-item">
+          <div key={shop.shop_id}>
             <h3>{shop.shop_name}</h3>
             <p>{shop.shop_location}</p>
             <button onClick={() => handleEditClick(shop)}>Edit</button>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
