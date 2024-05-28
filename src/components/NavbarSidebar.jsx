@@ -102,21 +102,13 @@ const Sidebar = () => {
           </div>
         )}
       </div>
-      <div className="bg-white"> 
-        <button
-          className="openbtn"
-          onClick={isSidebarOpen ? closeNav : openNav}
-        >
-          &#9776;{" "}
-        </button>
-      </div>
-      {/* <div
-        className="p-1"
+      <div
+        className="max-w-h-screen-xl  p-1"
         style={{ backgroundColor: "#FFBB5C" }}
-      > */}
-      {/* <div id="main">
-          <a href="/Home" className="flex items-center justify-center">
-            <span className=" text-3xl font-semibold ">
+      >
+        <div id="main">
+          <a href="/Home" className="flex items-center justify-center w-full">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               หน้าหลัก
             </span>
           </a>
@@ -126,8 +118,8 @@ const Sidebar = () => {
           >
             &#9776;{" "}
           </button>
-        </div> */}
-      {/* </div> */}
+        </div>
+      </div>
     </div>
   );
 };

@@ -14,15 +14,6 @@ function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [originalData, setOriginalData] = useState({ shops: [], foods: [] });
   const [language, setLanguage] = useState("th");
-  const [translatedTexts, setTranslatedTexts] = useState({
-    shopName: "ชื่อร้านค้า",
-    shopLocation: "สถานที่",
-    shopPhone: "เบอร์โทร",
-    shopTime: "วันเวลาเปิด-ปิด",
-    shopText: "ตราสัญลักษณ์",
-    foodList: "รายการอาหาร",
-    goToShop: "ไปยังร้านค้า",
-  });
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/shops/")
@@ -90,16 +81,6 @@ function Home() {
       .map((food) => food.Food_name)
       .join(",");
 
-    const uiTexts = [
-      translatedTexts.shopName,
-      translatedTexts.shopLocation,
-      translatedTexts.shopPhone,
-      translatedTexts.shopTime,
-      translatedTexts.shopText,
-      translatedTexts.foodList,
-      translatedTexts.goToShop,
-    ].join(",");
-
     const translateShopNames = fetch(
       `http://127.0.0.1:8000/translate/${fromLang}-${toLang}/?sentences=${encodeURIComponent(
         shopNames
@@ -120,18 +101,12 @@ function Home() {
         foodNames
       )}`
     );
-    const translateUiTexts = fetch(
-      `http://127.0.0.1:8000/translate/${fromLang}-${toLang}/?sentences=${encodeURIComponent(
-        uiTexts
-      )}`
-    );
 
     Promise.all([
       translateShopNames,
       translateShopLocations,
       translateShopTimes,
       translateFoodNames,
-      translateUiTexts,
     ])
       .then((responses) =>
         Promise.all(
@@ -143,45 +118,33 @@ function Home() {
           })
         )
       )
-      .then(
-        ([namesData, locationsData, timesData, foodNamesData, uiTextsData]) => {
-          const translatedNames = namesData.translated_text.split(",");
-          const translatedLocations = locationsData.translated_text.split(",");
-          const translatedTimes = timesData.translated_text.split(",");
-          const translatedFoodNames = foodNamesData.translated_text.split(",");
-          const translatedUiTexts = uiTextsData.translated_text.split(",");
+      .then(([namesData, locationsData, timesData, foodNamesData]) => {
+        const translatedNames = namesData.translated_text.split(",");
+        const translatedLocations = locationsData.translated_text.split(",");
+        const translatedTimes = timesData.translated_text.split(",");
+        const translatedFoodNames = foodNamesData.translated_text.split(",");
 
-          const translatedShops = originalData.shops.map((shop, index) => ({
-            ...shop,
-            shop_name: translatedNames[index],
-            shop_location: translatedLocations[index],
-            shop_time: translatedTimes[index],
-          }));
+        const translatedShops = originalData.shops.map((shop, index) => ({
+          ...shop,
+          shop_name: translatedNames[index],
+          shop_location: translatedLocations[index],
+          shop_time: translatedTimes[index],
+        }));
 
-          const translatedFoods = originalData.foods.map((food, index) => ({
-            ...food,
-            Food_name: translatedFoodNames[index],
-          }));
+        const translatedFoods = originalData.foods.map((food, index) => ({
+          ...food,
+          Food_name: translatedFoodNames[index],
+        }));
 
-          setDatasearch(translatedShops);
-          setFoodData(translatedFoods);
-          setTranslatedTexts({
-            shopName: translatedUiTexts[0],
-            shopLocation: translatedUiTexts[1],
-            shopPhone: translatedUiTexts[2],
-            shopTime: translatedUiTexts[3],
-            shopText: translatedUiTexts[4],
-            foodList: translatedUiTexts[5],
-            goToShop: translatedUiTexts[6],
-          });
-          setLanguage(toLang);
-        }
-      )
+        setDatasearch(translatedShops);
+        setFoodData(translatedFoods);
+
+        setLanguage(toLang);
+      })
       .catch((error) => {
         console.error("There was a problem with the fetch operation:", error);
       });
   };
-
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
     handleTranslate();
@@ -201,7 +164,7 @@ function Home() {
 
   return (
     <>
-     <Showuser/>
+      <Showuser />
       <div>
         <select
           className="mt-3 ml-3   appearance-none bg-transparent text-gray-700 dark:text-gray-300 py-1 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -240,76 +203,79 @@ function Home() {
                     className="picture-home rounded-lg"
                   />
                   <div className="card-outdatastore">
-                  <div className="data-storehome">
-                    <div className="storename">
-                      {translatedTexts.shopName}:{" "}
-                      {searchTerm &&
-                      d.shop_name
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ? (
-                        <span style={{ backgroundColor: "yellow" }}>
-                          {d.shop_name}
-                        </span>
-                      ) : (
+                    <div className="data-storehome">
+                      <div className="storename">
+                        {language === "th" ? "ชื่อร้านค้า" : "Shop Name"}:
+                        {searchTerm &&
                         d.shop_name
-                      )}
-                    </div>
-                    <div className="location-store">
-                      {translatedTexts.shopLocation}:{" "}
-                      {searchTerm &&
-                      d.shop_location
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ? (
-                        <span style={{ backgroundColor: "yellow" }}>
-                          {d.shop_location}
-                        </span>
-                      ) : (
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase()) ? (
+                          <span style={{ backgroundColor: "yellow" }}>
+                            {d.shop_name}
+                          </span>
+                        ) : (
+                          d.shop_name
+                        )}
+                      </div>
+                      <div className="location-store">
+                        {language === "th" ? "สถานที่" : "Location"}:
+                        {searchTerm &&
                         d.shop_location
-                      )}
-                    </div>
-                    <div className="tel">
-                      {translatedTexts.shopPhone}:{" "}
-                      {searchTerm &&
-                      d.shop_phone
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ? (
-                        <span style={{ backgroundColor: "yellow" }}>
-                          {d.shop_phone}
-                        </span>
-                      ) : (
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase()) ? (
+                          <span style={{ backgroundColor: "yellow" }}>
+                            {d.shop_location}
+                          </span>
+                        ) : (
+                          d.shop_location
+                        )}
+                      </div>
+                      <div className="tel">
+                        {language === "th" ? "เบอร์โทรศัพท์" : "phone"}:{" "}
+                        {searchTerm &&
                         d.shop_phone
-                      )}
-                    </div>
-                    <div className="time">
-                      {translatedTexts.shopTime}:{" "}
-                      {searchTerm &&
-                      d.shop_time
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ? (
-                        <span style={{ backgroundColor: "yellow" }}>
-                          {d.shop_time}
-                        </span>
-                      ) : (
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase()) ? (
+                          <span style={{ backgroundColor: "yellow" }}>
+                            {d.shop_phone}
+                          </span>
+                        ) : (
+                          d.shop_phone
+                        )}
+                      </div>
+                      <div className="time">
+                        {language === "th"
+                          ? "วันเวลาเปิด-ปิด"
+                          : "Opening Hours"}
+                        :
+                        {searchTerm &&
                         d.shop_time
-                      )}
-                    </div>
-                    <div className="symbol">
-                      {translatedTexts.shopText}:{" "}
-                      {searchTerm &&
-                      d.shop_text
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase()) ? (
-                        <span style={{ backgroundColor: "yellow" }}>
-                          {d.shop_text}
-                        </span>
-                      ) : (
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase()) ? (
+                          <span style={{ backgroundColor: "yellow" }}>
+                            {d.shop_time}
+                          </span>
+                        ) : (
+                          d.shop_time
+                        )}
+                      </div>
+                      <div className="symbol">
+                        {language === "th" ? "ตราสัญลักษณ์" : "Sybmol"}:{" "}
+                        {searchTerm &&
                         d.shop_text
-                      )}
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase()) ? (
+                          <span style={{ backgroundColor: "yellow" }}>
+                            {d.shop_text}
+                          </span>
+                        ) : (
+                          d.shop_text
+                        )}
                       </div>
                     </div>
                     <div>
                       <h2 className="underline underline-offset-4 pt-3 text-2xl">
-                        {translatedTexts.foodList}
+                        {language === "th" ? "รายการอาหาร" : "foodlist"}:{" "}
                       </h2>
                       <Slider {...settings}>
                         {foodData
@@ -345,12 +311,12 @@ function Home() {
                                   )}
                                 </h3>
                                 <div className="picturefood">
-                                <img
-                                  className="rounded-lg mt-3 w-3 h-55"
-                                  src={`${food.Food_picture}`}
-                                  alt={food.Food_name}
-                                  style={{ width: "100%" }}
-                                />
+                                  <img
+                                    className="rounded-lg mt-3 w-3 h-55"
+                                    src={`${food.Food_picture}`}
+                                    alt={food.Food_name}
+                                    style={{ width: "100%" }}
+                                  />
                                 </div>
                               </Link>
                             </div>
@@ -358,7 +324,7 @@ function Home() {
                       </Slider>
                     </div>
                   </div>
-                  <Link 
+                  <Link
                     to={{
                       pathname: `/Store_information`,
                       search: `?shop_id=${d.shop_id}&shop_name=${
@@ -372,7 +338,7 @@ function Home() {
                     className="bg-amber-500 py-2 px-4  text-white font-bold py-2 px-4 rounded-full "
                     onClick={() => handleShopClick(d.shop_id)}
                   >
-                    {translatedTexts.goToShop}
+                    {language === "th" ? "ไปยังร้านค้า" : "shop"}:{" "}
                   </Link>
                 </div>
               </div>

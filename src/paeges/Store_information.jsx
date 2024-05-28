@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
 import "./Store_information.css";
+import Showuser from "./Showuser";
 
 function Store_information() {
   const location = useLocation();
@@ -146,11 +147,13 @@ function Store_information() {
   };
 
   return (
+    
     <div className="bk">
       <div className="card2">
         <select onChange={handleLanguageChange} style={{ position: "absolute", top: 10, right: 150 }}>
           <option value="th">ไทย</option>
           <option value="en">English</option>
+          
         </select>
         <div className="store-information-container">
           <div className="store-details">

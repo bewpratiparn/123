@@ -28,6 +28,7 @@ function App() {
 
   return (
     <Router>
+      <Showuser/>
       <NavbarSidebar isLoggedIn={isLoggedIn} />
 
       <Routes>
