@@ -82,6 +82,7 @@ function Fooddetails() {
 
   return (
     <div className="bk">
+       <div className="card3">
       <div className="container">
         
         <select  class="TranslateHome"
@@ -125,6 +126,7 @@ function Fooddetails() {
           <div className="description-label">{isThai ? "รายละเอียดอาหาร :" : "Food Description :"}</div>
           <div className="description-api">{Food_element}</div>
         </div>
+      </div>
       </div>
     </div>
   );

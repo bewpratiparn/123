@@ -18,7 +18,19 @@
   border-radius: 20px;
 }
 
-
+.container {
+  position: fixed;
+  margin-top: 200px;
+  top: 0;
+  bottom: 0;
+  background-color: #fff;
+  border-radius: 30px;
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+  height: auto; /* กำหนดให้ความสูงของ .card2 ขยายตามเนื้อหาภายใน */
+  overflow-y: auto; /* ใช้ scrollbar เมื่อมีเนื้อหาเกินขนาดของ .card2 */
+}
 .title {
   font-size: 24px;
   font-weight: bold;
@@ -63,10 +75,7 @@
   font-weight: bold;
   color: #333;
   margin-bottom: 10px;
-  
 }
-
-
 
 .description {
   font-size: 19px;
@@ -87,26 +96,24 @@
   resize: vertical; /* ทำให้สามารถปรับขนาดกล่องได้แค่แนวแกน y */
 }
 
-
-.description-label{
+.description-label {
   font-size: 19px;
   font-weight: bold;
   color: #333;
   margin-bottom: 10px;
-
 }
 
-.description-api{
+.description-api {
   font-size: 18px;
 }
 
-.description-apiname{
+.description-apiname {
   font-size: 18px;
   margin-left: 110px;
   margin-top: -40px;
 }
 
-.description-apiprice{
+.description-apiprice {
   font-size: 18px;
   margin-left: 110px;
   margin-top: -40px;
@@ -115,7 +122,6 @@
 .bk {
   background-color: #fff;
   height: 500vh;
-
 }
 
 .translation-buttons {
