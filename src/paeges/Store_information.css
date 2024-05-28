@@ -110,3 +110,45 @@ button:hover {
   object-fit: cover; /* Ensures the image covers the area, maintaining aspect ratio */
   border-radius: 10px; /* Optional: adds rounded corners */
 }
+
+/* สไตล์สำหรับ select */
+.TranslateHome {
+  background-color: #f0f0f0; /* พื้นหลังสีเทาอ่อน */
+  border: 1px solid #ccc; /* ขอบสีเทาอ่อน */
+  border-radius: 4px; /* มุมโค้งมน */
+  padding: 10px 15px; /* เพิ่มช่องว่างภายใน */
+  font-size: 16px; /* ขนาดตัวอักษร */
+  color: #333; /* สีตัวอักษร */
+  appearance: none; /* เอาสไตล์ดั้งเดิมของเบราว์เซอร์ออก */
+  cursor: pointer; /* เปลี่ยนเป็น cursor ของ pointer */
+  transition: all 0.3s ease; /* เพิ่มการเปลี่ยนแปลงเรียบ */
+  margin-left: 90%;
+  margin-top: 10px;
+}
+
+/* สไตล์เมื่อ focus */
+.TranslateHome:focus {
+  border-color: #007bff; /* ขอบสีฟ้าเมื่อ focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* เงาเมื่อ focus */
+  outline: none; /* เอาขอบของเบราว์เซอร์ออก */
+}
+
+/* สไตล์สำหรับ option */
+.TranslateHome option {
+  background-color: #fff; /* พื้นหลังสีขาว */
+  color: #333; /* สีตัวอักษร */
+}
+
+/* สไตล์สำหรับ option แต่ละภาษา */
+.TranslateHome .th {
+  color: #d0021b; /* สีแดงสำหรับภาษาไทย */
+}
+
+.TranslateHome .en {
+  color: #007bff; /* สีน้ำเงินสำหรับภาษาอังกฤษ */
+}
+
+/* สไตล์สำหรับ select เมื่อ hover */
+.TranslateHome:hover {
+  background-color: #e6e6e6; /* พื้นหลังสีเทาอ่อนเมื่อ hover */
+}

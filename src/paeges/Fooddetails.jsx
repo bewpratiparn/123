@@ -83,17 +83,22 @@ function Fooddetails() {
   return (
     <div className="bk">
       <div className="container">
-        <div className="translation-buttons">
-          <Button
-            variant="contained"
-            size="large"
-            color="primary"
-            style={{ fontSize: "18px", padding: "15px 30px" }}
-            onClick={handleToggleLanguage}
-          >
-            {isThai ? "Translate to English" : "แปลเป็นภาษาไทย"}
-          </Button>
-        </div>
+        
+        <select  class="TranslateHome"
+    native
+    value={isThai ? "th" : "en"}
+    onChange={handleToggleLanguage}
+    label="Select Language"
+    inputProps={{
+      name: "language",
+      id: "language-select",
+    }}
+    style={{ fontSize: "18px", padding: "15px 30px" }}
+  >
+    <option value="th" className="th">ไทย</option>
+    <option value="en"className="en">English</option>
+  </select>
+       
         <div className="title">{isThai ? "รายละเอียดเกี่ยวกับอาหาร" : "Food Details"}</div>
         <div className="details">
           <div className="ingredients-container">

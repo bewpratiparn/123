@@ -166,18 +166,18 @@ function Home() {
     <>
       <Showuser />
       <div>
-        <select
-          className="mt-3 ml-3   appearance-none bg-transparent text-gray-700 dark:text-gray-300 py-1 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          value={language}
-          onChange={handleLanguageChange}
-        >
-          <option value="th" className="text-gray-900 dark:text-gray-100">
-            ไทย
-          </option>
-          <option value="en" className="text-gray-900 dark:text-gray-100">
-            English
-          </option>
-        </select>
+      <select
+      class="TranslateHome"
+      value={language}
+      onChange={handleLanguageChange}
+    >
+      <option value="th" className="th">
+        ไทย
+      </option>
+      <option value="en" className="en">
+        English
+      </option>
+    </select>
         <div className="boxsearch">
           <input
             type="textsearch"

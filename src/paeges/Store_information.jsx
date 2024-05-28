@@ -150,9 +150,9 @@ function Store_information() {
     
     <div className="bk">
       <div className="card2">
-        <select onChange={handleLanguageChange} style={{ position: "absolute", top: 10, right: 150 }}>
-          <option value="th">ไทย</option>
-          <option value="en">English</option>
+        <select class="TranslateHome" onChange={handleLanguageChange} style={{ position: "absolute", top: 10, right: 150 }}>
+          <option value="th" className="th">ไทย</option>
+          <option value="en" className="en" >English</option>
           
         </select>
         <div className="store-information-container">
