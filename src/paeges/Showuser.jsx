@@ -56,7 +56,7 @@ function Showuser() {
         <p className="welcome-text">{user.username}</p>
         <img
           src={user.picture}
-          alt="Profile"
+          
           className="profile-picture"
         />
       </div>

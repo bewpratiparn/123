@@ -3,13 +3,13 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./Editstore.css";
-
+import { useNavigate } from "react-router-dom";
 
 function Editstore() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const shopIdFromURL = searchParams.get("shop_id");
-
+  const navigate = useNavigate();
   const [shops, setShops] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -79,6 +79,8 @@ function Editstore() {
         Swal.fire({
           title: "โปรดล็อคอิน",
           icon: "warning",
+        }).then(() => {
+          navigate("/Login");
         });
       } finally {
         setLoading(false);
@@ -138,10 +140,12 @@ function Editstore() {
         }
       );
       Swal.fire({
-        title: "Success",
+        title: "เเก้ไขข้อมูลสำเร็จ",
         text: response.data.message,
         icon: "success",
-      })
+      }).then(() => {
+        navigate("/Home");
+      });
       // Fetch updated shop data after editing
       const updatedShops = await axios.get("http://127.0.0.1:8000/shops/", {
         headers: {
@@ -153,10 +157,10 @@ function Editstore() {
     } catch (error) {
       setError(error);
       Swal.fire({
-        title: "Error",
-        text: error.message,
+        title: "โปรดตรวจสอบ",
+        text: "ไม่ใช่ร้านของท่าน",
         icon: "error",
-      });
+      })
     }
   };
 
