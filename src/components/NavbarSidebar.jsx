@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import "./Sidebar.css";
+import Showuser from "../paeges/Showuser";
 
 const NavbarSidebar = () => {
   return (
-    <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-      <Sidebar />
-    </nav>
+    <>
+      <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+        {/* Sidebar component */}
+        <Sidebar />
+      </nav>
+    </>
   );
 };
 
@@ -14,17 +17,13 @@ const Sidebar = () => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showLoginDropdown, setShowLoginDropdown] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [shopId, setShopId] = useState(null);
-  const [isThai, setIsThai] = useState(true);
-  const [foodData, setFoodData] = useState(null);
-  const navigate = useNavigate();
 
   const toggleProfileDropdown = () => {
-    setShowProfileDropdown((prevState) => !prevState);
+    setShowProfileDropdown(!showProfileDropdown);
   };
 
   const toggleLoginDropdown = () => {
-    setShowLoginDropdown((prevState) => !prevState);
+    setShowLoginDropdown(!showLoginDropdown);
   };
 
   const openNav = () => {
@@ -35,57 +34,19 @@ const Sidebar = () => {
     setIsSidebarOpen(false);
   };
 
-  const handleToggleLanguage = () => {
-    setIsThai((prevState) => !prevState);
-  };
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/show_all_food/")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.foods && data.foods.length > 0) {
-          setShopId(data.foods[0].shop_id);
-          setFoodData(data.foods[0]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching shop_id:", error);
-      });
-  }, []);
-
-  const handleEditStore = () => {
-    if (shopId) {
-      navigate(`/Editstore?shop_id=${shopId}`);
-    } else {
-      console.error("Shop ID is not available");
-      alert("Shop ID is not available");
-    }
-  };
-
   return (
     <div>
       <div id="mySidebar" className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
           &times;
         </a>
-        <select
-          value={isThai ? "th" : "en"}
-          onChange={handleToggleLanguage}
-          label="Select Language"
-          inputProps={{
-            name: "language",
-            id: "language-select",
-          }}
-        >
-          <option value="th">ไทย</option>
-          <option value="en">English</option>
-        </select>
+
         <a href="/Home">
           <img
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAARZJREFUSEvVldsNwjAMRd1NYBOYBJgEMQlsApvAJsCRcpEbOY1bqR/4B+Qk91z5AYOtHMPK+jYHsDGzazF0MrNXxlwWIPFdEUV8n4FkAF5crsmlID1ALb41M3L38tmFTAEicZU9DWkBpsRnQSJARjwNqQEtcfLnb2OPpbkPM7uU75Pl8oB6FHVG/hnMvG+wvzNqvAewRDhU6Ex5XLNgBDl2ghz7QLzd218+A8A9DhHiISHHuGV0UwAZkBPBIwDu2QVC9+p3o0Nf4voiQiqHGqsS3VzZFgMyTfYlGk1mtAeREyAHNwS+4a3SpksUTGiYWlyi/wNoLLPO/T2/F80eMJKMIY2dE/p90jI2AXNEu3d7/2hdgd6FD/I5Wxnr0cXbAAAAAElFTkSuQmCC"
-            alt="หน้าหลัก"
+            alt="Home"
           />
-          {isThai ? "หน้าหลัก" : "Home"}
+          หน้าหลัก
         </a>
 
         <a href="/Translate">
@@ -93,11 +54,10 @@ const Sidebar = () => {
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAMhJREFUSEvtldENgzAMRI9N2k3YpGWStpPAJnQT2IT2ohisEqLIivtF/pDwvdzZcho4n8ZZHxpwB9AbgDOAAcArVasBi0FcSgi5egKonYy7loMTUNR+iXvSU+XRA07jOlVegLXpJ4BRMG+uCa4LHtkIIZ1cRCzoiuZn+6kFMMbPLIDCcqNSxiUuS0IOm0y7FH8rVesS3Dngqk5F8vjCnqU21H87gEEjlDCaW+IS1QBysV+n1QHihlNEVy4AHVl4Qv/66FubnK37AGDPKRn4mzOpAAAAAElFTkSuQmCC"
             alt="แปลภาษา"
           />
-          {isThai ? "แปลภาษา" : "Translate"}
+          แปลภาษา
         </a>
-
         <a href="#" onClick={toggleProfileDropdown}>
-          {isThai ? "เพิ่มข้อมูลสำหรับร้าน" : "Add Data for Shop"}
+          เพิ่มข้อมูลสำหรับร้าน
           <img
             src="https://cdn.icon-icons.com/icons2/1659/PNG/512/3844438-hamburger-menu-more-navigation_110319.png"
             alt="คำอธิบายรูปภาพ"
@@ -106,14 +66,13 @@ const Sidebar = () => {
         </a>
         {showProfileDropdown && (
           <div className="dropdown-content">
-            <a href="/AddDataShop">
-              {isThai ? "-เพิ่มข้อมูลร้านค้า" : "-Add Data Shop"}
-            </a>
-            <a href="/AddFood">{isThai ? "-เพิ่มข้อมูลอาหาร" : "-Add Food"}</a>
+            <a href="/AddDataShop">-เพิ่มข้อมูลร้านค้า</a>
+            <a href="/AddFood">-เพิ่มข้อมูลอาหาร</a>
+            <a href="/Fooddetails">-แสดงรายละเอียดข้อมูลร้านค้า</a>
           </div>
         )}
         <a href="#" onClick={toggleLoginDropdown}>
-          {isThai ? "แก้ไข้โปรไฟล์" : "Edit Profile"}
+          แก้ไข้โปรไฟล์
           <img
             src="https://cdn.icon-icons.com/icons2/1659/PNG/512/3844438-hamburger-menu-more-navigation_110319.png"
             alt="คำอธิบายรูปภาพ"
@@ -122,19 +81,12 @@ const Sidebar = () => {
         </a>
         {showLoginDropdown && (
           <div className="dropdown-content">
-            {shopId && (
-              <button onClick={handleEditStore}>
-                {isThai ? "-แก้ไข้ข้อมูลร้านค้า" : "-Edit Store Information"}
-              </button>
-            )}
-
-            <a href="/Notshowfood">
-              {isThai ? "-ไม่แสดงรายการอาหาร" : "-Do Not Show Food List"}
-            </a>
+            <a href="/Editstore">-แก้ไข้ข้อมูลร้านค้า</a>
+            <a href="/Notshowfood">-ไม่แสดงรายการอาหาร</a>
           </div>
         )}
         <a href="#" onClick={toggleLoginDropdown}>
-          {isThai ? "ลงชื่อเข้าใช้" : "Log In"}
+          ลงชื่อเข้าใช้
           <img
             src="https://cdn.icon-icons.com/icons2/1659/PNG/512/3844438-hamburger-menu-more-navigation_110319.png"
             alt="คำอธิบายรูปภาพ"
@@ -143,10 +95,10 @@ const Sidebar = () => {
         </a>
         {showLoginDropdown && (
           <div className="dropdown-content">
-            <a href="/Login">{isThai ? "-เข้าสู่ระบบ" : "-Sign In"}</a>
-            <a href="/Register">{isThai ? "-สมัครสมาชิก" : "-Register"}</a>
-            <a href="/Logout">{isThai ? "-ออกจาระบบ" : "-Log Out"}</a>
-            <a href="/">{isThai ? "-ลบบัญชี" : "-Delete Account"}</a>
+            <a href="/Login">-เข้าสู่ระบบ</a>
+            <a href="/Register">-สมัครสมาชิก</a>
+            <a href="/Logout">-ออกจาระบบ</a>
+            <a href="/">-ลบบัญชี</a>
           </div>
         )}
       </div>
@@ -157,7 +109,7 @@ const Sidebar = () => {
         <div id="main">
           <a href="/Home" className="flex items-center justify-center w-full">
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              {isThai ? "หน้าหลัก" : "Home"}
+              หน้าหลัก
             </span>
           </a>
           <button
