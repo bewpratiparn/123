@@ -165,6 +165,7 @@ function Home() {
   return (
     <>
       <Showuser />
+      <div className="containerhome">
       <div>
       <select
       class="TranslateHome"
@@ -344,6 +345,7 @@ function Home() {
               </div>
             </div>
           ))}
+      </div>
       </div>
     </>
   );

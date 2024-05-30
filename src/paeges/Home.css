@@ -238,3 +238,16 @@ input[type="textsearch"] {
   background-color: #e6e6e6; /* พื้นหลังสีเทาอ่อนเมื่อ hover */
 }
 
+.containerhome {
+  position: fixed;
+  margin-top: 200px;
+  top: 0;
+  bottom: 0;
+  background-color: #fff;
+  border-radius: 30px;
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+  height: auto; /* กำหนดให้ความสูงของ .card2 ขยายตามเนื้อหาภายใน */
+  overflow-y: auto; /* ใช้ scrollbar เมื่อมีเนื้อหาเกินขนาดของ .card2 */
+}
