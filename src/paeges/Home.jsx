@@ -327,6 +327,7 @@ function Home() {
                   </div>
                   <Link
                     to={{
+                      pathname:`/NavbarSidebar`,
                       pathname: `/Store_information`,
                       search: `?shop_id=${d.shop_id}&shop_name=${
                         d.shop_name

@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Sidebar.css";
-import Showuser from "../paeges/Showuser";
 
 const NavbarSidebar = () => {
   return (
-    <>
-      <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-        {/* Sidebar component */}
-        <Sidebar />
-      </nav>
-    </>
+    <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+      <Sidebar />
+    </nav>
   );
 };
 
@@ -18,14 +15,16 @@ const Sidebar = () => {
   const [showLoginDropdown, setShowLoginDropdown] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [shopId, setShopId] = useState(null);
-  const [isThai, setIsThai] = useState(true); // state to track the current language
+  const [isThai, setIsThai] = useState(true);
+  const [foodData, setFoodData] = useState(null);
+  const navigate = useNavigate();
 
   const toggleProfileDropdown = () => {
-    setShowProfileDropdown(!showProfileDropdown);
+    setShowProfileDropdown((prevState) => !prevState);
   };
 
   const toggleLoginDropdown = () => {
-    setShowLoginDropdown(!showLoginDropdown);
+    setShowLoginDropdown((prevState) => !prevState);
   };
 
   const openNav = () => {
@@ -36,45 +35,51 @@ const Sidebar = () => {
     setIsSidebarOpen(false);
   };
 
-  // Fetch shop ID from the API
+  const handleToggleLanguage = () => {
+    setIsThai((prevState) => !prevState);
+  };
+
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/shops/')
-      .then(response => response.json())
-      .then(data => {
-        if (data && data.shopId) {
-          setShopId(data.shopId);
+    fetch("http://127.0.0.1:8000/show_all_food/")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.foods && data.foods.length > 0) {
+          setShopId(data.foods[0].shop_id);
+          setFoodData(data.foods[0]);
         }
       })
-      .catch(error => {
-        console.error('Error fetching shop ID:', error);
+      .catch((error) => {
+        console.error("Error fetching shop_id:", error);
       });
   }, []);
 
-  const handleToggleLanguage = () => {
-    setIsThai(!isThai);
+  const handleEditStore = () => {
+    if (shopId) {
+      navigate(`/Editstore?shop_id=${shopId}`);
+    } else {
+      console.error("Shop ID is not available");
+      alert("Shop ID is not available");
+    }
   };
 
   return (
     <div>
-    
-
       <div id="mySidebar" className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
           &times;
         </a>
         <select
-  native
-  value={isThai ? "th" : "en"}
-  onChange={handleToggleLanguage}
-  label="Select Language"
-  inputProps={{
-    name: "language",
-    id: "language-select",
-  }}
->
-  <option value="th">ไทย</option>
-  <option value="en">English</option>
-</select>
+          value={isThai ? "th" : "en"}
+          onChange={handleToggleLanguage}
+          label="Select Language"
+          inputProps={{
+            name: "language",
+            id: "language-select",
+          }}
+        >
+          <option value="th">ไทย</option>
+          <option value="en">English</option>
+        </select>
         <a href="/Home">
           <img
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAARZJREFUSEvVldsNwjAMRd1NYBOYBJgEMQlsApvAJsCRcpEbOY1bqR/4B+Qk91z5AYOtHMPK+jYHsDGzazF0MrNXxlwWIPFdEUV8n4FkAF5crsmlID1ALb41M3L38tmFTAEicZU9DWkBpsRnQSJARjwNqQEtcfLnb2OPpbkPM7uU75Pl8oB6FHVG/hnMvG+wvzNqvAewRDhU6Ex5XLNgBDl2ghz7QLzd218+A8A9DhHiISHHuGV0UwAZkBPBIwDu2QVC9+p3o0Nf4voiQiqHGqsS3VzZFgMyTfYlGk1mtAeREyAHNwS+4a3SpksUTGiYWlyi/wNoLLPO/T2/F80eMJKMIY2dE/p90jI2AXNEu3d7/2hdgd6FD/I5Wxnr0cXbAAAAAElFTkSuQmCC"
@@ -101,7 +106,9 @@ const Sidebar = () => {
         </a>
         {showProfileDropdown && (
           <div className="dropdown-content">
-            <a href="/AddDataShop">{isThai ? "-เพิ่มข้อมูลร้านค้า" : "-Add Data Shop"}</a>
+            <a href="/AddDataShop">
+              {isThai ? "-เพิ่มข้อมูลร้านค้า" : "-Add Data Shop"}
+            </a>
             <a href="/AddFood">{isThai ? "-เพิ่มข้อมูลอาหาร" : "-Add Food"}</a>
           </div>
         )}
@@ -115,8 +122,15 @@ const Sidebar = () => {
         </a>
         {showLoginDropdown && (
           <div className="dropdown-content">
-            <a href={`/Editstore?shop_id=${shopId}`}>{isThai ? "-แก้ไข้ข้อมูลร้านค้า" : "-Edit Store Information"}</a>
-            <a href="/Notshowfood">{isThai ? "-ไม่แสดงรายการอาหาร" : "-Do Not Show Food List"}</a>
+            {shopId && (
+              <button onClick={handleEditStore}>
+                {isThai ? "-แก้ไข้ข้อมูลร้านค้า" : "-Edit Store Information"}
+              </button>
+            )}
+
+            <a href="/Notshowfood">
+              {isThai ? "-ไม่แสดงรายการอาหาร" : "-Do Not Show Food List"}
+            </a>
           </div>
         )}
         <a href="#" onClick={toggleLoginDropdown}>
@@ -140,9 +154,7 @@ const Sidebar = () => {
         className="max-w-h-screen-xl  p-1"
         style={{ backgroundColor: "#FFBB5C" }}
       >
-
         <div id="main">
-          
           <a href="/Home" className="flex items-center justify-center w-full">
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               {isThai ? "หน้าหลัก" : "Home"}
@@ -151,13 +163,9 @@ const Sidebar = () => {
           <button
             className="openbtn"
             onClick={isSidebarOpen ? closeNav : openNav}
-            
           >
-            
             &#9776;{" "}
-            
           </button>
-        
         </div>
       </div>
     </div>
@@ -165,4 +173,3 @@ const Sidebar = () => {
 };
 
 export default NavbarSidebar;
-
