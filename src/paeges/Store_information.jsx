@@ -35,6 +35,8 @@ function Store_information() {
     currencyLabel: "บาท",
     watchdetail: "รายละเอียด",
   });
+  const [userId, setUserId] = useState(null);
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
     axios
@@ -174,18 +176,48 @@ function Store_information() {
   };
   // ฟังก์ชันกดไปหน้า editstore
   useEffect(() => {
-    // Fetch the shop_id from the new API endpoint
-    fetch("http://127.0.0.1:8000/show_all_food/")
+    // Fetch the user_id from the authorize endpoint
+    fetch("http://127.0.0.1:8000/authorize/")
       .then((response) => response.json())
       .then((data) => {
-        if (data.foods && data.foods.length > 0) {
-          setShopId(data.foods[0].shop_id); // Adjust according to your actual API response
+        if (data.user_id) {
+          setUserId(data.user_id);
         }
       })
       .catch((error) => {
-        console.error("Error fetching shop_id:", error);
+        console.error("Error fetching user_id:", error);
       });
   }, []);
+
+  useEffect(() => {
+    if (userId) {
+      // Fetch the shop_id from the show_all_food endpoint
+      fetch("http://127.0.0.1:8000/show_all_food/")
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.foods && data.foods.length > 0) {
+            const shopIdFromFood = data.foods[0].shop_id;
+            setShopId(shopIdFromFood);
+
+            // Fetch the shops to verify the user_id and shop_id match
+            fetch("http://127.0.0.1:8000/shops/")
+              .then((response) => response.json())
+              .then((shopsData) => {
+                const shop = shopsData.find((shop) => shop.shop_id === shopIdFromFood);
+                if (shop && shop.user_id === userId) {
+                  setIsAuthorized(true);
+                }
+              })
+              .catch((error) => {
+                console.error("Error fetching shops data:", error);
+              });
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching shop_id:", error);
+        });
+    }
+  }, [userId]);
 
   const handleClick = () => {
     if (shopId) {
@@ -197,8 +229,8 @@ function Store_information() {
 
   return (
     <div className="bk">
-      <div className="card2">
-        <button onClick={handleClick}>กดเพื่อเเก้ไข</button>
+      <div className="card2"> 
+      isAuthorized ? <button onClick={handleClick}>กดเพื่อเเก้ไข</button> : null
         <select
           class="TranslateHome"
           onChange={handleLanguageChange}
