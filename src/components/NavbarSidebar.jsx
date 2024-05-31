@@ -146,14 +146,14 @@ const Sidebar = () => {
         )}
       </div>
       <div
-        className="max-w-h-screen-xl  p-1"
+        className="max-w-h-screen-xl"
         style={{ backgroundColor: "#FFBB5C" }}
       >
 
         <div id="main">
           
           <a href="/Home" className="flex items-center justify-center w-full">
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="self-center text-2xl font-semibold">
               {isThai ? "หน้าหลัก" : "Home"}
             </span>
           </a>

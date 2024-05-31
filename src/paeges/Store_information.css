@@ -1,11 +1,8 @@
-
 body {
   background-color: #fff;
   margin: 0;
   padding: 0;
 }
-
-
 
 /* Global font size */
 body {
@@ -19,7 +16,7 @@ body {
 
 .card2 {
   position: fixed;
-  margin-top: 200px;
+  margin-top: 150px;
   top: 0;
   bottom: 0;
   background-color: #fff;
@@ -31,23 +28,45 @@ body {
   overflow-y: auto; /* ใช้ scrollbar เมื่อมีเนื้อหาเกินขนาดของ .card2 */
 }
 
-
 .store-information-container {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.image-store,
-.picture-menu {
+.colorinside {
+  background-color: rgb(241, 163, 95);
+  color: white;
+  width: 40rem;
+  margin-left: 16.5rem;
+}
+.colorinside:hover {
+  background-color: orange;
+  color: white;
+  transition: background-color 2s ease-out;
+}
+
+.image-store {
   max-width: 640px; /* กำหนดให้รูปภาพไม่เกินขนาด container */
   max-height: 680px; /* กำหนดให้รูปภาพไม่เกินความสูงของ container */
   display: block;
   margin-left: auto; /* ขยับรูปภาพไปทางด้านซ้ายสุด */
   margin-right: auto; /* คั่นรูปภาพให้อยู่ตรงกลาง */
+  transition: transform 0.3s ease; /* เพิ่ม transition เพื่อให้การขยายรูปภาพนุ่มนวล */
+}
+.image-store:hover {
+  transform: scale(1.1); /* ขยายรูปภาพขึ้น 10% เมื่อ hover */
 }
 
-
+.picture-menu {
+  margin-left: auto; /* ขยับรูปภาพไปทางด้านซ้ายสุด */
+  margin-right: auto; /* คั่นรูปภาพให้อยู่ตรงกลาง */
+  transition: transform 0.3s ease; /* เพิ่ม transition เพื่อให้การขยายรูปภาพนุ่มนวล */
+}
+.picture-menu:hover {
+  transform: scale(1.1);
+  border-radius: 36px;
+}
 
 .store-details {
   flex: 1;
@@ -55,7 +74,7 @@ body {
   margin-left: 0px;
 }
 
-.store-name ,
+.store-name,
 .location,
 .phone,
 .time,
@@ -64,10 +83,19 @@ body {
   font-size: 18px; /* Set font size for all text elements */
   margin-bottom: 8px;
   margin-left: 20px;
-  
+  transition: transform 0.5s;
+}
+.grid-item {
+  transition: transform 1s;
 }
 
-
+.grid-item:hover {
+  transform: scale(1); /* หุบเข้าเมื่อ hover */
+  /* หมุนในแกน y 180 องศา */
+}
+.grid-item:not(:hover) {
+  transform: scale(0.9); /* หุบออกเมื่อไม่ hover */
+}
 
 .grid-container2 {
   display: grid;
@@ -79,10 +107,6 @@ body {
 .grid-item-wrapper {
   width: 100%;
 }
-
-
-
-
 
 button {
   padding: 8px 16px;
@@ -109,6 +133,7 @@ button:hover {
   height: 225px; /* Set the desired height */
   object-fit: cover; /* Ensures the image covers the area, maintaining aspect ratio */
   border-radius: 10px; /* Optional: adds rounded corners */
+  margin-bottom: 2.5rem;
 }
 
 /* สไตล์สำหรับ select */
@@ -151,4 +176,58 @@ button:hover {
 /* สไตล์สำหรับ select เมื่อ hover */
 .TranslateHome:hover {
   background-color: #e6e6e6; /* พื้นหลังสีเทาอ่อนเมื่อ hover */
+  transform: scale(0.9);
+}
+.icon-with-hover {
+  font-size: 2rem;
+  margin-left: 12rem;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.icon-with-hover:hover {
+  transform: scale(0.9);
+}
+
+.icon-text {
+  margin-left: 15rem; /* ปรับระยะห่างตามต้องการ */
+  font-size: 1rem; /* ขนาดของข้อความ */
+  position: relative;
+  top: -2rem;
+  transform: scale(0.9);
+  cursor: pointer;
+}
+
+.back {
+  font-size: 2rem;
+  margin-left: 1rem;
+  transition: transform 0.2s;
+}
+.back:hover {
+  transform: scale(0.8);
+}
+.Outline {
+  position: fixed;
+  margin-left: 1px;
+  border: solid;
+  width: 4.5rem;
+  border-radius: 10px;
+}
+.buttondetailfood {
+  position: relative;
+
+  border-radius: 6px;
+  top: 1px;
+  left: 35%;
+  padding: 7px;
+  background-color: rgb(255, 183, 15);
+  color: white; /* เพิ่ม property นี้เพื่อทำให้ฟอนต์เป็นสีขาว */
+  font-size: 16px; /* ปรับขนาดฟอนต์ตามที่ต้องการ */
+  transition: transform 0.3s ease;
+}
+.buttondetailfood:hover {
+  color: #fff;
+  background-color: #d0021b;
+  transition: background-color 2s ease-out;
+  transform: scale(1.1);
 }

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
 import "./Store_information.css";
 import Showuser from "./Showuser";
-
+import { Icon } from "@iconify/react";
 function Store_information() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -198,7 +198,15 @@ function Store_information() {
   return (
     <div className="bk">
       <div className="card2">
-        <button onClick={handleClick}>กดเพื่อเเก้ไข</button>
+        <div className="Outline">
+        <Icon icon="mdi:arrow-back" className="back" />
+        </div>
+        <Icon
+          icon="bxs:edit"
+          className="icon-with-hover"
+          onClick={handleClick}
+        />
+        <span className="icon-text" onClick={handleClick}>เเก้ไขข้อมูลร้านค้า</span>
         <select
           class="TranslateHome"
           onChange={handleLanguageChange}
@@ -265,7 +273,7 @@ function Store_information() {
                     search: `?food_id=${item.food_id}`,
                     state: { foodItem: item },
                   }}
-                  className="btn btn-primary"
+                  className="buttondetailfood"
                 >
                   {translatedLabels.watchdetail}
                 </Link>

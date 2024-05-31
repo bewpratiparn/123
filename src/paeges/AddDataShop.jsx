@@ -108,7 +108,7 @@ function AddDataShop() {
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">
+                <label className="block text-gray-700 text-sm font-bold mb-2 ">
                   ชื่อร้าน
                 </label>
                 <input

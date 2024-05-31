@@ -1,38 +1,39 @@
-body{
-    margin: 0;
-    padding: 0;
+body {
+  margin: 0;
+  padding: 0;
 }
 
 .white-background {
-    background-color: white;
-  }
-  
-  .input-style {
-    width: 332px;
-    height: 51px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 0; /* ตั้งค่าเป็น 0 เพื่อทำให้ไม่มีเหลี่ยมมน */
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .input-style:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
-  }
-  
-  .Halal-Shop{
-    margin-left: 350px;
-    margin-top: -80px;
-  }
-  .Vegetarian-Shop{
-    margin-left: 350px;
-    margin-top: -80px;
-  }
-  .Mangswirat-Shop{
-    margin-left: 350px;
-    margin-top: -80px;
-  }
+  background-color: white;
+}
+
+.input-style {
+  width: 332px;
+  height: 51px;
+  padding: 10px;
+  border-radius: 0;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.input-style:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+.Halal-Shop {
+  margin-left: 350px;
+  margin-top: -80px;
+}
+.Vegetarian-Shop {
+  margin-left: 350px;
+  margin-top: -80px;
+}
+.Mangswirat-Shop {
+  margin-left: 350px;
+  margin-top: -80px;
+}
