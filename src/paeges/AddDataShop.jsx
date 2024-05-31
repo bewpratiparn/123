@@ -1,9 +1,93 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AddDataShop.css";
+
+function CustomSelect({ selectedOption, setSelectedOption }) {
+  const [isOpen, setIsOpen] = useState({
+    value: "", // เริ่มต้นด้วยค่าว่าง
+    label: "โปรดเลือกประเภท", // ข้อความเริ่มต้น
+    imgSrc: "", // ไม่มีรูปภาพเริ่มต้น
+  });
+  const options = [
+    {
+      value: "Mangswirat",
+      label: "Mangswirat",
+      imgSrc: "https://img.kapook.com/u/2021/sutasinee/10/62.jpg",
+    },
+    {
+      value: "Halal",
+      label: "Halal",
+      imgSrc:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSesnG9cxQafqkSXrcrw2ixYsIcGBn20qcm7g&s",
+    },
+    {
+      value: "Vegetarian",
+      label: "Vegetarian",
+      imgSrc:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Vegetarian-mark.svg/1200px-Vegetarian-mark.svg.png",
+    },
+    {
+      value: "Nothing",
+      label: "Nothing",
+      imgSrc:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Vegetarian-mark.svg/1200px-Vegetarian-mark.svg.png",
+    },
+  ];
+  const selectRef = useRef(null);
+
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (selectRef.current && !selectRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div className="custom-select" ref={selectRef}>
+      <div className="select-selected" onClick={() => setIsOpen(!isOpen)}>
+        <img src={selectedOption.imgSrc} alt={selectedOption.label} />{" "}
+        {selectedOption.label}
+      </div>
+      {isOpen && (
+        <div className="select-items">
+          {options.map((option) => (
+            <div key={option.value} onClick={() => handleOptionClick(option)}>
+              <img src={option.imgSrc} alt={option.label} /> {option.label}
+            </div>
+          ))}
+        </div>
+      )}
+      <select
+        name="shop_type"
+        id="shop_type"
+        style={{ display: "none" }}
+        value={selectedOption.value}
+        onChange={(e) =>
+          setSelectedOption(options.find((opt) => opt.value === e.target.value))
+        }
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
 
 function AddDataShop() {
   const navigate = useNavigate();
@@ -15,6 +99,11 @@ function AddDataShop() {
     phone: "",
     onclose: "",
     shop_type: "",
+  });
+  const [selectedOption, setSelectedOption] = useState({
+    value: "Mangswirat",
+    label: "Mangswirat",
+    imgSrc: "mangswirat.png",
   });
   const [imageURL, setImageURL] = useState("");
 
@@ -37,6 +126,13 @@ function AddDataShop() {
       }));
     }
   };
+
+  useEffect(() => {
+    setAddShop((prevShop) => ({
+      ...prevShop,
+      shop_type: selectedOption.value,
+    }));
+  }, [selectedOption]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -97,6 +193,11 @@ function AddDataShop() {
       onclose: "",
       shop_type: "",
     });
+    setSelectedOption({
+      value: "Mangswirat",
+      label: "Mangswirat",
+      imgSrc: "mangswirat.png",
+    });
     setImageURL("");
   };
 
@@ -135,7 +236,7 @@ function AddDataShop() {
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                เบอร์โทรศัพท์
+                  เบอร์โทรศัพท์
                 </label>
                 <input
                   className="input-style"
@@ -160,25 +261,15 @@ function AddDataShop() {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2 ">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
                   ประเภทร้าน
                 </label>
-                <div className="symbol007">
-                  <select
-                    className="input-style"
-                    name="shop_type"
-                    value={addShop.shop_type}
-                    onChange={handleChange}
-                  >
-                    <option disabled value="">
-                      เลือกประเภทร้าน...
-                    </option>
-                    <option value="Mangswirat">Mangswirat</option>
-                    <option value="Halal">Halal</option>
-                    <option value="Vegetarian">Vegetarian</option>
-                    <option value="Nothing">Nothing</option>
-                  </select>
-                </div>
+                <select >
+                <CustomSelect
+                  selectedOption={selectedOption}
+                  setSelectedOption={setSelectedOption}
+                />
+              </select>
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">

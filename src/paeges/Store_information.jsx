@@ -230,7 +230,7 @@ function Store_information() {
   return (
     <div className="bk">
       <div className="card2"> 
-      isAuthorized ? <button onClick={handleClick}>กดเพื่อเเก้ไข</button> : null
+      <button onClick={handleClick}>กดเพื่อเเก้ไข</button> :
         <select
           class="TranslateHome"
           onChange={handleLanguageChange}
