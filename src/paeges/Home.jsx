@@ -287,6 +287,7 @@ function Home() {
                           d.shop_text
                         )}
                       </div>
+                      
                     </div>
                     <div>
                       <h2 className="underline underline-offset-4 pt-3 text-2xl">

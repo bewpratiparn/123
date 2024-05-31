@@ -15,6 +15,7 @@ const NavbarSidebar = () => {
 
 const Sidebar = () => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+  const [showEditDropdown, settoggleEditDropdown] = useState(false);
   const [showLoginDropdown, setShowLoginDropdown] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [shopId, setShopId] = useState(null);
@@ -24,9 +25,15 @@ const Sidebar = () => {
     setShowProfileDropdown(!showProfileDropdown);
   };
 
+  const toggleEditDropdown = () => {
+    settoggleEditDropdown(!showEditDropdown);
+  };
+
   const toggleLoginDropdown = () => {
     setShowLoginDropdown(!showLoginDropdown);
   };
+
+ 
 
   const openNav = () => {
     setIsSidebarOpen(true);
@@ -35,6 +42,8 @@ const Sidebar = () => {
   const closeNav = () => {
     setIsSidebarOpen(false);
   };
+
+  
 
   // Fetch shop ID from the API
   useEffect(() => {
@@ -105,7 +114,7 @@ const Sidebar = () => {
             <a href="/AddFood">{isThai ? "-เพิ่มข้อมูลอาหาร" : "-Add Food"}</a>
           </div>
         )}
-        <a href="#" onClick={toggleLoginDropdown}>
+        <a href="#" onClick={toggleEditDropdown}>
           {isThai ? "แก้ไข้โปรไฟล์" : "Edit Profile"}
           <img
             src="https://cdn.icon-icons.com/icons2/1659/PNG/512/3844438-hamburger-menu-more-navigation_110319.png"
@@ -113,10 +122,10 @@ const Sidebar = () => {
             className="h-8 w-8"
           />
         </a>
-        {showLoginDropdown && (
+        {showEditDropdown && (
           <div className="dropdown-content">
             <a href={`/Editstore?shop_id=${shopId}`}>{isThai ? "-แก้ไข้ข้อมูลร้านค้า" : "-Edit Store Information"}</a>
-            <a href="/Notshowfood">{isThai ? "-ไม่แสดงรายการอาหาร" : "-Do Not Show Food List"}</a>
+            {/* <a href="/Notshowfood">{isThai ? "-ไม่แสดงรายการอาหาร" : "-Do Not Show Food List"}</a> */}
           </div>
         )}
         <a href="#" onClick={toggleLoginDropdown}>
@@ -132,7 +141,7 @@ const Sidebar = () => {
             <a href="/Login">{isThai ? "-เข้าสู่ระบบ" : "-Sign In"}</a>
             <a href="/Register">{isThai ? "-สมัครสมาชิก" : "-Register"}</a>
             <a href="/Logout">{isThai ? "-ออกจาระบบ" : "-Log Out"}</a>
-            <a href="/">{isThai ? "-ลบบัญชี" : "-Delete Account"}</a>
+            {/* <a href="/">{isThai ? "-ลบบัญชี" : "-Delete Account"}</a> */}
           </div>
         )}
       </div>
