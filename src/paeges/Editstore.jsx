@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./Editstore.css";
 
-
 function Editstore() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -25,7 +24,7 @@ function Editstore() {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (shopId) => {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
@@ -57,10 +56,10 @@ function Editstore() {
 
         setShops(userShops);
 
-        // If shopId is provided from URL, set the shop data for editing
-        if (shopIdFromURL) {
+        // If shopId is provided from URL or input, set the shop data for editing
+        if (shopId) {
           const shopToEdit = userShops.find(
-            (shop) => shop.shop_id === parseInt(shopIdFromURL)
+            (shop) => shop.shop_id === parseInt(shopId)
           );
           if (shopToEdit) {
             setEditShopId(shopToEdit.shop_id);
@@ -72,21 +71,21 @@ function Editstore() {
               shop_picture: shopToEdit.shop_picture,
               shop_text: shopToEdit.shop_text,
             });
+          } else {
+            throw new Error("Shop not found");
           }
         }
-      } catch (error) {
-        setError(error);
-        Swal.fire({
-          title: "โปรดล็อคอิน",
-          icon: "warning",
-        });
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
-  }, [shopIdFromURL]);
+    fetchData(editShopId);
+  }, [editShopId]);
+
+  const handleEditShopIdChange = (e) => {
+    setEditShopId(e.target.value);
+  };
 
   const handleEditClick = (shop) => {
     setEditShopId(shop.shop_id);
@@ -96,7 +95,6 @@ function Editstore() {
       shop_phone: shop.shop_phone,
       shop_time: shop.shop_time,
       shop_picture: base64String,
-     
     });
   };
 
@@ -141,7 +139,7 @@ function Editstore() {
         title: "Success",
         text: response.data.message,
         icon: "success",
-      })
+      });
       // Fetch updated shop data after editing
       const updatedShops = await axios.get("http://127.0.0.1:8000/shops/", {
         headers: {
@@ -169,7 +167,21 @@ function Editstore() {
       <div className="flex items-center justify-center">
         <div className="w-1/2 rounded-lg bg-amber-500 text-white p-5 mt-5 ml-5">
           <form onSubmit={handleFormSubmit}>
-            <div className="mb-4 text-black ">
+            <div className="mb-4 text-black">
+              <label htmlFor="shop_id" className="block">
+                Shop ID
+              </label>
+              <input
+                type="number"
+                name="shop_id"
+                className="w-full mt-3 p-3 rounded-lg"
+                placeholder="Enter Shop ID"
+                value={editShopId}
+                onChange={handleEditShopIdChange}
+              />
+            </div>
+
+            <div className="mb-4 text-black">
               <label htmlFor="shop_name" className="block">
                 ชื่อร้านค้า
               </label>
@@ -288,3 +300,4 @@ function Editstore() {
 }
 
 export default Editstore;
+

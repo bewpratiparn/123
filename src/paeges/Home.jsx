@@ -198,6 +198,7 @@ function Home() {
             <div key={i} className="bg-white p-4 rounded-lg shadow-lg">
               <div className="container-store">
                 <div className="card">
+                
                   <img
                     src={d.shop_picture}
                     alt={d.shop_name}
@@ -205,6 +206,19 @@ function Home() {
                   />
                   <div className="card-outdatastore">
                     <div className="data-storehome">
+                    <div className="shop_id">
+                        {language === "th" ? "ไอดีร้าน" : "Shop ID"}:
+                        {searchTerm &&
+                        d.shop_id
+                          .toLowerCase()
+                          .includes(searchTerm.toLowerCase()) ? (
+                          <span style={{ backgroundColor: "yellow" }}>
+                            {d.shop_id}
+                          </span>
+                        ) : (
+                          d.shop_id
+                        )}
+                      </div>
                       <div className="storename">
                         {language === "th" ? "ชื่อร้านค้า" : "Shop Name"}:
                         {searchTerm &&
