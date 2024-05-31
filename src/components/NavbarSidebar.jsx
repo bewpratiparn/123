@@ -71,20 +71,20 @@ const Sidebar = () => {
             <a href="/Fooddetails">-แสดงรายละเอียดข้อมูลร้านค้า</a>
           </div>
         )}
-        <a href="#" onClick={toggleLoginDropdown}>
+        {/* <a href="#" onClick={toggleLoginDropdown}>
           แก้ไข้โปรไฟล์
           <img
             src="https://cdn.icon-icons.com/icons2/1659/PNG/512/3844438-hamburger-menu-more-navigation_110319.png"
             alt="คำอธิบายรูปภาพ"
             className="h-8 w-8"
           />
-        </a>
-        {showLoginDropdown && (
+        </a> */}
+        {/* {showLoginDropdown && (
           <div className="dropdown-content">
             <a href="/Editstore">-แก้ไข้ข้อมูลร้านค้า</a>
             <a href="/Notshowfood">-ไม่แสดงรายการอาหาร</a>
           </div>
-        )}
+        )} */}
         <a href="#" onClick={toggleLoginDropdown}>
           ลงชื่อเข้าใช้
           <img
