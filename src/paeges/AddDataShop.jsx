@@ -135,7 +135,7 @@ function AddDataShop() {
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                เบอร์โทรศัพท์
+                  เบอร์โทรศัพท์
                 </label>
                 <input
                   className="input-style"
@@ -179,6 +179,31 @@ function AddDataShop() {
                     <option value="Nothing">Nothing</option>
                   </select>
                 </div>
+                {addShop.shop_type === "Halal" && (
+                  <img
+                    src="https://www.lsfpackaging.com/images/editor/21-%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%AE%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%A5%E0%B8%84%E0%B8%B7%E0%B8%AD_Pic.jpg"
+                    alt="Halal Shop"
+                    className="Halal-Shop"
+                    style={{ maxWidth: "150px" }}
+                  />
+                )}
+                 {addShop.shop_type === "Vegetarian" && (
+                  <img
+                    src="https://png.pngtree.com/png-vector/20191030/ourlarge/pngtree-icon-for-vegan-food-vector-illustration-symbols-isolated-on-white-background-png-image_1870591.jpg"
+                    alt="Halal Shop"
+                    className="Vegetarian-Shop"
+                    style={{ maxWidth: "150px" }}
+                  />
+                )}
+                 {addShop.shop_type === "Mangswirat" && (
+                  <img
+                    src="https://msnbcnewslive.com/wp-content/uploads/2023/10/201508141447.jpeg"
+                    alt="Halal Shop"
+                    className="Mangswirat-Shop"
+                    style={{ maxWidth: "150px" }}
+                  />
+                )}
+          
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">

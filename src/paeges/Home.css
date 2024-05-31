@@ -257,3 +257,20 @@ input[type="textsearch"] {
   margin-top: 15px;
   background-color: rgb(247, 247, 247);
 }
+.halal-image {
+  max-width: 150px;
+  margin-left: auto;
+  margin-top: -100px;
+}
+
+.vegetarian-image {
+  max-width: 150px;
+  margin-left: auto;
+  margin-top: -100px;
+}
+
+.mangswirat-image {
+  max-width: 150px;
+  margin-left: auto;
+  margin-top: -100px;
+}

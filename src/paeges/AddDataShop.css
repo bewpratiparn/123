@@ -24,7 +24,15 @@ body{
     box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
   }
   
-  .mt-007{
+  .Halal-Shop{
+    margin-left: 350px;
+    margin-top: -80px;
+  }
+  .Vegetarian-Shop{
+    margin-left: 350px;
+    margin-top: -80px;
+  }
+  .Mangswirat-Shop{
     margin-left: 350px;
     margin-top: -80px;
   }
