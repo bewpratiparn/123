@@ -60,3 +60,16 @@ button.logout-button {
 button.logout-button:hover {
   background-color: #ff7875; /* เปลี่ยนสีเมื่อ Hover */
 }
+
+.form-login {
+  /* position: relative; */
+  width: 30rem; /* กำหนดความกว้างที่ต้องการ */
+  height: 30rem; /* กำหนดความสูงที่ต้องการ */
+  margin-right: 60px;
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  transition: background-color 2s ease-out, transform 0.3s ease;
+}

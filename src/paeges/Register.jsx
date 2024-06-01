@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 import { withEmotionCache } from "@emotion/react";
+import "./Register.css";
 
 function Register() {
   const Navigate = useNavigate();
@@ -77,16 +78,25 @@ function Register() {
   };
 
   return (
-    <div className="flex justify-center items-center-top h-screen bg-gray-100">
-      <div className="bg-white-screen p-8 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-4">Register</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
+    <>
+    <div className="flex justify-center items-center bg-white">
+    <div className="flex flex-row justify-center items-center-top  bg-white mb-6">
+      <div
+        className="custom-box bg-white-screen  rounded-lg shadow-lg "
+        // style={{
+        //   width: selectedFile ? "60em" : "60rem", // หรือค่าความกว้างที่ต้องการเมื่อไม่มีไฟล์ที่เลือก
+        //   height: selectedFile ? "50rem" : "20rem", // หรือค่าความสูงที่ต้องการเมื่อไม่มีไฟล์ที่เลือก
+        // }}
+      >
+        <form className="position" onSubmit={handleSubmit}>
+          <h1 className="h1 ">Register</h1>
+
+          <div className="mb-4 ">
+            <label className=" block text-gray-700 text-sm font-bold mb-2">
               Firstname
             </label>
             <input
-              className="w-full p-2 border rounded-md"
+              className="w-full p-2 border rounded-md "
               type="text"
               name="firstname"
               placeholder="Firstname"
@@ -154,33 +164,37 @@ function Register() {
           </div>
           <div>
             <input
+              className="mt-1"
               type="file"
               name="picture"
               value={inputs.picture || ""}
               onChange={handleChange}
             />
-            {selectedFile && (
-              <div>
-                <img
-                  src={URL.createObjectURL(selectedFile)}
-                  alt="Selected Image"
-                  style={{ maxWidth: "300px", maxHeight: "300px" }}
-                />
-                <p>Selected file: {selectedFile.name}</p>
-              </div>
-            )}
-
-            <button disabled={!selectedFile}>Upload Image</button>
           </div>
+          {selectedFile && (
+            <div className="showpicture">
+              <img
+                src={URL.createObjectURL(selectedFile)}
+                alt="Selected Image"
+                style={{ maxWidth: "100px", maxHeight: "100px" }}
+              />
+              <span className="namepicture">{selectedFile.name}</span>
+            </div>
+          )}
           <button
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md mt-5"
             type="submit"
           >
             Register
           </button>
+          <a href="/Login" className="block text-center mt-5 underline underline-offset-2 ">
+            Login
+          </a>
         </form>
       </div>
     </div>
+    </div>
+    </>
   );
 }
 

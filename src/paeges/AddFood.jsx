@@ -9,11 +9,10 @@ import "./AddFood.css";
 function AddFood() {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
-  const [input, setInputs] = useState({
+  const [input, setInput] = useState({
     Food_name: "",
     Food_element: "",
     Food_price: "",
-    Food_picture: "",
   });
   const [imageURL, setImageURL] = useState("");
 
@@ -23,24 +22,23 @@ function AddFood() {
     if (type === "file") {
       const file = event.target.files[0];
 
-      // Resize image
       Resizer.imageFileResizer(
         file,
-        300, // New width (pixels)
-        300, // New height (pixels)
-        "JPEG", // Format
-        100, // Quality (0-100)
-        0, // Rotation (0 = no rotation, 90 = clockwise, -90 = counter-clockwise)
+        300,
+        300,
+        "JPEG",
+        100,
+        0,
         (uri) => {
           setImageURL(uri);
         },
-        "base64", // Output type
-        300, // Color depth
-        100 // Image size (percentage)
+        "base64",
+        300,
+        100
       );
     } else {
-      setInputs((prevInputs) => ({
-        ...prevInputs,
+      setInput((prevInput) => ({
+        ...prevInput,
         [name]: value,
       }));
     }
@@ -56,15 +54,14 @@ function AddFood() {
         "Content-Type": "application/json",
       };
 
-      const raw = JSON.stringify({
-        Food_name: input.Food_name,
-        Food_element: input.Food_element,
-        Food_price: input.Food_price,
-        Food_picture: imageURL, // Change from input.Food_picture to imageURL
-      });
+      const formData = new FormData();
+      formData.append("Food_name", input.Food_name);
+      formData.append("Food_element", input.Food_element);
+      formData.append("Food_price", input.Food_price);
+      formData.append("Food_picture", imageURL);
 
       axios
-        .post("http://127.0.0.1:8000/add_food/", raw, { headers })
+        .post("http://127.0.0.1:8000/add_food/", formData, { headers })
         .then((response) => {
           if (response.data.message === "Food data added successfully") {
             MySwal.fire({
@@ -75,7 +72,7 @@ function AddFood() {
             });
           } else {
             MySwal.fire({
-              html: <i>เพิ่มข้อมูลร้านค้าสำเร็จ</i>,
+              html: <i>เพิ่มข้อมูลอาหารไม่สำเร็จ</i>,
               icon: "error",
             });
           }
@@ -83,7 +80,7 @@ function AddFood() {
         .catch((error) => {
           console.error(error);
           MySwal.fire({
-            html: <i>เกิดข้อผิดพลาดในการเพิ่มข้อมูลร้านค้า</i>,
+            html: <i>เกิดข้อผิดพลาดในการเพิ่มข้อมูลอาหาร</i>,
             icon: "error",
           });
         });
@@ -95,81 +92,88 @@ function AddFood() {
     }
   };
 
+  const handleReset = () => {
+    setInput({
+      Food_name: "",
+      Food_element: "",
+      Food_price: "",
+    });
+    setImageURL("");
+  };
+
   return (
-    <div className="background">
-      <div className="flex flex-col justify-center items-center m-10">
-        <div className="m-5 text-center text-2xl font-bold">เพิ่มข้อมูลอาหาร</div>
-        <form onSubmit={handleSubmit} className="w-full max-w-lg">
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              ชื่อเมนู
-            </label>
-            <input
-              className="p-2 border rounded-md w-full"
-              name="Food_name"
-              type="text"
-              placeholder="ชื่อเมนู..."
-              value={input.Food_name}
-              onChange={handleChange}
-            />
+    <div className="backgroundfood">
+      <div className="boxtextfood">
+        <div className="block text-gray-700 text-2xl font-bold mb-8 ">
+          เพิ่มข้อมูลอาหาร
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="grid gap-6 mb-6 md:grid-cols-2">
+            <div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-xl font-bold mb-2">
+                  ชื่อเมนู
+                </label>
+                <input
+                  className="input-stylefood"
+                  name="Food_name"
+                  type="text"
+                  placeholder="ชื่อเมนู..."
+                  value={input.Food_name}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-xl font-bold mb-2">
+                  องค์ประกอบอาหาร
+                </label>
+                <textarea
+                  className="inputfoodelement"
+                  name="Food_element"
+                  placeholder="องค์ประกอบอาหาร..."
+                  value={input.Food_element}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-xl font-bold mb-2">
+                  ราคา
+                </label>
+                <input
+                  className="input-stylefood"
+                  name="Food_price"
+                  type="text"
+                  placeholder="ราคา..."
+                  value={input.Food_price}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-xl font-bold mb-2">
+                  เพิ่มรูปอาหาร
+                </label>
+                <input
+                  className="file"
+                  name="Food_picture"
+                  type="file"
+                  onChange={handleChange}
+                />
+                <div>
+                  {imageURL && (
+                    <img src={imageURL} alt="Food" className="imgaddfood" />
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              องค์ประกอบอาหาร
-            </label>
-            <textarea
-              className="p-2 border rounded-md w-full h-48 resize-none"
-              name="Food_element"
-              placeholder="องค์ประกอบของอาหาร"
-              value={input.Food_element}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              ราคา
-            </label>
-            <input
-              className="p-2 border rounded-md w-full"
-              name="Food_price"
-              type="text"
-              placeholder="ราคา..."
-              value={input.Food_price}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              โปรดเพิ่มรูปอาหารของท่าน
-            </label>
-            <input
-              className="p-2 border rounded-md w-full"
-              name="Food_picture"
-              type="file"
-              placeholder="รูปภาพ..."
-              onChange={handleChange}
-            />
-            {imageURL && (
-              <img
-                src={imageURL}
-                alt="Food"
-                className="mt-2 rounded-md shadow-md max-w-xs"
-              />
-            )}
-          </div>
-          <div>
-            <button
-              type="submit"
-              className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-            >
-              ยืนยัน
-            </button>
-            <button
-              type="reset"
-              className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-            >
-              ยกเลิก
-            </button>
+          
+          <div className="buttonContainerfood">
+            <div className="buttonfoodsubmit">
+              <button type="submit">ยืนยัน</button>
+            </div>
+            <div className="buttonfoodcancel">
+              <button type="button" onClick={handleReset}>ยกเลิก</button>
+            </div>
           </div>
         </form>
       </div>

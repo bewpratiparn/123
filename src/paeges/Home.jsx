@@ -207,9 +207,9 @@ function Home() {
                     <div className="card-outdatastore">
                       <div className="data-storehome">
                         <div className="shop_id">
-                          {language === "th" ? "ไอดีร้าน" : "Shop ID"}:
+                        {language === "th" ? "ไอดีร้าน" : "Shop ID"}:
                           {searchTerm &&
-                          d.shop_id
+                          String(d.shop_id)
                             .toLowerCase()
                             .includes(searchTerm.toLowerCase()) ? (
                             <span style={{ backgroundColor: "yellow" }}>

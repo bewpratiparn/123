@@ -1,0 +1,54 @@
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+.custom-box {
+  width: 40rem;
+  height: 47rem;
+  margin-right: 60px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  transition: background-color 2s ease-out, transform 0.3s ease
+ 
+}
+
+
+.hover {
+    background-color: initial; /* กำหนดสีพื้นหลังปกติ */
+    color: black; /* กำหนดสีตัวอักษรปกติ */
+    transition: background-color 2s ease-out, color 2s ease-out;
+}
+.hover:hover{
+    color: white;
+}
+
+
+.custom-box:hover {
+   background-color: beige;
+    color: black; /* เปลี่ยนสีตัวอักษรเมื่อ hover */
+}
+
+
+.h1 {
+  font-size: 1.5rem; /* กำหนดขนาดของหัวข้อ */
+  font-weight: bold;
+  margin-left: 9rem;
+  
+}
+
+.showpicture{
+  position: relative;
+  bottom: 40px;
+  left: 70%;
+}
+.namepicture{
+  position: relative;
+  right: 70%;
+}
+
+

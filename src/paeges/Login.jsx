@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -65,6 +66,7 @@ function Login() {
           title: "Login Successful",
           showConfirmButton: false,
           timer: 1500,
+        
         });
       })
       .catch((error) => {
@@ -90,10 +92,13 @@ function Login() {
   };
 
   return (
+    
     <div className="flex justify-center items-center-top h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-4">Login</h1>
+      <div className="form-login bg-white p-1 rounded-lg shadow-lg">
+
         <form onSubmit={handleSubmit}>
+          <h1 className="text-2xl font-bold mb-3">Login</h1>
+
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Username
@@ -126,10 +131,13 @@ function Login() {
           >
             Login
           </button>
+          <a href="/register" className="block text-center mt-5 ">
+            Register
+          </a>
         </form>
-        <a href="/register" className="block text-center mt-4">Register</a>
-        {user && (
-          <div className="mt-4">
+      </div>
+      {/* {user && (
+          <div className="custom-profile-inpagelogin">
             <p className="text-center mb-2">Welcome, {user.username}</p>
             <div className="flex justify-center items-center">
               <img
@@ -139,14 +147,14 @@ function Login() {
               />
             </div>
             <button
-              className="block mx-auto mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
+              className="block ml-  mt-9 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
               onClick={handleLogout}
             >
               Logout
             </button>
+        
           </div>
-        )}
-      </div>
+        )} */}
     </div>
   );
 }

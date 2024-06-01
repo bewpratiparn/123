@@ -3,37 +3,111 @@ body {
   padding: 0;
 }
 
-.white-background {
-  background-color: white;
-}
-
 .input-style {
   width: 332px;
   height: 51px;
-  padding: 10px;
-  border-radius: 0;
+  border: 1px solid #050505;
   font-size: 16px;
-  outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-
 
 .input-style:focus {
   border-color: #3498db;
   box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+  border-radius: 0.8rem;
 }
 
 .Halal-Shop {
   margin-left: 350px;
   margin-top: -80px;
+  max-width: 150px;
+  position: fixed;
 }
 .Vegetarian-Shop {
   margin-left: 350px;
   margin-top: -80px;
+  max-width: 150px;
+  position: fixed;
 }
 .Mangswirat-Shop {
   margin-left: 350px;
   margin-top: -80px;
+  max-width: 150px;
+  position: fixed;
+}
+
+.background {
+  background-image: url("https://img.pikbest.com/background/20220119/simple-yellow-qr-code-event-promotion-background_6220250.jpg!bw700");
+  background-size: cover; /* ทำให้รูปภาพครอบคลุมทั้งหน้าจอ */
+  background-position: center; /* จัดตำแหน่งรูปภาพให้อยู่ตรงกลาง */
+  background-repeat: no-repeat; /* ป้องกันการซ้ำของรูปภาพ */
+  height: 100vh; /* ตั้งค่าความสูงขององค์ประกอบเป็น 100% ของความสูงหน้าจอ */
+  width: 100vw; /* ตั้งค่าความกว้างขององค์ประกอบเป็น 100% ของความกว้างหน้าจอ */
+  margin: 0; /* ป้องกัน margin ที่อาจเกิดขึ้น */
+  padding: 0; /* ป้องกัน padding ที่อาจเกิดขึ้น */
+  overflow: scroll; /* ป้องกัน scrollbars จากการปรากฏ */
+  /* position: fixed; */
+  /* margin-top: -30px; */
+  background-color: #f0f4f8;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.boxtext {
+  margin-right: -950px;
+  margin-top: 90px;
+  overflow: scroll; 
+}
+
+.imgaddshop {
+  border-radius: 5px;
+  position: fixed;
+  height: 220px;
+  width: 220px;
+  margin-left: -590px;
+  margin-top: -425px;
+}
+.buttonshopsubmit button {
+  background-color: #2e1cec; /* สีพื้นหลัง */
+  color: white; /* สีข้อความ */
+  padding: 12px 24px; /* ขนาดของปุ่ม */
+  font-size: 16px; /* ขนาดตัวอักษร */
+  border: none; /* ไม่มีเส้นขอบ */
+  border-radius: 6px; /* ทำให้มุมของปุ่มเป็นรูปวงกลม */
+  cursor: pointer; /* เมาส์เป็นเครื่องมือที่แสดงการใช้งานได้ */
+  transition: background-color 0.3s ease; /* เพิ่มเอฟเฟกต์การเปลี่ยนสีพื้นหลังเมื่อ hover */
+  outline: none; /* ไม่มีเส้นขอบเมื่อปุ่มได้รับการคลิก */
+}
+
+.buttonshopsubmit button:hover {
+  background-color: #6358e2; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+}
+
+.buttonshopsubmit button:focus {
+  box-shadow: 0 0 0 2px #867fd8; /* เพิ่มเงาเมื่อปุ่มได้รับการคลิก */
+}
+
+.buttonshopcancel button {
+  background-color: #ff0000; /* สีพื้นหลัง */
+  color: white; /* สีข้อความ */
+  padding: 12px 24px; /* ขนาดของปุ่ม */
+  font-size: 16px; /* ขนาดตัวอักษร */
+  border: none; /* ไม่มีเส้นขอบ */
+  border-radius: 6px; /* ทำให้มุมของปุ่มเป็นรูปวงกลม */
+  cursor: pointer; /* เมาส์เป็นเครื่องมือที่แสดงการใช้งานได้ */
+  transition: background-color 0.3s ease; /* เพิ่มเอฟเฟกต์การเปลี่ยนสีพื้นหลังเมื่อ hover */
+  outline: none; /* ไม่มีเส้นขอบเมื่อปุ่มได้รับการคลิก */
+}
+
+.buttonshopcancel button:hover {
+  background-color: #ee6c6c; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+}
+
+.buttonshopcancel button:focus {
+  box-shadow: 0 0 0 2px #e18a8a; /* เพิ่มเงาเมื่อปุ่มได้รับการคลิก */
+}
+
+.buttonContainer {
+  display: flex; /* ให้ทำการจัดเรียงโดยใช้ Flexbox */
+  gap: 10px; /* ระยะห่างระหว่างปุ่ม */
 }
