@@ -102,6 +102,7 @@ function Register() {
               placeholder="Firstname"
               value={inputs.firstname || ""}
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -116,6 +117,7 @@ function Register() {
               placeholder="Lastname"
               value={inputs.lastname || ""}
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -130,6 +132,7 @@ function Register() {
               placeholder="Phone number"
               value={inputs.phone || ""}
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -144,6 +147,7 @@ function Register() {
               placeholder="username"
               value={inputs.username || ""}
               onChange={handleChange}
+              required
             />
           </div>
           <div className="mb-4">
@@ -160,6 +164,7 @@ function Register() {
               placeholder="*****"
               value={inputs.password || ""}
               onChange={handleChange}
+              required
             />
           </div>
           <div>
@@ -169,6 +174,7 @@ function Register() {
               name="picture"
               value={inputs.picture || ""}
               onChange={handleChange}
+              required
             />
           </div>
           {selectedFile && (

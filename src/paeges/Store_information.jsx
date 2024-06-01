@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import "./Store_information.css";
 import Showuser from "./Showuser";
 import { Icon } from "@iconify/react";
 function Store_information() {
+  const navigate = useNavigate(); // Use the useNavigate hook
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const shopId = searchParams.get("shop_id");
@@ -195,18 +196,24 @@ function Store_information() {
     }
   };
 
+  const handleBackClick = () => {
+    navigate(-1); // Navigate back to the previous page
+  };
+
   return (
     <div className="bk">
       <div className="card2">
-        <div className="Outline">
-        <Icon icon="mdi:arrow-back" className="back" />
+        <div className="Outline" onClick={handleBackClick}>
+          <Icon icon="mdi:arrow-back" className="back" />
         </div>
         <Icon
           icon="bxs:edit"
           className="icon-with-hover"
           onClick={handleClick}
         />
-        <span className="icon-text" onClick={handleClick}>เเก้ไขข้อมูลร้านค้า</span>
+        <span className="icon-text" onClick={handleClick}>
+          เเก้ไขข้อมูลร้านค้า
+        </span>
         <select
           class="TranslateHome"
           onChange={handleLanguageChange}

@@ -184,3 +184,24 @@
 .TranslateHome:hover {
   background-color: #e6e6e6; /* พื้นหลังสีเทาอ่อนเมื่อ hover */
 }
+.button-back-inFooddetails {
+  font-size: 2rem;
+  margin-left: 1rem;
+
+  transition: transform 0.2s;
+}
+.button-back-inFooddetails:hover {
+  transform: scale(0.8);
+}
+.Outline-inFooddetails {
+  position: relative;
+  top: -45px;
+  margin-left: px;
+  border: solid;
+  width: 4.5rem;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+.Outline-inFooddetails:hover {
+  transform: scale(0.8);
+}

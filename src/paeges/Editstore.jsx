@@ -167,6 +167,7 @@ function Editstore() {
       <div className="flex items-center justify-center">
         <div className="w-1/2 rounded-lg bg-amber-500 text-white p-5 mt-5 ml-5">
           <form onSubmit={handleFormSubmit}>
+            <div className="labelinEditstore">เเก้ไขข้อมูลร้านค้า</div>
             <div className="mb-4 text-black">
               <label htmlFor="shop_id" className="block">
                 Shop ID

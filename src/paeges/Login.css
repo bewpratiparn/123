@@ -1,8 +1,8 @@
 /* Login.css */
 body {
-  background-color: #ffffff; /* กำหนดพื้นหลังเป็นสีขาว */
-  margin: 0; /* ลบ margin ทั้งหมดของ body */
-  padding: 0; /* ลบ padding ทั้งหมดของ body */
+  height: 100%;
+  margin: 0;
+  background-color: white;
 }
 
 /* styles.css */
@@ -11,12 +11,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* ให้ container มีความสูงเท่ากับ viewport ทั้งหมด */
+  height: 100%;
+  background-color: white;
 }
-
 /* ปรับขนาดของ container ให้เต็มหน้าจอ */
 .container .content {
-  width: 400px; /* กำหนดความกว้างของ content */
+  width: 40px; /* กำหนดความกว้างของ content */
+}
+.content {
+  text-align: center;
 }
 
 /* ปรับการจัดวางข้อความให้อยู่ตรงกลาง */
@@ -66,10 +69,14 @@ button.logout-button:hover {
   width: 30rem; /* กำหนดความกว้างที่ต้องการ */
   height: 30rem; /* กำหนดความสูงที่ต้องการ */
   margin-right: 60px;
-  margin-top: 35px;
+  margin-top: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #f0f0f0;
   transition: background-color 2s ease-out, transform 0.3s ease;
+}
+
+.form-login:hover{
+  background-color: rgb(250, 250, 234);
 }

@@ -9,16 +9,14 @@ function Logout() {
     // แสดงกล่องข้อความยืนยัน
     Swal.fire({
       backdrop: `
-    rgba(0,0,123,0.4)
-    url("https://media.tenor.com/A9FWShnz51oAAAAi/bow.gif")
-    20px 300px
-    no-repeat
-  `,
-
+        rgba(0,0,123,0.4)
+        url("https://media.tenor.com/A9FWShnz51oAAAAi/bow.gif")
+        20px 300px
+        no-repeat
+      `,
       icon: "warning",
       title: "คุณต้องการออกจากระบบหรือไม่?",
       text: "ถ้าออกจากระบบเเล้วต้องเข้าใหม่น้าา",
-
       showCancelButton: true, // แสดงปุ่มยกเลิก
       confirmButtonText: "ตกลง",
       cancelButtonText: "ยกเลิก",
@@ -35,13 +33,16 @@ function Logout() {
           showConfirmButton: true, // เพิ่มค่าเป็น true เพื่อให้ปุ่ม "ตกลง" ปรากฏ
           confirmButtonText: "ตกลง",
         });
+      } else if (result.isDismissed) {
+        // If the user clicks the cancel button
+        navigate("/Home");
       }
     });
   };
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen bg-white">
+      <div className="flex justify-center items-center h-screen bg-white-700">
         <div>
           <div className="flex justify-center items-center mt-25">
             คุณต้องการออกจากระบบใช่หรือไม่

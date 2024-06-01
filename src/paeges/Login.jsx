@@ -66,7 +66,6 @@ function Login() {
           title: "Login Successful",
           showConfirmButton: false,
           timer: 1500,
-        
         });
       })
       .catch((error) => {
@@ -92,10 +91,9 @@ function Login() {
   };
 
   return (
-    
-    <div className="flex justify-center items-center-top h-screen bg-gray-100">
-      <div className="form-login bg-white p-1 rounded-lg shadow-lg">
-
+    <>
+    <div className="flex justify-center items-center-top screen bg-white">
+      <div className="form-login bg-white  rounded-lg shadow-lg">
         <form onSubmit={handleSubmit}>
           <h1 className="text-2xl font-bold mb-3">Login</h1>
 
@@ -156,6 +154,7 @@ function Login() {
           </div>
         )} */}
     </div>
+    </>
   );
 }
 
