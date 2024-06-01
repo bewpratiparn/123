@@ -118,12 +118,12 @@ function Fooddetails() {
             className="food-image"
           />
           <div className="ingredients-container">
-            <div className="ingredients-label">{isThai ? "วัตถุดิบ :" : "Ingredients :"}</div>
+            <div className="ingredients-label">{isThai ? "วัตถุดิบ " : "Ingredients "}</div>
             <div className="description-api">{food_elements.join(", ")}</div>
           </div>
         </div>
         <div className="description-container">
-          <div className="description-label">{isThai ? "รายละเอียดอาหาร :" : "Food Description :"}</div>
+          <div className="description-label">{isThai ? "รายละเอียดอาหาร" : "Food Description :"}</div>
           <div className="description-api">{Food_element}</div>
         </div>
       </div>
