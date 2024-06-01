@@ -46,6 +46,7 @@
   margin: 10px;
   position: relative;
   top:-25px;
+  left: 80px;
 }
 
 .openbtn:hover {
@@ -56,3 +57,4 @@
   transition: margin-left .5s;
   padding: 16px;
 }
+

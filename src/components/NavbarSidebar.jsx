@@ -33,7 +33,7 @@ const Sidebar = () => {
     setShowLoginDropdown(!showLoginDropdown);
   };
 
- 
+
 
   const openNav = () => {
     setIsSidebarOpen(true);
@@ -43,7 +43,7 @@ const Sidebar = () => {
     setIsSidebarOpen(false);
   };
 
-  
+
 
   // Fetch shop ID from the API
   useEffect(() => {
@@ -65,25 +65,25 @@ const Sidebar = () => {
 
   return (
     <div>
-    
+
 
       <div id="mySidebar" className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
           &times;
         </a>
-        <select
-  native
-  value={isThai ? "th" : "en"}
-  onChange={handleToggleLanguage}
-  label="Select Language"
-  inputProps={{
-    name: "language",
-    id: "language-select",
-  }}
->
-  <option value="th">ไทย</option>
-  <option value="en">English</option>
-</select>
+        <select className="ml-9 rounded-lg"
+          native
+          value={isThai ? "th" : "en"}
+          onChange={handleToggleLanguage}
+          label="Select Language"
+          inputProps={{
+            name: "language",
+            id: "language-select",
+          }}
+        >
+          <option value="th">ไทย</option>
+          <option value="en">English</option>
+        </select>
         <a href="/Home">
           <img
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAARZJREFUSEvVldsNwjAMRd1NYBOYBJgEMQlsApvAJsCRcpEbOY1bqR/4B+Qk91z5AYOtHMPK+jYHsDGzazF0MrNXxlwWIPFdEUV8n4FkAF5crsmlID1ALb41M3L38tmFTAEicZU9DWkBpsRnQSJARjwNqQEtcfLnb2OPpbkPM7uU75Pl8oB6FHVG/hnMvG+wvzNqvAewRDhU6Ex5XLNgBDl2ghz7QLzd218+A8A9DhHiISHHuGV0UwAZkBPBIwDu2QVC9+p3o0Nf4voiQiqHGqsS3VzZFgMyTfYlGk1mtAeREyAHNwS+4a3SpksUTGiYWlyi/wNoLLPO/T2/F80eMJKMIY2dE/p90jI2AXNEu3d7/2hdgd6FD/I5Wxnr0cXbAAAAAElFTkSuQmCC"
@@ -110,8 +110,8 @@ const Sidebar = () => {
         </a>
         {showProfileDropdown && (
           <div className="dropdown-content">
-            <a href="/AddDataShop">{isThai ? "-เพิ่มข้อมูลร้านค้า" : "-Add Data Shop"}</a>
-            <a href="/AddFood">{isThai ? "-เพิ่มข้อมูลอาหาร" : "-Add Food"}</a>
+            <a className="font1" href="/AddDataShop">{isThai ? "-เพิ่มข้อมูลร้านค้า" : "-Add Data Shop"}</a>
+            <a className="font1" href="/AddFood">{isThai ? "-เพิ่มข้อมูลอาหาร" : "-Add Food"}</a>
           </div>
         )}
         <a href="#" onClick={toggleEditDropdown}>
@@ -151,7 +151,7 @@ const Sidebar = () => {
       >
 
         <div id="main">
-          
+
           <a href="/Home" className="flex items-center justify-center w-full">
             <span className="self-center text-2xl font-semibold">
               {isThai ? "หน้าหลัก" : "Home"}
@@ -160,13 +160,13 @@ const Sidebar = () => {
           <button
             className="openbtn"
             onClick={isSidebarOpen ? closeNav : openNav}
-            
+
           >
-            
+
             &#9776;{" "}
-            
+
           </button>
-        
+
         </div>
       </div>
     </div>

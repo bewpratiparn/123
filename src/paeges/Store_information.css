@@ -55,7 +55,7 @@ body {
   transition: transform 0.3s ease; /* เพิ่ม transition เพื่อให้การขยายรูปภาพนุ่มนวล */
 }
 .image-store:hover {
-  transform: scale(1.1); /* ขยายรูปภาพขึ้น 10% เมื่อ hover */
+  transform: scale(1.3); /* ขยายรูปภาพขึ้น 10% เมื่อ hover */
 }
 
 .picture-menu {
