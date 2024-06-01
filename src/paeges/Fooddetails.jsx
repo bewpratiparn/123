@@ -15,12 +15,9 @@ function Fooddetails() {
   const [isThai, setIsThai] = useState(true); // state to track the current language
 
   useEffect(() => {
-    axios
-      .get(`http://127.0.0.1:8000/show_all_food/`)
-      .then((response) => {
-        const foodItem = response.data.find(
-          (item) => item.food_id === parseInt(foodId)
-        );
+    axios.get(`http://127.0.0.1:8000/show_all_food/`)
+      .then(response => {
+        const foodItem = response.data.find(item => item.food_id === parseInt(foodId));
         if (foodItem) {
           setFoodDetails(foodItem);
         } else {
@@ -28,7 +25,7 @@ function Fooddetails() {
         }
         setLoading(false);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Error fetching food details:", error);
         setError("Error fetching food details.");
         setLoading(false);
@@ -36,10 +33,9 @@ function Fooddetails() {
   }, [foodId]);
 
   const translate = async (text, targetLang) => {
-    const apiUrl =
-      targetLang === "en"
-        ? "http://127.0.0.1:8000/translate/th-en/"
-        : "http://127.0.0.1:8000/translate/en-th/";
+    const apiUrl = targetLang === "en"
+      ? "http://127.0.0.1:8000/translate/th-en/"
+      : "http://127.0.0.1:8000/translate/en-th/";
 
     try {
       const response = await axios.post(apiUrl, { text });
@@ -57,18 +53,9 @@ function Fooddetails() {
     setError(null);
     try {
       const targetLang = isThai ? "en" : "th";
-      const translatedFoodName = await translate(
-        foodDetails.Food_name,
-        targetLang
-      );
-      const translatedFoodElements = await translate(
-        foodDetails.food_elements.join(", "),
-        targetLang
-      );
-      const translatedFoodElement = await translate(
-        foodDetails.Food_element,
-        targetLang
-      );
+      const translatedFoodName = await translate(foodDetails.Food_name, targetLang);
+      const translatedFoodElements = await translate(foodDetails.food_elements.join(", "), targetLang);
+      const translatedFoodElement = await translate(foodDetails.Food_element, targetLang);
 
       setFoodDetails({
         ...foodDetails,
@@ -83,81 +70,63 @@ function Fooddetails() {
     setLoading(false);
   };
 
-  if (loading)
-    return (
-      <div className="loading-container">
-        <CircularProgress size={80} thickness={4} color="primary" />
-      </div>
-    );
+  if (loading) return (
+    <div className="loading-container">
+      <CircularProgress size={80} thickness={4} color="primary" /> 
+    </div>
+  );
 
   if (error) return <div>{error}</div>;
 
-  const { Food_name, Food_price, Food_picture, Food_element, food_elements } =
-    foodDetails;
+  const { Food_name, Food_price, Food_picture, Food_element, food_elements } = foodDetails;
 
   return (
     <div className="bk">
-      <div className="card3">
-        <div className="container">
-          <select
-            class="TranslateHome"
-            native
-            value={isThai ? "th" : "en"}
-            onChange={handleToggleLanguage}
-            label="Select Language"
-            inputProps={{
-              name: "language",
-              id: "language-select",
-            }}
-            style={{ fontSize: "18px", padding: "15px 30px" }}
-          >
-            <option value="th" className="th">
-              ไทย
-            </option>
-            <option value="en" className="en">
-              English
-            </option>
-          </select>
-
-          <div className="title">
-            {isThai ? "รายละเอียดเกี่ยวกับอาหาร" : "Food Details"}
+       <div className="card3">
+      <div className="container">
+        
+        <select  class="TranslateHome"
+    native
+    value={isThai ? "th" : "en"}
+    onChange={handleToggleLanguage}
+    label="Select Language"
+    inputProps={{
+      name: "language",
+      id: "language-select",
+    }}
+    style={{ fontSize: "18px", padding: "15px 30px" }}
+  >
+    <option value="th" className="th">ไทย</option>
+    <option value="en"className="en">English</option>
+  </select>
+       
+        <div className="title">{isThai ? "รายละเอียดเกี่ยวกับอาหาร" : "Food Details"}</div>
+        <div className="details">
+          <div className="ingredients-container">
+            <div className="ingredients-label">{isThai ? "ชื่ออาหาร :" : "Food Name:"}</div>
+            <div className="description-apiname">{Food_name}</div>
           </div>
-          <div className="details">
-            <div className="ingredients-container">
-              <div className="ingredients-label">
-                {isThai ? "ชื่ออาหาร :" : "Food Name:"}
-              </div>
-              <div className="description-apiname">{Food_name}</div>
-            </div>
-            <div className="ingredients-container">
-              <div className="ingredients-label">
-                {isThai ? "ราคา :" : "Price:"}
-              </div>
-              <div className="description-apiprice">
-                {Food_price} {isThai ? "บาท" : "THB"}
-              </div>
-            </div>
-          </div>
-          <div className="image-container">
-            <img
-              src={Food_picture}
-              alt={`${isThai ? "รูปภาพของ" : "Image of"} ${Food_name}`}
-              className="food-image"
-            />
-            <div className="ingredients-container">
-              <div className="ingredients-label">
-                {isThai ? "วัตถุดิบ " : "Ingredients "}
-              </div>
-              <div className="description-api">{food_elements.join(", ")}</div>
-            </div>
-          </div>
-          <div className="description-container">
-            <div className="description-label">
-              {isThai ? "รายละเอียดอาหาร" : "Food Description :"}
-            </div>
-            <div className="description-api">{Food_element}</div>
+          <div className="ingredients-container">
+            <div className="ingredients-label">{isThai ? "ราคา :" : "Price:"}</div>
+            <div className="description-apiprice">{Food_price} {isThai ? "บาท" : "THB"}</div>
           </div>
         </div>
+        <div className="image-container">
+          <img
+            src={Food_picture}
+            alt={`${isThai ? "รูปภาพของ" : "Image of"} ${Food_name}`}
+            className="food-image"
+          />
+          <div className="ingredients-container">
+            <div className="ingredients-label">{isThai ? "วัตถุดิบ :" : "Ingredients :"}</div>
+            <div className="description-api">{food_elements.join(", ")}</div>
+          </div>
+        </div>
+        <div className="description-container">
+          <div className="description-label">{isThai ? "รายละเอียดอาหาร :" : "Food Description :"}</div>
+          <div className="description-api">{Food_element}</div>
+        </div>
+      </div>
       </div>
     </div>
   );
