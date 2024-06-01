@@ -83,7 +83,7 @@ function Fooddetails() {
   return (
     <div className="bk">
        <div className="card3">
-      <div className="container">
+      <div className="containerfooddetails">
         
         <select  class="TranslateHome"
     native
