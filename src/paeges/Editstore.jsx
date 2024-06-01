@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./Editstore.css";
 
 function Editstore() {
   const location = useLocation();
+  const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const shopIdFromURL = searchParams.get("shop_id");
 
@@ -22,6 +23,7 @@ function Editstore() {
     shop_picture: "",
     shop_type: "",
   });
+  const [loadingBack, setLoadingBack] = useState(false);
 
   useEffect(() => {
     const fetchData = async (shopId) => {
@@ -161,12 +163,31 @@ function Editstore() {
   if (loading) {
     return <div>Loading...</div>;
   }
+  const handleBackClick = () => {
+    Swal.fire({
+      title: "โปรดรอเเป๊บนึง",
+      text: "เรากำลังพาท่านกลับไป",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    setTimeout(() => {
+      Swal.close();
+      navigate("/Home");
+    }, 2000); // Delay of 2 seconds
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="main-container">
       <div className="flex items-center justify-center">
-        <div className="w-1/2 rounded-lg bg-amber-500 text-white p-5 mt-5 ml-5">
-          <form onSubmit={handleFormSubmit}>
+        <div className="custom-form-Editstore w-1/2 rounded-lg text-white p-5 mt-5 ml-5">
+          <form className="ml-3" onSubmit={handleFormSubmit}>
             <div className="labelinEditstore">เเก้ไขข้อมูลร้านค้า</div>
             <div className="mb-4 text-black">
               <label htmlFor="shop_id" className="block">
@@ -179,6 +200,7 @@ function Editstore() {
                 placeholder="Enter Shop ID"
                 value={editShopId}
                 onChange={handleEditShopIdChange}
+                required
               />
             </div>
 
@@ -193,6 +215,7 @@ function Editstore() {
                 placeholder="โปรดใส่ชื่อร้าน ...."
                 value={editShopData.shop_name}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className="mb-4 text-black">
@@ -206,6 +229,7 @@ function Editstore() {
                 placeholder="โปรดใส่สถานที่ ...."
                 value={editShopData.shop_location}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className="mb-4 text-black">
@@ -219,6 +243,7 @@ function Editstore() {
                 placeholder="โปรดใส่เบอร์ติดต่อ ...."
                 value={editShopData.shop_phone}
                 onChange={handleInputChange}
+                required
               />
             </div>
 
@@ -233,6 +258,7 @@ function Editstore() {
                 placeholder="โปรดใส่วัน-เวลา-เปิดปิด"
                 value={editShopData.shop_time}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className="mb-4 text-black">
@@ -244,6 +270,7 @@ function Editstore() {
                 className="mt-3 p-3 rounded-lg"
                 value={editShopData.shop_type}
                 onChange={handleInputChange}
+                required
               >
                 <option value="Halal">Halal</option>
                 <option value="Mangswirat">Mangswirat</option>
@@ -252,7 +279,7 @@ function Editstore() {
               </select>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-4 ">
               <label htmlFor="shop_picture" className="block">
                 รูปภาพร้านค้า
               </label>
@@ -261,6 +288,7 @@ function Editstore() {
                 name="shop_picture"
                 className="mt-3"
                 onChange={handleFileChange}
+                required
               />
               {editShopData.shop_picture && (
                 <img
@@ -279,7 +307,7 @@ function Editstore() {
             <button
               type="button"
               className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-6"
-              onClick={() => setEditShopId(null)}
+              onClick={handleBackClick}
             >
               Cancel
             </button>
@@ -301,4 +329,3 @@ function Editstore() {
 }
 
 export default Editstore;
-

@@ -30,6 +30,9 @@ body {
   margin-right: auto;
   border-radius: 26px;
 }
+.block{
+  color: black;
+}
 
 .name-store,
 .dayoff,
@@ -90,8 +93,18 @@ body {
   color: black;
   font-style: bold;
   font-size: 22px;
-  margin-left: 20rem;
+  margin-left: 25rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
 
+}
+.custom-form-Editstore{
+  background-color: rgb(220, 138, 44);
+  transition: background-color 2s ease-out, transform 0.3s ease;
+}
+
+.custom-form-Editstore:hover{
+  background-color: rgb(241, 241, 241);
+  box-shadow: inset;
+  box-shadow: 20px 20px 20px 20px #888888;
 }
