@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Sidebar.css";
 import Showuser from "../paeges/Showuser";
-
+import { Icon } from "@iconify/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFlag } from '@fortawesome/free-solid-svg-icons';
 const NavbarSidebar = () => {
   return (
     <>
@@ -41,6 +43,11 @@ const Sidebar = () => {
   const closeNav = () => {
     setIsSidebarOpen(false);
   };
+  const toggle = () => {
+    this.setState((prevState) => ({
+      showProfileDropdown: !prevState.showProfileDropdown,
+    }));
+  };
 
   // Fetch shop ID from the API
   useEffect(() => {
@@ -60,10 +67,6 @@ const Sidebar = () => {
     setIsThai(!isThai);
   };
 
-  const changeBackgroundColor = (color) => {
-    setBackgroundColor(color);
-  };
-
   return (
     <div>
       <div id="mySidebar" className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
@@ -71,7 +74,7 @@ const Sidebar = () => {
           &times;
         </a>
         <select
-          className="ml-9 rounded-lg"
+          className="ml-9 mb-3 rounded-lg"
           native
           value={isThai ? "th" : "en"}
           onChange={handleToggleLanguage}
@@ -81,77 +84,110 @@ const Sidebar = () => {
             id: "language-select",
           }}
         >
-          <option value="th">ไทย</option>
+          <option value="th">
+            <FontAwesomeIcon icon={faFlag} /> ไทย
+          </option>
           <option value="en">English</option>
         </select>
-        <a href="/Home">
-          <img
-            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAARZJREFUSEvVldsNwjAMRd1NYBOYBJgEMQlsApvAJsCRcpEbOY1bqR/4B+Qk91z5AYOtHMPK+jYHsDGzazF0MrNXxlwWIPFdEUV8n4FkAF5crsmlID1ALb41M3L38tmFTAEicZU9DWkBpsRnQSJARjwNqQEtcfLnb2OPpbkPM7uU75Pl8oB6FHVG/hnMvG+wvzNqvAewRDhU6Ex5XLNgBDl2ghz7QLzd218+A8A9DhHiISHHuGV0UwAZkBPBIwDu2QVC9+p3o0Nf4voiQiqHGqsS3VzZFgMyTfYlGk1mtAeREyAHNwS+4a3SpksUTGiYWlyi/wNoLLPO/T2/F80eMJKMIY2dE/p90jI2AXNEu3d7/2hdgd6FD/I5Wxnr0cXbAAAAAElFTkSuQmCC"
-            alt="หน้าหลัก"
-          />
-          {isThai ? "หน้าหลัก" : "Home"}
-        </a>
 
+        <a href="/Home">
+          <div className="outterlineHome">
+            <div className="iconHeaderbeforetoggle">
+              <Icon icon="tabler:home" className="mr-5" />
+              {isThai ? "หน้าหลัก" : "Home"}
+            </div>
+          </div>
+        </a>
         <a href="/Translate">
-          <img
-            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAMhJREFUSEvtldENgzAMRI9N2k3YpGWStpPAJnQT2IT2ohisEqLIivtF/pDwvdzZcho4n8ZZHxpwB9AbgDOAAcArVasBi0FcSgi5egKonYy7loMTUNR+iXvSU+XRA07jOlVegLXpJ4BRMG+uCa4LHtkIIZ1cRCzoiuZn+6kFMMbPLIDCcqNSxiUuS0IOm0y7FH8rVesS3Dngqk5F8vjCnqU21H87gEEjlDCaW+IS1QBysV+n1QHihlNEVy4AHVl4Qv/66FubnK37AGDPKRn4mzOpAAAAAElFTkSuQmCC"
-            alt="แปลภาษา"
-          />
-          {isThai ? "แปลภาษา" : "Translate"}
+          <div className="outterlineHome">
+            <div className="iconHeaderbeforetoggle">
+              <Icon icon="mdi:translate" className="mr-5" />
+
+              {isThai ? "แปลภาษา" : "Translate"}
+            </div>
+          </div>
         </a>
 
         <a href="#" onClick={toggleProfileDropdown}>
-          {isThai ? "เพิ่มข้อมูลสำหรับร้าน" : "Add Data for Shop"}
-          <img
-            src="https://cdn.icon-icons.com/icons2/1659/PNG/512/3844438-hamburger-menu-more-navigation_110319.png"
-            alt="คำอธิบายรูปภาพ"
-            className="h-8 w-8"
-          />
+          <div className="outlineaddshop">
+            <div className="iconHeaderbeforetoggle">
+              <Icon icon="mdi:shop" className="mr-5 text-5xl " />
+              {isThai ? "เพิ่มข้อมูลสำหรับร้าน" : "Add Data for Shop"}
+            </div>
+          </div>
         </a>
         {showProfileDropdown && (
           <div className="dropdown-content">
             <a className="font1" href="/AddDataShop">
-              {isThai ? "-เพิ่มข้อมูลร้านค้า" : "-Add Data Shop"}
+              <div className="icon-wrapperaddshop">
+                <Icon icon="mdi:shop-plus-outline" className="mr-4" />
+                {isThai ? "เพิ่มร้านค้า" : "Add Data Shop"}
+              </div>
             </a>
             <a className="font1" href="/AddFood">
-              {isThai ? "-เพิ่มข้อมูลอาหาร" : "-Add Food"}
+              <div className="icon-wrapperaddshop">
+                <Icon icon="mdi:food" className="mr-4" />
+                {isThai ? "เพิ่มอาหาร" : "Add Food"}
+              </div>
             </a>
           </div>
         )}
         <a href="#" onClick={toggleEditDropdown}>
-          {isThai ? "แก้ไข้โปรไฟล์" : "Edit Profile"}
-          <img
-            src="https://cdn.icon-icons.com/icons2/1659/PNG/512/3844438-hamburger-menu-more-navigation_110319.png"
-            alt="คำอธิบายรูปภาพ"
-            className="h-8 w-8"
-          />
+          <div className="outlineaddAndEdit">
+            <div className="iconHeaderbeforetoggle">
+              <Icon icon="mdi:food" className="mr-3 text-2xl" />
+              {isThai ? "แก้ไข้ข้อมูล" : "Edit"}
+            </div>
+          </div>
         </a>
         {showEditDropdown && (
           <div className="dropdown-content">
             <a href={`/Editstore?shop_id=${shopId}`}>
-              {isThai ? "-แก้ไข้ข้อมูลร้านค้า" : "-Edit Store Information"}
+              <div className="icon-wrapperaddshop">
+                <Icon icon="mdi:food" className="mr-5" />
+                {isThai ? "แก้ไข้ข้อมูลร้านค้า" : "Edit StoreInformation"}
+              </div>
             </a>
+
             {/* <a href="/Notshowfood">{isThai ? "-ไม่แสดงรายการอาหาร" : "-Do Not Show Food List"}</a> */}
           </div>
         )}
         <a href="#" onClick={toggleLoginDropdown}>
-          {isThai ? "ลงชื่อเข้าใช้" : "Log In"}
-          <img
-            src="https://cdn.icon-icons.com/icons2/1659/PNG/512/3844438-hamburger-menu-more-navigation_110319.png"
-            alt="คำอธิบายรูปภาพ"
-            className="h-8 w-8"
-          />
+          <div className="outlineaddAndEdit">
+            <div className="iconHeaderbeforetoggle">
+              <Icon
+                icon="material-symbols:tv-signin-outline"
+                className="mr-2"
+              />
+              {isThai ? "ลงชื่อเข้าใช้" : "Sign In"}
+            </div>
+          </div>
         </a>
         {showLoginDropdown && (
           <div className="dropdown-content">
-            <a href="/Login">{isThai ? "-เข้าสู่ระบบ" : "-Sign In"}</a>
-            <a href="/Register">{isThai ? "-สมัครสมาชิก" : "-Register"}</a>
-            <a href="/Logout">{isThai ? "-ออกจาระบบ" : "-Log Out"}</a>
+            <a href="/Login">
+              <div className="icon-wrapperaddshop">
+                <Icon icon="material-symbols:login" />
+                {isThai ? "เข้าสู่ระบบ" : "Login"}
+              </div>
+            </a>
+            <a href="/Register">
+              <div className="icon-wrapperaddshop">
+                <Icon icon="mdi:register-outline" />
+                {isThai ? "สมัครสมาชิก" : "Register"}
+              </div>
+            </a>
+            <a href="/Logout">
+              <div className="icon-wrapperaddshop">
+                <Icon icon="ri:logout-box-line" />
+                {isThai ? "ออกจาระบบ" : "Log Out"}
+              </div>
+            </a>
             {/* <a href="/">{isThai ? "-ลบบัญชี" : "-Delete Account"}</a> */}
           </div>
         )}
       </div>
-      <div className="custom-color-navbarsidebar" >
+      <div className="custom-color-navbarsidebar">
         <div id="main">
           <a href="/Home" className="flex items-center justify-center">
             <span className="self-center font-semibold text-white backdrop-blur-sm  ">
