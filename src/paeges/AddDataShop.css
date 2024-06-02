@@ -16,54 +16,32 @@ body {
   border-radius: 0.8rem;
 }
 
-.Halal-Shop {
-  margin-left: 350px;
-  margin-top: -80px;
-  max-width: 150px;
-  position: fixed;
+.type-shop {
+  max-width: 100px;
+  margin-top: 1rem;
 }
-.Vegetarian-Shop {
-  margin-left: 350px;
-  margin-top: -80px;
-  max-width: 150px;
-  position: fixed;
-}
-.Mangswirat-Shop {
-  margin-left: 350px;
-  margin-top: -80px;
-  max-width: 150px;
-  position: fixed;
-}
+
 
 .background {
   background-image: url("https://img.pikbest.com/background/20220119/simple-yellow-qr-code-event-promotion-background_6220250.jpg!bw700");
   background-size: cover; /* ทำให้รูปภาพครอบคลุมทั้งหน้าจอ */
   background-position: center; /* จัดตำแหน่งรูปภาพให้อยู่ตรงกลาง */
   background-repeat: no-repeat; /* ป้องกันการซ้ำของรูปภาพ */
-  height: 100vh; /* ตั้งค่าความสูงขององค์ประกอบเป็น 100% ของความสูงหน้าจอ */
-  width: 100vw; /* ตั้งค่าความกว้างขององค์ประกอบเป็น 100% ของความกว้างหน้าจอ */
-  margin: 0; /* ป้องกัน margin ที่อาจเกิดขึ้น */
-  padding: 0; /* ป้องกัน padding ที่อาจเกิดขึ้น */
+
   /* overflow: hidden; ป้องกัน scrollbars จากการปรากฏ */
   /* position: fixed; */
-  margin-top: -30px;
-  background-color: #f0f4f8;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
+  background-color: #f0f4f8;
+  display: flex;
+ 
+  align-items: center;
   margin-top: 0px;
   top: 0;
   bottom: 0;
   background-color: #fff;
-  border-radius: 30px;
   padding: 30px;
   width: 100%;
   height: 100%;
-  height: auto; /* กำหนดให้ความสูงของ .card2 ขยายตามเนื้อหาภายใน */
-  overflow-y: auto; /* ใช้ scrollbar เมื่อมีเนื้อหาเกินขนาดของ .card2 */
-  background-attachment: fixed; /* ทำให้พื้นหลังคงที่เมื่อเลื่อน */
 }
 .boxtext {
   background-color: rgba(
@@ -75,17 +53,21 @@ body {
   border-radius: 20px; /* Rounded corners */
   padding: 30px; /* Padding inside the box */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  max-width: 600px; /* Maximum width of the box */
-  width: 100%; /* Full width of the box */
-  margin-left: 700px;
-  margin-top: -130px;
+  
+  width: 52%; /* Full width of the box */
+  height: 110%;
+  margin-left: 60rem;
+  margin-top: 1rem;
 }
 .imgaddshop {
-  position: fixed;
-  height: 300px;
-  width: 300px;
-  margin-left: -730px;
-  margin-top: -320px;
+  width: 15rem;
+  height: 12rem;
+}
+
+.positionimageshop {
+  position: absolute;
+  left: 13rem;
+  margin-top: 20rem;
 }
 .buttonshopsubmit button {
   background-color: #2e1cec; /* สีพื้นหลัง */
@@ -129,5 +111,8 @@ body {
 
 .buttonContainer {
   display: flex; /* ให้ทำการจัดเรียงโดยใช้ Flexbox */
-  gap: 10px; /* ระยะห่างระหว่างปุ่ม */
+  gap: 20px; /* ระยะห่างระหว่างปุ่ม */
+  position: relative;
+  left: 62rem;
+  bottom: 3rem;
 }
