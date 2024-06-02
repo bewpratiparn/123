@@ -107,7 +107,7 @@ function AddDataShop() {
           เพิ่มข้อมูลร้านค้า
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="grid gap-6 mb-6 md:grid-cols-2">
+          <div className="grid gap-6 mb-6 md:grid-cols-1">
             <div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-xl font-bold mb-2 ">

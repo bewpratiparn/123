@@ -93,7 +93,7 @@
   margin: 0; /* ป้องกัน margin ที่อาจเกิดขึ้น */
   padding: 0; /* ป้องกัน padding ที่อาจเกิดขึ้น */
   overflow: hidden; /* ป้องกัน scrollbars จากการปรากฏ */
-  position: fixed;
+ 
   margin-top: -30px;
   background-color: #f0f4f8;
   min-height: 100vh;
