@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { Form, TextArea, Button } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import "./translate.css";
 import axios from "axios";
 import "semantic-ui-css/semantic.min.css";
-
 
 function Translate() {
   const [inputText, setInputText] = useState("");
   const [translatedText, setTranslatedText] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
 
-  const submitTranslate = async () => {
+  const submitTranslate = async (e) => {
+    e.preventDefault();
     try {
       const translationDirection =
         selectedLanguage === "en" ? "th-en" : "en-th";
@@ -42,18 +42,17 @@ function Translate() {
   ];
 
   return (
-    <div>
-      <div className="app-header">
-        <h2 className="header"> Translator</h2>
-      </div>
-
+    <>
       <div className="app-body">
-        <div>
-          <Form onSubmit={submitTranslate}>
-            <Form.TextArea
-              label=""
+        <div className="form-control-Translate">
+        
+          <form onSubmit={submitTranslate}>
+          <div className="header"> Translator</div>
+           
+            <textarea
+              id="inputText"
               placeholder="Type Text to Translate.."
-              className="inputtext"
+              className="inputtext custom-textarea"
               value={inputText}
               onChange={handleInputChange}
             />
@@ -64,7 +63,7 @@ function Translate() {
                 value={selectedLanguage}
               >
                 <option value="" disabled>
-                  เลือกภาษาที่ต้องการจะเเปล  
+                  เลือกภาษาที่ต้องการจะเเปล
                 </option>
                 {languageOptions.map((option) => (
                   <option key={option.key} value={option.value}>
@@ -74,25 +73,24 @@ function Translate() {
               </select>
             </div>
 
-            <Form.TextArea
+            <textarea
               placeholder="Your Result Translation.."
               className="result"
               value={translatedText}
               readOnly
             />
-
             <Button
-              className="translatebutton"
+              className="translate-button"
               color="orange"
               size="large"
               type="submit"
             >
               Translate
             </Button>
-          </Form>
+          </form>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

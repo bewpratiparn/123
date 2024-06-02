@@ -186,9 +186,10 @@ function Editstore() {
   return (
     <div className="main-container">
       <div className="flex items-center justify-center">
-        <div className="custom-form-Editstore w-1/2 rounded-lg text-white p-5 mt-5 ml-5">
-          <form className="ml-3" onSubmit={handleFormSubmit}>
-            <div className="labelinEditstore">เเก้ไขข้อมูลร้านค้า</div>
+        <div className="custom-form-Editstore w-15 rounded-lg text-white p-5 mt-5 ml-5">
+          <div className="labelinEditstore">เเก้ไขข้อมูลร้านค้า</div>
+          <form className="" onSubmit={handleFormSubmit}>
+            <div className="control-form">
             <div className="mb-4 text-black">
               <label htmlFor="shop_id" className="block">
                 Shop ID
@@ -196,7 +197,7 @@ function Editstore() {
               <input
                 type="number"
                 name="shop_id"
-                className="w-full mt-3 p-3 rounded-lg"
+                className="w-80 mt-3 p-3 rounded-lg"
                 placeholder="Enter Shop ID"
                 value={editShopId}
                 onChange={handleEditShopIdChange}
@@ -211,7 +212,7 @@ function Editstore() {
               <input
                 type="text"
                 name="shop_name"
-                className="w-full mt-3 p-3 rounded-lg"
+                className="w-80 mt-3 p-3 rounded-lg"
                 placeholder="โปรดใส่ชื่อร้าน ...."
                 value={editShopData.shop_name}
                 onChange={handleInputChange}
@@ -225,7 +226,7 @@ function Editstore() {
               <input
                 type="text"
                 name="shop_location"
-                className="w-full mt-3 p-3 rounded-lg"
+                className="w-80 mt-3 p-3 rounded-lg"
                 placeholder="โปรดใส่สถานที่ ...."
                 value={editShopData.shop_location}
                 onChange={handleInputChange}
@@ -239,7 +240,7 @@ function Editstore() {
               <input
                 type="text"
                 name="shop_phone"
-                className="w-full mt-3 p-3 rounded-lg"
+                className="w-80 mt-3 p-3 rounded-lg"
                 placeholder="โปรดใส่เบอร์ติดต่อ ...."
                 value={editShopData.shop_phone}
                 onChange={handleInputChange}
@@ -254,7 +255,7 @@ function Editstore() {
               <input
                 type="text"
                 name="shop_time"
-                className="w-full mt-3 p-3 rounded-lg"
+                className="w-80 mt-3 p-3 rounded-lg"
                 placeholder="โปรดใส่วัน-เวลา-เปิดปิด"
                 value={editShopData.shop_time}
                 onChange={handleInputChange}
@@ -286,7 +287,7 @@ function Editstore() {
               <input
                 type="file"
                 name="shop_picture"
-                className="mt-3"
+                className="mt-3 "
                 onChange={handleFileChange}
                 required
               />
@@ -298,19 +299,22 @@ function Editstore() {
                 />
               )}
             </div>
+            </div>
+            <div className="control-button-form">
             <button
               type="submit"
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
+              >
               Update
             </button>
             <button
               type="button"
               className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-6"
               onClick={handleBackClick}
-            >
+              >
               Cancel
             </button>
+            </div>
           </form>
         </div>
       </div>

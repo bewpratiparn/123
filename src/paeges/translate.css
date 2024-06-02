@@ -1,50 +1,87 @@
 @import url("https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap");
 
-.app-header {
-  text-align: center;
-  padding: 20px;
-}
-
 .header {
   font-family: "Azeret Mono", monospace;
   font-size: 40px;
-  
+  margin-bottom: 5rem;
 }
 
 .app-body {
-  position: relative;
-  left: 30%;  
-  padding: 10px;
-  text-align: center;
+  display: flex; /* Enable flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  background: url("https://i.pinimg.com/originals/33/ef/8b/33ef8b9c0b902154a6cd4103a21275ef.jpg");
+  background-size: cover; /* Adjust image size to cover the element */
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  border-radius: 15px;
+  background-clip: border-box; /* Clip the background to the border */
+  text-align: center; /* Center text */
+  transition: transform 0.2s;
+  position: relative; /* Add position relative to contain absolute elements */
 }
+
+.app-body::before {
+  content: "";
+  position: absolute; /* Position the pseudo-element absolutely */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5); /* Set a semi-transparent white background */
+  backdrop-filter: blur(5px); /* Add a blur effect */
+  z-index: -1; /* Push the pseudo-element behind other content */
+}
+
+
+
+.form-control-Translate {
+  display: flex;
+  flex-direction: column; /* Stack form elements vertically */
+  align-items: center; /* Center form elements */
+  padding: 30px; /* Add some padding */
+  border-radius: 10px; /* Round the corners */
+  transition: transform 0.2s;
+  
+}
+
 
 .language-select {
-  width: 50px;
-  height: 50px !important;
   margin-bottom: 10px;
-  outline: none !important;
+  outline: none;
+  border-radius: 10px;
 }
 
-.long-select-language{
-  width: 350px;
-}
-
-
-
-.pleaseselectLanguage{
-  position: absolute;
-  bottom: 170px;
-  left: 25%;
-}
-.inputtext{
+.long-select-language {
   width: 500px;
+  margin-bottom: 10px; /* Add some space below the select box */
+  margin-left: 11rem;
+  
+ 
 }
-.result{
-  position: absolute;
-  width: 500px;
+.result {
+  margin-left: 9rem;
 }
-.translatebutton{
-  position: absolute;
-  top: 179%;
-  left: 10%;
+
+.inputtext, .result {
+  width: 600px;
+  height: 200px;
+  margin-bottom: 10px; /* Add some space below the text areas */
+  border-radius: 10px;
+}
+.inputtext {
+  height: 200px; /* Increase the height of the input text area */
+}
+
+.translate-button {
+  position: relative;
+  top:55px;
+  right: 43%;
+  margin-top: 16px; /* Add some space above the button */
+
+}
+.custom-textarea {
+  width: 600px;
+  height: 200px;
+  border-radius: 10px;
 }

@@ -14,6 +14,7 @@ const NavbarSidebar = () => {
 };
 
 const Sidebar = () => {
+  const [backgroundColor, setBackgroundColor] = useState("");
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showEditDropdown, settoggleEditDropdown] = useState(false);
   const [showLoginDropdown, setShowLoginDropdown] = useState(false);
@@ -33,8 +34,6 @@ const Sidebar = () => {
     setShowLoginDropdown(!showLoginDropdown);
   };
 
-
-
   const openNav = () => {
     setIsSidebarOpen(true);
   };
@@ -43,19 +42,17 @@ const Sidebar = () => {
     setIsSidebarOpen(false);
   };
 
-
-
   // Fetch shop ID from the API
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/shops/')
-      .then(response => response.json())
-      .then(data => {
+    fetch("http://127.0.0.1:8000/shops/")
+      .then((response) => response.json())
+      .then((data) => {
         if (data && data.shopId) {
           setShopId(data.shopId);
         }
       })
-      .catch(error => {
-        console.error('Error fetching shop ID:', error);
+      .catch((error) => {
+        console.error("Error fetching shop ID:", error);
       });
   }, []);
 
@@ -63,15 +60,18 @@ const Sidebar = () => {
     setIsThai(!isThai);
   };
 
+  const changeBackgroundColor = (color) => {
+    setBackgroundColor(color);
+  };
+
   return (
     <div>
-
-
       <div id="mySidebar" className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
           &times;
         </a>
-        <select className="ml-9 rounded-lg"
+        <select
+          className="ml-9 rounded-lg"
           native
           value={isThai ? "th" : "en"}
           onChange={handleToggleLanguage}
@@ -110,8 +110,12 @@ const Sidebar = () => {
         </a>
         {showProfileDropdown && (
           <div className="dropdown-content">
-            <a className="font1" href="/AddDataShop">{isThai ? "-เพิ่มข้อมูลร้านค้า" : "-Add Data Shop"}</a>
-            <a className="font1" href="/AddFood">{isThai ? "-เพิ่มข้อมูลอาหาร" : "-Add Food"}</a>
+            <a className="font1" href="/AddDataShop">
+              {isThai ? "-เพิ่มข้อมูลร้านค้า" : "-Add Data Shop"}
+            </a>
+            <a className="font1" href="/AddFood">
+              {isThai ? "-เพิ่มข้อมูลอาหาร" : "-Add Food"}
+            </a>
           </div>
         )}
         <a href="#" onClick={toggleEditDropdown}>
@@ -124,7 +128,9 @@ const Sidebar = () => {
         </a>
         {showEditDropdown && (
           <div className="dropdown-content">
-            <a href={`/Editstore?shop_id=${shopId}`}>{isThai ? "-แก้ไข้ข้อมูลร้านค้า" : "-Edit Store Information"}</a>
+            <a href={`/Editstore?shop_id=${shopId}`}>
+              {isThai ? "-แก้ไข้ข้อมูลร้านค้า" : "-Edit Store Information"}
+            </a>
             {/* <a href="/Notshowfood">{isThai ? "-ไม่แสดงรายการอาหาร" : "-Do Not Show Food List"}</a> */}
           </div>
         )}
@@ -145,28 +151,19 @@ const Sidebar = () => {
           </div>
         )}
       </div>
-      <div
-        className="max-w-h-screen-xl"
-        style={{ backgroundColor: "#FFBB5C" }}
-      >
-
+      <div className="custom-color-navbarsidebar" >
         <div id="main">
-
-          <a href="/Home" className="flex items-center justify-center w-full">
-            <span className="self-center text-2xl font-semibold">
+          <a href="/Home" className="flex items-center justify-center">
+            <span className="self-center font-semibold text-white backdrop-blur-sm  ">
               {isThai ? "หน้าหลัก" : "Home"}
             </span>
           </a>
           <button
             className="openbtn"
             onClick={isSidebarOpen ? closeNav : openNav}
-
           >
-
             &#9776;{" "}
-
           </button>
-
         </div>
       </div>
     </div>
@@ -174,4 +171,3 @@ const Sidebar = () => {
 };
 
 export default NavbarSidebar;
-

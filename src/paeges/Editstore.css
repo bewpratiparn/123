@@ -1,11 +1,11 @@
-body {
-  background-color: white;
+/* body {
+  background: lightblue url("https://i.pinimg.com/originals/33/ef/8b/33ef8b9c0b902154a6cd4103a21275ef.jpg") no-repeat fixed center;
   margin: 0;
   padding: 0;
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
-}
+} */
 
 .main-container {
   background-color: white;
@@ -30,7 +30,7 @@ body {
   margin-right: auto;
   border-radius: 26px;
 }
-.block{
+.block {
   color: black;
 }
 
@@ -93,18 +93,29 @@ body {
   color: black;
   font-style: bold;
   font-size: 22px;
-  margin-left: 25rem;
+  margin-left: 10rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
-
 }
-.custom-form-Editstore{
-  background-color: rgb(220, 138, 44);
+.custom-form-Editstore {
+  background-color: rgb(240, 167, 84);
+  width:500px ;
   transition: background-color 2s ease-out, transform 0.3s ease;
 }
 
-.custom-form-Editstore:hover{
+.custom-form-Editstore:hover {
   background-color: rgb(241, 241, 241);
   box-shadow: inset;
   box-shadow: 20px 20px 20px 20px #888888;
 }
+.control-form{
+  margin-left: 6rem;
+}
+
+.control-button-form{
+  margin-top: 25px;
+  margin-bottom: 15px;
+  margin-left: 10rem;
+  
+}
+
