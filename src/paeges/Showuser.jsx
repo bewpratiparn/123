@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Showuser.css'; // Import CSS file
+import { Icon } from "@iconify/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFlag, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Showuser() {
   const [user, setUser] = useState(null);
-  const [isVisible, setIsVisible] = useState(true); // State เพื่อตรวจสอบว่า component ควรแสดงผลหรือไม่
-  const [startScrollPos, setStartScrollPos] = useState(0); // State เพื่อเก็บค่าตำแหน่งเริ่มต้นของหน้าจอ
+  const [isVisible, setIsVisible] = useState(true); // State to check if the component should be visible
+  const [startScrollPos, setStartScrollPos] = useState(0); // State to store the initial scroll position
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -29,15 +32,15 @@ function Showuser() {
       const currentScrollPos = window.pageYOffset;
 
       if (currentScrollPos > startScrollPos) {
-        setIsVisible(false); // ซ่อน component เมื่อเลื่อนลง
+        setIsVisible(false); // Hide component when scrolling down
       } else {
-        setIsVisible(true); // แสดง component เมื่อเลื่อนกลับไปที่จุดเริ่มต้น
+        setIsVisible(true); // Show component when scrolling back up
       }
     };
 
     window.addEventListener('scroll', handleScroll);
 
-    // เซ็ตตำแหน่งเริ่มต้นเมื่อ component ถูกโหลด
+    // Set the initial scroll position when the component loads
     setStartScrollPos(window.pageYOffset);
 
     return () => {
@@ -45,20 +48,38 @@ function Showuser() {
     };
   }, [startScrollPos]);
 
-  // ถ้า user ยังไม่ได้โหลดหรือ user ไม่มีค่า หรือ isVisible เป็น false ให้คืนค่า null เพื่อซ่อน component
-  if (!user || !isVisible) {
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setUser(null); // Clear user data
+    setIsVisible(false); // Hide component immediately
+  };
+
+  // If the user data is not loaded or user is not available and isVisible is false, return null to hide the component
+  if (!isVisible) {
     return null;
   }
 
+  // If the user is not logged in, display the icon
+  if (!user) {
+    return (
+      <div className="show-user-container">
+        <Icon icon="healthicons:ui-user-profile" />
+      </div>
+    );
+  }
+
+  // If the user is logged in, display the user information
   return (
     <div className="show-user-container">
       <div className="user-info">
+        
         <p className="welcome-text">{user.username}</p>
         <img
           src={user.picture}
           alt="Profile"
           className="profile-picture"
         />
+        
       </div>
     </div>
   );

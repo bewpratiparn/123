@@ -101,72 +101,72 @@ function Fooddetails() {
   };
 
   return (
-    <div className="bk">
-      <div className="card3">
-        <div className="containerfooddetails">
-          <div className="Outline-inFooddetails">
-            <Icon
-              icon="mdi:arrow-back"
-              className="button-back-inFooddetails"
-              onClick={handleBackClick}
-            />
-          </div>
-          <select
-            class="TranslateHome"
-            native
-            value={isThai ? "th" : "en"}
-            onChange={handleToggleLanguage}
-            label="Select Language"
-            inputProps={{
-              name: "language",
-              id: "language-select",
-            }}
-            style={{ fontSize: "18px", padding: "15px 30px" }}
-          >
-            <option value="th" className="th">
-              ไทย
-            </option>
-            <option value="en" className="en">
-              English
-            </option>
-          </select>
+    <div className="backgroundfooddetail">
+      <div className="containerfooddetails">
+        <div className="Outline-inFooddetails">
+          <Icon
+            icon="mdi:arrow-back"
+            className="button-back-inFooddetails"
+            onClick={handleBackClick}
+          />
+        </div>
+        <select
+          class="TranslateHome"
+          native
+          value={isThai ? "th" : "en"}
+          onChange={handleToggleLanguage}
+          label="Select Language"
+          inputProps={{
+            name: "language",
+            id: "language-select",
+          }}
+          style={{ fontSize: "18px", padding: "15px 30px" }}
+        >
+          <option value="th" className="th">
+            ไทย
+          </option>
+          <option value="en" className="en">
+            English
+          </option>
+        </select>
 
-          <div className="title ">
-            {isThai ? "รายละเอียดเกี่ยวกับอาหาร" : "Food Details"}
+        <div className="title ">
+          {isThai ? "รายละเอียดเกี่ยวกับอาหาร" : "Food Details"}
+        </div>
+        <div className="details">
+          <div className="food-container">
+            <div className="ingredients-label">
+              {isThai ? "ชื่ออาหาร : " : "Food Name: "}
+              <div className="Food_name">{Food_name}</div>
+            </div>
           </div>
-          <div className="details">
-            <div className="food-container">
-              <div className="ingredients-label">
-                {isThai ? "ชื่ออาหาร : " : "Food Name: "}
-                <div className="Food_name">{Food_name}</div>
+          <div className="price-container">
+            <div className="ingredients-label">
+              {isThai ? "ราคา : " : "Price:"}
+              <div className="Food_price">
+                {Food_price} {isThai ? "บาท" : "THB"}
               </div>
             </div>
-            <div className="price-container">
-              <div className="ingredients-label">
-                {isThai ? "ราคา : " : "Price:"}
-               <div className="Food_price">{Food_price} {isThai ? "บาท" : "THB"}</div> 
-              </div>
-            </div>
           </div>
-          <div className="image-container">
-            <img
-              src={Food_picture}
-              alt={`${isThai ? "รูปภาพของ" : "Image of"} ${Food_name}`}
-              className="food-image"
-            />
-            <div className="ingredients-container">
-              <div className="watudip-label">
-                {isThai ? "วัตถุดิบ :" : "Ingredients :"}
-              </div>
-              <div className="showingredient">{food_elements.join(", ")}</div>
+        </div>
+        <div className="image-container">
+          <img
+            src={Food_picture}
+            alt={`${isThai ? "รูปภาพของ" : "Image of"} ${Food_name}`}
+            className="food-image"
+          />
+          <div className="watudip-container">
+            <div className="watudip-label">
+              {isThai ? "วัตถุดิบ :" : "Ingredients :"}
             </div>
+            <div className="showingredient">{food_elements.join(", ")}</div>
           </div>
-          <div className="description-container">
-            <div className="description-label">
-              {isThai ? "รายละเอียดอาหาร :" : "Food Description :"}
-            </div>
-            <div className="description-api">{Food_element}</div>
+        </div>
+        <div className="containner-detailfood">
+          <div className="description-label">
+            {isThai ? "รายละเอียดอาหาร :" : "Food Description :"}
           </div>
+          <div className="detailfood">{Food_element}</div>
         </div>
       </div>
     </div>

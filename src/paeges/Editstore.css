@@ -12,6 +12,24 @@
   width: 100vw;
   min-height: 100vh;
   padding-bottom: 20px; /* เพิ่ม padding ด้านล่างถ้าต้องการ */
+  background: lightblue
+    url("https://images.pexels.com/photos/616401/pexels-photo-616401.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+ 
+  background-size: cover; /* เปลี่ยนจาก auto เป็น cover */
+  background-position: center; /* จัดตำแหน่งรูปภาพให้อยู่ตรงกลาง */
+  
+}
+.main-container::before {
+  background-color: white;
+  width: 100vw;
+  min-height: 100vh;
+  padding-bottom: 20px; /* เพิ่ม padding ด้านล่างถ้าต้องการ */
+  background: lightblue
+    url("https://images.pexels.com/photos/616401/pexels-photo-616401.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  filter: blur(1px);
+  background-size: cover; /* เปลี่ยนจาก auto เป็น cover */
+  background-position: center; /* จัดตำแหน่งรูปภาพให้อยู่ตรงกลาง */
+  
 }
 
 .shop-container {
@@ -99,7 +117,7 @@
 }
 .custom-form-Editstore {
   background-color: rgb(240, 167, 84);
-  width:500px ;
+  width: 500px;
   transition: background-color 2s ease-out, transform 0.3s ease;
 }
 
@@ -108,14 +126,12 @@
   box-shadow: inset;
   box-shadow: 20px 20px 20px 20px #888888;
 }
-.control-form{
+.control-form {
   margin-left: 6rem;
 }
 
-.control-button-form{
+.control-button-form {
   margin-top: 25px;
   margin-bottom: 15px;
   margin-left: 10rem;
-  
 }
-
