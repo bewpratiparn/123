@@ -1,103 +1,98 @@
-
-
-
-.buttonfoodsubmit button
- {
-  background-color: #2e1cec; /* สีพื้นหลัง */
-  color: white; /* สีข้อความ */
-  padding: 12px 24px; /* ขนาดของปุ่ม */
-  font-size: 16px; /* ขนาดตัวอักษร */
-  border: none; /* ไม่มีเส้นขอบ */
-  border-radius: 6px; /* ทำให้มุมของปุ่มเป็นรูปวงกลม */
-  cursor: pointer; /* เมาส์เป็นเครื่องมือที่แสดงการใช้งานได้ */
-  transition: background-color 0.3s ease; /* เพิ่มเอฟเฟกต์การเปลี่ยนสีพื้นหลังเมื่อ hover */
-  outline: none; /* ไม่มีเส้นขอบเมื่อปุ่มได้รับการคลิก */
-}
-
-.buttonfoodsubmit button:hover
- {
-  background-color: #6358e2; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
-}
-
-.buttonfoodsubmit button:focus
- {
-  box-shadow: 0 0 0 2px #867fd8; /* เพิ่มเงาเมื่อปุ่มได้รับการคลิก */
-}
-
-
-.buttonfoodcancel button {
-  background-color: #ff0000; /* สีพื้นหลัง */
-  color: white; /* สีข้อความ */
-  padding: 12px 24px; /* ขนาดของปุ่ม */
-  font-size: 16px; /* ขนาดตัวอักษร */
-  border: none; /* ไม่มีเส้นขอบ */
-  border-radius: 6px; /* ทำให้มุมของปุ่มเป็นรูปวงกลม */
-  cursor: pointer; /* เมาส์เป็นเครื่องมือที่แสดงการใช้งานได้ */
-  transition: background-color 0.3s ease; /* เพิ่มเอฟเฟกต์การเปลี่ยนสีพื้นหลังเมื่อ hover */
-  outline: none; /* ไม่มีเส้นขอบเมื่อปุ่มได้รับการคลิก */
-
-}
-
-
-.buttonfoodcancel button:hover {
-  background-color: #ee6c6c; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
-}
-
-
-.buttonfoodcancel button:focus {
-  box-shadow: 0 0 0 2px #e18a8a; /* เพิ่มเงาเมื่อปุ่มได้รับการคลิก */
-}
-
-
-.buttonContainerfood {
-  display: flex; /* ให้ทำการจัดเรียงโดยใช้ Flexbox */
-  gap: 10px; /* ระยะห่างระหว่างปุ่ม */
-}
-
-
-.inputfoodelement{
-  height: 300px;
-  width: 500px;
-}
-
-
-.imgaddfood {
-  position: fixed;
-  height: 400px;
-  width: 600px;
-  margin-left: -674px;
-  margin-top: -650px;
-}
-
-.input-stylefood {
-  width: 332px;
-  height: 51px;
-  border: 1px solid #050505; 
-  font-size: 16px;
-  
-}
-
-
-.boxtextfood {
-  margin-right: -850px;
-  margin-top: -100px;
-}
-
 .backgroundfood {
-  background-image: url('https://png.pngtree.com/background/20211215/original/pngtree-rice-spoon-korean-food-traditional-background-picture-image_1452789.jpg');
-  background-size: cover; /* ทำให้รูปภาพครอบคลุมทั้งหน้าจอ */
-  background-position: center; /* จัดตำแหน่งรูปภาพให้อยู่ตรงกลาง */
-  background-repeat: no-repeat; /* ป้องกันการซ้ำของรูปภาพ */
-  height: 100vh; /* ตั้งค่าความสูงขององค์ประกอบเป็น 100% ของความสูงหน้าจอ */
-  width: 100vw; /* ตั้งค่าความกว้างขององค์ประกอบเป็น 100% ของความกว้างหน้าจอ */
-  margin: 0; /* ป้องกัน margin ที่อาจเกิดขึ้น */
-  padding: 0; /* ป้องกัน padding ที่อาจเกิดขึ้น */
-  overflow: hidden; /* ป้องกัน scrollbars จากการปรากฏ */
- 
-  margin-top: -30px;
-  background-color: #f0f4f8;
-  min-height: 100vh;
+  position: relative;
+  width: 100vw; /* กำหนดความกว้างเต็มหน้าจอ */
+  height: 100vh; /* กำหนดความสูงเต็มหน้าจอ */
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden; /* ป้องกันการล้นของ pseudo-element */
+}
+
+.backgroundfood::before {
+  content: '';
+  background-image: url('https://png.pngtree.com/background/20211215/original/pngtree-rice-spoon-korean-food-traditional-background-picture-image_1452789.jpg');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(3px); /* เพิ่มความเบลอ */
+}
+
+.boxtextfood {
+  border-radius: 30px;
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.8); /* เพิ่มพื้นหลังโปร่งแสงเพื่อความอ่านง่าย */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* ทำให้มีการเลื่อนแนวตั้งเมื่อมีเนื้อหาเกิน */
+  max-height: 80vh; /* กำหนดความสูงสูงสุดของกล่องเพื่อให้มีการเลื่อนเมื่อเกิน */
+  width: 40vw; /* เพิ่มความกว้างของกล่อง */
+  height: 100vh; /* เพิ่มความสูงของกล่อง */
+  z-index: 1; /* วาง .boxtext อยู่หน้าพื้นหลัง */
+  position: relative; /* ทำให้ .boxtext อยู่ในลำดับที่สูงกว่า pseudo-element */
+}
+
+.input-stylefood, .inputfoodelement {
+  width: 40%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+}
+
+.inputfoodelement {
+  width: 70%;
+  height: 30vh;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+}
+
+.input-stylefoodpice {
+  width: 20%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+}
+
+.imgaddfood {
+  width: 80%;
+  height: auto;
+  margin-top: 30px;
+  border-radius: 10PX;
+}
+
+.buttonContainerfood {
+  display: flex;
+  margin-top: 20px;
+}
+
+.buttonfoodsubmit button, .buttonfoodcancel button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.buttonfoodsubmit button:hover, .buttonfoodcancel button:hover {
+  background-color: #45a049;
+}
+
+.buttonfoodcancel button {
+  background-color: #f44336;
+}
+
+.buttonfoodcancel button:hover {
+  background-color: #da190b;
 }

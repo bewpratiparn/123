@@ -108,7 +108,7 @@ function AddFood() {
           เพิ่มข้อมูลอาหาร
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="grid gap-6 mb-6 md:grid-cols-2">
+          <div className="grid gap-6 mb-6 md:grid-cols-1">
             <div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-xl font-bold mb-2">
@@ -140,7 +140,7 @@ function AddFood() {
                   ราคา
                 </label>
                 <input
-                  className="input-stylefood"
+                  className="input-stylefoodpice"
                   name="Food_price"
                   type="text"
                   placeholder="ราคา..."

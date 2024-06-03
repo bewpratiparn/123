@@ -168,18 +168,28 @@ function Home() {
       <Showuser />
       <div className="containerhome">
         <div>
-          <select
-            className="TranslateHome"
-            value={language}
-            onChange={handleLanguageChange}
-          >
-            <option value="th" className="th">
-              ไทย
-            </option>
-            <option value="en" className="en">
-              English
-            </option>
-          </select>
+        <div className="custom-select666">
+      <select
+        className="TranslateHome666"
+        value={language}
+        onChange={handleLanguageChange}
+      >
+        <option value="th" className="thai666">
+          ไทย
+        </option>
+        <option value="en" className="eng666">
+          English
+        </option>
+      </select>
+      {language === 'en' && (
+        <img src="https://www.tornok.com/wp-content/uploads/2015/03/uk-flag.png" alt="Thailand"  />
+      )}
+       {language === 'th' && (
+       <img src="https://cdn.pixabay.com/photo/2013/07/12/17/58/thailand-152711_1280.png" alt="Thailand" />
+      )}
+    </div>
+
+
           <div className="boxsearch">
             <input
               type="textsearch"
