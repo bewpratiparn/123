@@ -102,15 +102,15 @@ function AddDataShop() {
 
   return (
     <div className="background">
-      <form onSubmit={handleSubmit}>
-        <div>
-          <div className="grid gap-6 mb-6 md:grid-cols-2">
-            <div className="boxtext">
-              <div className=" text-gray-700 text-2xl font-bold  ">
-                เพิ่มข้อมูลร้านค้า
-              </div>
+      <div className="boxtext">
+        <div className="block text-gray-700 text-2xl font-bold mb-8 ">
+          เพิ่มข้อมูลร้านค้า
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="grid gap-6 mb-6 md:grid-cols-1">
+            <div>
               <div className="mb-4">
-                <label className="block text-gray-700 text-xl font-bold  ">
+                <label className="block text-gray-700 text-xl font-bold mb-2 ">
                   ชื่อร้าน
                 </label>
                 <input
@@ -185,21 +185,21 @@ function AddDataShop() {
                   <img
                     src="https://www.lsfpackaging.com/images/editor/21-%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%AE%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%A5%E0%B8%84%E0%B8%B7%E0%B8%AD_Pic.jpg"
                     alt="Halal Shop"
-                    className="type-shop"
+                    className="Halal-Shop"
                   />
                 )}
                 {addShop.shop_type === "Vegetarian" && (
                   <img
                     src="https://png.pngtree.com/png-vector/20191030/ourlarge/pngtree-icon-for-vegan-food-vector-illustration-symbols-isolated-on-white-background-png-image_1870591.jpg"
                     alt="Halal Shop"
-                    className="type-shop"
+                    className="Vegetarian-Shop"
                   />
                 )}
                 {addShop.shop_type === "Mangswirat" && (
                   <img
                     src="https://msnbcnewslive.com/wp-content/uploads/2023/10/201508141447.jpeg"
                     alt="Halal Shop"
-                    className="type-shop"
+                    className="Mangswirat-Shop"
                   />
                 )}
               </div>
@@ -213,9 +213,15 @@ function AddDataShop() {
                   type="file"
                   onChange={handleChange}
                 />
+                <div>
+                  {imageURL && (
+                    <img src={imageURL} alt="Shop" className="imgaddshop" />
+                  )}
+                </div>
               </div>
             </div>
           </div>
+
           <div className="buttonContainer">
             <div className="buttonshopsubmit">
               <button type="submit">ยืนยัน</button>
@@ -226,10 +232,7 @@ function AddDataShop() {
               </button>
             </div>
           </div>
-        </div>
-      </form>
-      <div className="positionimageshop">
-        {imageURL && <img src={imageURL} alt="Shop" className="imgaddshop" />}
+        </form>
       </div>
     </div>
   );

@@ -40,7 +40,7 @@
 
 .details {
   display: flex;
-  justify-content: space-between;
+  gap: 45rem;
   margin-bottom: 20px;
 }
 
@@ -69,13 +69,67 @@
 .ingredients-container {
   flex: 1;
 }
+/*--------------------------------------------------- foodname----------------------------------------------------------- */
+.food-container {
+  cursor: pointer;
+  border: solid rgb(241, 229, 71);
+  background-color: rgb(247, 226, 68);
+  padding: 25px;
+  
+}
+.food-container:hover{
+  box-shadow: 7px 8px 9px #888888;
+  transform: scale(1.1);
+  border-radius: 12px;
+}
+
+.Food_name {
+  flex: 1;
+  display: inline-block; /* Display as inline block */
+}
+/* --------------------------------------------------foodname----------------------------------------------------------------- */
+
+/* --------------------------------------------------foodprice----------------------------------------------------------------- */
+
+.price-container {
+  cursor: pointer;
+  border: solid rgb(241, 229, 71);
+  background-color: rgb(247, 226, 68);
+  padding: 25px;
+}
+
+.Food_price {
+  flex: 1;
+  display: inline-block; /* Display as inline block */
+}
+.price-container:hover {
+  
+  border-radius: 12px;
+  box-shadow: 7px 8px 9px #888888;
+  transform: scale(1.1);
+}
+
+/* --------------------------------------------------foodprice----------------------------------------------------------------- */
 
 .ingredients-label {
+  display: inline-block; /* Display as inline block */
   font-size: 19px;
   font-weight: bold;
   color: #333;
-  margin-bottom: 10px;
 }
+
+/* --------------------------------------------------watudip----------------------------------------------------------------- */
+.watudip-label {
+  font-size: 19px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+
+
+
+/* --------------------------------------------------watudip----------------------------------------------------------------- */
 
 .description {
   font-size: 19px;
@@ -105,18 +159,6 @@
 
 .description-api {
   font-size: 18px;
-}
-
-.description-apiname {
-  font-size: 18px;
-  margin-left: 110px;
-  margin-top: -40px;
-}
-
-.description-apiprice {
-  font-size: 18px;
-  margin-left: 110px;
-  margin-top: -40px;
 }
 
 .bk {

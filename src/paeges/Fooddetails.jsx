@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation,useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Icon } from "@iconify/react";
 import { Button, CircularProgress } from "@mui/material";
@@ -105,7 +105,11 @@ function Fooddetails() {
       <div className="card3">
         <div className="containerfooddetails">
           <div className="Outline-inFooddetails">
-            <Icon icon="mdi:arrow-back" className="button-back-inFooddetails" onClick={handleBackClick}/>
+            <Icon
+              icon="mdi:arrow-back"
+              className="button-back-inFooddetails"
+              onClick={handleBackClick}
+            />
           </div>
           <select
             class="TranslateHome"
@@ -127,22 +131,20 @@ function Fooddetails() {
             </option>
           </select>
 
-          <div className="title">
+          <div className="title ">
             {isThai ? "รายละเอียดเกี่ยวกับอาหาร" : "Food Details"}
           </div>
           <div className="details">
-            <div className="ingredients-container">
+            <div className="food-container">
               <div className="ingredients-label">
-                {isThai ? "ชื่ออาหาร :" : "Food Name:"}
+                {isThai ? "ชื่ออาหาร : " : "Food Name: "}
+                <div className="Food_name">{Food_name}</div>
               </div>
-              <div className="description-apiname">{Food_name}</div>
             </div>
-            <div className="ingredients-container">
+            <div className="price-container">
               <div className="ingredients-label">
-                {isThai ? "ราคา :" : "Price:"}
-              </div>
-              <div className="description-apiprice">
-                {Food_price} {isThai ? "บาท" : "THB"}
+                {isThai ? "ราคา : " : "Price:"}
+               <div className="Food_price">{Food_price} {isThai ? "บาท" : "THB"}</div> 
               </div>
             </div>
           </div>
@@ -153,10 +155,10 @@ function Fooddetails() {
               className="food-image"
             />
             <div className="ingredients-container">
-              <div className="ingredients-label">
+              <div className="watudip-label">
                 {isThai ? "วัตถุดิบ :" : "Ingredients :"}
               </div>
-              <div className="description-api">{food_elements.join(", ")}</div>
+              <div className="showingredient">{food_elements.join(", ")}</div>
             </div>
           </div>
           <div className="description-container">

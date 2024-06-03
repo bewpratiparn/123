@@ -3,44 +3,100 @@
   font-size: 20px;
   margin-top: 15px;
   background-color: rgb(247, 247, 247);
-  
 }
 
+.inputsearch {
+  width: 550px;
+}
 
-.container-store {
+/* .container-store {
   display: flex;
   justify-content: center;
-  background-color: rgb(240, 184, 80);
+  background: lightblue
+    url("https://images.unsplash.com/photo-1615220204129-3904c1f0ef96?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+    no-repeat fixed center;
+  z-index: 1;
   border-radius: 24px;
   margin-right: 24px;
-  /* Add this line */
+ 
+} */
+.custom-backgroundhome {
+  border-radius: 24px;
+  margin-right: 24px;
+  margin-left: 24px;
+  background: lightblue
+    url("https://images.unsplash.com/photo-1615220204129-3904c1f0ef96?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+    no-repeat fixed center;
+  backdrop-filter: blur(1px);
+  margin-top: 25px;
+  padding: 25px;
+  position: relative;
+  z-index: 1;
+}
+.containerhome {
+  position: relative;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  background-color: #f1f1ec;
+  width: 100%;
+  /* Set height to viewport height */
+  overflow-y: auto; /* Use scrollbar when content overflows */
+  z-index: 1;
 }
 
-.picturefood{
+.containerhome::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("https://images.pexels.com/photos/326333/pexels-photo-326333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-size: cover;
+  filter: blur(1px);
+  z-index: -1;
+}
+
+.custom-backgroundhome {
+  border-radius: 24px;
+  margin-right: 24px;
+  margin-left: 24px;
+  background: lightblue
+    url("https://images.unsplash.com/photo-1615220204129-3904c1f0ef96?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+    no-repeat fixed center;
+  backdrop-filter: blur(2px);
+  margin-top: 25px;
+  padding: 25px;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  border: 1px solid #ccc;
+  margin: 15px auto 25px auto; /* top, horizontal (left and right), bottom */
+  border-radius: 5px; /* Add border-radius */
+  padding: 20px;
+  text-align: center;
+  width: calc(50% - 20px);
+  box-sizing: border-box;
+  background-color: rgb(247, 247, 247);
+  z-index: 1;
+  position: relative;
+}
+
+.picturefood {
   flex: 1;
   margin: 3px; /* ระยะห่างระหว่างรูปภาพ */
   width: 100%; /* ให้รูปภาพเต็มความกว้างของ container */
   height: auto;
 }
 
-
-
 .grid-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-}
-
-.card {
-  border: 1px solid #ccc;
-  margin: 16px;
-  border-radius: 8px;
-  padding: 25px;
-  text-align: center;
-  width: calc(50% - 20px);
-  box-sizing: border-box;
-  background-color: rgb(247, 247, 247);
 }
 
 .picture-home {
@@ -60,23 +116,22 @@
 
 .slick-prev:before,
 .slick-next:before {
-  font-family: 'slick';
+  font-family: "slick";
   font-size: 30px;
   line-height: 1;
-  opacity: .75;
+  opacity: 0.75;
   color: #dd5d14;
   -webkit-font-smoothing: antialiased;
 }
 
 .slick-slide.slick-cloned {
-  transform: scale(0.0);
+  transform: scale(0);
   /* ปรับขนาดให้เล็กลง 80% */
-  opacity: 0.0;
+  opacity: 0;
   /* ลดความโปร่งใสเพื่อแสดงความแตกต่าง */
   margin-top: -300px;
   font-size: 0px;
 }
-
 
 /* Add custom styles for Slider */
 .slick-slider {
@@ -95,8 +150,6 @@
   line-height: 1;
   z-index: 1;
 }
-
-
 
 /* Style for dots */
 .slick-dots {
@@ -140,20 +193,11 @@
 
 /* Style for Next button */
 
-
 /* Style for Previous button */
-
-
 
 header {
   display: flex;
   justify-content: center;
-}
-
-.boxsearch {
-  width: 615px;
-  margin: auto;
-  margin-bottom: 30px;
 }
 
 input[type="textsearch"] {
@@ -162,31 +206,42 @@ input[type="textsearch"] {
   border: none;
   background: none;
   font-size: 16px;
-  color: #333;
+  color: #f8f8f8;
+  background-color: white;
   outline: none;
 }
 
+.boxsearch {
+  display: flex;
+  justify-content: center;
+}
+.iconsearch {
+  position: relative;
+  left: 35px;
+  top: 15px;
+}
 #default-search {
-  width: calc(100% - 40px);
+  width: 35%;
+  align-items: center;
   /* Adjust width to fit container */
-  padding: 10px 20px;
+  padding: 10px;
   /* Adjust padding for better spacing */
   font-size: 16px;
   /* Set font size */
-  border: 1px solid #d1d5db;
+  border: 1px solid #000000;
   /* Set border color */
   border-radius: 999px;
   /* Make the input rounded */
   transition: border-color 0.3s ease-in-out;
   /* Add transition effect for better interaction */
-
+  margin-bottom: 25px;
+}
+#default-search::placeholder {
+  color: black; /* เปลี่ยนสีของ placeholder เป็นสีดำ */
 }
 
 #default-search:focus {
-  outline: none;
-  /* Remove focus outline */
-  border-color: #2563eb;
-  /* Change border color on focus */
+  outline: none; /* Remove focus outline */
 }
 
 .highlight {
@@ -194,63 +249,6 @@ input[type="textsearch"] {
   font-weight: bold;
 }
 
-
-
-/* สไตล์สำหรับ select */
-.TranslateHome {
-  background-color: #f0f0f0; /* พื้นหลังสีเทาอ่อน */
-  border: 1px solid #ccc; /* ขอบสีเทาอ่อน */
-  border-radius: 4px; /* มุมโค้งมน */
-  padding: 10px 15px; /* เพิ่มช่องว่างภายใน */
-  font-size: 16px; /* ขนาดตัวอักษร */
-  color: #333; /* สีตัวอักษร */
-  appearance: none; /* เอาสไตล์ดั้งเดิมของเบราว์เซอร์ออก */
-  cursor: pointer; /* เปลี่ยนเป็น cursor ของ pointer */
-  transition: all 0.3s ease; /* เพิ่มการเปลี่ยนแปลงเรียบ */
-  margin-left: 90%;
-  margin-top: 10px;
-}
-
-/* สไตล์เมื่อ focus */
-.TranslateHome:focus {
-  border-color: #007bff; /* ขอบสีฟ้าเมื่อ focus */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* เงาเมื่อ focus */
-  outline: none; /* เอาขอบของเบราว์เซอร์ออก */
-}
-
-/* สไตล์สำหรับ option */
-.TranslateHome option {
-  background-color: #fff; /* พื้นหลังสีขาว */
-  color: #333; /* สีตัวอักษร */
-}
-
-/* สไตล์สำหรับ option แต่ละภาษา */
-.TranslateHome .th {
-  color: #d0021b; /* สีแดงสำหรับภาษาไทย */
-}
-
-.TranslateHome .en {
-  color: #007bff; /* สีน้ำเงินสำหรับภาษาอังกฤษ */
-}
-
-/* สไตล์สำหรับ select เมื่อ hover */
-.TranslateHome:hover {
-  background-color: #e6e6e6; /* พื้นหลังสีเทาอ่อนเมื่อ hover */
-}
-
-.containerhome {
-  position: fixed;
-  margin-top: 120px;
-  top: 0;
-  bottom: 0;
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 30px;
-  width: 100%;
-  height: 100%;
-  height: auto; /* กำหนดให้ความสูงของ .card2 ขยายตามเนื้อหาภายใน */
-  overflow-y: auto; /* ใช้ scrollbar เมื่อมีเนื้อหาเกินขนาดของ .card2 */
-}
 .shop_id {
   text-align: center;
   font-size: 20px;
@@ -273,4 +271,39 @@ input[type="textsearch"] {
   max-width: 150px;
   margin-left: auto;
   margin-top: -100px;
+}
+
+.custom-select666 {
+  width: 70px;
+  height: auto;
+  margin-left: 90%;
+  margin-top: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.custom-select666 img {
+  width: 30px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 100%;
+}
+
+.custom-select666 select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.thai666 {
+  color: black;
+}
+.eng666 {
+  color: #000000;
 }

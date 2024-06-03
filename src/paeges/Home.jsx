@@ -5,6 +5,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Home.css";
 import Showuser from "./Showuser";
+import { Icon } from "@iconify/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFlag } from '@fortawesome/free-solid-svg-icons';
 
 function Home() {
   const [datasearch, setDatasearch] = useState([]);
@@ -166,37 +169,49 @@ function Home() {
   return (
     <>
       <Showuser />
+
       <div className="containerhome">
-        <div>
-          <select
-            className="TranslateHome"
-            value={language}
-            onChange={handleLanguageChange}
-          >
-            <option value="th" className="th">
-              ไทย
-            </option>
-            <option value="en" className="en">
-              English
-            </option>
-          </select>
-          <div className="boxsearch">
-            <input
-              type="textsearch"
-              id="default-search"
-              placeholder={language === "th" ? "ค้นหา" : "Search"}
-              value={searchTerm}
-              onChange={(e) => handleFilter(e.target.value)}
-            />
-          </div>
-          <div className="text-3xl font-bold text-center mb-8">
-            {language === "th" ? "ร้านอาหาร" : "Restaurants"}
-          </div>
+      <div className="custom-select666">
+      <select
+        className="TranslateHome666"
+        value={language}
+        onChange={handleLanguageChange}
+      >
+        <option value="th" className="thai666">
+          ไทย
+        </option>
+        <option value="en" className="eng666">
+          English
+        </option>
+      </select>
+      {language === 'en' && (
+        <img src="https://www.tornok.com/wp-content/uploads/2015/03/uk-flag.png" alt="Thailand"  />
+      )}
+       {language === 'th' && (
+       <img src="https://cdn.pixabay.com/photo/2013/07/12/17/58/thailand-152711_1280.png" alt="Thailand" />
+      )}
+    </div>
+        <div className="boxsearch">
+          <input
+            className="inputsearch"
+            type="text"
+            id="default-search"
+            placeholder={language === "th" ? "🔍  ค้นหา" : "🔍Search "}
+            value={searchTerm}
+            onChange={(e) => handleFilter(e.target.value)}
+          />
         </div>
+        <div className="text-3xl font-bold text-center mb-8 text-white ">
+          {language === "th" ? "ร้านอาหาร" : "Restaurants"}
+        </div>
+
         <div className="grid-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {Array.isArray(datasearch) &&
             datasearch.map((d, i) => (
-              <div key={i} className="bg-white p-4 rounded-lg shadow-lg">
+              <div
+                key={i}
+                className="custom-backgroundhome bg-white  rounded-lg "
+              >
                 <div className="container-store">
                   <div className="card">
                     <img
@@ -207,7 +222,7 @@ function Home() {
                     <div className="card-outdatastore">
                       <div className="data-storehome">
                         <div className="shop_id">
-                        {language === "th" ? "ไอดีร้าน" : "Shop ID"}:
+                          {language === "th" ? "ไอดีร้าน" : "Shop ID"}:
                           {searchTerm &&
                           String(d.shop_id)
                             .toLowerCase()
@@ -261,7 +276,8 @@ function Home() {
                         <div className="time">
                           {language === "th"
                             ? "วันเวลาเปิด-ปิด"
-                            : "Opening Hours"}:
+                            : "Opening Hours"}
+                          :
                           {searchTerm &&
                           d.shop_time
                             .toLowerCase()
@@ -290,7 +306,6 @@ function Home() {
                               <img
                                 src="https://www.lsfpackaging.com/images/editor/21-%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%AE%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%A5%E0%B8%84%E0%B8%B7%E0%B8%AD_Pic.jpg"
                                 alt="Halal"
-                               
                               />
                             </div>
                           )}
@@ -299,7 +314,6 @@ function Home() {
                               <img
                                 src="https://png.pngtree.com/png-vector/20191030/ourlarge/pngtree-icon-for-vegan-food-vector-illustration-symbols-isolated-on-white-background-png-image_1870591.jpg"
                                 alt="Vegetarian"
-                               
                               />
                             </div>
                           )}
@@ -308,7 +322,6 @@ function Home() {
                               <img
                                 src="https://msnbcnewslive.com/wp-content/uploads/2023/10/201508141447.jpeg"
                                 alt="Mangswirat"
-                                
                               />
                             </div>
                           )}
@@ -326,9 +339,9 @@ function Home() {
                                 <Link
                                   to={{
                                     pathname: "/Fooddetails",
-                                    search: `?food_id=${food.food_id}&Food_name=${
-                                      food.Food_name
-                                    }&Food_price=${
+                                    search: `?food_id=${
+                                      food.food_id
+                                    }&Food_name=${food.Food_name}&Food_price=${
                                       food.Food_price
                                     }&Food_picture=${encodeURIComponent(
                                       food.Food_picture
@@ -344,7 +357,9 @@ function Home() {
                                     food.Food_name.toLowerCase().includes(
                                       searchTerm.toLowerCase()
                                     ) ? (
-                                      <span style={{ backgroundColor: "yellow" }}>
+                                      <span
+                                        style={{ backgroundColor: "yellow" }}
+                                      >
                                         {food.Food_name}
                                       </span>
                                     ) : (
