@@ -1,24 +1,20 @@
-import { useState } from "react";
-import "flowbite";
-import ReactDOM from "react-dom/client";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { useNavigate } from "react-router-dom";
-import { withEmotionCache } from "@emotion/react";
 import "./Register.css";
 
 function Register() {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
   const [inputs, setInputs] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleChange = (event) => {
     const name = event.target.name;
-    if (event.target.name === "picture") {
+    if (name === "picture") {
       setSelectedFile(event.target.files[0]);
     } else {
-      const name = event.target.name;
       const value = event.target.value;
       setInputs((values) => ({ ...values, [name]: value }));
     }
@@ -57,8 +53,8 @@ function Register() {
             MySwal.fire({
               html: <i>{result.message}</i>,
               icon: "success",
-            }).then((value) => {
-              Navigate("/Login");
+            }).then(() => {
+              navigate("/Login");
             });
           } else {
             MySwal.fire({
@@ -78,25 +74,17 @@ function Register() {
   };
 
   return (
-    <>
-    <div className="flex justify-center items-center bg-white">
-    <div className="flex flex-row justify-center items-center-top  bg-white mb-6">
-      <div
-        className="custom-box bg-white-screen  rounded-lg shadow-lg "
-        // style={{
-        //   width: selectedFile ? "60em" : "60rem", // หรือค่าความกว้างที่ต้องการเมื่อไม่มีไฟล์ที่เลือก
-        //   height: selectedFile ? "50rem" : "20rem", // หรือค่าความสูงที่ต้องการเมื่อไม่มีไฟล์ที่เลือก
-        // }}
-      >
-        <form className="position" onSubmit={handleSubmit}>
-          <h1 className="h1 ">Register</h1>
+    <div className="bkregister">
+      <div className="form-register">
+        <form onSubmit={handleSubmit}>
+          <h1 className="text-2xl font-bold mb-3">Register</h1>
 
-          <div className="mb-4 ">
-            <label className=" block text-gray-700 text-sm font-bold mb-2">
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
               Firstname
             </label>
             <input
-              className="w-full p-2 border rounded-md "
+              className="w-full p-2 border rounded-md"
               type="text"
               name="firstname"
               placeholder="Firstname"
@@ -144,63 +132,65 @@ function Register() {
               className="w-full p-2 border rounded-md"
               type="text"
               name="username"
-              placeholder="username"
+              placeholder="Username"
               value={inputs.username || ""}
               onChange={handleChange}
               required
             />
           </div>
+
           <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="name"
-            >
+            <label className="block text-gray-700 text-sm font-bold mb-2">
               Password
             </label>
             <input
               className="w-full p-2 border rounded-md"
               type="password"
               name="password"
-              placeholder="*****"
+              placeholder="Password"
               value={inputs.password || ""}
               onChange={handleChange}
               required
             />
           </div>
-          <div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Profile Picture
+            </label>
             <input
-              className="mt-1"
+              className="w-full p-2 border rounded-md"
               type="file"
               name="picture"
-              value={inputs.picture || ""}
               onChange={handleChange}
-             
+              required
             />
           </div>
+
           {selectedFile && (
-            <div className="showpicture">
+            <div className="flex justify-center mb-4">
               <img
                 src={URL.createObjectURL(selectedFile)}
-                alt="Selected Image"
-                style={{ maxWidth: "100px", maxHeight: "100px" }}
+                alt="Selected"
+                className="imgregister"
               />
-              <span className="namepicture">{selectedFile.name}</span>
             </div>
           )}
-          <button
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md mt-5"
-            type="submit"
-          >
-            Register
-          </button>
-          <a href="/Login" className="block text-center mt-5 underline underline-offset-2 ">
+
+          <div className="flex justify-center">
+            <button
+              className="w-48 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+              type="submit"
+            >
+              Register
+            </button>
+          </div>
+          <a href="/Login" className="block text-center mt-5">
             Login
           </a>
         </form>
       </div>
     </div>
-    </div>
-    </>
   );
 }
 

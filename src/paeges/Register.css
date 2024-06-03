@@ -1,54 +1,51 @@
 body {
   height: 100%;
   margin: 0;
-  padding: 0;
-  background-color: #f0f0f0;
+  background-color: rgb(211, 40, 40);
 }
-.custom-box {
-  width: 40rem;
-  height: 47rem;
-  margin-right: 60px;
-  margin-top: 20px;
+
+.bkregister {
+  position: relative;
+  width: 100vw; /* Full screen width */
+  height: 100vh; /* Full screen height */
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
-  transition: background-color 2s ease-out, transform 0.3s ease
- 
+  overflow: hidden; /* Prevent overflow of pseudo-element */
 }
 
-
-.hover {
-    background-color: initial; /* กำหนดสีพื้นหลังปกติ */
-    color: black; /* กำหนดสีตัวอักษรปกติ */
-    transition: background-color 2s ease-out, color 2s ease-out;
-}
-.hover:hover{
-    color: white;
-}
-
-
-.custom-box:hover {
-   background-color:  rgb(250, 250, 234);
-    color: black; /* เปลี่ยนสีตัวอักษรเมื่อ hover */
+.bkregister::before {
+  content: "";
+  background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20210115/pngtree-hand-drawn-food-sketch-kitchen-objects-food-background-image_528689.jpg");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(2px); /* Increased blur for more effect */
 }
 
-
-.h1 {
-  font-size: 1.5rem; /* กำหนดขนาดของหัวข้อ */
-  font-weight: bold;
-  margin-left: 9rem;
-  
+.form-register {
+  width: 40vw; /* Width of the form */
+  height: auto; /* Height of the form */
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  transition: background-color 2s ease-out, transform 0.3s ease;
+  border-radius: 30px;
+  padding: 40px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Allow vertical scrolling if content overflows */
+  max-height: 80vh; /* Maximum height */
+  z-index: 1; /* Place the form above the blurred background */
+  position: relative; /* Required for z-index to work */
 }
 
-.showpicture{
-  position: relative;
-  bottom: 40px;
-  left: 70%;
-}
-.namepicture{
-  position: relative;
-  right: 70%;
+.form-register:hover {
+  background-color: rgb(249, 229, 229);
 }
 
-
+.imgregister {
+  max-width: 300px;
+  margin-right: auto;
+}

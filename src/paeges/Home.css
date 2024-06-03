@@ -292,13 +292,16 @@ input[type="textsearch"] {
 }
 
 .custom-select666 select {
+  margin-left: 10px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   background-color: transparent;
-  color: white;
+  color: rgb(251, 249, 249);
   font-size: 20px;
   cursor: pointer;
+  
+  
 }
 
 .thai666 {

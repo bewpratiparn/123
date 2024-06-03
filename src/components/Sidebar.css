@@ -286,12 +286,16 @@
 
 .custom-select777 select {
   appearance: none;
+  margin-left: 10px;
   -webkit-appearance: none;
   -moz-appearance: none;
   background-color: transparent;
-  color: white;
+  color: rgb(0, 0, 0);
   font-size: 20px;
   cursor: pointer;
+  border: 2px solid black; /* เพิ่มขอบสีดำ */
+  padding: 5px; /* เพิ่ม padding เพื่อให้มีระยะห่างจากขอบ */
+  border-radius: 4px; /* เพิ่มความโค้งให้ขอบ ถ้าต้องการ */
 }
 
 .thai777 {

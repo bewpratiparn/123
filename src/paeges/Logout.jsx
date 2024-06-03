@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import "./Logout.css";
 
 function Logout() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // แสดงกล่องข้อความยืนยัน
     Swal.fire({
       backdrop: `
         rgba(0,0,123,0.4)
@@ -17,45 +17,40 @@ function Logout() {
       icon: "warning",
       title: "คุณต้องการออกจากระบบหรือไม่?",
       text: "ถ้าออกจากระบบเเล้วต้องเข้าใหม่น้าา",
-      showCancelButton: true, // แสดงปุ่มยกเลิก
+      showCancelButton: true,
       confirmButtonText: "ตกลง",
       cancelButtonText: "ยกเลิก",
     }).then((result) => {
       if (result.isConfirmed) {
-        // ลบ token ที่เก็บใน localStorage
         localStorage.removeItem("token");
-        // นำผู้ใช้กลับไปยังหน้าล็อกอิน
         navigate("/Home");
-        // แสดงกล่องข้อความแจ้งเตือน
         Swal.fire({
           icon: "success",
           title: "ออกจากระบบสำเร็จ",
-          showConfirmButton: true, // เพิ่มค่าเป็น true เพื่อให้ปุ่ม "ตกลง" ปรากฏ
+          showConfirmButton: true,
           confirmButtonText: "ตกลง",
         });
       } else if (result.isDismissed) {
-        // If the user clicks the cancel button
         navigate("/Home");
       }
     });
   };
 
   return (
-    <>
-      <div className="flex justify-center items-center h-screen bg-white-700">
-        <div>
-          <div className="flex justify-center items-center mt-25">
-            คุณต้องการออกจากระบบใช่หรือไม่
-            <button
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md ml-5"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
-          </div>
+    <div className="bklogout">
+      <div className="form-logout">
+        <h1 className="text-2xl font-bold mb-3"></h1>
+        <p className="text-center mb-5">คุณต้องการออกจากระบบใช่หรือไม่?</p>
+        <div className="flex justify-center">
+          <button
+            className="w-48 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

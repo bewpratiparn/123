@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import './Showuser.css'; // Import CSS file
+import React, { useState, useEffect } from "react";
+import "./Showuser.css"; // Import CSS file
 import { Icon } from "@iconify/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFlag, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faFlag, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 function Showuser() {
   const [user, setUser] = useState(null);
@@ -10,9 +10,9 @@ function Showuser() {
   const [startScrollPos, setStartScrollPos] = useState(0); // State to store the initial scroll position
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
-      fetch('http://127.0.0.1:8000/authorize/', {
+      fetch("http://127.0.0.1:8000/authorize/", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -22,7 +22,7 @@ function Showuser() {
           setUser(data);
         })
         .catch((error) => {
-          console.error('Error fetching user data:', error);
+          console.error("Error fetching user data:", error);
         });
     }
   }, []);
@@ -38,18 +38,18 @@ function Showuser() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     // Set the initial scroll position when the component loads
     setStartScrollPos(window.pageYOffset);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [startScrollPos]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setUser(null); // Clear user data
     setIsVisible(false); // Hide component immediately
   };
@@ -63,7 +63,7 @@ function Showuser() {
   if (!user) {
     return (
       <div className="show-user-container">
-        <Icon icon="healthicons:ui-user-profile" />
+        
       </div>
     );
   }
@@ -72,14 +72,9 @@ function Showuser() {
   return (
     <div className="show-user-container">
       <div className="user-info">
-        
+       
+        <img src={user.picture} alt="Profile" className="profile-picture" />
         <p className="welcome-text">{user.username}</p>
-        <img
-          src={user.picture}
-          alt="Profile"
-          className="profile-picture"
-        />
-        
       </div>
     </div>
   );
