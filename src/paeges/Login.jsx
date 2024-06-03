@@ -91,9 +91,8 @@ function Login() {
   };
 
   return (
-    <>
-    <div className="flex justify-center items-center-top screen bg-white">
-      <div className="form-login bg-white  rounded-lg shadow-lg">
+    <div className="bklogin">
+      <div className="form-login">
         <form onSubmit={handleSubmit}>
           <h1 className="text-2xl font-bold mb-3">Login</h1>
 
@@ -123,38 +122,38 @@ function Login() {
               placeholder="Password"
             />
           </div>
+          <div className="flex justify-center"> 
           <button
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+            className=" w-48 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
             type="submit"
           >
             Login
           </button>
-          <a href="/register" className="block text-center mt-5 ">
+          </div>
+          <a href="/register" className="block text-center mt-5">
             Register
           </a>
         </form>
       </div>
       {/* {user && (
-          <div className="custom-profile-inpagelogin">
-            <p className="text-center mb-2">Welcome, {user.username}</p>
-            <div className="flex justify-center items-center">
-              <img
-                src={user.picture}
-                alt="Profile"
-                className="w-20 h-20 rounded-full"
-              />
-            </div>
-            <button
-              className="block ml-  mt-9 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
-        
+        <div className="custom-profile-inpagelogin">
+          <p className="text-center mb-2">Welcome, {user.username}</p>
+          <div className="flex justify-center items-center">
+            <img
+              src={user.picture}
+              alt="Profile"
+              className="w-20 h-20 rounded-full"
+            />
           </div>
-        )} */}
+          <button
+            className="block ml- mt-9 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        </div>
+      )} */}
     </div>
-    </>
   );
 }
 
