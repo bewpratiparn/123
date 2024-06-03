@@ -9,9 +9,28 @@ body {
   font-size: 16px;
 }
 
-.bk {
-  background-color: #f0f0f0;
+.bk191 {
+  position: relative;
+  width: 100vw; /* กำหนดความกว้างเต็มหน้าจอ */
+  height: 100vh; /* กำหนดความสูงเต็มหน้าจอ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* ป้องกันการล้นของ pseudo-element */
   position: fixed;
+}
+
+.bk191::before {
+  content: "";
+  background-image: url("https://media.istockphoto.com/id/494412828/photo/healthy-foods-background.jpg?s=612x612&w=is&k=20&c=Ro9jM6xxVTXtF7nKgS6KHnahgQvlkHES367rcusg348=");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(2px); /* เพิ่มความเบลอ */
 }
 
 .card2 {
@@ -19,10 +38,10 @@ body {
   margin-top: 150px;
   top: 0;
   bottom: 0;
-  background-color: #fff;
+  background-color: #fffaf0;
   border-radius: 30px;
   padding: 30px;
-  width: 100%;
+  width: 90%;
   height: 100%;
   height: auto; /* กำหนดให้ความสูงของ .card2 ขยายตามเนื้อหาภายใน */
   overflow-y: auto; /* ใช้ scrollbar เมื่อมีเนื้อหาเกินขนาดของ .card2 */
@@ -80,7 +99,7 @@ body {
 .time,
 .symbol,
 .grid-item div {
-  font-size: 18px; /* Set font size for all text elements */
+  font-size: 22px; /* Set font size for all text elements */
   margin-bottom: 8px;
   margin-left: 20px;
   transition: transform 0.5s;
@@ -122,10 +141,22 @@ button:hover {
   background-color: #0056b3;
 }
 
+.grid-item {
+  background-color: #e9e9e9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
 .container-box {
   display: flex;
   justify-content: center; /* จัดให้อยู่ตรงกลางของแกน X */
   align-items: center; /* จัดให้อยู่ตรงกลางของแกน Y */
+ 
+ 
+
 }
 /* Store_information.css */
 .image-store {
@@ -240,4 +271,39 @@ button:hover {
   background-color: #d0021b;
   transition: background-color 2s ease-out;
   transform: scale(1.1);
+}
+
+.custom-select191 {
+  width: 70px;
+  height: auto;
+  margin-left: 90%;
+  margin-top: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.custom-select191 img {
+  width: 30px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 100%;
+}
+
+.custom-select191 select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  color: rgb(11, 9, 9);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.thai191 {
+  color: black;
+}
+.eng191 {
+  color: #000000;
 }
