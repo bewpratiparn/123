@@ -213,6 +213,7 @@
   width: 77%; /* กำหนดความกว้างให้น้อยลง */
   height: 71%; /* กำหนดความสูงให้น้อยลง */
   padding: 7px;
+  
   transition: transform 0.3s ease; /* เพิ่ม transition เพื่อทำให้เป็น smooth */
 }
 .outterlineHome:hover{
@@ -263,3 +264,39 @@
 /* -----------------------กรอบสีขาวเอาเม้าไปวาง------------------------------- */
 
 
+
+.custom-select777 {
+  width: 70px;
+  height: auto;
+  margin-left: 30%;
+  margin-top: 10px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 50px;
+}
+
+.custom-select777 img {
+  width: 30px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 100%;
+}
+
+.custom-select777 select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.thai777 {
+  color: black;
+}
+.eng777 {
+  color: #000000;
+}

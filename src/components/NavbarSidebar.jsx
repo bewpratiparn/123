@@ -73,22 +73,26 @@ const Sidebar = () => {
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
           &times;
         </a>
-        <select
-          className="ml-9 mb-3 rounded-lg"
-          native
-          value={isThai ? "th" : "en"}
-          onChange={handleToggleLanguage}
-          label="Select Language"
-          inputProps={{
-            name: "language",
-            id: "language-select",
-          }}
-        >
-          <option value="th">
-            <FontAwesomeIcon icon={faFlag} /> ไทย
-          </option>
-          <option value="en">English</option>
-        </select>
+        <div className="custom-select777">
+          <select
+            value={isThai ? "th" : "en"}
+            onChange={handleToggleLanguage}
+          >
+            <option value="th"className="thai777">ไทย</option>
+            <option value="en"className="eng777">English</option>
+          </select>
+          {isThai ? (
+            <img
+              src="https://cdn.pixabay.com/photo/2013/07/12/17/58/thailand-152711_1280.png"
+              alt="Thailand"
+            />
+          ) : (
+            <img
+              src="https://www.tornok.com/wp-content/uploads/2015/03/uk-flag.png"
+              alt="UK"
+            />
+          )}
+        </div>
 
         <a href="/Home">
           <div className="outterlineHome">
