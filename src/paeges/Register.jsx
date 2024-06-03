@@ -174,7 +174,7 @@ function Register() {
               name="picture"
               value={inputs.picture || ""}
               onChange={handleChange}
-              required
+             
             />
           </div>
           {selectedFile && (
