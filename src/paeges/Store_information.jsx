@@ -19,7 +19,8 @@ function Store_information() {
   const [foodItems, setFoodItems] = useState([]);
   const [language, setLanguage] = useState("th");
   const [translatedShopName, setTranslatedShopName] = useState(shopName);
-  const [translatedShopLocation, setTranslatedShopLocation] = useState(shopLocation);
+  const [translatedShopLocation, setTranslatedShopLocation] =
+    useState(shopLocation);
   const [translatedShopPhone, setTranslatedShopPhone] = useState(shopPhone);
   const [translatedShopTime, setTranslatedShopTime] = useState(shopTime);
   const [translatedShopText, setTranslatedShopText] = useState(shopText);
@@ -58,7 +59,9 @@ function Store_information() {
     const fromLang = lang === "th" ? "en" : "th";
 
     axios
-      .get(`http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopName}`)
+      .get(
+        `http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopName}`
+      )
       .then((response) => {
         setTranslatedShopName(response.data.translated_text);
       })
@@ -67,7 +70,9 @@ function Store_information() {
       });
 
     axios
-      .get(`http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopLocation}`)
+      .get(
+        `http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopLocation}`
+      )
       .then((response) => {
         setTranslatedShopLocation(response.data.translated_text);
       })
@@ -76,7 +81,9 @@ function Store_information() {
       });
 
     axios
-      .get(`http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopPhone}`)
+      .get(
+        `http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopPhone}`
+      )
       .then((response) => {
         setTranslatedShopPhone(response.data.translated_text);
       })
@@ -85,7 +92,9 @@ function Store_information() {
       });
 
     axios
-      .get(`http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopTime}`)
+      .get(
+        `http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopTime}`
+      )
       .then((response) => {
         setTranslatedShopTime(response.data.translated_text);
       })
@@ -94,7 +103,9 @@ function Store_information() {
       });
 
     axios
-      .get(`http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopText}`)
+      .get(
+        `http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${shopText}`
+      )
       .then((response) => {
         setTranslatedShopText(response.data.translated_text);
       })
@@ -140,7 +151,9 @@ function Store_information() {
 
     const translatedLabelsPromises = labelsToTranslate.map((label) =>
       axios
-        .get(`http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${label}`)
+        .get(
+          `http://127.0.0.1:8000/translate/${fromLang}-${lang}/?sentences=${label}`
+        )
         .then((response) => response.data.translated_text)
     );
 
@@ -174,6 +187,7 @@ function Store_information() {
   const handleBackClick = () => {
     navigate(-1);
   };
+  
 
   return (
     <div className="bk191">
@@ -181,15 +195,20 @@ function Store_information() {
         <div className="Outline" onClick={handleBackClick}>
           <Icon icon="mdi:arrow-back" className="back" />
         </div>
-        <Icon
-          icon="bxs:edit"
-          className="icon-with-hover"
-          onClick={handleClick}
-        />
-        <span className="icon-text" onClick={handleClick}>
-  
-          {language === "th" ? "เเก้ไขข้อมูลร้านค้า" : "Edit store information"}
-        </span>
+        <div className="outlerlineedit">
+          <Icon
+            icon="bxs:edit"
+            className="icon-with-hover"
+            onClick={handleClick}
+          />
+          
+          <span className="icon-text" onClick={handleClick}>
+            {language === "th"
+              ? "เเก้ไขข้อมูลร้านค้า"
+              : "Edit store information"}
+          </span>
+          </div>
+       
         {/* Language Selector */}
         <div className="custom-select191">
           <select
@@ -204,11 +223,17 @@ function Store_information() {
               English
             </option>
           </select>
-          {language === 'en' && (
-            <img src="https://www.tornok.com/wp-content/uploads/2015/03/uk-flag.png" alt="English Flag"  />
+          {language === "en" && (
+            <img
+              src="https://www.tornok.com/wp-content/uploads/2015/03/uk-flag.png"
+              alt="English Flag"
+            />
           )}
-          {language === 'th' && (
-            <img src="https://cdn.pixabay.com/photo/2013/07/12/17/58/thailand-152711_1280.png" alt="Thai Flag" />
+          {language === "th" && (
+            <img
+              src="https://cdn.pixabay.com/photo/2013/07/12/17/58/thailand-152711_1280.png"
+              alt="Thai Flag"
+            />
           )}
         </div>
         <div className="store-information-container">
@@ -225,7 +250,8 @@ function Store_information() {
                     {translatedLabels.shopNameLabel} {translatedShopName}
                   </div>
                   <div className="location">
-                    {translatedLabels.shopLocationLabel} {translatedShopLocation}
+                    {translatedLabels.shopLocationLabel}{" "}
+                    {translatedShopLocation}
                   </div>
                   <div className="phone">
                     {translatedLabels.shopPhoneLabel} {translatedShopPhone}
@@ -234,9 +260,7 @@ function Store_information() {
                     {translatedLabels.shopTimeLabel} {translatedShopTime}
                   </div>
                   <div className="symbol">
-                    
                     {translatedLabels.shopTextLabel} {translatedShopText}
-                    
                   </div>
                 </div>
               </div>

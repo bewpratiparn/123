@@ -1,3 +1,13 @@
+
+
+
+
+
+
+
+
+
+
 body {
   background-color: #fff;
   margin: 0;
@@ -148,15 +158,10 @@ button:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
-
 .container-box {
   display: flex;
   justify-content: center; /* จัดให้อยู่ตรงกลางของแกน X */
   align-items: center; /* จัดให้อยู่ตรงกลางของแกน Y */
- 
- 
-
 }
 /* Store_information.css */
 .image-store {
@@ -217,21 +222,23 @@ button:hover {
 }
 
 .icon-with-hover:hover {
-  transform: scale(0.9);
+  transform: scale(1.2);
 }
 
 .icon-text {
-  margin-left: 16rem; /* ปรับระยะห่างตามต้องการ */
-  font-size: 1rem; /* ขนาดของข้อความ */
+  margin-left: 16.5rem; /* ปรับระยะห่างตามต้องการ */
+  font-size: 21px; /* ขนาดของข้อความ */
   position: relative;
-  top: -2rem;
-  transform: scale(0.9);
+  top: -2.1rem;
+  transform: scale(1); /* Original scale */
   cursor: pointer;
-  transition: transform 0.3s ease; /* เพิ่ม transition เพื่อให้การเปลี่ยนแปลงราบรื่น */
+  padding: 5px;
+  border-radius: 16px;
+  transition: transform 0.3s ease; /* Smooth transition */
 }
 
 .icon-text:hover {
-  transform: scale(1.1); /* ขยายขนาดเมื่อเมาส์วาง */
+  transform: scale(0.9); /* Smaller scale on hover */
 }
 
 .back {
@@ -240,7 +247,7 @@ button:hover {
   transition: transform 0.2s;
 }
 .back:hover {
-  transform: scale(0.8);
+  transform: scale(1.1);
 }
 .Outline {
   position: fixed;
@@ -251,8 +258,7 @@ button:hover {
   transition: transform 0.3s ease;
 }
 .Outline:hover {
-  
-  transform: scale(0.9);
+  transform: scale(1.3);
 }
 .buttondetailfood {
   position: relative;
@@ -292,6 +298,7 @@ button:hover {
 }
 
 .custom-select191 select {
+  margin-left: 5px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;

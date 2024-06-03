@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 import Swal from "sweetalert2";
 import "./Editstore.css";
 
@@ -183,137 +184,142 @@ function Editstore() {
     return <div>Loading...</div>;
   }
 
+ 
+
   return (
     <div className="main-container">
+      <div className="outlineineditstore" onClick={handleBackClick}>
+        <Icon icon="mdi:arrow-back" className="iconbackineditstore" />
+      </div>
       <div className="flex items-center justify-center">
         <div className="custom-form-Editstore w-15 rounded-lg text-white p-5 mt-5 ml-5">
           <div className="labelinEditstore">เเก้ไขข้อมูลร้านค้า</div>
           <form className="" onSubmit={handleFormSubmit}>
             <div className="control-form">
-            <div className="mb-4 text-black">
-              <label htmlFor="shop_id" className="block">
-                Shop ID
-              </label>
-              <input
-                type="number"
-                name="shop_id"
-                className="w-80 mt-3 p-3 rounded-lg"
-                placeholder="Enter Shop ID"
-                value={editShopId}
-                onChange={handleEditShopIdChange}
-                required
-              />
-            </div>
-
-            <div className="mb-4 text-black">
-              <label htmlFor="shop_name" className="block">
-                ชื่อร้านค้า
-              </label>
-              <input
-                type="text"
-                name="shop_name"
-                className="w-80 mt-3 p-3 rounded-lg"
-                placeholder="โปรดใส่ชื่อร้าน ...."
-                value={editShopData.shop_name}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="mb-4 text-black">
-              <label htmlFor="shop_location" className="block">
-                สถานที่
-              </label>
-              <input
-                type="text"
-                name="shop_location"
-                className="w-80 mt-3 p-3 rounded-lg"
-                placeholder="โปรดใส่สถานที่ ...."
-                value={editShopData.shop_location}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="mb-4 text-black">
-              <label htmlFor="shop_phone" className="block">
-                เบอร์ติดต่อ
-              </label>
-              <input
-                type="text"
-                name="shop_phone"
-                className="w-80 mt-3 p-3 rounded-lg"
-                placeholder="โปรดใส่เบอร์ติดต่อ ...."
-                value={editShopData.shop_phone}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-
-            <div className="mb-4 text-black">
-              <label htmlFor="shop_time" className="block">
-                เวลาเปิดปิด
-              </label>
-              <input
-                type="text"
-                name="shop_time"
-                className="w-80 mt-3 p-3 rounded-lg"
-                placeholder="โปรดใส่วัน-เวลา-เปิดปิด"
-                value={editShopData.shop_time}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="mb-4 text-black">
-              <label htmlFor="shop_type" className="block">
-                ประเภทร้านของท่าน
-              </label>
-              <select
-                name="shop_type"
-                className="mt-3 p-3 rounded-lg"
-                value={editShopData.shop_type}
-                onChange={handleInputChange}
-                required
-              >
-                <option value="Halal">Halal</option>
-                <option value="Mangswirat">Mangswirat</option>
-                <option value="Vegetarian">Vegetarian</option>
-                <option value="Nothting">Nothting</option>
-              </select>
-            </div>
-
-            <div className="mb-4 ">
-              <label htmlFor="shop_picture" className="block">
-                รูปภาพร้านค้า
-              </label>
-              <input
-                type="file"
-                name="shop_picture"
-                className="mt-3 "
-                onChange={handleFileChange}
-                required
-              />
-              {editShopData.shop_picture && (
-                <img
-                  src={editShopData.shop_picture}
-                  alt="Shop"
-                  style={{ marginTop: "10px", maxWidth: "100%" }}
+              <div className="mb-4 text-black">
+                <label htmlFor="shop_id" className="block">
+                  Shop ID
+                </label>
+                <input
+                  type="number"
+                  name="shop_id"
+                  className="w-80 mt-3 p-3 rounded-lg"
+                  placeholder="Enter Shop ID"
+                  value={editShopId}
+                  onChange={handleEditShopIdChange}
+                  required
                 />
-              )}
-            </div>
+              </div>
+
+              <div className="mb-4 text-black">
+                <label htmlFor="shop_name" className="block">
+                  ชื่อร้านค้า
+                </label>
+                <input
+                  type="text"
+                  name="shop_name"
+                  className="w-80 mt-3 p-3 rounded-lg"
+                  placeholder="โปรดใส่ชื่อร้าน ...."
+                  value={editShopData.shop_name}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="mb-4 text-black">
+                <label htmlFor="shop_location" className="block">
+                  สถานที่
+                </label>
+                <input
+                  type="text"
+                  name="shop_location"
+                  className="w-80 mt-3 p-3 rounded-lg"
+                  placeholder="โปรดใส่สถานที่ ...."
+                  value={editShopData.shop_location}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="mb-4 text-black">
+                <label htmlFor="shop_phone" className="block">
+                  เบอร์ติดต่อ
+                </label>
+                <input
+                  type="text"
+                  name="shop_phone"
+                  className="w-80 mt-3 p-3 rounded-lg"
+                  placeholder="โปรดใส่เบอร์ติดต่อ ...."
+                  value={editShopData.shop_phone}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+
+              <div className="mb-4 text-black">
+                <label htmlFor="shop_time" className="block">
+                  เวลาเปิดปิด
+                </label>
+                <input
+                  type="text"
+                  name="shop_time"
+                  className="w-80 mt-3 p-3 rounded-lg"
+                  placeholder="โปรดใส่วัน-เวลา-เปิดปิด"
+                  value={editShopData.shop_time}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="mb-4 text-black">
+                <label htmlFor="shop_type" className="block">
+                  ประเภทร้านของท่าน
+                </label>
+                <select
+                  name="shop_type"
+                  className="mt-3 p-3 rounded-lg"
+                  value={editShopData.shop_type}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="Halal">Halal</option>
+                  <option value="Mangswirat">Mangswirat</option>
+                  <option value="Vegetarian">Vegetarian</option>
+                  <option value="Nothting">Nothting</option>
+                </select>
+              </div>
+
+              <div className="mb-4 ">
+                <label htmlFor="shop_picture" className="block">
+                  รูปภาพร้านค้า
+                </label>
+                <input
+                  type="file"
+                  name="shop_picture"
+                  className="mt-3 "
+                  onChange={handleFileChange}
+                  required
+                />
+                {editShopData.shop_picture && (
+                  <img
+                    src={editShopData.shop_picture}
+                    alt="Shop"
+                    style={{ marginTop: "10px", maxWidth: "100%" }}
+                  />
+                )}
+              </div>
             </div>
             <div className="control-button-form">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               >
-              Update
-            </button>
-            <button
-              type="button"
-              className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-6"
-              onClick={handleBackClick}
+                Update
+              </button>
+              <button
+                type="button"
+                className="bg-red-500 hover:bg-red-900 text-white font-bold py-2 px-4 rounded ml-6"
+                onClick={handleBackClick}
               >
-              Cancel
-            </button>
+                Cancel
+              </button>
             </div>
           </form>
         </div>

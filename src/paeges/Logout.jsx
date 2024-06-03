@@ -1,5 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 import Swal from "sweetalert2";
 import "./Logout.css";
 
@@ -35,9 +36,28 @@ function Logout() {
       }
     });
   };
+  const handleBackClick = () => {
+    Swal.fire({
+      title: "โปรดรอเเป๊บนึง",
+      text: "เรากำลังพาท่านกลับไป",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    setTimeout(() => {
+      Swal.close();
+      navigate("/Home");
+    }, 2000); // Delay of 2 seconds
+  };
 
   return (
     <div className="bklogout">
+      <div className="outlineinlogout" onClick={handleBackClick}>
+        <Icon icon="mdi:arrow-back" className="iconbackinlogout" />
+      </div>
+
       <div className="form-logout">
         <h1 className="text-2xl font-bold mb-3"></h1>
         <p className="text-center mb-5">คุณต้องการออกจากระบบใช่หรือไม่?</p>

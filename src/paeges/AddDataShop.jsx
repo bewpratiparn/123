@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import "./AddDataShop.css";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+
+import { Icon } from "@iconify/react";
 
 function AddDataShop() {
   const navigate = useNavigate();
@@ -99,142 +102,163 @@ function AddDataShop() {
     });
     setImageURL("");
   };
+  const handleBackClick = () => {
+    Swal.fire({
+      title: "โปรดรอเเป๊บนึง",
+      text: "เรากำลังพาท่านกลับไป",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
 
+    setTimeout(() => {
+      Swal.close();
+      navigate("/Home");
+    }, 2000); // Delay of 2 seconds
+  };
   return (
-    <div className="background">
-      <div className="boxtext">
-        <div className="block text-gray-700 text-2xl font-bold mb-8 ">
-          เพิ่มข้อมูลร้านค้า
-        </div>
-        <form onSubmit={handleSubmit}>
-          <div className="grid gap-6 mb-6 md:grid-cols-1">
-            <div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-xl font-bold mb-2 ">
-                  ชื่อร้าน
-                </label>
-                <input
-                  className="input-style"
-                  name="storename"
-                  type="text"
-                  placeholder="ชื่อร้าน..."
-                  value={addShop.storename}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-xl font-bold mb-2">
-                  สถานที่ Map-link
-                </label>
-                <input
-                  className="input-style"
-                  name="location"
-                  type="text"
-                  placeholder="สถานที่..."
-                  value={addShop.location}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-xl font-bold mb-2">
-                  เบอร์โทรศัพท์
-                </label>
-                <input
-                  className="input-style"
-                  name="phone"
-                  type="text"
-                  placeholder="เบอร์โทรศัพท์..."
-                  value={addShop.phone}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-xl font-bold mb-2">
-                  วัน,เวลา เปิด-ปิด
-                </label>
-                <input
-                  className="input-style"
-                  name="onclose"
-                  type="text"
-                  placeholder="วัน,เวลา เปิด-ปิด..."
-                  value={addShop.onclose}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-xl font-bold mb-2 ">
-                  ประเภทร้าน
-                </label>
-                <div className="symbol007">
-                  <select
+    <>
+    
+
+      <div className="background">
+      <div className="outlineinaddshop" onClick={handleBackClick}>
+        <Icon icon="mdi:arrow-back" className="iconbackinaddshop" />
+      </div>
+        <div className="boxtext">
+          <div className="block text-gray-700 text-2xl font-bold mb-8 ">
+            เพิ่มข้อมูลร้านค้า
+          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="grid gap-6 mb-6 md:grid-cols-1">
+              <div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-xl font-bold mb-2 ">
+                    ชื่อร้าน
+                  </label>
+                  <input
                     className="input-style"
-                    name="shop_type"
-                    value={addShop.shop_type}
+                    name="storename"
+                    type="text"
+                    placeholder="ชื่อร้าน..."
+                    value={addShop.storename}
                     onChange={handleChange}
-                  >
-                    <option disabled value="">
-                      เลือกประเภทร้าน...
-                    </option>
-                    <option value="Mangswirat">Mangswirat</option>
-                    <option value="Halal">Halal</option>
-                    <option value="Vegetarian">Vegetarian</option>
-                    <option value="Nothing">Nothing</option>
-                  </select>
+                  />
                 </div>
-                {addShop.shop_type === "Halal" && (
-                  <img
-                    src="https://www.lsfpackaging.com/images/editor/21-%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%AE%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%A5%E0%B8%84%E0%B8%B7%E0%B8%AD_Pic.jpg"
-                    alt="Halal Shop"
-                    className="Halal-Shop"
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-xl font-bold mb-2">
+                    สถานที่ Map-link
+                  </label>
+                  <input
+                    className="input-style"
+                    name="location"
+                    type="text"
+                    placeholder="สถานที่..."
+                    value={addShop.location}
+                    onChange={handleChange}
                   />
-                )}
-                {addShop.shop_type === "Vegetarian" && (
-                  <img
-                    src="https://png.pngtree.com/png-vector/20191030/ourlarge/pngtree-icon-for-vegan-food-vector-illustration-symbols-isolated-on-white-background-png-image_1870591.jpg"
-                    alt="Halal Shop"
-                    className="Vegetarian-Shop"
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-xl font-bold mb-2">
+                    เบอร์โทรศัพท์
+                  </label>
+                  <input
+                    className="input-style"
+                    name="phone"
+                    type="text"
+                    placeholder="เบอร์โทรศัพท์..."
+                    value={addShop.phone}
+                    onChange={handleChange}
                   />
-                )}
-                {addShop.shop_type === "Mangswirat" && (
-                  <img
-                    src="https://msnbcnewslive.com/wp-content/uploads/2023/10/201508141447.jpeg"
-                    alt="Halal Shop"
-                    className="Mangswirat-Shop"
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-xl font-bold mb-2">
+                    วัน,เวลา เปิด-ปิด
+                  </label>
+                  <input
+                    className="input-style"
+                    name="onclose"
+                    type="text"
+                    placeholder="วัน,เวลา เปิด-ปิด..."
+                    value={addShop.onclose}
+                    onChange={handleChange}
                   />
-                )}
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-xl font-bold mb-2">
-                  เพิ่มรูปร้านค้า
-                </label>
-                <input
-                  className="file"
-                  name="pictureshop"
-                  type="file"
-                  onChange={handleChange}
-                />
-                <div>
-                  {imageURL && (
-                    <img src={imageURL} alt="Shop" className="imgaddshop" />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-xl font-bold mb-2 ">
+                    ประเภทร้าน
+                  </label>
+                  <div className="symbol007">
+                    <select
+                      className="input-style"
+                      name="shop_type"
+                      value={addShop.shop_type}
+                      onChange={handleChange}
+                    >
+                      <option disabled value="">
+                        เลือกประเภทร้าน...
+                      </option>
+                      <option value="Mangswirat">Mangswirat</option>
+                      <option value="Halal">Halal</option>
+                      <option value="Vegetarian">Vegetarian</option>
+                      <option value="Nothing">Nothing</option>
+                    </select>
+                  </div>
+                  {addShop.shop_type === "Halal" && (
+                    <img
+                      src="https://www.lsfpackaging.com/images/editor/21-%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%AE%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%A5%E0%B8%84%E0%B8%B7%E0%B8%AD_Pic.jpg"
+                      alt="Halal Shop"
+                      className="Halal-Shop"
+                    />
+                  )}
+                  {addShop.shop_type === "Vegetarian" && (
+                    <img
+                      src="https://png.pngtree.com/png-vector/20191030/ourlarge/pngtree-icon-for-vegan-food-vector-illustration-symbols-isolated-on-white-background-png-image_1870591.jpg"
+                      alt="Halal Shop"
+                      className="Vegetarian-Shop"
+                    />
+                  )}
+                  {addShop.shop_type === "Mangswirat" && (
+                    <img
+                      src="https://msnbcnewslive.com/wp-content/uploads/2023/10/201508141447.jpeg"
+                      alt="Halal Shop"
+                      className="Mangswirat-Shop"
+                    />
                   )}
                 </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-xl font-bold mb-2">
+                    เพิ่มรูปร้านค้า
+                  </label>
+                  <input
+                    className="file"
+                    name="pictureshop"
+                    type="file"
+                    onChange={handleChange}
+                  />
+                  <div>
+                    {imageURL && (
+                      <img src={imageURL} alt="Shop" className="imgaddshop" />
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="buttonContainer">
-            <div className="buttonshopsubmit">
-              <button type="submit">ยืนยัน</button>
+            <div className="buttonContainer">
+              <div className="buttonshopsubmit">
+                <button type="submit">ยืนยัน</button>
+              </div>
+              <div className="buttonshopcancel">
+                <button type="button" onClick={handleReset}>
+                  ยกเลิก
+                </button>
+              </div>
             </div>
-            <div className="buttonshopcancel">
-              <button type="button" onClick={handleReset}>
-                ยกเลิก
-              </button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

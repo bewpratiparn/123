@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import "./Register.css";
@@ -72,9 +73,27 @@ function Register() {
         });
     };
   };
+  const handleBackClick = () => {
+    Swal.fire({
+      title: "โปรดรอเเป๊บนึง",
+      text: "เรากำลังพาท่านกลับไป",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    setTimeout(() => {
+      Swal.close();
+      navigate("/Home");
+    }, 2000); // Delay of 2 seconds
+  };
 
   return (
     <div className="bkregister">
+      <div className="outlineregister" onClick={handleBackClick}>
+        <Icon icon="mdi:arrow-back" className="iconbackregister" />
+      </div>
       <div className="form-register">
         <form onSubmit={handleSubmit}>
           <h1 className="text-2xl font-bold mb-3">Register</h1>

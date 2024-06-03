@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 import axios from "axios";
 import Resizer from "react-image-file-resizer";
 import "./AddFood.css";
@@ -101,8 +102,26 @@ function AddFood() {
     setImageURL("");
   };
 
+  const handleBackClick = () => {
+    Swal.fire({
+      title: "โปรดรอเเป๊บนึง",
+      text: "เรากำลังพาท่านกลับไป",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    setTimeout(() => {
+      Swal.close();
+      navigate("/Home");
+    }, 2000); // Delay of 2 seconds
+  };
   return (
     <div className="backgroundfood">
+      <div className="outlineinaddfood" onClick={handleBackClick}>
+        <Icon icon="mdi:arrow-back" className="backinaddfood" />
+      </div>
       <div className="boxtextfood">
         <div className="block text-gray-700 text-2xl font-bold mb-8 ">
           เพิ่มข้อมูลอาหาร
@@ -166,13 +185,15 @@ function AddFood() {
               </div>
             </div>
           </div>
-          
+
           <div className="buttonContainerfood">
             <div className="buttonfoodsubmit">
               <button type="submit">ยืนยัน</button>
             </div>
             <div className="buttonfoodcancel">
-              <button type="button" onClick={handleReset}>ยกเลิก</button>
+              <button type="button" onClick={handleReset}>
+                ยกเลิก
+              </button>
             </div>
           </div>
         </form>

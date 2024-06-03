@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import "./translate.css";
 import axios from "axios";
 import "semantic-ui-css/semantic.min.css";
+import { Icon } from "@iconify/react";
+import Swal from "sweetalert2";
 
 function Translate() {
+  const navigate = useNavigate();
   const [inputText, setInputText] = useState("");
   const [translatedText, setTranslatedText] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
@@ -40,15 +44,38 @@ function Translate() {
     { key: "en", text: "English", value: "en" },
     { key: "th", text: "Thai", value: "th" },
   ];
+  // const handleBackClick = () => {
+  //   navigate(-1);
+  // };
+
+  const handleBackClick = () => {
+    Swal.fire({
+      title: "โปรดรอเเป๊บนึง",
+      text: "เรากำลังพาท่านกลับไป",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    setTimeout(() => {
+      Swal.close();
+      navigate("/Home");
+    }, 2000); // Delay of 2 seconds
+  };
 
   return (
     <>
+    
       <div className="app-body">
+      
         <div className="form-control-Translate">
-        
+        <div className="Outlinebackintranslate" onClick={handleBackClick}>
+          <Icon icon="mdi:arrow-back" className="backintranslate" />
+        </div>
           <form onSubmit={submitTranslate}>
-          <div className="header"> Translator</div>
-           
+            <div className="header"> Translator</div>
+
             <textarea
               id="inputText"
               placeholder="Type Text to Translate.."

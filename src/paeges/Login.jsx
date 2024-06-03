@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 import Swal from "sweetalert2";
 import "./Login.css";
 
@@ -90,8 +91,27 @@ function Login() {
     });
   };
 
+  const handleBackClick = () => {
+    Swal.fire({
+      title: "โปรดรอเเป๊บนึง",
+      text: "เรากำลังพาท่านกลับไป",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    setTimeout(() => {
+      Swal.close();
+      navigate("/Home");
+    }, 2000); // Delay of 2 seconds
+  };
+
   return (
     <div className="bklogin">
+      <div className="outlineinlogin" onClick={handleBackClick}>
+        <Icon icon="mdi:arrow-back" className="iconbacklogin" />
+      </div>
       <div className="form-login">
         <form onSubmit={handleSubmit}>
           <h1 className="text-2xl font-bold mb-3">Login</h1>
@@ -122,13 +142,13 @@ function Login() {
               placeholder="Password"
             />
           </div>
-          <div className="flex justify-center"> 
-          <button
-            className=" w-48 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
-            type="submit"
-          >
-            Login
-          </button>
+          <div className="flex justify-center">
+            <button
+              className=" w-48 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+              type="submit"
+            >
+              Login
+            </button>
           </div>
           <a href="/register" className="block text-center mt-5">
             Register
