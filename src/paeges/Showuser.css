@@ -17,10 +17,10 @@
   flex-direction: column; /* จัดเรียงเป็นคอลัมน์ */
   align-items: center; /* จัดตรงกลางแนวนอน */
   height: 120px; /* ปรับขนาดให้เล็กลง */
-  background-color: #fad8a8;
+  
   padding: 10px; /* ปรับขนาด padding ให้เล็กลง */
-  border-radius: 10px; /* ปรับขนาด border-radius ให้เล็กลง */
-  box-shadow: 0 4px 6px rgba(247, 247, 247, 0.1);
+ 
+  
   margin-right: 10px;
   position: fixed;
 }
@@ -33,8 +33,9 @@
 }
 
 .welcome-text {
-  font-size: 14px; /* ปรับขนาดตัวอักษรให้เล็กลง */
+  font-size: 18px; /* ปรับขนาดตัวอักษรให้เล็กลง */
   font-weight: bold;
   margin-bottom: 0; /* เอา margin-bottom ออก */
   margin-left: 0; /* เอา margin-left ออก */
+  color: azure;
 }
