@@ -1,9 +1,4 @@
-.data-storehome {
-  text-align: center;
-  font-size: 20px;
-  margin-top: 15px;
-  background-color: rgb(247, 247, 247);
-}
+
 
 .inputsearch {
   width: 550px;
@@ -250,15 +245,23 @@ input[type="textsearch"] {
 }
 
 .shop_id {
-  text-align: center;
-  font-size: 20px;
+
+  font-size: 22px;
   margin-top: 15px;
-  background-color: rgb(247, 247, 247);
+  
+  text-align: left;
+}
+
+.data-storehome {
+ 
+  margin-left: 10%;
+  margin-top: 20px;
+  
 }
 .halal-image {
   max-width: 150px;
   margin-left: auto;
-  margin-top: -100px;
+  margin-top: -275px;
 }
 
 .vegetarian-image {

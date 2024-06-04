@@ -234,7 +234,7 @@ function Home() {
                             d.shop_id
                           )}
                         </div>
-                        <div className="storename">
+                        <div className="shop_id">
                           {language === "th" ? "ชื่อร้านค้า" : "Shop Name"}:
                           {searchTerm &&
                           d.shop_name
@@ -247,7 +247,7 @@ function Home() {
                             d.shop_name
                           )}
                         </div>
-                        <div className="location-store">
+                        <div className="shop_id">
                           {language === "th" ? "สถานที่" : "Location"}:
                           {searchTerm &&
                           d.shop_location
@@ -260,7 +260,7 @@ function Home() {
                             d.shop_location
                           )}
                         </div>
-                        <div className="tel">
+                        <div className="shop_id">
                           {language === "th" ? "เบอร์โทรศัพท์" : "Phone"}:{" "}
                           {searchTerm &&
                           d.shop_phone
@@ -273,7 +273,7 @@ function Home() {
                             d.shop_phone
                           )}
                         </div>
-                        <div className="time">
+                        <div className="shop_id">
                           {language === "th"
                             ? "วันเวลาเปิด-ปิด"
                             : "Opening Hours"}
@@ -289,7 +289,7 @@ function Home() {
                             d.shop_time
                           )}
                         </div>
-                        <div className="symbol">
+                        <div className="shop_id">
                           {language === "th" ? "ตราสัญลักษณ์" : "Symbol"}:{" "}
                           {searchTerm &&
                           d.shop_text
@@ -329,7 +329,7 @@ function Home() {
                       </div>
                       <div>
                         <h2 className="underline underline-offset-4 pt-3 text-2xl">
-                          {language === "th" ? "รายการอาหาร" : "Food List"}:{" "}
+                          {language === "th" ? "รายการอาหาร" : "Food List"}{" "}
                         </h2>
                         <Slider {...settings}>
                           {foodData
@@ -352,7 +352,7 @@ function Home() {
                                     )}`,
                                   }}
                                 >
-                                  <h3>
+                                  <h3 className=" underline-offset-4 pt-3 text-2xl">
                                     {searchTerm &&
                                     food.Food_name.toLowerCase().includes(
                                       searchTerm.toLowerCase()
