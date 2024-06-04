@@ -149,8 +149,8 @@ function AddDataShop() {
                   <label className="block text-gray-700 text-xl font-bold mb-2">
                     สถานที่ Map-link
                   </label>
-                  <input
-                    className="input-style"
+                  <textarea
+                    className="input-map"
                     name="location"
                     type="text"
                     placeholder="สถานที่..."

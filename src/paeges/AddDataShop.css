@@ -74,6 +74,15 @@
   margin-top: 5px;
 }
 
+.input-map {
+  width: 70%;
+  height: 30vh;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+}
+
 .symbol007 {
   position: relative;
 }

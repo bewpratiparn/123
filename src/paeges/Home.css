@@ -258,23 +258,13 @@ input[type="textsearch"] {
   margin-top: 20px;
   
 }
-.halal-image {
+.halal-image,.vegetarian-image,.mangswirat-image {
   max-width: 150px;
-  margin-left: auto;
-  margin-top: -275px;
+  
+  margin-top: 5px;
+  
 }
 
-.vegetarian-image {
-  max-width: 150px;
-  margin-left: auto;
-  margin-top: -100px;
-}
-
-.mangswirat-image {
-  max-width: 150px;
-  margin-left: auto;
-  margin-top: -100px;
-}
 
 .custom-select666 {
   width: 70px;
