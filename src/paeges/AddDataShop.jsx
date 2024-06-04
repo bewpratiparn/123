@@ -143,6 +143,7 @@ function AddDataShop() {
                     placeholder="ชื่อร้าน..."
                     value={addShop.storename}
                     onChange={handleChange}
+                    style={{ borderRadius: '10px' }} // เพิ่มขอบมน
                   />
                 </div>
                 <div className="mb-4">
@@ -150,13 +151,15 @@ function AddDataShop() {
                     สถานที่ Map-link
                   </label>
                   <textarea
-                    className="input-map"
-                    name="location"
-                    type="text"
-                    placeholder="สถานที่..."
-                    value={addShop.location}
-                    onChange={handleChange}
-                  />
+  className="input-map"
+  name="location"
+  type="text"
+  placeholder="สถานที่..."
+  value={addShop.location}
+  onChange={handleChange}
+  style={{ borderRadius: '4px' }} // เพิ่มขอบมน
+/>
+
                 </div>
                 <div className="mb-4">
                   <label className="block text-gray-700 text-xl font-bold mb-2">
@@ -169,6 +172,7 @@ function AddDataShop() {
                     placeholder="เบอร์โทรศัพท์..."
                     value={addShop.phone}
                     onChange={handleChange}
+                    style={{ borderRadius: '4px' }} // เพิ่มขอบมน
                   />
                 </div>
                 <div className="mb-4">
@@ -182,6 +186,7 @@ function AddDataShop() {
                     placeholder="วัน,เวลา เปิด-ปิด..."
                     value={addShop.onclose}
                     onChange={handleChange}
+                    style={{ borderRadius: '10px' }} // เพิ่มขอบมน
                   />
                 </div>
                 <div className="mb-4">
@@ -194,6 +199,7 @@ function AddDataShop() {
                       name="shop_type"
                       value={addShop.shop_type}
                       onChange={handleChange}
+
                     >
                       <option disabled value="">
                         เลือกประเภทร้าน...

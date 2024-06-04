@@ -68,18 +68,12 @@
 
 .input-style {
   width: 50%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
   margin-top: 5px;
 }
 
 .input-map {
-  width: 70%;
-  height: 30vh;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  width: 50%;
+  height: 10%;
   margin-top: 5px;
 }
 
@@ -98,6 +92,8 @@
   margin-top: 5px;
   cursor: pointer;
 }
+
+
 
 .imgaddshop {
   max-width: 50%;
@@ -160,3 +156,4 @@
   max-width: 100px;
   border-radius: 10px;
 }
+
