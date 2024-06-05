@@ -101,10 +101,9 @@ function Fooddetails() {
   };
 
   return (
-    <div className="background777 flex justify-center items-center bg-white">
-      <div className="backgroundfooddetail">
-        <div className="containerfooddetails">
-          <div className="background888">
+    <div className="bk191">
+      <div className="card2">
+        
             <div className="custom-select191">
               <select
                 className="TranslateHome666"
@@ -137,7 +136,7 @@ function Fooddetails() {
                 onClick={handleBackClick}
               />
             </div>
-            <div className="title ">
+            <div className="fooddetail888">
               {isThai ? "รายละเอียดเกี่ยวกับอาหาร" : "Food Details"}
             </div>
             <div className="customfooddetail">
@@ -180,8 +179,7 @@ function Fooddetails() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    
   );
 }
 

@@ -1,17 +1,7 @@
-.background888 {
-  position: fixed;
-  margin-top: 50px;
-  top: 0;
-  bottom: 0;
-  background-color: #fffaf0;
-  border-radius: 30px;
-  padding: 30px;
-  width: 90%;
-  height: 100%;
-  height: auto;
-  overflow-y: auto;
+.fooddetail888{
+  font-size: 28px;
+  text-align: center;
 }
-
 .backgroundfooddetail {
   position: relative;
   background-color: white;
@@ -24,9 +14,7 @@
   background-position: center;
   /* Apply blur effect */
 }
-.customfooddetail {
-  margin-top: 32px;
-}
+
 .backgroundfooddetail::before {
   content: "";
   position: absolute;
@@ -54,17 +42,16 @@
 
 /* ปรับแต่ง padding และ margin ขององค์ประกอบภายใน */
 .title {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
-  color: #000000;
-
-  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 .details {
   display: flex;
   gap: 45rem;
-  margin-bottom: 26px;
+  margin-bottom: 20px;
 }
 
 .detail-food,
@@ -81,12 +68,14 @@
   margin-bottom: 20px;
 }
 
-.img5 {
-  max-width: 40%; /* กำหนดให้รูปภาพไม่เกินขนาด container */
+.food-image {
+  max-width: 550px; /* กำหนดให้รูปภาพไม่เกินขนาด container */
+  max-height: 250px;
   height: auto;
   border-radius: 10px;
-  margin-right: 5px;
+  margin-right: 20px;
 }
+
 .ingredients-container {
   flex: 1;
 }
@@ -94,16 +83,15 @@
 /*--------------------------------------------------- foodname----------------------------------------------------------- */
 .food-container {
   cursor: pointer;
-  background-color: white;
-  border-radius: 16px;
+
   padding: 25px;
   font-size: 16px;
-  transition: background-color 5s ease-out, transform 0.5s ease;
+  transition: background-color 2s ease-out, transform 0.3s ease;
 }
 /* .food-container:hover {
   border-radius: 12px;
   box-shadow: 7px 8px 9px #888888;
-  transform: scale(1.3);
+  transform: scale(0.9);
   height: auto;
   border-radius: 16px;
   background-color: white;
@@ -122,12 +110,11 @@
 .price-container {
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 5s ease-out, transform 0.3s ease;
+  transition: background-color 2s ease-out, transform 0.3s ease;
   padding: 6px;
   border-radius: 10px;
   display: inline-block; /* หรือ inline-flex */
   padding: 25px;
-  background-color: white;
 }
 
 .Food_price {
@@ -138,7 +125,7 @@
 /* .price-container:hover {
   border-radius: 12px;
   box-shadow: 7px 8px 9px #888888;
-  transform: scale(1.3);
+  transform: scale(0.9);
   height: auto;
   border-radius: 16px;
   background-color: white;
@@ -157,28 +144,26 @@
 
 /* --------------------------------------------------watudip----------------------------------------------------------------- */
 .watudip-label {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bold;
   color: #333;
 }
 .watudip-container {
-  width: 50%;
   font-size: 22px;
-  transition: background-color 5s ease-out, transform 0.5s ease;
+  transition: background-color 2s ease-out, transform 0.3s ease;
   padding: 6px;
   border-radius: 10px;
   display: inline-block; /* หรือ inline-flex */
-  background-color: white;
-  position:relative;
-  bottom: 10rem;
-  left: 25rem;
-  
+  position: absolute;
+ top:19rem;
+ left: 27rem;
 
 }
 .watudip-container:hover {
   border-radius: 12px;
   box-shadow: 7px 8px 9px #888888;
   transform: scale(0.9);
+  height: auto;
   border-radius: 16px;
   background-color: white;
   font-size: 22px;
@@ -188,7 +173,6 @@
 
 .showingredient {
   margin-top: 5px;
-  width:70%;
   height: auto;
   /* transition: background-color 2s ease-out, transform 0.3s ease; */
 }
@@ -198,13 +182,11 @@
 /* --------------------------------------------------รายละเอียดอาหาร----------------------------------------------------------------- */
 .containner-detailfood {
   font-size: 22px;
-  transition: background-color 5s ease-out, transform 0.5s ease;
-  background-color: white;
+  transition: background-color 2s ease-out, transform 0.3s ease;
   padding: 6px;
   border-radius: 10px;
   display: inline-block; /* หรือ inline-flex */
-  position: relative;
-  bottom: 14rem;
+  cursor: pointer;
 }
 
 /* .containner-detailfood:hover {
@@ -214,7 +196,7 @@
   height: auto;
   border-radius: 16px;
   background-color: white;
-  font-size: 22px;
+  font-size: 28px;
   border: solid;
   padding: 10px;
 } */
