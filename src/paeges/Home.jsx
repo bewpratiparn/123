@@ -336,6 +336,7 @@ function Home() {
                             .filter((food) => food.shop_id === d.shop_id)
                             .map((food, index) => (
                               <div key={index}>
+                                <div className="buttongostore">
                                 <Link
                                   to={{
                                     pathname: "/Fooddetails",
@@ -375,6 +376,7 @@ function Home() {
                                     />
                                   </div>
                                 </Link>
+                                </div>
                               </div>
                             ))}
                         </Slider>
