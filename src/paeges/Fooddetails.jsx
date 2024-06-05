@@ -125,15 +125,21 @@ function Fooddetails() {
               </option>
             </select>
             {isThai ? (
-              <img src="https://cdn.pixabay.com/photo/2013/07/12/17/58/thailand-152711_1280.png" alt="Thailand" />
+              <img
+                src="https://cdn.pixabay.com/photo/2013/07/12/17/58/thailand-152711_1280.png"
+                alt="Thailand"
+              />
             ) : (
-              <img src="https://www.tornok.com/wp-content/uploads/2015/03/uk-flag.png" alt="UK" />
+              <img
+                src="https://www.tornok.com/wp-content/uploads/2015/03/uk-flag.png"
+                alt="UK"
+              />
             )}
           </div>
+          <div className="title ">
+            {isThai ? "รายละเอียดเกี่ยวกับอาหาร" : "Food Details"}
+          </div>
           <div className="customfooddetail">
-            <div className="title ">
-              {isThai ? "รายละเอียดเกี่ยวกับอาหาร" : "Food Details"}
-            </div>
             <div className="details">
               <div className="food-container">
                 <div className="ingredients-label">

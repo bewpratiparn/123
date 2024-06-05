@@ -1,35 +1,43 @@
 import React, { useState, useEffect } from "react";
 import "./Sidebar.css";
-import Showuser from "../paeges/Showuser";
 import { Icon } from "@iconify/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFlag } from '@fortawesome/free-solid-svg-icons';
+
 const NavbarSidebar = () => {
+  useEffect(() => {
+    const handleScroll = () => {
+      const navbar = document.querySelector(".navbar-sidebar");
+      navbar.style.top = `${window.scrollY}px`;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <>
-      <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-        {/* Sidebar component */}
-        <Sidebar />
-      </nav>
-    </>
+    <nav className="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 navbar-sidebar">
+      <Sidebar />
+    </nav>
   );
 };
 
 const Sidebar = () => {
   const [backgroundColor, setBackgroundColor] = useState("");
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
-  const [showEditDropdown, settoggleEditDropdown] = useState(false);
+  const [showEditDropdown, setToggleEditDropdown] = useState(false);
   const [showLoginDropdown, setShowLoginDropdown] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [shopId, setShopId] = useState(null);
-  const [isThai, setIsThai] = useState(true); // state to track the current language
+  const [isThai, setIsThai] = useState(true);
 
   const toggleProfileDropdown = () => {
     setShowProfileDropdown(!showProfileDropdown);
   };
 
   const toggleEditDropdown = () => {
-    settoggleEditDropdown(!showEditDropdown);
+    setToggleEditDropdown(!showEditDropdown);
   };
 
   const toggleLoginDropdown = () => {
@@ -43,13 +51,7 @@ const Sidebar = () => {
   const closeNav = () => {
     setIsSidebarOpen(false);
   };
-  const toggle = () => {
-    this.setState((prevState) => ({
-      showProfileDropdown: !prevState.showProfileDropdown,
-    }));
-  };
 
-  // Fetch shop ID from the API
   useEffect(() => {
     fetch("http://127.0.0.1:8000/shops/")
       .then((response) => response.json())
@@ -74,26 +76,16 @@ const Sidebar = () => {
           &times;
         </a>
         <div className="custom-select777">
-          <select
-            value={isThai ? "th" : "en"}
-            onChange={handleToggleLanguage}
-          >
-            <option value="th"className="thai777">ไทย</option>
-            <option value="en"className="eng777">English</option>
+          <select value={isThai ? "th" : "en"} onChange={handleToggleLanguage}>
+            <option value="th" className="thai777">ไทย</option>
+            <option value="en" className="eng777">English</option>
           </select>
           {isThai ? (
-            <img
-              src="https://cdn.pixabay.com/photo/2013/07/12/17/58/thailand-152711_1280.png"
-              alt="Thailand"
-            />
+            <img src="https://cdn.pixabay.com/photo/2013/07/12/17/58/thailand-152711_1280.png" alt="Thailand" />
           ) : (
-            <img
-              src="https://www.tornok.com/wp-content/uploads/2015/03/uk-flag.png"
-              alt="UK"
-            />
+            <img src="https://www.tornok.com/wp-content/uploads/2015/03/uk-flag.png" alt="UK" />
           )}
         </div>
-
         <a href="/Home">
           <div className="outterlineHome">
             <div className="iconHeaderbeforetoggle">
@@ -106,12 +98,10 @@ const Sidebar = () => {
           <div className="outterlineHome">
             <div className="iconHeaderbeforetoggle">
               <Icon icon="mdi:translate" className="mr-5" />
-
               {isThai ? "แปลภาษา" : "Translate"}
             </div>
           </div>
         </a>
-
         <a href="#" onClick={toggleProfileDropdown}>
           <div className="outlineaddshop">
             <div className="iconHeaderbeforetoggle">
@@ -149,20 +139,15 @@ const Sidebar = () => {
             <a href={`/Editstore?shop_id=${shopId}`}>
               <div className="icon-wrapperaddshop">
                 <Icon icon="mdi:food" className="mr-5" />
-                {isThai ? "แก้ไข้ข้อมูลร้านค้า" : "Edit StoreInformation"}
+                {isThai ? "แก้ไข้ข้อมูลร้านค้า" : "Edit Store Information"}
               </div>
             </a>
-
-            {/* <a href="/Notshowfood">{isThai ? "-ไม่แสดงรายการอาหาร" : "-Do Not Show Food List"}</a> */}
           </div>
         )}
         <a href="#" onClick={toggleLoginDropdown}>
           <div className="outlineaddAndEdit">
             <div className="iconHeaderbeforetoggle">
-              <Icon
-                icon="material-symbols:tv-signin-outline"
-                className="mr-2"
-              />
+              <Icon icon="material-symbols:tv-signin-outline" className="mr-2" />
               {isThai ? "ลงชื่อเข้าใช้" : "Sign In"}
             </div>
           </div>
@@ -184,25 +169,21 @@ const Sidebar = () => {
             <a href="/Logout">
               <div className="icon-wrapperaddshop">
                 <Icon icon="ri:logout-box-line" />
-                {isThai ? "ออกจาระบบ" : "Log Out"}
+                {isThai ? "ออกจากระบบ" : "Log Out"}
               </div>
             </a>
-            {/* <a href="/">{isThai ? "-ลบบัญชี" : "-Delete Account"}</a> */}
           </div>
         )}
       </div>
       <div className="custom-color-navbarsidebar">
         <div id="main">
           <a href="/Home" className="flex items-center justify-center">
-            <span className="self-center font-semibold text-white backdrop-blur-sm  ">
+            <span className="self-center font-semibold text-white backdrop-blur-sm">
               {isThai ? "หน้าหลัก" : "Home"}
             </span>
           </a>
-          <button
-            className="openbtn"
-            onClick={isSidebarOpen ? closeNav : openNav}
-          >
-            &#9776;{" "}
+          <button className="openbtn" onClick={isSidebarOpen ? closeNav : openNav}>
+            &#9776;
           </button>
         </div>
       </div>

@@ -7,7 +7,8 @@ import "./Home.css";
 import Showuser from "./Showuser";
 import { Icon } from "@iconify/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFlag } from '@fortawesome/free-solid-svg-icons';
+import { faFlag } from "@fortawesome/free-solid-svg-icons";
+import NavbarSidebar from "../components/NavbarSidebar";
 
 function Home() {
   const [datasearch, setDatasearch] = useState([]);
@@ -169,28 +170,34 @@ function Home() {
   return (
     <>
       <Showuser />
-
+     
       <div className="containerhome">
-      <div className="custom-select666">
-      <select
-        className="TranslateHome666"
-        value={language}
-        onChange={handleLanguageChange}
-      >
-        <option value="th" className="thai666">
-          ไทย
-        </option>
-        <option value="en" className="eng666">
-          English
-        </option>
-      </select>
-      {language === 'en' && (
-        <img src="https://www.tornok.com/wp-content/uploads/2015/03/uk-flag.png" alt="Thailand"  />
-      )}
-       {language === 'th' && (
-       <img src="https://cdn.pixabay.com/photo/2013/07/12/17/58/thailand-152711_1280.png" alt="Thailand" />
-      )}
-    </div>
+        <div className="custom-select666">
+          <select
+            className="TranslateHome666"
+            value={language}
+            onChange={handleLanguageChange}
+          >
+            <option value="th" className="thai666">
+              ไทย
+            </option>
+            <option value="en" className="eng666">
+              English
+            </option>
+          </select>
+          {language === "en" && (
+            <img
+              src="https://www.tornok.com/wp-content/uploads/2015/03/uk-flag.png"
+              alt="Thailand"
+            />
+          )}
+          {language === "th" && (
+            <img
+              src="https://cdn.pixabay.com/photo/2013/07/12/17/58/thailand-152711_1280.png"
+              alt="Thailand"
+            />
+          )}
+        </div>
         <div className="boxsearch">
           <input
             className="inputsearch"
