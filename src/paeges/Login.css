@@ -10,7 +10,8 @@
 .outlineinlogin {
   position: relative; /* Ensures the element stays fixed in the viewport */
   bottom: 16rem; /* Adjust this value as needed, to position below .backintranslate */
-  right: 14rem; /* Adjust this value as needed */
+right: 5%;/* Adjust this value as needed */
+  top: -16%;
   border: solid;
   width: 4.5rem;
   border-radius: 10px;
