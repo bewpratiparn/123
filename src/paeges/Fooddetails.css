@@ -143,7 +143,7 @@
 
 /* --------------------------------------------------watudip----------------------------------------------------------------- */
 .watudip-label {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
   color: #333;
 }
@@ -162,7 +162,7 @@
   height: auto;
   border-radius: 16px;
   background-color: white;
-  font-size: 28px;
+  font-size: 22px;
   border: solid;
   padding: 10px;
 }
