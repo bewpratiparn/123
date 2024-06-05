@@ -83,6 +83,7 @@
   margin-bottom: 5px;
   outline: none;
   border-radius: 10px;
+  font-size: 22px;
 }
 
 .long-select-language {
@@ -92,6 +93,7 @@
 }
 .result {
   margin-left: 9rem;
+  font-size: 22px;
 }
 
 .inputtext,
@@ -115,4 +117,5 @@
   width: 600px;
   height: 200px;
   border-radius: 10px;
+  font-size: 22px;
 }

@@ -142,6 +142,8 @@ function Editstore() {
         title: "Success",
         text: response.data.message,
         icon: "success",
+      }).then(() => {
+        navigate("/Home");
       });
       // Fetch updated shop data after editing
       const updatedShops = await axios.get("http://127.0.0.1:8000/shops/", {
