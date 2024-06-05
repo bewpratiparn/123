@@ -1,63 +1,63 @@
-
-
-
-.inputsearch {
-  width: 550px;
+.boxhome555 {
+  position: fixed;
+  top:15rem;
+  bottom: 0;
+  background-color: #fffaf0;
+  border-radius: 30px;
+  padding: 30px;
+  width: 70%;
+  height: 100%;
+  height: auto;
+  overflow-y: auto;
 }
 
-/* .container-store {
-  display: flex;
-  justify-content: center;
-  background: lightblue
-    url("https://images.unsplash.com/photo-1615220204129-3904c1f0ef96?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
-    no-repeat fixed center;
-  z-index: 1;
-  border-radius: 24px;
-  margin-right: 24px;
- 
-} */
-.custom-backgroundhome {
-  border-radius: 24px;
-  margin-right: 24px;
-  margin-left: 24px;
-  background: lightblue
-    url("https://images.unsplash.com/photo-1615220204129-3904c1f0ef96?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
-    no-repeat fixed center;
-  backdrop-filter: blur(1px);
-  margin-top: 25px;
-  padding: 25px;
-  position: relative;
-  z-index: 1;
+inputsearch {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
 }
+
+.container-store {
+  margin-left: 20rem; /* จัดตรงกลางแนวนอน */
+  background-color: #fffaf0;
+  border-radius: 30px;
+  width: 80%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  height: auto;
+}
+
 .containerhome {
   position: relative;
-  height: 100%;
-  top: 0;
-  bottom: 0;
-  background-color: #f1f1ec;
-  width: 100%;
-  /* Set height to viewport height */
-  overflow-y: auto; /* Use scrollbar when content overflows */
-  z-index: 1;
+  width: 100vw; /* กำหนดความกว้างเต็มหน้าจอ */
+  height: 100vh; /* กำหนดความสูงเต็มหน้าจอ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* ป้องกันการล้นของ pseudo-element */
+  position: fixed;
 }
 
 .containerhome::before {
   content: "";
+  background: lightblue
+    url("https://images.unsplash.com/photo-1615220204129-3904c1f0ef96?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+    no-repeat fixed center;
+  background-size: cover;
+  background-position: center;
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: url("https://images.pexels.com/photos/326333/pexels-photo-326333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-  background-size: cover;
-  filter: blur(1px);
-  z-index: -1;
+  width: 100%;
+  height: 100%;
+  filter: blur(2px);
 }
 
 .custom-backgroundhome {
   border-radius: 24px;
   margin-right: 24px;
-  margin-left: 24px;
+  margin-left: 25px;
   background: lightblue
     url("https://images.unsplash.com/photo-1615220204129-3904c1f0ef96?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
     no-repeat fixed center;
@@ -66,16 +66,14 @@
   padding: 25px;
   position: relative;
   z-index: 1;
+  height: 500px; /* กำหนดความสูงที่แน่นอน */
+  overflow: auto; /* ทำให้สามารถเลื่อนดูข้อมูลได้ */
 }
 
 .card {
-  border: 1px solid #ccc;
-  margin: 15px auto 25px auto; /* top, horizontal (left and right), bottom */
-  border-radius: 5px; /* Add border-radius */
-  padding: 20px;
   text-align: center;
   width: calc(50% - 20px);
-  box-sizing: border-box;
+
   background-color: rgb(247, 247, 247);
   z-index: 1;
   position: relative;
@@ -208,13 +206,14 @@ input[type="textsearch"] {
 }
 
 .boxsearch {
-  display: flex;
-  justify-content: center;
+  position: relative; /* Ensures it's positioned relative to other elements */
+  z-index: 9999; /* A high value to stay on top */
 }
 .iconsearch {
   position: relative;
   left: 35px;
   top: 15px;
+  z-index: 9999;
 }
 #default-search {
   width: 35%;
@@ -231,6 +230,7 @@ input[type="textsearch"] {
   transition: border-color 0.3s ease-in-out;
   /* Add transition effect for better interaction */
   margin-bottom: 25px;
+  
 }
 #default-search::placeholder {
   color: black; /* เปลี่ยนสีของ placeholder เป็นสีดำ */
@@ -246,41 +246,39 @@ input[type="textsearch"] {
 }
 
 .shop_id {
-
   font-size: 22px;
   margin-top: 15px;
-  
+
   text-align: left;
 }
 
 .data-storehome {
- 
   margin-left: 10%;
   margin-top: 20px;
-  
 }
-.halal-image,.vegetarian-image,.mangswirat-image {
+.halal-image,
+.vegetarian-image,
+.mangswirat-image {
   max-width: 150px;
-  
   margin-top: 5px;
-  
 }
-
 
 .custom-select666 {
   width: 70px;
-  height: auto;
-  margin-left: 90%;
-  margin-top: 10px;
-  position: relative;
+  position: fixed; /* Changed from relative to fixed */
+  top: 10rem; /* Positioned at the top */
+  right: 5rem; /* Positioned at the right */
+  margin-right: 10px; /* Added some margin from the right edge if needed */
+  margin-top: 10px; /* Added some margin from the top edge if needed */
   display: inline-block;
+  opacity: 1;
 }
 
 .custom-select666 img {
   width: 30px;
   height: auto;
   position: absolute;
-  top: 50%;
+  top: 50%; /* Centered vertically */
   transform: translateY(-50%);
   right: 100%;
 }
@@ -294,8 +292,6 @@ input[type="textsearch"] {
   color: rgb(251, 249, 249);
   font-size: 20px;
   cursor: pointer;
-  
-  
 }
 
 .thai666 {

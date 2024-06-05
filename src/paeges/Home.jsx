@@ -196,27 +196,24 @@ function Home() {
             />
           )}
         </div>
-        <div className="boxsearch">
-          <input
-            className="inputsearch"
-            type="text"
-            id="default-search"
-            placeholder={language === "th" ? "🔍  ค้นหา" : "🔍Search "}
-            value={searchTerm}
-            onChange={(e) => handleFilter(e.target.value)}
-          />
-        </div>
-        <div className="text-3xl font-bold text-center mb-8 text-white ">
-          {language === "th" ? "ร้านอาหาร" : "Restaurants"}
-        </div>
 
-        <div className="grid-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="boxhome555">
+          <div className="boxsearch">
+            <input
+              className="inputsearch"
+              type="text"
+              id="default-search"
+              placeholder={language === "th" ? "🔍  ค้นหา" : "🔍Search "}
+              value={searchTerm}
+              onChange={(e) => handleFilter(e.target.value)}
+            />
+          </div>
+          <div className="text-3xl font-bold text-center mb-8 text-black ">
+            {language === "th" ? "ร้านอาหาร" : "Restaurants"}
+          </div>
           {Array.isArray(datasearch) &&
             datasearch.map((d, i) => (
-              <div
-                key={i}
-                className="custom-backgroundhome bg-white  rounded-lg "
-              >
+              <div key={i}>
                 <div className="container-store">
                   <div className="card">
                     <img
