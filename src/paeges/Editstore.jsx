@@ -229,7 +229,7 @@ function Editstore() {
                 <label htmlFor="shop_location" className="block">
                   สถานที่
                 </label>
-                <input
+                <textarea
                   type="text"
                   name="shop_location"
                   className="w-80 mt-3 p-3 rounded-lg"
@@ -258,7 +258,7 @@ function Editstore() {
                 <label htmlFor="shop_time" className="block">
                   เวลาเปิดปิด
                 </label>
-                <input
+                <textarea
                   type="text"
                   name="shop_time"
                   className="w-80 mt-3 p-3 rounded-lg"
