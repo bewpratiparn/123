@@ -201,19 +201,19 @@ function Home() {
             onChange={(e) => handleFilter(e.target.value)}
           />
         </div>
-        <div className="text-3xl font-bold text-center mb-8 text-white ">
+        <div className="shopfood007 text-3xl font-bold text-center  text-white ">
           {language === "th" ? "ร้านอาหาร" : "Restaurants"}
         </div>
 
-        <div className="grid-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="whatthehall">
           {Array.isArray(datasearch) &&
             datasearch.map((d, i) => (
               <div
                 key={i}
-                className="custom-backgroundhome bg-white  rounded-lg "
+                className="custom-backgroundhome1111"
               >
-                <div className="container-store">
-                  <div className="card">
+                <div className="container-storewtf">
+                  <div className="card1111">
                     <img
                       src={d.shop_picture}
                       alt={d.shop_name}
