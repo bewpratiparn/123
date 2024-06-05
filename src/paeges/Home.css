@@ -1,25 +1,36 @@
+.buttongostore{
+  margin-top: 1rem;
+}
 .boxhome555 {
   position: fixed;
-  top:15rem;
+  top: 11rem;
   bottom: 0;
   background-color: #fffaf0;
   border-radius: 30px;
-  padding: 30px;
+  padding: 35px;
   width: 70%;
-  height: 100%;
   height: auto;
   overflow-y: auto;
 }
 
-inputsearch {
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  box-sizing: border-box;
-}
 
+.data-storehome {
+  border: solid;
+  width: 550px;
+  padding: 24px;
+  border-radius: 16px;
+  transition: background-color 2s ease-out, transform 0.3s ease;
+  transform: scale(0.8);
+}
+.data-storehome:hover {
+  transform: scale(0.7);
+  width: 550px;
+  padding: 24px;
+  border-radius: 16px;
+ 
+}
 .container-store {
-  margin-left: 20rem; /* จัดตรงกลางแนวนอน */
+  margin-left: 20rem;
   background-color: #fffaf0;
   border-radius: 30px;
   width: 80%;
@@ -30,12 +41,12 @@ inputsearch {
 
 .containerhome {
   position: relative;
-  width: 100vw; /* กำหนดความกว้างเต็มหน้าจอ */
-  height: 100vh; /* กำหนดความสูงเต็มหน้าจอ */
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* ป้องกันการล้นของ pseudo-element */
+  overflow: hidden;
   position: fixed;
 }
 
@@ -54,43 +65,19 @@ inputsearch {
   filter: blur(2px);
 }
 
-.custom-backgroundhome {
-  border-radius: 24px;
-  margin-right: 24px;
-  margin-left: 25px;
-  background: lightblue
-    url("https://images.unsplash.com/photo-1615220204129-3904c1f0ef96?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
-    no-repeat fixed center;
-  backdrop-filter: blur(2px);
-  margin-top: 25px;
-  padding: 25px;
-  position: relative;
-  z-index: 1;
-  height: 500px; /* กำหนดความสูงที่แน่นอน */
-  overflow: auto; /* ทำให้สามารถเลื่อนดูข้อมูลได้ */
-}
-
 .card {
   text-align: center;
-  width: calc(50% - 20px);
-
-  background-color: rgb(247, 247, 247);
+  
   z-index: 1;
   position: relative;
+  right: 8rem;
 }
 
 .picturefood {
   flex: 1;
-  margin: 3px; /* ระยะห่างระหว่างรูปภาพ */
-  width: 100%; /* ให้รูปภาพเต็มความกว้างของ container */
+  margin: 3px;
+  width: 100%;
   height: auto;
-}
-
-.grid-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
 }
 
 .picture-home {
@@ -99,13 +86,6 @@ inputsearch {
   object-fit: cover;
   object-position: center;
   border-radius: 8px;
-}
-
-.image-store {
-  max-width: 300px;
-  max-height: 200px;
-  width: auto;
-  height: auto;
 }
 
 .slick-prev:before,
@@ -118,34 +98,15 @@ inputsearch {
   -webkit-font-smoothing: antialiased;
 }
 
-.slick-slide.slick-cloned {
-  transform: scale(0);
-  /* ปรับขนาดให้เล็กลง 80% */
-  opacity: 0;
-  /* ลดความโปร่งใสเพื่อแสดงความแตกต่าง */
-  margin-top: -300px;
-  font-size: 0px;
-}
-
-/* Add custom styles for Slider */
 .slick-slider {
   margin: 0 auto;
   width: 80%;
 }
 
-/* Style for individual slide */
 .slick-slide {
   padding: 10px;
 }
 
-/* Style for arrow buttons */
-.slick-arrow {
-  font-size: 20px;
-  line-height: 1;
-  z-index: 1;
-}
-
-/* Style for dots */
 .slick-dots {
   bottom: 10px;
   list-style: none;
@@ -176,7 +137,6 @@ inputsearch {
   margin-top: 0px;
 }
 
-/* Style for arrow buttons */
 .slick-arrow {
   line-height: 1;
   z-index: 1;
@@ -185,77 +145,33 @@ inputsearch {
   transition: font-size 0.3s ease, color 0.3s ease;
 }
 
-/* Style for Next button */
-
-/* Style for Previous button */
-
-header {
-  display: flex;
-  justify-content: center;
-}
-
-input[type="textsearch"] {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background: none;
-  font-size: 16px;
-  color: #f8f8f8;
-  background-color: white;
-  outline: none;
-}
-
-.boxsearch {
-  position: relative; /* Ensures it's positioned relative to other elements */
-  z-index: 9999; /* A high value to stay on top */
-}
-.iconsearch {
-  position: relative;
-  left: 35px;
-  top: 15px;
-  z-index: 9999;
-}
 #default-search {
   width: 35%;
   align-items: center;
-  /* Adjust width to fit container */
   padding: 10px;
-  /* Adjust padding for better spacing */
   font-size: 16px;
-  /* Set font size */
   border: 1px solid #000000;
-  /* Set border color */
   border-radius: 999px;
-  /* Make the input rounded */
   transition: border-color 0.3s ease-in-out;
-  /* Add transition effect for better interaction */
   margin-bottom: 25px;
-  
 }
+
 #default-search::placeholder {
-  color: black; /* เปลี่ยนสีของ placeholder เป็นสีดำ */
+  color: black;
 }
 
 #default-search:focus {
-  outline: none; /* Remove focus outline */
-}
-
-.highlight {
-  background-color: yellow;
-  font-weight: bold;
+  outline: none;
 }
 
 .shop_id {
   font-size: 22px;
   margin-top: 15px;
-
   text-align: left;
 }
 
-.data-storehome {
-  margin-left: 10%;
-  margin-top: 20px;
-}
+
+
 .halal-image,
 .vegetarian-image,
 .mangswirat-image {
@@ -265,11 +181,11 @@ input[type="textsearch"] {
 
 .custom-select666 {
   width: 70px;
-  position: fixed; /* Changed from relative to fixed */
-  top: 10rem; /* Positioned at the top */
-  right: 5rem; /* Positioned at the right */
-  margin-right: 10px; /* Added some margin from the right edge if needed */
-  margin-top: 10px; /* Added some margin from the top edge if needed */
+  position: fixed;
+  top: 10rem;
+  right: 5rem;
+  margin-right: 10px;
+  margin-top: 10px;
   display: inline-block;
   opacity: 1;
 }
@@ -278,7 +194,7 @@ input[type="textsearch"] {
   width: 30px;
   height: auto;
   position: absolute;
-  top: 50%; /* Centered vertically */
+  top: 50%;
   transform: translateY(-50%);
   right: 100%;
 }
@@ -297,6 +213,12 @@ input[type="textsearch"] {
 .thai666 {
   color: black;
 }
+
 .eng666 {
   color: #000000;
+}
+
+.boxsearch {
+  position: relative;
+  z-index: 9999;
 }
