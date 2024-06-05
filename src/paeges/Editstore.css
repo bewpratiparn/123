@@ -21,7 +21,7 @@
 .outlineineditstore{
   position: relative; /* Ensures the element stays fixed in the viewport */
   top: 4rem; /* Adjust this value as needed, to position below .backintranslate */
-  left: 7rem; /* Adjust this value as needed */
+  left: 25%; /* Adjust this value as needed */
   border: solid;
   width: 4.5rem;
   border-radius: 10px;

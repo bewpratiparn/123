@@ -12,7 +12,7 @@
 .Outlinebackintranslate {
   position: relative; /* Ensures the element stays fixed in the viewport */
   bottom: -7rem; /* Adjust this value as needed, to position below .backintranslate */
-  right: 40%; /* Adjust this value as needed */
+  right: 50%; /* Adjust this value as needed */
   border: solid;
   width: 4.5rem;
   border-radius: 10px;
