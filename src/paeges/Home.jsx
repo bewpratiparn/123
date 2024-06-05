@@ -169,8 +169,6 @@ function Home() {
 
   return (
     <>
-      <Showuser />
-     
       <div className="containerhome">
         <div className="custom-select666">
           <select

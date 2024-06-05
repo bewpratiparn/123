@@ -3,6 +3,23 @@ import "./Sidebar.css";
 import { Icon } from "@iconify/react";
 
 const NavbarSidebar = () => {
+
+  const [sticky, setSticky] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      setSticky(true);
+    } else {
+      setSticky(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   useEffect(() => {
     const handleScroll = () => {
       const navbar = document.querySelector(".navbar-sidebar");
