@@ -336,7 +336,7 @@ function Home() {
                             .filter((food) => food.shop_id === d.shop_id)
                             .map((food, index) => (
                               <div key={index}>
-                                <div className="buttongostore">
+                                
                                 <Link
                                   to={{
                                     pathname: "/Fooddetails",
@@ -377,11 +377,12 @@ function Home() {
                                   </div>
                                 </Link>
                                 </div>
-                              </div>
+                              
                             ))}
                         </Slider>
                       </div>
                     </div>
+                    <div className="buttongostore">
                     <Link
                       to={{
                         pathname: `/Store_information`,
@@ -398,6 +399,7 @@ function Home() {
                     >
                       {language === "th" ? "ไปยังร้านค้า" : "Shop"}:{" "}
                     </Link>
+                    </div>
                   </div>
                 </div>
               </div>
