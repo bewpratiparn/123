@@ -44,9 +44,7 @@ function Translate() {
     { key: "en", text: "English", value: "en" },
     { key: "th", text: "Thai", value: "th" },
   ];
-  // const handleBackClick = () => {
-  //   navigate(-1);
-  // };
+
 
   const handleBackClick = () => {
     Swal.fire({
@@ -66,13 +64,13 @@ function Translate() {
 
   return (
     <>
-    
+
       <div className="app-body">
-      
+
         <div className="form-control-Translate">
-        <div className="Outlinebackintranslate" onClick={handleBackClick}>
-          <Icon icon="mdi:arrow-back" className="backintranslate" />
-        </div>
+          <div className="Outlinebackintranslate" onClick={handleBackClick}>
+            <Icon icon="mdi:arrow-back" className="backintranslate" />
+          </div>
           <form onSubmit={submitTranslate}>
             <div className="header"> Translator</div>
 
