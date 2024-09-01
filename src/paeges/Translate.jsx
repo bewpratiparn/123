@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import "./translate.css";
 import axios from "axios";
