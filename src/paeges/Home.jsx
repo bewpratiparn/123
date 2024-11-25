@@ -166,37 +166,38 @@ function Home() {
     cssEase: "linear",
   };
 
+
   return (
     <>
       <Showuser />
 
       <div className="containerhome">
-      <div className="custom-select666">
-      <select
-        className="TranslateHome666"
-        value={language}
-        onChange={handleLanguageChange}
-      >
-        <option value="th" className="thai666">
-          ไทย
-        </option>
-        <option value="en" className="eng666">
-          English
-        </option>
-      </select>
-      {language === 'en' && (
-        <img src="https://www.tornok.com/wp-content/uploads/2015/03/uk-flag.png" alt="Thailand"  />
-      )}
-       {language === 'th' && (
-       <img src="https://cdn.pixabay.com/photo/2013/07/12/17/58/thailand-152711_1280.png" alt="Thailand" />
-      )}
-    </div>
+        <div className="custom-select666">
+          <select
+            className=""
+            value={language}
+            onChange={handleLanguageChange}
+          >
+            <option value="th" className="thai666">
+              ไทย
+            </option>
+            <option value="en" className="eng666">
+              English
+            </option>
+          </select>
+          {language === 'en' && (
+            <img src="https://www.tornok.com/wp-content/uploads/2015/03/uk-flag.png" alt="Thailand" />
+          )}
+          {language === 'th' && (
+            <img src="https://cdn.pixabay.com/photo/2013/07/12/17/58/thailand-152711_1280.png" alt="Thailand" />
+          )}
+        </div>
         <div className="boxsearch">
           <input
             className="inputsearch"
             type="text"
             id="default-search"
-            placeholder={language === "th" ? "🔍  ค้นหา" : "🔍Search "}
+            placeholder="้   ค้นหาร้านของคุณได้ที่นี่..."
             value={searchTerm}
             onChange={(e) => handleFilter(e.target.value)}
           />
@@ -224,9 +225,9 @@ function Home() {
                         <div className="shop_id">
                           {language === "th" ? "ไอดีร้าน" : "Shop ID"}:
                           {searchTerm &&
-                          String(d.shop_id)
-                            .toLowerCase()
-                            .includes(searchTerm.toLowerCase()) ? (
+                            String(d.shop_id)
+                              .toLowerCase()
+                              .includes(searchTerm.toLowerCase()) ? (
                             <span style={{ backgroundColor: "yellow" }}>
                               {d.shop_id}
                             </span>
@@ -237,9 +238,9 @@ function Home() {
                         <div className="shop_id">
                           {language === "th" ? "ชื่อร้านค้า" : "Shop Name"}:
                           {searchTerm &&
-                          d.shop_name
-                            .toLowerCase()
-                            .includes(searchTerm.toLowerCase()) ? (
+                            d.shop_name
+                              .toLowerCase()
+                              .includes(searchTerm.toLowerCase()) ? (
                             <span style={{ backgroundColor: "yellow" }}>
                               {d.shop_name}
                             </span>
@@ -250,9 +251,9 @@ function Home() {
                         <div className="shop_id">
                           {language === "th" ? "สถานที่" : "Location"}:
                           {searchTerm &&
-                          d.shop_location
-                            .toLowerCase()
-                            .includes(searchTerm.toLowerCase()) ? (
+                            d.shop_location
+                              .toLowerCase()
+                              .includes(searchTerm.toLowerCase()) ? (
                             <span style={{ backgroundColor: "yellow" }}>
                               {d.shop_location}
                             </span>
@@ -263,9 +264,9 @@ function Home() {
                         <div className="shop_id">
                           {language === "th" ? "เบอร์โทรศัพท์" : "Phone"}:{" "}
                           {searchTerm &&
-                          d.shop_phone
-                            .toLowerCase()
-                            .includes(searchTerm.toLowerCase()) ? (
+                            d.shop_phone
+                              .toLowerCase()
+                              .includes(searchTerm.toLowerCase()) ? (
                             <span style={{ backgroundColor: "yellow" }}>
                               {d.shop_phone}
                             </span>
@@ -279,9 +280,9 @@ function Home() {
                             : "Opening Hours"}
                           :
                           {searchTerm &&
-                          d.shop_time
-                            .toLowerCase()
-                            .includes(searchTerm.toLowerCase()) ? (
+                            d.shop_time
+                              .toLowerCase()
+                              .includes(searchTerm.toLowerCase()) ? (
                             <span style={{ backgroundColor: "yellow" }}>
                               {d.shop_time}
                             </span>
@@ -292,9 +293,9 @@ function Home() {
                         <div className="shop_id">
                           {language === "th" ? "ตราสัญลักษณ์" : "Symbol"}:{" "}
                           {searchTerm &&
-                          d.shop_text
-                            .toLowerCase()
-                            .includes(searchTerm.toLowerCase()) ? (
+                            d.shop_text
+                              .toLowerCase()
+                              .includes(searchTerm.toLowerCase()) ? (
                             <span style={{ backgroundColor: "yellow" }}>
                               {d.shop_text}
                             </span>
@@ -327,8 +328,8 @@ function Home() {
                           )}
                         </div>
                       </div>
-                      <div>
-                        <h2 className="underline underline-offset-4 pt-3 text-2xl">
+                      {/* <div>
+                        <h2 className="underline underline-offset-4 pt-3 text-1xl">
                           {language === "th" ? "รายการอาหาร" : "Food List"}{" "}
                         </h2>
                         <Slider {...settings}>
@@ -336,28 +337,25 @@ function Home() {
                             .filter((food) => food.shop_id === d.shop_id)
                             .map((food, index) => (
                               <div key={index}>
-                                
+
                                 <Link
                                   to={{
                                     pathname: "/Fooddetails",
-                                    search: `?food_id=${
-                                      food.food_id
-                                    }&Food_name=${food.Food_name}&Food_price=${
-                                      food.Food_price
-                                    }&Food_picture=${encodeURIComponent(
-                                      food.Food_picture
-                                    )}&Food_element=${
-                                      food.Food_element
-                                    }&food_elements=${food.food_elements.join(
-                                      ", "
-                                    )}`,
+                                    search: `?food_id=${food.food_id
+                                      }&Food_name=${food.Food_name}&Food_price=${food.Food_price
+                                      }&Food_picture=${encodeURIComponent(
+                                        food.Food_picture
+                                      )}&Food_element=${food.Food_element
+                                      }&food_elements=${food.food_elements.join(
+                                        ", "
+                                      )}`,
                                   }}
                                 >
                                   <h3 className=" underline-offset-4 pt-3 text-2xl">
                                     {searchTerm &&
-                                    food.Food_name.toLowerCase().includes(
-                                      searchTerm.toLowerCase()
-                                    ) ? (
+                                      food.Food_name.toLowerCase().includes(
+                                        searchTerm.toLowerCase()
+                                      ) ? (
                                       <span
                                         style={{ backgroundColor: "yellow" }}
                                       >
@@ -376,29 +374,27 @@ function Home() {
                                     />
                                   </div>
                                 </Link>
-                                </div>
-                              
+                              </div>
+
                             ))}
                         </Slider>
-                      </div>
+                      </div> */}
                     </div>
                     <div className="buttongostore">
-                    <Link
-                      to={{
-                        pathname: `/Store_information`,
-                        search: `?shop_id=${d.shop_id}&shop_name=${
-                          d.shop_name
-                        }&shop_picture=${encodeURIComponent(
-                          d.shop_picture
-                        )}&shop_location=${d.shop_location}&shop_phone=${
-                          d.shop_phone
-                        }&shop_time=${d.shop_time}&shop_text=${d.shop_text}`,
-                      }}
-                      className="bg-amber-500 py-2 px-4 text-white font-bold rounded-full"
-                      onClick={() => handleShopClick(d.shop_id)}
-                    >
-                      {language === "th" ? "ไปยังร้านค้า" : "Shop"}:{" "}
-                    </Link>
+                      <Link
+                        to={{
+                          pathname: `/Store_information`,
+                          search: `?shop_id=${d.shop_id}&shop_name=${d.shop_name
+                            }&shop_picture=${encodeURIComponent(
+                              d.shop_picture
+                            )}&shop_location=${d.shop_location}&shop_phone=${d.shop_phone
+                            }&shop_time=${d.shop_time}&shop_text=${d.shop_text}`,
+                        }}
+                        className="bg-amber-500 py-2 px-4 text-white font-bold rounded-full"
+                        onClick={() => handleShopClick(d.shop_id)}
+                      >
+                        {language === "th" ? "ไปยังร้านค้า" : "Shop"}:{" "}
+                      </Link>
                     </div>
                   </div>
                 </div>

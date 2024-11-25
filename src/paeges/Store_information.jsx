@@ -187,7 +187,7 @@ function Store_information() {
   const handleBackClick = () => {
     navigate(-1);
   };
-  
+
 
   return (
     <div className="bk191">
@@ -201,14 +201,14 @@ function Store_information() {
             className="icon-with-hover"
             onClick={handleClick}
           />
-          
+
           <span className="icon-text" onClick={handleClick}>
             {language === "th"
               ? "เเก้ไขข้อมูลร้านค้า"
               : "Edit store information"}
           </span>
-          </div>
-       
+        </div>
+
         {/* Language Selector */}
         <div className="custom-select191">
           <select

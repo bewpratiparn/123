@@ -1,8 +1,10 @@
-.buttongostore{
+.buttongostore {
   margin-top: 1rem;
 }
 
-.shopfood007{
+
+
+.shopfood007 {
   margin-bottom: 20px;
 }
 
@@ -28,13 +30,12 @@
   top: 0;
   bottom: 0;
   width: 100%;
-  /* Set height to viewport height */
-  
+
   z-index: 1;
-  
+
 }
 
-.containerhome::before {
+/* .containerhome::before {
   content: "";
   position: absolute;
   top: 0;
@@ -46,29 +47,27 @@
   filter: blur(1px);
   z-index: -1;
 
-}
+} */
 
 
 
-.custom-backgroundhome1111 {
-
-
-  
-  background: 
-    url("https://images.unsplash.com/photo-1615220204129-3904c1f0ef96?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
-    no-repeat fixed center;
+/* .custom-backgroundhome1111 {
+  background:
+    url("https://images.unsplash.com/photo-1615220204129-3904c1f0ef96?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") no-repeat fixed center;
   backdrop-filter: blur(2px);
- 
+
   padding: 25px;
   position: relative;
   z-index: 1;
 
-}
+} */
 
 .card1111 {
   border: 1px solid #ccc;
-  margin: 15px auto 25px auto; /* top, horizontal (left and right), bottom */
-  border-radius: 5px; /* Add border-radius */
+  margin: 15px auto 25px auto;
+  /* top, horizontal (left and right), bottom */
+  /* Add border-radius */
+  border-radius: 5px;
   padding: 20px;
   text-align: center;
   width: calc(50% - 20px);
@@ -76,23 +75,28 @@
   background-color: rgb(255, 255, 255);
   z-index: 1;
   position: relative;
+
 }
 
 .whatthehall {
   position: fixed;
-  margin-top: 280px;
+  margin-top: 200px;
   top: 0;
   bottom: 0;
   width: 100%;
   height: 100%;
-  height: auto; /* กำหนดให้ความสูงของ .card2 ขยายตามเนื้อหาภายใน */
-  overflow-y: auto; /* ใช้ scrollbar เมื่อมีเนื้อหาเกินขนาดของ .card2 */
+  height: auto;
+  /* กำหนดให้ความสูงของ .card2 ขยายตามเนื้อหาภายใน */
+  overflow-y: auto;
+  /* ใช้ scrollbar เมื่อมีเนื้อหาเกินขนาดของ .card2 */
 }
 
 .picturefood {
   flex: 1;
-  margin: 3px; /* ระยะห่างระหว่างรูปภาพ */
-  width: 100%; /* ให้รูปภาพเต็มความกว้างของ container */
+  margin: 3px;
+  /* ระยะห่างระหว่างรูปภาพ */
+  width: 100%;
+  /* ให้รูปภาพเต็มความกว้างของ container */
   height: auto;
 }
 
@@ -104,11 +108,11 @@
 }
 
 .picture-home {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 8px;
+  width: 35%;
+  height: 35%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .image-store {
@@ -216,14 +220,17 @@ input[type="textsearch"] {
 }
 
 .boxsearch {
-  display: flex;
-  justify-content: center;
+  margin-top: 16px;
+  margin-left: 16px;
+  position: absolute;
+  width: 65%;
+  transition: width 0.3s ease;
 }
-.iconsearch {
-  position: relative;
-  left: 35px;
-  top: 15px;
-}
+
+
+
+
+
 #default-search {
   width: 35%;
   align-items: center;
@@ -240,12 +247,15 @@ input[type="textsearch"] {
   /* Add transition effect for better interaction */
   margin-bottom: 25px;
 }
+
 #default-search::placeholder {
-  color: black; /* เปลี่ยนสีของ placeholder เป็นสีดำ */
+  color: black;
+  /* เปลี่ยนสีของ placeholder เป็นสีดำ */
 }
 
 #default-search:focus {
-  outline: none; /* Remove focus outline */
+  outline: none;
+  /* Remove focus outline */
 }
 
 .highlight {
@@ -254,34 +264,36 @@ input[type="textsearch"] {
 }
 
 .shop_id {
-
-  font-size: 22px;
+  font-size: 16px;
   margin-top: 15px;
-  
   text-align: left;
 }
 
 .data-storehome {
- 
   margin-left: 10%;
   margin-top: 20px;
-  
+
 }
-.halal-image,.vegetarian-image,.mangswirat-image {
+
+.halal-image,
+.vegetarian-image,
+.mangswirat-image {
   max-width: 150px;
-  
+
   margin-top: 5px;
-  
+
 }
+
 
 
 .custom-select666 {
   width: 70px;
   height: auto;
-  margin-left: 90%;
-  margin-top: 10px;
-  position: relative;
-  display: inline-block;
+  margin-top: 16px;
+  position: absolute;
+  top: 8px;
+  right: 5%;
+  z-index: 1;
 }
 
 .custom-select666 img {
@@ -299,16 +311,17 @@ input[type="textsearch"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   background-color: transparent;
-  color: rgb(251, 249, 249);
+  color: rgb(0, 0, 0);
   font-size: 20px;
   cursor: pointer;
-  
-  
+
+
 }
 
 .thai666 {
   color: black;
 }
+
 .eng666 {
   color: #000000;
 }
