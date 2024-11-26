@@ -250,15 +250,24 @@ function Home() {
                         </div>
                         <div className="shop_id">
                           {language === "th" ? "สถานที่" : "Location"}:
-                          {searchTerm &&
-                            d.shop_location
-                              .toLowerCase()
-                              .includes(searchTerm.toLowerCase()) ? (
-                            <span style={{ backgroundColor: "yellow" }}>
+                          {searchTerm && d.shop_location.toLowerCase().includes(searchTerm.toLowerCase()) ? (
+                            <a
+                              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.shop_location)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{ backgroundColor: "yellow", textDecoration: "none", color: "blue" }}
+                            >
                               {d.shop_location}
-                            </span>
+                            </a>
                           ) : (
-                            d.shop_location
+                            <a
+                              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.shop_location)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{ textDecoration: "none", color: "blue" }}
+                            >
+                              {d.shop_location}
+                            </a>
                           )}
                         </div>
                         <div className="shop_id">
