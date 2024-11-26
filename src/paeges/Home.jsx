@@ -264,7 +264,7 @@ function Home() {
                               href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.shop_location)}`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              style={{ textDecoration: "none", color: "blue" }}
+                              style={{ textDecoration: "underline", color: "black" }}
                             >
                               {d.shop_location}
                             </a>
