@@ -222,7 +222,7 @@ function Home() {
                     />
                     <div className="card-outdatastore">
                       <div className="data-storehome">
-                        <div className="shop_id">
+                        {/* <div className="shop_id">
                           {language === "th" ? "ไอดีร้าน" : "Shop ID"}:
                           {searchTerm &&
                             String(d.shop_id)
@@ -234,7 +234,7 @@ function Home() {
                           ) : (
                             d.shop_id
                           )}
-                        </div>
+                        </div> */}
                         <div className="shop_id">
                           {language === "th" ? "ชื่อร้านค้า" : "Shop Name"}:
                           {searchTerm &&
